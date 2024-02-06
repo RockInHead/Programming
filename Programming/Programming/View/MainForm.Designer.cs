@@ -81,10 +81,12 @@
             // EnumsListBox
             // 
             EnumsListBox.FormattingEnabled = true;
+            EnumsListBox.Items.AddRange(new object[] { "Color", "EducationForm", "Genre", "Manufactures", "Season", "Weekday" });
             EnumsListBox.Location = new Point(45, 29);
             EnumsListBox.Name = "EnumsListBox";
             EnumsListBox.Size = new Size(185, 284);
             EnumsListBox.TabIndex = 0;
+            EnumsListBox.SelectedIndexChanged += EnumsListBox_SelectedIndexChanged;
             // 
             // tabPage2
             // 

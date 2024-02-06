@@ -11,5 +11,16 @@ namespace Programming
         {
 
         }
+
+        private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (EnumsListBox.SelectedIndex)
+            {
+                case 0:
+                    ValuesListBox.Items.AddRange(Enum.GetValues(typeof(Color)).Cast<object>().ToArray());
+                    break;
+
+            }
+        }
     }
 }
