@@ -30,10 +30,10 @@
         {
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
-            tabPage2 = new TabPage();
-            EnumsListBox = new ListBox();
-            ValuesListBox = new ListBox();
             textBox1 = new TextBox();
+            ValuesListBox = new ListBox();
+            EnumsListBox = new ListBox();
+            tabPage2 = new TabPage();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             SuspendLayout();
@@ -63,38 +63,38 @@
             tabPage1.UseVisualStyleBackColor = true;
             tabPage1.Click += tabPage1_Click;
             // 
-            // tabPage2
-            // 
-            tabPage2.Location = new Point(4, 29);
-            tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(242, 92);
-            tabPage2.TabIndex = 1;
-            tabPage2.Text = "tabPage2";
-            tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // EnumsListBox
-            // 
-            EnumsListBox.FormattingEnabled = true;
-            EnumsListBox.Location = new Point(45, 29);
-            EnumsListBox.Name = "EnumsListBox";
-            EnumsListBox.Size = new Size(185, 244);
-            EnumsListBox.TabIndex = 0;
-            // 
-            // ValuesListBox
-            // 
-            ValuesListBox.FormattingEnabled = true;
-            ValuesListBox.Location = new Point(283, 29);
-            ValuesListBox.Name = "ValuesListBox";
-            ValuesListBox.Size = new Size(208, 244);
-            ValuesListBox.TabIndex = 1;
-            // 
             // textBox1
             // 
             textBox1.Location = new Point(548, 29);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(163, 27);
             textBox1.TabIndex = 2;
+            // 
+            // ValuesListBox
+            // 
+            ValuesListBox.FormattingEnabled = true;
+            ValuesListBox.Location = new Point(283, 29);
+            ValuesListBox.Name = "ValuesListBox";
+            ValuesListBox.Size = new Size(208, 284);
+            ValuesListBox.TabIndex = 1;
+            // 
+            // EnumsListBox
+            // 
+            EnumsListBox.FormattingEnabled = true;
+            EnumsListBox.Location = new Point(45, 29);
+            EnumsListBox.Name = "EnumsListBox";
+            EnumsListBox.Size = new Size(185, 284);
+            EnumsListBox.TabIndex = 0;
+            // 
+            // tabPage2
+            // 
+            tabPage2.Location = new Point(4, 29);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Padding = new Padding(3);
+            tabPage2.Size = new Size(792, 417);
+            tabPage2.TabIndex = 1;
+            tabPage2.Text = "tabPage2";
+            tabPage2.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
