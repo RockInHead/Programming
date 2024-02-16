@@ -39,9 +39,6 @@ namespace Programming
                     break;
 
             }
-            //int SelectedIndexOfEnums = EnumsListBox.SelectedIndex;
-            //object[] values = Enum.GetValues(typeModel[SelectedIndexOfEnums]).Cast<object>().ToArray();
-            //ValuesListBox.Items.AddRange(values);
 
         }
 
