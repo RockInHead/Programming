@@ -30,19 +30,23 @@
         {
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            WeekdayParsingGroupBox = new GroupBox();
+            ParsingTextBox = new TextBox();
+            ParsedValueLabel = new Label();
+            label1 = new Label();
+            ParseButton = new Button();
+            EnumerationsGroupBox = new GroupBox();
+            label4 = new Label();
+            label3 = new Label();
+            label2 = new Label();
+            EnumsListBox = new ListBox();
             IntTextBox = new TextBox();
             ValuesListBox = new ListBox();
-            EnumsListBox = new ListBox();
             tabPage2 = new TabPage();
-            EnumerationsGroupBox = new GroupBox();
-            WeekdayParsingGroupBox = new GroupBox();
-            ParseButton = new Button();
-            label1 = new Label();
-            ParsedValueLabel = new Label();
-            textBox1 = new TextBox();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             WeekdayParsingGroupBox.SuspendLayout();
+            EnumerationsGroupBox.SuspendLayout();
             SuspendLayout();
             // 
             // tabControl1
@@ -59,9 +63,6 @@
             // tabPage1
             // 
             tabPage1.Controls.Add(WeekdayParsingGroupBox);
-            tabPage1.Controls.Add(IntTextBox);
-            tabPage1.Controls.Add(ValuesListBox);
-            tabPage1.Controls.Add(EnumsListBox);
             tabPage1.Controls.Add(EnumerationsGroupBox);
             tabPage1.Location = new Point(4, 29);
             tabPage1.Name = "tabPage1";
@@ -72,55 +73,9 @@
             tabPage1.UseVisualStyleBackColor = true;
             tabPage1.Click += tabPage1_Click;
             // 
-            // IntTextBox
-            // 
-            IntTextBox.Location = new Point(548, 29);
-            IntTextBox.Name = "IntTextBox";
-            IntTextBox.Size = new Size(163, 27);
-            IntTextBox.TabIndex = 2;
-            IntTextBox.TextChanged += textBox1_TextChanged;
-            // 
-            // ValuesListBox
-            // 
-            ValuesListBox.FormattingEnabled = true;
-            ValuesListBox.Location = new Point(283, 29);
-            ValuesListBox.Name = "ValuesListBox";
-            ValuesListBox.Size = new Size(208, 284);
-            ValuesListBox.TabIndex = 1;
-            ValuesListBox.SelectedIndexChanged += ValuesListBox_SelectedIndexChanged;
-            // 
-            // EnumsListBox
-            // 
-            EnumsListBox.FormattingEnabled = true;
-            EnumsListBox.Items.AddRange(new object[] { "Color", "EducationForm", "Genre", "Manufactures", "Season", "Weekday" });
-            EnumsListBox.Location = new Point(45, 29);
-            EnumsListBox.Name = "EnumsListBox";
-            EnumsListBox.Size = new Size(185, 284);
-            EnumsListBox.TabIndex = 0;
-            EnumsListBox.SelectedIndexChanged += EnumsListBox_SelectedIndexChanged;
-            // 
-            // tabPage2
-            // 
-            tabPage2.Location = new Point(4, 29);
-            tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(792, 417);
-            tabPage2.TabIndex = 1;
-            tabPage2.Text = "tabPage2";
-            tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // EnumerationsGroupBox
-            // 
-            EnumerationsGroupBox.Location = new Point(8, 6);
-            EnumerationsGroupBox.Name = "EnumerationsGroupBox";
-            EnumerationsGroupBox.Size = new Size(781, 336);
-            EnumerationsGroupBox.TabIndex = 3;
-            EnumerationsGroupBox.TabStop = false;
-            EnumerationsGroupBox.Text = "Enumerations";
-            // 
             // WeekdayParsingGroupBox
             // 
-            WeekdayParsingGroupBox.Controls.Add(textBox1);
+            WeekdayParsingGroupBox.Controls.Add(ParsingTextBox);
             WeekdayParsingGroupBox.Controls.Add(ParsedValueLabel);
             WeekdayParsingGroupBox.Controls.Add(label1);
             WeekdayParsingGroupBox.Controls.Add(ParseButton);
@@ -131,14 +86,21 @@
             WeekdayParsingGroupBox.TabStop = false;
             WeekdayParsingGroupBox.Text = "Weekday Parsing";
             // 
-            // ParseButton
+            // ParsingTextBox
             // 
-            ParseButton.Location = new Point(305, 55);
-            ParseButton.Name = "ParseButton";
-            ParseButton.Size = new Size(118, 29);
-            ParseButton.TabIndex = 0;
-            ParseButton.Text = "Parse";
-            ParseButton.UseVisualStyleBackColor = true;
+            ParsingTextBox.Location = new Point(6, 57);
+            ParsingTextBox.Name = "ParsingTextBox";
+            ParsingTextBox.Size = new Size(275, 27);
+            ParsingTextBox.TabIndex = 3;
+            // 
+            // ParsedValueLabel
+            // 
+            ParsedValueLabel.AutoSize = true;
+            ParsedValueLabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            ParsedValueLabel.Location = new Point(6, 101);
+            ParsedValueLabel.Name = "ParsedValueLabel";
+            ParsedValueLabel.Size = new Size(0, 28);
+            ParsedValueLabel.TabIndex = 2;
             // 
             // label1
             // 
@@ -149,21 +111,95 @@
             label1.TabIndex = 1;
             label1.Text = "Type value for parsing:";
             // 
-            // ParsedValueLabel
+            // ParseButton
             // 
-            ParsedValueLabel.AutoSize = true;
-            ParsedValueLabel.Location = new Point(16, 104);
-            ParsedValueLabel.Name = "ParsedValueLabel";
-            ParsedValueLabel.Size = new Size(50, 20);
-            ParsedValueLabel.TabIndex = 2;
-            ParsedValueLabel.Text = "label2";
+            ParseButton.Location = new Point(305, 55);
+            ParseButton.Name = "ParseButton";
+            ParseButton.Size = new Size(118, 29);
+            ParseButton.TabIndex = 0;
+            ParseButton.Text = "Parse";
+            ParseButton.UseVisualStyleBackColor = true;
+            ParseButton.Click += ParseButton_Click;
             // 
-            // textBox1
+            // EnumerationsGroupBox
             // 
-            textBox1.Location = new Point(6, 57);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(275, 27);
-            textBox1.TabIndex = 3;
+            EnumerationsGroupBox.Controls.Add(label4);
+            EnumerationsGroupBox.Controls.Add(label3);
+            EnumerationsGroupBox.Controls.Add(label2);
+            EnumerationsGroupBox.Controls.Add(EnumsListBox);
+            EnumerationsGroupBox.Controls.Add(IntTextBox);
+            EnumerationsGroupBox.Controls.Add(ValuesListBox);
+            EnumerationsGroupBox.Location = new Point(8, 6);
+            EnumerationsGroupBox.Name = "EnumerationsGroupBox";
+            EnumerationsGroupBox.Size = new Size(781, 336);
+            EnumerationsGroupBox.TabIndex = 3;
+            EnumerationsGroupBox.TabStop = false;
+            EnumerationsGroupBox.Text = "Enumerations";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(544, 20);
+            label4.Name = "label4";
+            label4.Size = new Size(68, 20);
+            label4.TabIndex = 5;
+            label4.Text = "Int value:";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(265, 20);
+            label3.Name = "label3";
+            label3.Size = new Size(100, 20);
+            label3.TabIndex = 4;
+            label3.Text = "Choose value:";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(16, 20);
+            label2.Name = "label2";
+            label2.Size = new Size(136, 20);
+            label2.TabIndex = 3;
+            label2.Text = "Choose enumation:";
+            // 
+            // EnumsListBox
+            // 
+            EnumsListBox.FormattingEnabled = true;
+            EnumsListBox.Items.AddRange(new object[] { "Color", "EducationForm", "Genre", "Manufactures", "Season", "Weekday" });
+            EnumsListBox.Location = new Point(16, 46);
+            EnumsListBox.Name = "EnumsListBox";
+            EnumsListBox.Size = new Size(185, 284);
+            EnumsListBox.TabIndex = 0;
+            EnumsListBox.SelectedIndexChanged += EnumsListBox_SelectedIndexChanged;
+            // 
+            // IntTextBox
+            // 
+            IntTextBox.Location = new Point(544, 46);
+            IntTextBox.Name = "IntTextBox";
+            IntTextBox.ReadOnly = true;
+            IntTextBox.Size = new Size(163, 27);
+            IntTextBox.TabIndex = 2;
+            IntTextBox.TextChanged += textBox1_TextChanged;
+            // 
+            // ValuesListBox
+            // 
+            ValuesListBox.FormattingEnabled = true;
+            ValuesListBox.Location = new Point(265, 46);
+            ValuesListBox.Name = "ValuesListBox";
+            ValuesListBox.Size = new Size(208, 284);
+            ValuesListBox.TabIndex = 1;
+            ValuesListBox.SelectedIndexChanged += ValuesListBox_SelectedIndexChanged;
+            // 
+            // tabPage2
+            // 
+            tabPage2.Location = new Point(4, 29);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Padding = new Padding(3);
+            tabPage2.Size = new Size(852, 567);
+            tabPage2.TabIndex = 1;
+            tabPage2.Text = "tabPage2";
+            tabPage2.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -175,9 +211,10 @@
             Text = "Programming Demo";
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
-            tabPage1.PerformLayout();
             WeekdayParsingGroupBox.ResumeLayout(false);
             WeekdayParsingGroupBox.PerformLayout();
+            EnumerationsGroupBox.ResumeLayout(false);
+            EnumerationsGroupBox.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -191,9 +228,12 @@
         private TextBox IntTextBox;
         private GroupBox EnumerationsGroupBox;
         private GroupBox WeekdayParsingGroupBox;
-        private TextBox textBox1;
+        private TextBox ParsingTextBox;
         private Label ParsedValueLabel;
         private Label label1;
         private Button ParseButton;
+        private Label label3;
+        private Label label2;
+        private Label label4;
     }
 }
