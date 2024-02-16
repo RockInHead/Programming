@@ -6,6 +6,10 @@ namespace Programming
         public MainForm()
         {
             InitializeComponent();
+          
+
+            object[] SeasonValues = Enum.GetValues(typeof(Season)).Cast<object>().ToArray();
+            SeasonComboBox.Items.AddRange(SeasonValues);
         }
 
         private void tabPage1_Click(object sender, EventArgs e)
@@ -55,10 +59,11 @@ namespace Programming
 
         private void ParseButton_Click(object sender, EventArgs e)
         {
-            
+
             string Text = ParsingTextBox.Text;
             Weekday ParsedDay;
-            if (Enum.IsDefined(typeof(Weekday), Text)){
+            if (Enum.IsDefined(typeof(Weekday), Text))
+            {
                 if (Enum.TryParse<Weekday>(Text, out ParsedDay))
                 {
                     int WeekdayOrder = (int)ParsedDay;
@@ -69,9 +74,58 @@ namespace Programming
             {
                 ParsedValueLabel.Text = "Нет такого дня недели!!!!";
             }
-            
-            
 
+
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (SeasonComboBox.SelectedItem == null)
+            {
+                SeasonComboBox.BackColor = System.Drawing.Color.LightPink;
+                return;
+            }
+
+            SeasonComboBox.BackColor = System.Drawing.Color.White;
+            switch (SeasonComboBox.SelectedItem)
+            {
+                case Season.Summer:
+                    MessageBox.Show("Ура! Солнце!");
+                    break;
+                case Season.Autumn:
+                    SetBackColor(GroupBoxSeasonHandle.BackColor = ColorTranslator.FromHtml("#e29c45"));
+                    break;
+                case Season.Winter:
+                    MessageBox.Show("Бррр! Холодно!");
+                    break;
+                case Season.Spring:
+                    SetBackColor(GroupBoxSeasonHandle.BackColor = ColorTranslator.FromHtml("#559c45"));
+                    break;
+            }
+
+        }
+        private void SetBackColor(System.Drawing.Color color)
+        {
+            EnumerationsGroupBox.BackColor = color;
+            WeekdayParsingGroupBox.BackColor = color;
+            SeasonComboBox.BackColor = color;
+            this.BackColor = color;
         }
     }
 }

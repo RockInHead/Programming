@@ -28,8 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            tabControl1 = new TabControl();
+            tabPage2 = new TabPage();
             tabPage1 = new TabPage();
+            GroupBoxSeasonHandle = new GroupBox();
+            SeasonComboBox = new ComboBox();
+            SeasonButton = new Button();
+            label5 = new Label();
             WeekdayParsingGroupBox = new GroupBox();
             ParsingTextBox = new TextBox();
             ParsedValueLabel = new Label();
@@ -42,36 +46,79 @@
             EnumsListBox = new ListBox();
             IntTextBox = new TextBox();
             ValuesListBox = new ListBox();
-            tabPage2 = new TabPage();
-            tabControl1.SuspendLayout();
+            tabControl1 = new TabControl();
             tabPage1.SuspendLayout();
+            GroupBoxSeasonHandle.SuspendLayout();
             WeekdayParsingGroupBox.SuspendLayout();
             EnumerationsGroupBox.SuspendLayout();
+            tabControl1.SuspendLayout();
             SuspendLayout();
             // 
-            // tabControl1
+            // tabPage2
             // 
-            tabControl1.Controls.Add(tabPage1);
-            tabControl1.Controls.Add(tabPage2);
-            tabControl1.Dock = DockStyle.Fill;
-            tabControl1.Location = new Point(0, 0);
-            tabControl1.Name = "tabControl1";
-            tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(860, 600);
-            tabControl1.TabIndex = 0;
+            tabPage2.Location = new Point(4, 29);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Padding = new Padding(3);
+            tabPage2.Size = new Size(865, 567);
+            tabPage2.TabIndex = 1;
+            tabPage2.Text = "tabPage2";
+            tabPage2.UseVisualStyleBackColor = true;
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(GroupBoxSeasonHandle);
             tabPage1.Controls.Add(WeekdayParsingGroupBox);
             tabPage1.Controls.Add(EnumerationsGroupBox);
             tabPage1.Location = new Point(4, 29);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(852, 567);
+            tabPage1.Size = new Size(865, 567);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Enums";
             tabPage1.UseVisualStyleBackColor = true;
             tabPage1.Click += tabPage1_Click;
+            // 
+            // GroupBoxSeasonHandle
+            // 
+            GroupBoxSeasonHandle.Controls.Add(SeasonComboBox);
+            GroupBoxSeasonHandle.Controls.Add(SeasonButton);
+            GroupBoxSeasonHandle.Controls.Add(label5);
+            GroupBoxSeasonHandle.Location = new Point(487, 348);
+            GroupBoxSeasonHandle.Name = "GroupBoxSeasonHandle";
+            GroupBoxSeasonHandle.Size = new Size(362, 180);
+            GroupBoxSeasonHandle.TabIndex = 5;
+            GroupBoxSeasonHandle.TabStop = false;
+            GroupBoxSeasonHandle.Text = "Season Handle";
+            GroupBoxSeasonHandle.Enter += groupBox1_Enter;
+            // 
+            // SeasonComboBox
+            // 
+            SeasonComboBox.FormattingEnabled = true;
+            SeasonComboBox.Location = new Point(6, 57);
+            SeasonComboBox.Name = "SeasonComboBox";
+            SeasonComboBox.Size = new Size(222, 28);
+            SeasonComboBox.TabIndex = 2;
+            SeasonComboBox.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            // 
+            // SeasonButton
+            // 
+            SeasonButton.Location = new Point(240, 55);
+            SeasonButton.Name = "SeasonButton";
+            SeasonButton.Size = new Size(107, 29);
+            SeasonButton.TabIndex = 1;
+            SeasonButton.Text = "Go!";
+            SeasonButton.UseVisualStyleBackColor = true;
+            SeasonButton.Click += button1_Click;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(0, 34);
+            label5.Name = "label5";
+            label5.Size = new Size(114, 20);
+            label5.TabIndex = 0;
+            label5.Text = "Choose season: ";
+            label5.Click += label5_Click;
             // 
             // WeekdayParsingGroupBox
             // 
@@ -131,7 +178,7 @@
             EnumerationsGroupBox.Controls.Add(ValuesListBox);
             EnumerationsGroupBox.Location = new Point(8, 6);
             EnumerationsGroupBox.Name = "EnumerationsGroupBox";
-            EnumerationsGroupBox.Size = new Size(781, 336);
+            EnumerationsGroupBox.Size = new Size(841, 336);
             EnumerationsGroupBox.TabIndex = 3;
             EnumerationsGroupBox.TabStop = false;
             EnumerationsGroupBox.Text = "Enumerations";
@@ -139,7 +186,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(544, 20);
+            label4.Location = new Point(507, 20);
             label4.Name = "label4";
             label4.Size = new Size(68, 20);
             label4.TabIndex = 5;
@@ -175,7 +222,7 @@
             // 
             // IntTextBox
             // 
-            IntTextBox.Location = new Point(544, 46);
+            IntTextBox.Location = new Point(507, 46);
             IntTextBox.Name = "IntTextBox";
             IntTextBox.ReadOnly = true;
             IntTextBox.Size = new Size(163, 27);
@@ -191,49 +238,56 @@
             ValuesListBox.TabIndex = 1;
             ValuesListBox.SelectedIndexChanged += ValuesListBox_SelectedIndexChanged;
             // 
-            // tabPage2
+            // tabControl1
             // 
-            tabPage2.Location = new Point(4, 29);
-            tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(852, 567);
-            tabPage2.TabIndex = 1;
-            tabPage2.Text = "tabPage2";
-            tabPage2.UseVisualStyleBackColor = true;
+            tabControl1.Controls.Add(tabPage1);
+            tabControl1.Controls.Add(tabPage2);
+            tabControl1.Dock = DockStyle.Fill;
+            tabControl1.Location = new Point(0, 0);
+            tabControl1.Name = "tabControl1";
+            tabControl1.SelectedIndex = 0;
+            tabControl1.Size = new Size(873, 600);
+            tabControl1.TabIndex = 0;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(860, 600);
+            ClientSize = new Size(873, 600);
             Controls.Add(tabControl1);
             Name = "MainForm";
             Text = "Programming Demo";
-            tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
+            GroupBoxSeasonHandle.ResumeLayout(false);
+            GroupBoxSeasonHandle.PerformLayout();
             WeekdayParsingGroupBox.ResumeLayout(false);
             WeekdayParsingGroupBox.PerformLayout();
             EnumerationsGroupBox.ResumeLayout(false);
             EnumerationsGroupBox.PerformLayout();
+            tabControl1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
-        private TabControl tabControl1;
-        private TabPage tabPage1;
-        private ListBox ValuesListBox;
-        private ListBox EnumsListBox;
         private TabPage tabPage2;
-        private TextBox IntTextBox;
-        private GroupBox EnumerationsGroupBox;
+        private TabPage tabPage1;
+        private GroupBox GroupBoxSeasonHandle;
+        private ComboBox SeasonComboBox;
+        private Button SeasonButton;
+        private Label label5;
         private GroupBox WeekdayParsingGroupBox;
         private TextBox ParsingTextBox;
         private Label ParsedValueLabel;
         private Label label1;
         private Button ParseButton;
+        private GroupBox EnumerationsGroupBox;
+        private Label label4;
         private Label label3;
         private Label label2;
-        private Label label4;
+        private ListBox EnumsListBox;
+        private TextBox IntTextBox;
+        private ListBox ValuesListBox;
+        private TabControl tabControl1;
     }
 }
