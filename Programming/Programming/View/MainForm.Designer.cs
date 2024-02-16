@@ -30,7 +30,7 @@
         {
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
-            textBox1 = new TextBox();
+            IntTextBox = new TextBox();
             ValuesListBox = new ListBox();
             EnumsListBox = new ListBox();
             tabPage2 = new TabPage();
@@ -51,7 +51,7 @@
             // 
             // tabPage1
             // 
-            tabPage1.Controls.Add(textBox1);
+            tabPage1.Controls.Add(IntTextBox);
             tabPage1.Controls.Add(ValuesListBox);
             tabPage1.Controls.Add(EnumsListBox);
             tabPage1.Location = new Point(4, 29);
@@ -63,12 +63,13 @@
             tabPage1.UseVisualStyleBackColor = true;
             tabPage1.Click += tabPage1_Click;
             // 
-            // textBox1
+            // IntTextBox
             // 
-            textBox1.Location = new Point(548, 29);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(163, 27);
-            textBox1.TabIndex = 2;
+            IntTextBox.Location = new Point(548, 29);
+            IntTextBox.Name = "IntTextBox";
+            IntTextBox.Size = new Size(163, 27);
+            IntTextBox.TabIndex = 2;
+            IntTextBox.TextChanged += textBox1_TextChanged;
             // 
             // ValuesListBox
             // 
@@ -77,6 +78,7 @@
             ValuesListBox.Name = "ValuesListBox";
             ValuesListBox.Size = new Size(208, 284);
             ValuesListBox.TabIndex = 1;
+            ValuesListBox.SelectedIndexChanged += ValuesListBox_SelectedIndexChanged;
             // 
             // EnumsListBox
             // 
@@ -119,6 +121,6 @@
         private ListBox ValuesListBox;
         private ListBox EnumsListBox;
         private TabPage tabPage2;
-        private TextBox textBox1;
+        private TextBox IntTextBox;
     }
 }
