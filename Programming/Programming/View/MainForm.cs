@@ -135,6 +135,10 @@ namespace Programming
 
             //contact.PhoneNumber = 787834134;
             //label6.Text=contact.PhoneNumber.ToString();
+            Film film = new Film();
+
+            film.ReleaseYear = 1890;
+            label6.Text = film.ReleaseYear.ToString();
         }
     }
 
