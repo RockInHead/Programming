@@ -129,8 +129,12 @@ namespace Programming
 
         private void tabPage2_Click(object sender, EventArgs e)
         {
+            Contact contact = new Contact();
+            //contact.Name = "Биба";
+            //label6.Text = contact.Name;
 
-
+            //contact.PhoneNumber = 787834134;
+            //label6.Text=contact.PhoneNumber.ToString();
         }
     }
 

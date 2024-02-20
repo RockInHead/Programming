@@ -6,4 +6,8 @@
     private string _genre;
     private double _rating;
 
+    public string Name { get; set; }
+
+
+
 }

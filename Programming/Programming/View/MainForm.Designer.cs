@@ -47,6 +47,8 @@
             IntTextBox = new TextBox();
             ValuesListBox = new ListBox();
             tabControl1 = new TabControl();
+            label6 = new Label();
+            tabPage2.SuspendLayout();
             tabPage1.SuspendLayout();
             GroupBoxSeasonHandle.SuspendLayout();
             WeekdayParsingGroupBox.SuspendLayout();
@@ -56,6 +58,7 @@
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(label6);
             tabPage2.Location = new Point(4, 29);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
@@ -250,6 +253,15 @@
             tabControl1.Size = new Size(873, 600);
             tabControl1.TabIndex = 0;
             // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(53, 48);
+            label6.Name = "label6";
+            label6.Size = new Size(50, 20);
+            label6.TabIndex = 0;
+            label6.Text = "label6";
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -258,6 +270,8 @@
             Controls.Add(tabControl1);
             Name = "MainForm";
             Text = "Programming Demo";
+            tabPage2.ResumeLayout(false);
+            tabPage2.PerformLayout();
             tabPage1.ResumeLayout(false);
             GroupBoxSeasonHandle.ResumeLayout(false);
             GroupBoxSeasonHandle.PerformLayout();
@@ -290,5 +304,6 @@
         private TextBox IntTextBox;
         private ListBox ValuesListBox;
         private TabControl tabControl1;
+        private Label label6;
     }
 }
