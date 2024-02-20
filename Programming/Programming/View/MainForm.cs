@@ -6,7 +6,7 @@ namespace Programming
         public MainForm()
         {
             InitializeComponent();
-          
+
 
             object[] SeasonValues = Enum.GetValues(typeof(Season)).Cast<object>().ToArray();
             SeasonComboBox.Items.AddRange(SeasonValues);
@@ -61,7 +61,7 @@ namespace Programming
         {
             string ParsingText = ParsingTextBox.Text;
             Weekday ParsedDay;
-           
+
             if (!int.TryParse(ParsingText, out _) && Enum.TryParse<Weekday>(ParsingText, true, out ParsedDay))
             {
                 int WeekdayOrder = (int)ParsedDay;
@@ -72,7 +72,7 @@ namespace Programming
                 ParsedValueLabel.Text = "Нет такого дня недели!!!!";
             }
         }
-      
+
 
 
 
@@ -126,5 +126,12 @@ namespace Programming
             SeasonComboBox.BackColor = color;
             this.BackColor = color;
         }
+
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
+
+
+        }
     }
+
 }
