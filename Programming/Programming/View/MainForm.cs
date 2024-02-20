@@ -53,16 +53,16 @@ namespace Programming
 
         private void ValuesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ValuesListBox.SelectedIndex == -1) return;
+            //if (ValuesListBox.SelectedIndex == -1) return;
             IntTextBox.Text = ValuesListBox.SelectedIndex.ToString();
         }
 
         private void ParseButton_Click(object sender, EventArgs e)
         {
-            string text = ParsingTextBox.Text;
+            string ParsingText = ParsingTextBox.Text;
             Weekday ParsedDay;
            
-            if (!int.TryParse(text, out _) && Enum.TryParse<Weekday>(text, true, out ParsedDay))
+            if (!int.TryParse(ParsingText, out _) && Enum.TryParse<Weekday>(ParsingText, true, out ParsedDay))
             {
                 int WeekdayOrder = (int)ParsedDay;
                 ParsedValueLabel.Text = $"Это день недели ({ParsedDay} = {WeekdayOrder})";
