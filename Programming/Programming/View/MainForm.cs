@@ -59,25 +59,24 @@ namespace Programming
 
         private void ParseButton_Click(object sender, EventArgs e)
         {
-
-            string Text = ParsingTextBox.Text;
+            string text = ParsingTextBox.Text;
             Weekday ParsedDay;
-            if (Enum.IsDefined(typeof(Weekday), Text))
+           
+            if (!int.TryParse(text, out _) && Enum.TryParse<Weekday>(text, true, out ParsedDay))
             {
-                if (Enum.TryParse<Weekday>(Text, out ParsedDay))
-                {
-                    int WeekdayOrder = (int)ParsedDay;
-                    ParsedValueLabel.Text = $"Ёто день недели ({ParsedDay} = {WeekdayOrder})";
-                }
+                int WeekdayOrder = (int)ParsedDay;
+                ParsedValueLabel.Text = $"Ёто день недели ({ParsedDay} = {WeekdayOrder})";
             }
             else
             {
                 ParsedValueLabel.Text = "Ќет такого дн€ недели!!!!";
             }
-
-
-
         }
+      
+
+
+
+
 
         private void groupBox1_Enter(object sender, EventArgs e)
         {
