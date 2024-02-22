@@ -1,3 +1,4 @@
+using System.Drawing;
 using System.Reflection;
 namespace Programming
 {
@@ -131,21 +132,23 @@ namespace Programming
 
         private void tabPage2_Click(object sender, EventArgs e)
         {
-            Contact contact = new Contact();
+            //Contact contact = new Contact();
             //contact.Name = "Биба";
             //label6.Text = contact.Name;
 
             //contact.PhoneNumber = 787834134;
             //label6.Text=contact.PhoneNumber.ToString();
 
-           /* Film film = new Film();
+            /* Film film = new Film();
 
-            film.ReleaseYear = 1890;
-            label6.Text = film.ReleaseYear.ToString();*/
+             film.ReleaseYear = 1890;
+             label6.Text = film.ReleaseYear.ToString();*/
 
-            Rectangle rectangle = new Rectangle(12, 14, "black");
-            label6.Text = rectangle.Length.ToString();
-            
+            /*Rectangle rectangle = new Rectangle(12, 14, "black");
+            label6.Text = rectangle.Length.ToString();*/
+
+            Discipline dis = new Discipline("Математика", 12, 4, "Павлова");
+            label6.Text = dis.Name;
 
 
 
