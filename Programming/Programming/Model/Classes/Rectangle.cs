@@ -1,9 +1,11 @@
 ﻿public class Rectangle
 {
+    //Поля
     private double _length;
     private double _widtht;
     private string _color;
 
+    //Свойства и автосвойства
     public double Length
     {
         get
@@ -19,7 +21,6 @@
             _length = value;
         }
     }
-
     public double Widtht
     {
         get
@@ -35,6 +36,13 @@
             _widtht = value;
         }
     }
-
     public string Color { get; set; }
+
+    //Конструктор
+    public Rectangle(double length, double widtht, string color)
+    {
+        Length = length;
+        Widtht = widtht;
+        Color = color;
+    }
 }

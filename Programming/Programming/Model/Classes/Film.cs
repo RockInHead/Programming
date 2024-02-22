@@ -1,11 +1,13 @@
 ﻿public class Film
 {
+    //Поля
     private string _name;
     private int _durationMinutes;
     private int _releaseYear;
     private string _genre;
     private double _rating;
 
+    //Свойства и автосвойства
     public string Name { get; set; }
     public int DurationMinutes
     {
@@ -54,4 +56,13 @@
         }
     }
 
+    //Конструктор
+    public Film(string name,int durationMinutes,int releaseYear,string genre,double rating)
+    {
+        Name = name;
+        DurationMinutes = durationMinutes;
+        ReleaseYear = releaseYear;
+        Genre = genre;
+        Rating = rating;
+    }
 }

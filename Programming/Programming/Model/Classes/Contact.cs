@@ -1,9 +1,10 @@
 ﻿public class Contact
 {
+    //Поля
     private string _name;
     private int _phoneNumber;
     private string _desription;
-
+    //Свойства и автосвойства
     public string Name { get; set; }
     public int PhoneNumber
     {
@@ -21,4 +22,12 @@
         }
     }
     public string Desription { get; set; }
+
+    //Конструктор
+    public Contact(string name, int phoneNumber,string description)
+    {
+        Name = name;
+        PhoneNumber = phoneNumber;
+        Desription = description;
+    }
 }

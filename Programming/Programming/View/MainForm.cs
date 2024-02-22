@@ -5,7 +5,9 @@ namespace Programming
     {
         public MainForm()
         {
+
             InitializeComponent();
+
 
 
             object[] SeasonValues = Enum.GetValues(typeof(Season)).Cast<object>().ToArray();
@@ -135,10 +137,18 @@ namespace Programming
 
             //contact.PhoneNumber = 787834134;
             //label6.Text=contact.PhoneNumber.ToString();
-            Film film = new Film();
+
+           /* Film film = new Film();
 
             film.ReleaseYear = 1890;
-            label6.Text = film.ReleaseYear.ToString();
+            label6.Text = film.ReleaseYear.ToString();*/
+
+            Rectangle rectangle = new Rectangle(12, 14, "black");
+            label6.Text = rectangle.Length.ToString();
+            
+
+
+
         }
     }
 

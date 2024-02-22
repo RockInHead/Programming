@@ -1,9 +1,10 @@
 ﻿public class Time
 {
+    //Поля
     private int _hours;
     private int _minutes;
     private int _seconds;
-
+    //Свойства и автосвойства
     public int Hours
     {
         get
@@ -48,5 +49,13 @@
             }
             _seconds = value;
         }
+    }
+
+    //Конструктор
+    public Time(int hours, int minutes, int seconds)
+    {
+        Hours = hours;
+        Minutes = minutes;
+        Seconds = seconds;
     }
 }
