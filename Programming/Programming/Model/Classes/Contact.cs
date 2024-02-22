@@ -1,4 +1,6 @@
-﻿public class Contact
+﻿using System.Xml.Linq;
+
+public class Contact
 {
     //Поля
     private string _name;
@@ -24,6 +26,12 @@
     public string Desription { get; set; }
 
     //Конструктор
+    public Contact()
+    {
+        Name = "None";
+        PhoneNumber = 0;
+        Desription = "None";
+    }
     public Contact(string name, int phoneNumber,string description)
     {
         Name = name;

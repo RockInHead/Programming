@@ -52,6 +52,12 @@
     }
 
     //Конструктор
+    public Time()
+    {
+        Hours = 0;
+        Minutes = 0;
+        Seconds =0;
+    }
     public Time(int hours, int minutes, int seconds)
     {
         Hours = hours;

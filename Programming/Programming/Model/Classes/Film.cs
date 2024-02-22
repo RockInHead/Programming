@@ -1,4 +1,6 @@
-﻿public class Film
+﻿using System.Xml.Linq;
+
+public class Film
 {
     //Поля
     private string _name;
@@ -57,6 +59,15 @@
     }
 
     //Конструктор
+    public Film()
+    {
+        Name = "None";
+        DurationMinutes = 0;
+        ReleaseYear = 2020;
+        Genre = "None";
+        Rating = 0;
+
+    }
     public Film(string name,int durationMinutes,int releaseYear,string genre,double rating)
     {
         Name = name;

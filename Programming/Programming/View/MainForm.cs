@@ -150,7 +150,7 @@ namespace Programming
             Discipline dis = new Discipline("Математика", 12, 4, "Павлова");
             label6.Text = dis.Assessment.ToString();
 
-
+            Rectangle rectangle = new Rectangle();
 
         }
     }

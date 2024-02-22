@@ -1,4 +1,6 @@
-﻿public class Song
+﻿using System.Xml.Linq;
+
+public class Song
 {
     //Поля
     private string _name;
@@ -23,6 +25,12 @@
         }
     }
     //Конструктор
+    public Song()
+    {
+        Name = "None";
+        Author = "None";
+        DurationSeconds = 0;
+    }
     public Song(string name, string author,int durationSeconds)
     {
         Name = name;

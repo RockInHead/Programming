@@ -1,3 +1,5 @@
+using System.Xml.Linq;
+
 public class Discipline
 {
     //Поля
@@ -40,6 +42,13 @@ public class Discipline
     public string TeacherSurname { get; set; }
     
     //Конструктор
+    public Discipline()
+    {
+        Name = "None";
+        HoursInGeneral = 0;
+        Assessment = 0;
+        TeacherSurname = "None";
+    }
     public Discipline(string name, int hoursInGeneral, int assessment,string teacherSurname)
     {
         Name = name;

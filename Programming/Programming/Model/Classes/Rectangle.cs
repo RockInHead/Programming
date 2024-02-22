@@ -1,4 +1,6 @@
-﻿public class Rectangle
+﻿using System.Drawing;
+
+public class Rectangle
 {
     //Поля
     private double _length;
@@ -38,7 +40,14 @@
     }
     public string Color { get; set; }
 
-    //Конструктор
+    //Конструкторы
+    public Rectangle()
+    {
+        Length = 0;
+        Widtht = 0;
+        Color = "None";
+
+    }
     public Rectangle(double length, double widtht, string color)
     {
         Length = length;

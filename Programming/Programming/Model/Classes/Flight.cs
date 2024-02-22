@@ -24,6 +24,12 @@
     }
 
     //Конструктор
+    public Flight()
+    {
+        DeparturePoint = "None";
+        DestinationPoint = "None";
+        FlightTimeMinutes = 0;
+    }
     public Flight(string departurePoint,string destinationPoint,int flightTimeMinutes)
     {
         DeparturePoint = departurePoint;
