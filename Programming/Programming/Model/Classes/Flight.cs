@@ -24,7 +24,7 @@
     }
 
     //Конструктор
-    public Flight(string departurePoint,string destinationPoint,string flightTimeMinutes)
+    public Flight(string departurePoint,string destinationPoint,int flightTimeMinutes)
     {
         DeparturePoint = departurePoint;
         DestinationPoint = destinationPoint;

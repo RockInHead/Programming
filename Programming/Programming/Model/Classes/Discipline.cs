@@ -38,6 +38,7 @@ public class Discipline
         }
     }
     public string TeacherSurname { get; set; }
+    
     //Конструктор
     public Discipline(string name, int hoursInGeneral, int assessment,string teacherSurname)
     {

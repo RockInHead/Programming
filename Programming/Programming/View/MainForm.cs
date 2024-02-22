@@ -144,11 +144,11 @@ namespace Programming
              film.ReleaseYear = 1890;
              label6.Text = film.ReleaseYear.ToString();*/
 
-            /*Rectangle rectangle = new Rectangle(12, 14, "black");
-            label6.Text = rectangle.Length.ToString();*/
+            /* Rectangle rectangle = new Rectangle(12, 14, "black");
+             label6.Text = rectangle.Length.ToString();*/
 
             Discipline dis = new Discipline("Математика", 12, 4, "Павлова");
-            label6.Text = dis.Name;
+            label6.Text = dis.Assessment.ToString();
 
 
 
