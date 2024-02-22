@@ -151,6 +151,12 @@ namespace Programming
             label6.Text = dis.Assessment.ToString();
 
             Rectangle rectangle = new Rectangle();
+            label6.Text = rectangle.Color.ToString();
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
 
         }
     }
