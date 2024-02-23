@@ -101,6 +101,7 @@
             ColorTextBox.Name = "ColorTextBox";
             ColorTextBox.Size = new Size(125, 27);
             ColorTextBox.TabIndex = 6;
+            ColorTextBox.TextChanged += ColorTextBox_TextChanged;
             // 
             // WidthTextBox
             // 
@@ -108,6 +109,7 @@
             WidthTextBox.Name = "WidthTextBox";
             WidthTextBox.Size = new Size(125, 27);
             WidthTextBox.TabIndex = 5;
+            WidthTextBox.TextChanged += WidthTextBox_TextChanged;
             // 
             // LengthTextBox
             // 

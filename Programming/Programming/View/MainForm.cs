@@ -11,7 +11,7 @@ namespace Programming
 
         private string[] RectangleListBoxItems = new string[5];
         private string[] RectangleColor = new string[6] { "Black", "White", "Orange", "Purple", "Green", "Blue" };
-        
+
         Random _random = new Random();
         public void Rectangle()
         {
@@ -26,11 +26,16 @@ namespace Programming
             RectanglesListBox.Items.AddRange(RectangleListBoxItems);
         }
 
-        public void TextChanged(int length,int index)
+        public void TextChanged(int length, int widtht, string color, int index)
         {
             _currentRectangle.Length = length;
             _rectangles[index].Length = _currentRectangle.Length;
 
+            _currentRectangle.Widtht = widtht;
+            _rectangles[index].Widtht = _currentRectangle.Widtht;
+
+            _currentRectangle.Color = color;
+            _rectangles[index].Color = _currentRectangle.Color;
         }
         public MainForm()
         {
@@ -225,9 +230,24 @@ namespace Programming
 
         private void LengthTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (LengthTextBox.Text == "") return;
-            TextChanged(Convert.ToInt16(LengthTextBox.Text),RectanglesListBox.SelectedIndex);
-            
+            if (LengthTextBox.Text == "" | WidthTextBox.Text == "" | ColorTextBox.Text == "") return;
+
+            TextChanged(Convert.ToInt16(LengthTextBox.Text), Convert.ToInt16(WidthTextBox.Text), ColorTextBox.Text, RectanglesListBox.SelectedIndex);
+
+        }
+
+        private void WidthTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (LengthTextBox.Text == "" | WidthTextBox.Text == "" | ColorTextBox.Text == "") return;
+
+            TextChanged(Convert.ToInt16(LengthTextBox.Text), Convert.ToInt16(WidthTextBox.Text), ColorTextBox.Text, RectanglesListBox.SelectedIndex);
+        }
+
+        private void ColorTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (LengthTextBox.Text == "" | WidthTextBox.Text == "" | ColorTextBox.Text == "") return;
+
+            TextChanged(Convert.ToInt16(LengthTextBox.Text), Convert.ToInt16(WidthTextBox.Text), ColorTextBox.Text, RectanglesListBox.SelectedIndex);
         }
     }
 
