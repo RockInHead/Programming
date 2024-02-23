@@ -1,18 +1,51 @@
+using System;
 using System.Drawing;
 using System.Reflection;
 namespace Programming
 {
     public partial class MainForm : Form
     {
+        private Rectangle[] _rectangles = new Rectangle[5];
+        private Rectangle _currentRectangle = new Rectangle();
+
+        private string[] RectangleListBoxItems = new string[5];
+        private string[] RectangleColor = new string[6] { "Black", "White", "Orange", "Purple", "Green", "Blue" };
+        Random _random = new Random();
+        public void Rectangle ()
+        {
+            for(int i = 0; i < 5; i++)
+            {
+                int length = _random.Next(200);
+                int widtht = _random.Next(200);
+                Rectangle _currentRectangle = new Rectangle(length, widtht, RectangleColor[i]);
+                _rectangles[i] = _currentRectangle;
+                RectangleListBoxItems[i] = ($"Rectangle{i + 1}");
+            }
+            RectanglesListBox.Items.AddRange(RectangleListBoxItems);
+        }
         public MainForm()
         {
 
             InitializeComponent();
 
-
-
             object[] SeasonValues = Enum.GetValues(typeof(Season)).Cast<object>().ToArray();
             SeasonComboBox.Items.AddRange(SeasonValues);
+
+            Rectangle();
+
+            /*Random _random = new Random();
+            Rectangle[] _rectangles = new Rectangle[5];
+            string[] RectangleListBoxItems = new string[5];
+            string[] RectangleColor = new string[6] { "Black", "White", "Orange", "Purple", "Green", "Blue" };
+            for (int i = 0; i < 5; i++)
+            {
+                int length = _random.Next();
+                int widtht = _random.Next();
+                Rectangle _currentRectangle = new Rectangle(length, widtht, RectangleColor[i]);
+                _rectangles[i] = _currentRectangle;
+                RectangleListBoxItems[i] = ($"Rectangle{i + 1}");
+            }
+            RectanglesListBox.Items.AddRange(RectangleListBoxItems);*/
         }
 
         private void tabPage1_Click(object sender, EventArgs e)
@@ -158,6 +191,41 @@ namespace Programming
         private void button1_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void RectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LengthTextBox.Clear();
+            WidthTextBox.Clear();
+            ColorTextBox.Clear();
+            switch (RectanglesListBox.SelectedIndex)
+            {
+                case 0:
+                    LengthTextBox.Text = _rectangles[0].Length.ToString();
+                    WidthTextBox.Text= _rectangles[0].Widtht.ToString();
+                    ColorTextBox.Text = _rectangles[0].Color.ToString();
+                    break;
+                case 1:
+                    LengthTextBox.Text = _rectangles[1].Length.ToString();
+                    WidthTextBox.Text = _rectangles[1].Widtht.ToString();
+                    ColorTextBox.Text = _rectangles[1].Color.ToString();
+                    break;
+                case 2:
+                    LengthTextBox.Text = _rectangles[2].Length.ToString();
+                    WidthTextBox.Text = _rectangles[2].Widtht.ToString();
+                    ColorTextBox.Text = _rectangles[2].Color.ToString();
+                    break;
+                case 3:
+                    LengthTextBox.Text = _rectangles[3].Length.ToString();
+                    WidthTextBox.Text = _rectangles[3].Widtht.ToString();
+                    ColorTextBox.Text = _rectangles[3].Color.ToString();
+                    break;
+                case 4:
+                    LengthTextBox.Text = _rectangles[4].Length.ToString();
+                    WidthTextBox.Text = _rectangles[4].Widtht.ToString();
+                    ColorTextBox.Text = _rectangles[4].Color.ToString();
+                    break;
+            }
         }
     }
 
