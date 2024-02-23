@@ -5,15 +5,17 @@ namespace Programming
 {
     public partial class MainForm : Form
     {
+        //Поля
         private Rectangle[] _rectangles = new Rectangle[5];
         private Rectangle _currentRectangle = new Rectangle();
 
         private string[] RectangleListBoxItems = new string[5];
         private string[] RectangleColor = new string[6] { "Black", "White", "Orange", "Purple", "Green", "Blue" };
+        
         Random _random = new Random();
-        public void Rectangle ()
+        public void Rectangle()
         {
-            for(int i = 0; i < 5; i++)
+            for (int i = 0; i < 5; i++)
             {
                 int length = _random.Next(200);
                 int widtht = _random.Next(200);
@@ -22,6 +24,13 @@ namespace Programming
                 RectangleListBoxItems[i] = ($"Rectangle{i + 1}");
             }
             RectanglesListBox.Items.AddRange(RectangleListBoxItems);
+        }
+
+        public void TextChanged(int length,int index)
+        {
+            _currentRectangle.Length = length;
+            _rectangles[index].Length = _currentRectangle.Length;
+
         }
         public MainForm()
         {
@@ -48,6 +57,7 @@ namespace Programming
             RectanglesListBox.Items.AddRange(RectangleListBoxItems);*/
         }
 
+        //2 ЛАБА
         private void tabPage1_Click(object sender, EventArgs e)
         {
 
@@ -109,11 +119,6 @@ namespace Programming
             }
         }
 
-
-
-
-
-
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 
@@ -163,28 +168,13 @@ namespace Programming
             this.BackColor = color;
         }
 
+        //2 ЛАБА
+
+
+        //3 ЛАБА
         private void tabPage2_Click(object sender, EventArgs e)
         {
-            //Contact contact = new Contact();
-            //contact.Name = "Биба";
-            //label6.Text = contact.Name;
 
-            //contact.PhoneNumber = 787834134;
-            //label6.Text=contact.PhoneNumber.ToString();
-
-            /* Film film = new Film();
-
-             film.ReleaseYear = 1890;
-             label6.Text = film.ReleaseYear.ToString();*/
-
-            /* Rectangle rectangle = new Rectangle(12, 14, "black");
-             label6.Text = rectangle.Length.ToString();*/
-
-            Discipline dis = new Discipline("Математика", 12, 4, "Павлова");
-            label6.Text = dis.Assessment.ToString();
-
-            Rectangle rectangle = new Rectangle();
-            label6.Text = rectangle.Color.ToString();
 
         }
 
@@ -202,7 +192,7 @@ namespace Programming
             {
                 case 0:
                     LengthTextBox.Text = _rectangles[0].Length.ToString();
-                    WidthTextBox.Text= _rectangles[0].Widtht.ToString();
+                    WidthTextBox.Text = _rectangles[0].Widtht.ToString();
                     ColorTextBox.Text = _rectangles[0].Color.ToString();
                     break;
                 case 1:
@@ -226,6 +216,18 @@ namespace Programming
                     ColorTextBox.Text = _rectangles[4].Color.ToString();
                     break;
             }
+        }
+
+        private void RectanglesGroupBox_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LengthTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (LengthTextBox.Text == "") return;
+            TextChanged(Convert.ToInt16(LengthTextBox.Text),RectanglesListBox.SelectedIndex);
+            
         }
     }
 

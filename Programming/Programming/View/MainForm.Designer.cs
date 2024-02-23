@@ -93,6 +93,7 @@
             RectanglesGroupBox.TabIndex = 1;
             RectanglesGroupBox.TabStop = false;
             RectanglesGroupBox.Text = "Rectangles";
+            RectanglesGroupBox.Enter += RectanglesGroupBox_Enter;
             // 
             // ColorTextBox
             // 
@@ -114,6 +115,7 @@
             LengthTextBox.Name = "LengthTextBox";
             LengthTextBox.Size = new Size(125, 27);
             LengthTextBox.TabIndex = 4;
+            LengthTextBox.TextChanged += LengthTextBox_TextChanged;
             // 
             // FindButton
             // 
