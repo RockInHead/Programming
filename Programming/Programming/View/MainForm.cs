@@ -7,7 +7,7 @@ namespace Programming
     {
         //Поля
         private Rectangle[] _rectangles = new Rectangle[5];
-        private Rectangle _currentRectangle = new Rectangle();
+        private Rectangle _currentRectangle;
 
         private string[] RectangleListBoxItems = new string[5];
         private string[] RectangleColor = new string[6] { "Black", "White", "Orange", "Purple", "Green", "Blue" };
@@ -19,24 +19,31 @@ namespace Programming
             {
                 int length = _random.Next(200);
                 int widtht = _random.Next(200);
-                Rectangle _currentRectangle = new Rectangle(length, widtht, RectangleColor[i]);
-                _rectangles[i] = _currentRectangle;
+                //Rectangle _currentRectangle = new Rectangle(length, widtht, RectangleColor[i]);
+                _rectangles[i] = new Rectangle(length, widtht, RectangleColor[i]);
                 RectangleListBoxItems[i] = ($"Rectangle{i + 1}");
             }
             RectanglesListBox.Items.AddRange(RectangleListBoxItems);
         }
 
-        public void TextChanged(int length, int widtht, string color, int index)
-        {
-            _currentRectangle.Length = length;
-            _rectangles[index].Length = _currentRectangle.Length;
+        //private void TextChangedHandler(int length, int widtht, string color, int index)
+        //{
+        //    try
+        //    {
+        //        _currentRectangle.Length = length;
+        //        _rectangles[index].Length = _currentRectangle.Length;
 
-            _currentRectangle.Widtht = widtht;
-            _rectangles[index].Widtht = _currentRectangle.Widtht;
+        //        _currentRectangle.Width = widtht;
+        //        _rectangles[index].Width = _currentRectangle.Width;
 
-            _currentRectangle.Color = color;
-            _rectangles[index].Color = _currentRectangle.Color;
-        }
+        //        _currentRectangle.Color = color;
+        //        _rectangles[index].Color = _currentRectangle.Color;
+        //    }
+        //    catch(Exception)
+        //    {
+        //        LengthTextBox.BackColor = System.Drawing.Color.LightPink;
+        //    }
+        //}
         public MainForm()
         {
 
@@ -190,37 +197,11 @@ namespace Programming
 
         private void RectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LengthTextBox.Clear();
-            WidthTextBox.Clear();
-            ColorTextBox.Clear();
-            switch (RectanglesListBox.SelectedIndex)
-            {
-                case 0:
-                    LengthTextBox.Text = _rectangles[0].Length.ToString();
-                    WidthTextBox.Text = _rectangles[0].Widtht.ToString();
-                    ColorTextBox.Text = _rectangles[0].Color.ToString();
-                    break;
-                case 1:
-                    LengthTextBox.Text = _rectangles[1].Length.ToString();
-                    WidthTextBox.Text = _rectangles[1].Widtht.ToString();
-                    ColorTextBox.Text = _rectangles[1].Color.ToString();
-                    break;
-                case 2:
-                    LengthTextBox.Text = _rectangles[2].Length.ToString();
-                    WidthTextBox.Text = _rectangles[2].Widtht.ToString();
-                    ColorTextBox.Text = _rectangles[2].Color.ToString();
-                    break;
-                case 3:
-                    LengthTextBox.Text = _rectangles[3].Length.ToString();
-                    WidthTextBox.Text = _rectangles[3].Widtht.ToString();
-                    ColorTextBox.Text = _rectangles[3].Color.ToString();
-                    break;
-                case 4:
-                    LengthTextBox.Text = _rectangles[4].Length.ToString();
-                    WidthTextBox.Text = _rectangles[4].Widtht.ToString();
-                    ColorTextBox.Text = _rectangles[4].Color.ToString();
-                    break;
-            }
+            int selectedIndex = RectanglesListBox.SelectedIndex;
+            _currentRectangle = _rectangles[selectedIndex];
+            LengthTextBox.Text = _currentRectangle.Length.ToString();
+            WidthTextBox.Text = _currentRectangle.Width.ToString();
+            ColorTextBox.Text = _currentRectangle.Color;
         }
 
         private void RectanglesGroupBox_Enter(object sender, EventArgs e)
@@ -230,24 +211,39 @@ namespace Programming
 
         private void LengthTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (LengthTextBox.Text == "" | WidthTextBox.Text == "" | ColorTextBox.Text == "") return;
-
-            TextChanged(Convert.ToInt16(LengthTextBox.Text), Convert.ToInt16(WidthTextBox.Text), ColorTextBox.Text, RectanglesListBox.SelectedIndex);
-
+            if (_currentRectangle == null) return;
+            
+            //try
+            //{
+                int length = int.Parse(LengthTextBox.Text);
+                _currentRectangle.Length = length;
+            //}
+            //catch (Exception)
+            //{
+                //LengthTextBox.BackColor = System.Drawing.Color.LightPink;
+            //}
+            //try
+            //{
+            //    TextChangedHandler(Convert.ToInt16(LengthTextBox.Text), Convert.ToInt16(WidthTextBox.Text), ColorTextBox.Text, RectanglesListBox.SelectedIndex);
+            //}
+            //catch(Exception)
+            //{
+            //    LengthTextBox.BackColor = System.Drawing.Color.LightPink;
+            //}
         }
 
         private void WidthTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (LengthTextBox.Text == "" | WidthTextBox.Text == "" | ColorTextBox.Text == "") return;
+            //if (LengthTextBox.Text == "" | WidthTextBox.Text == "" | ColorTextBox.Text == "") return;
 
-            TextChanged(Convert.ToInt16(LengthTextBox.Text), Convert.ToInt16(WidthTextBox.Text), ColorTextBox.Text, RectanglesListBox.SelectedIndex);
+            //TextChangedHandler(Convert.ToInt16(LengthTextBox.Text), Convert.ToInt16(WidthTextBox.Text), ColorTextBox.Text, RectanglesListBox.SelectedIndex);
         }
 
         private void ColorTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (LengthTextBox.Text == "" | WidthTextBox.Text == "" | ColorTextBox.Text == "") return;
+            //if (LengthTextBox.Text == "" | WidthTextBox.Text == "" | ColorTextBox.Text == "") return;
 
-            TextChanged(Convert.ToInt16(LengthTextBox.Text), Convert.ToInt16(WidthTextBox.Text), ColorTextBox.Text, RectanglesListBox.SelectedIndex);
+            //TextChangedHandler(Convert.ToInt16(LengthTextBox.Text), Convert.ToInt16(WidthTextBox.Text), ColorTextBox.Text, RectanglesListBox.SelectedIndex);
         }
     }
 

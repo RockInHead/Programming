@@ -3,12 +3,12 @@
 public class Rectangle
 {
     //Поля
-    private double _length;
-    private double _widtht;
-    private string _color;
+    private int _length;
+    private int _width;
+    public string Color { get; set; }
 
     //Свойства и автосвойства
-    public double Length
+    public int Length
     {
         get
         {
@@ -16,18 +16,15 @@ public class Rectangle
         }
         set
         {
-            if(value < 0)
-            {
-                throw new ArgumentException("Длина положительна!");
-            }
+            if (value < 0) throw new ArgumentException("Длина положительна!");
             _length = value;
         }
     }
-    public double Widtht
+    public int Width
     {
         get
         {
-            return _widtht;
+            return _width;
         }
         set
         {
@@ -35,23 +32,22 @@ public class Rectangle
             {
                 throw new ArgumentException("Длина положительна!");
             }
-            _widtht = value;
+            _width = value;
         }
     }
-    public string Color { get; set; }
 
     //Конструкторы
     public Rectangle()
     {
         Length = 0;
-        Widtht = 0;
+        Width = 0;
         Color = "None";
 
     }
-    public Rectangle(double length, double widtht, string color)
+    public Rectangle(int length, int width, string color)
     {
         Length = length;
-        Widtht = widtht;
+        Width = width;
         Color = color;
     }
 }

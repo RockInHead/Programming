@@ -113,6 +113,7 @@
             // 
             // LengthTextBox
             // 
+            LengthTextBox.BackColor = System.Drawing.Color.White;
             LengthTextBox.Location = new Point(189, 49);
             LengthTextBox.Name = "LengthTextBox";
             LengthTextBox.Size = new Size(125, 27);
