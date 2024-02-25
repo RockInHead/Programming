@@ -13,7 +13,7 @@ namespace Programming
 
         //Генерация рандомных полей в прямоугольник
         Random _random = new Random();
-        public void Rectangle()
+        public void RectangleInitiaziation()
         {
             for (int i = 0; i < 5; i++)
             {
@@ -29,7 +29,7 @@ namespace Programming
         {
             int MaxWidth = rectangles[0].Width;
             int MaxWidthIndex = 0;
-            for(int i = 0; i < 5; i++)
+            for (int i = 0; i < 5; i++)
             {
                 if (rectangles[i].Width > MaxWidth)
                 {
@@ -38,7 +38,24 @@ namespace Programming
                 }
             }
             return MaxWidthIndex;
-           
+
+        }
+        private Film[] _films = new Film[6];
+        private Film _currentFilm;
+        private string[] FilmListBoxItems = new string[6];
+        private string[] FilmName = new string[6] { "Титаник", "Аватар", "Чужой", "Терминатор", "Пила", "Джентельмены" };
+        private string[] FilmGenre = Enum.GetValues(typeof(Genre)).Cast<Genre>().Select(x => x.ToString()).ToArray();
+        public void FilmInizialition()
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                int durationMinutes = _random.Next(300);
+                int releaseYear = _random.Next(1900, 2024);
+                double rating = _random.NextDouble()*10;
+                _films[i] = new Film(FilmName[i], durationMinutes, releaseYear, FilmGenre[i], rating);
+                FilmListBoxItems[i] = ($"Film{i + 1}");
+            }
+            FilmsListBox.Items.AddRange(FilmListBoxItems);
         }
         public MainForm()
         {
@@ -48,9 +65,11 @@ namespace Programming
             SeasonComboBox.Items.AddRange(SeasonValues);
 
             //Вызов рандомной генерации полей прямоугольника
-            Rectangle();
+            RectangleInitiaziation();
 
-           
+            FilmInizialition();
+
+
         }
 
         //2 ЛАБА
@@ -176,9 +195,9 @@ namespace Programming
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-           int RectangleMaxWidthIndex = FindRectangleWithMaxWidth(_rectangles);
-           RectanglesListBox.SelectedIndex = RectangleMaxWidthIndex;
-        
+            int RectangleMaxWidthIndex = FindRectangleWithMaxWidth(_rectangles);
+            RectanglesListBox.SelectedIndex = RectangleMaxWidthIndex;
+
         }
 
         private void RectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -209,7 +228,7 @@ namespace Programming
             {
                 LengthTextBox.BackColor = System.Drawing.Color.LightPink;
             }
-            
+
         }
 
         private void WidthTextBox_TextChanged(object sender, EventArgs e)
@@ -226,7 +245,7 @@ namespace Programming
             {
                 WidthTextBox.BackColor = System.Drawing.Color.LightPink;
             }
-            
+
         }
 
         private void ColorTextBox_TextChanged(object sender, EventArgs e)
@@ -234,6 +253,17 @@ namespace Programming
             string color = ColorTextBox.Text;
             _currentRectangle.Color = color;
 
+        }
+
+        private void FilmsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int FilmsSelectedIndex= FilmsListBox.SelectedIndex;
+            _currentFilm = _films[FilmsSelectedIndex];
+            NameTextBox.Text = _currentFilm.Name;
+            DurationTextBox.Text = _currentFilm.DurationMinutes.ToString();
+            YearTextBox.Text=_currentFilm.ReleaseYear.ToString();
+            GenreTextBox.Text = _currentFilm.Genre;
+            RatingTextBox.Text=_currentFilm.Rating.ToString();
         }
     }
 

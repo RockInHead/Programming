@@ -29,6 +29,19 @@
         private void InitializeComponent()
         {
             tabPage2 = new TabPage();
+            FilmGgroupBox = new GroupBox();
+            RatingTextBox = new TextBox();
+            label13 = new Label();
+            GenreTextBox = new TextBox();
+            label12 = new Label();
+            YearTextBox = new TextBox();
+            DurationTextBox = new TextBox();
+            NameTextBox = new TextBox();
+            FindMaxRatingButton = new Button();
+            label9 = new Label();
+            label10 = new Label();
+            FilmsListBox = new ListBox();
+            label11 = new Label();
             RectanglesGroupBox = new GroupBox();
             ColorTextBox = new TextBox();
             WidthTextBox = new TextBox();
@@ -56,27 +69,14 @@
             IntTextBox = new TextBox();
             ValuesListBox = new ListBox();
             tabControl1 = new TabControl();
-            FilmGgroupBox = new GroupBox();
-            YearTextBox = new TextBox();
-            DurationTextBox = new TextBox();
-            NameTextBox = new TextBox();
-            FindMaxRatingButton = new Button();
-            label9 = new Label();
-            label10 = new Label();
-            FilmsListBox = new ListBox();
-            label11 = new Label();
-            GenreTextBox = new TextBox();
-            label12 = new Label();
-            RatingTextBox = new TextBox();
-            label13 = new Label();
             tabPage2.SuspendLayout();
+            FilmGgroupBox.SuspendLayout();
             RectanglesGroupBox.SuspendLayout();
             tabPage1.SuspendLayout();
             GroupBoxSeasonHandle.SuspendLayout();
             WeekdayParsingGroupBox.SuspendLayout();
             EnumerationsGroupBox.SuspendLayout();
             tabControl1.SuspendLayout();
-            FilmGgroupBox.SuspendLayout();
             SuspendLayout();
             // 
             // tabPage2
@@ -91,6 +91,127 @@
             tabPage2.Text = "Сlasses";
             tabPage2.UseVisualStyleBackColor = true;
             tabPage2.Click += tabPage2_Click;
+            // 
+            // FilmGgroupBox
+            // 
+            FilmGgroupBox.Controls.Add(RatingTextBox);
+            FilmGgroupBox.Controls.Add(label13);
+            FilmGgroupBox.Controls.Add(GenreTextBox);
+            FilmGgroupBox.Controls.Add(label12);
+            FilmGgroupBox.Controls.Add(YearTextBox);
+            FilmGgroupBox.Controls.Add(DurationTextBox);
+            FilmGgroupBox.Controls.Add(NameTextBox);
+            FilmGgroupBox.Controls.Add(FindMaxRatingButton);
+            FilmGgroupBox.Controls.Add(label9);
+            FilmGgroupBox.Controls.Add(label10);
+            FilmGgroupBox.Controls.Add(FilmsListBox);
+            FilmGgroupBox.Controls.Add(label11);
+            FilmGgroupBox.Location = new Point(402, 6);
+            FilmGgroupBox.Name = "FilmGgroupBox";
+            FilmGgroupBox.Size = new Size(381, 409);
+            FilmGgroupBox.TabIndex = 2;
+            FilmGgroupBox.TabStop = false;
+            FilmGgroupBox.Text = "Films";
+            // 
+            // RatingTextBox
+            // 
+            RatingTextBox.Location = new Point(191, 306);
+            RatingTextBox.Name = "RatingTextBox";
+            RatingTextBox.Size = new Size(125, 27);
+            RatingTextBox.TabIndex = 10;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Location = new Point(191, 281);
+            label13.Name = "label13";
+            label13.Size = new Size(55, 20);
+            label13.TabIndex = 9;
+            label13.Text = "Rating:";
+            // 
+            // GenreTextBox
+            // 
+            GenreTextBox.Location = new Point(189, 243);
+            GenreTextBox.Name = "GenreTextBox";
+            GenreTextBox.Size = new Size(125, 27);
+            GenreTextBox.TabIndex = 8;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(189, 218);
+            label12.Name = "label12";
+            label12.Size = new Size(51, 20);
+            label12.TabIndex = 7;
+            label12.Text = "Genre:";
+            // 
+            // YearTextBox
+            // 
+            YearTextBox.Location = new Point(189, 183);
+            YearTextBox.Name = "YearTextBox";
+            YearTextBox.Size = new Size(125, 27);
+            YearTextBox.TabIndex = 6;
+            // 
+            // DurationTextBox
+            // 
+            DurationTextBox.Location = new Point(189, 115);
+            DurationTextBox.Name = "DurationTextBox";
+            DurationTextBox.Size = new Size(125, 27);
+            DurationTextBox.TabIndex = 5;
+            // 
+            // NameTextBox
+            // 
+            NameTextBox.BackColor = System.Drawing.Color.White;
+            NameTextBox.Location = new Point(189, 49);
+            NameTextBox.Name = "NameTextBox";
+            NameTextBox.Size = new Size(125, 27);
+            NameTextBox.TabIndex = 4;
+            // 
+            // FindMaxRatingButton
+            // 
+            FindMaxRatingButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            FindMaxRatingButton.Location = new Point(189, 356);
+            FindMaxRatingButton.Name = "FindMaxRatingButton";
+            FindMaxRatingButton.Size = new Size(132, 29);
+            FindMaxRatingButton.TabIndex = 3;
+            FindMaxRatingButton.Text = "Find";
+            FindMaxRatingButton.UseVisualStyleBackColor = true;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(189, 158);
+            label9.Name = "label9";
+            label9.Size = new Size(40, 20);
+            label9.TabIndex = 2;
+            label9.Text = "Year:";
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(189, 92);
+            label10.Name = "label10";
+            label10.Size = new Size(70, 20);
+            label10.TabIndex = 1;
+            label10.Text = "Duration:";
+            // 
+            // FilmsListBox
+            // 
+            FilmsListBox.FormattingEnabled = true;
+            FilmsListBox.Location = new Point(6, 26);
+            FilmsListBox.Name = "FilmsListBox";
+            FilmsListBox.Size = new Size(172, 364);
+            FilmsListBox.TabIndex = 0;
+            FilmsListBox.SelectedIndexChanged += FilmsListBox_SelectedIndexChanged;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(184, 26);
+            label11.Name = "label11";
+            label11.Size = new Size(52, 20);
+            label11.TabIndex = 0;
+            label11.Text = "Name:";
             // 
             // RectanglesGroupBox
             // 
@@ -367,126 +488,6 @@
             tabControl1.Size = new Size(873, 600);
             tabControl1.TabIndex = 0;
             // 
-            // FilmGgroupBox
-            // 
-            FilmGgroupBox.Controls.Add(RatingTextBox);
-            FilmGgroupBox.Controls.Add(label13);
-            FilmGgroupBox.Controls.Add(GenreTextBox);
-            FilmGgroupBox.Controls.Add(label12);
-            FilmGgroupBox.Controls.Add(YearTextBox);
-            FilmGgroupBox.Controls.Add(DurationTextBox);
-            FilmGgroupBox.Controls.Add(NameTextBox);
-            FilmGgroupBox.Controls.Add(FindMaxRatingButton);
-            FilmGgroupBox.Controls.Add(label9);
-            FilmGgroupBox.Controls.Add(label10);
-            FilmGgroupBox.Controls.Add(FilmsListBox);
-            FilmGgroupBox.Controls.Add(label11);
-            FilmGgroupBox.Location = new Point(402, 6);
-            FilmGgroupBox.Name = "FilmGgroupBox";
-            FilmGgroupBox.Size = new Size(381, 409);
-            FilmGgroupBox.TabIndex = 2;
-            FilmGgroupBox.TabStop = false;
-            FilmGgroupBox.Text = "Films";
-            // 
-            // YearTextBox
-            // 
-            YearTextBox.Location = new Point(189, 183);
-            YearTextBox.Name = "YearTextBox";
-            YearTextBox.Size = new Size(125, 27);
-            YearTextBox.TabIndex = 6;
-            // 
-            // DurationTextBox
-            // 
-            DurationTextBox.Location = new Point(189, 115);
-            DurationTextBox.Name = "DurationTextBox";
-            DurationTextBox.Size = new Size(125, 27);
-            DurationTextBox.TabIndex = 5;
-            // 
-            // NameTextBox
-            // 
-            NameTextBox.BackColor = System.Drawing.Color.White;
-            NameTextBox.Location = new Point(189, 49);
-            NameTextBox.Name = "NameTextBox";
-            NameTextBox.Size = new Size(125, 27);
-            NameTextBox.TabIndex = 4;
-            // 
-            // FindMaxRatingButton
-            // 
-            FindMaxRatingButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            FindMaxRatingButton.Location = new Point(189, 356);
-            FindMaxRatingButton.Name = "FindMaxRatingButton";
-            FindMaxRatingButton.Size = new Size(132, 29);
-            FindMaxRatingButton.TabIndex = 3;
-            FindMaxRatingButton.Text = "Find";
-            FindMaxRatingButton.UseVisualStyleBackColor = true;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Location = new Point(189, 158);
-            label9.Name = "label9";
-            label9.Size = new Size(40, 20);
-            label9.TabIndex = 2;
-            label9.Text = "Year:";
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Location = new Point(189, 92);
-            label10.Name = "label10";
-            label10.Size = new Size(70, 20);
-            label10.TabIndex = 1;
-            label10.Text = "Duration:";
-            // 
-            // FilmsListBox
-            // 
-            FilmsListBox.FormattingEnabled = true;
-            FilmsListBox.Location = new Point(6, 26);
-            FilmsListBox.Name = "FilmsListBox";
-            FilmsListBox.Size = new Size(172, 364);
-            FilmsListBox.TabIndex = 0;
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Location = new Point(184, 26);
-            label11.Name = "label11";
-            label11.Size = new Size(52, 20);
-            label11.TabIndex = 0;
-            label11.Text = "Name:";
-            // 
-            // GenreTextBox
-            // 
-            GenreTextBox.Location = new Point(189, 243);
-            GenreTextBox.Name = "GenreTextBox";
-            GenreTextBox.Size = new Size(125, 27);
-            GenreTextBox.TabIndex = 8;
-            // 
-            // label12
-            // 
-            label12.AutoSize = true;
-            label12.Location = new Point(189, 218);
-            label12.Name = "label12";
-            label12.Size = new Size(51, 20);
-            label12.TabIndex = 7;
-            label12.Text = "Genre:";
-            // 
-            // RatingTextBox
-            // 
-            RatingTextBox.Location = new Point(191, 306);
-            RatingTextBox.Name = "RatingTextBox";
-            RatingTextBox.Size = new Size(125, 27);
-            RatingTextBox.TabIndex = 10;
-            // 
-            // label13
-            // 
-            label13.AutoSize = true;
-            label13.Location = new Point(191, 281);
-            label13.Name = "label13";
-            label13.Size = new Size(55, 20);
-            label13.TabIndex = 9;
-            label13.Text = "Rating:";
-            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -496,6 +497,8 @@
             Name = "MainForm";
             Text = "Programming Demo";
             tabPage2.ResumeLayout(false);
+            FilmGgroupBox.ResumeLayout(false);
+            FilmGgroupBox.PerformLayout();
             RectanglesGroupBox.ResumeLayout(false);
             RectanglesGroupBox.PerformLayout();
             tabPage1.ResumeLayout(false);
@@ -506,8 +509,6 @@
             EnumerationsGroupBox.ResumeLayout(false);
             EnumerationsGroupBox.PerformLayout();
             tabControl1.ResumeLayout(false);
-            FilmGgroupBox.ResumeLayout(false);
-            FilmGgroupBox.PerformLayout();
             ResumeLayout(false);
         }
 

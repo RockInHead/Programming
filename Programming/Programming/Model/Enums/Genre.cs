@@ -5,6 +5,7 @@
     Thriller,
     Action,
     Horror,
-    Blockbuster
+    Blockbuster,
+   
 }
 
