@@ -5,68 +5,52 @@ namespace Programming
 {
     public partial class MainForm : Form
     {
-        //Поля
+        //Поля прямоугольника
         private Rectangle[] _rectangles = new Rectangle[5];
         private Rectangle _currentRectangle;
-
         private string[] RectangleListBoxItems = new string[5];
         private string[] RectangleColor = new string[6] { "Black", "White", "Orange", "Purple", "Green", "Blue" };
 
+        //Генерация рандомных полей в прямоугольник
         Random _random = new Random();
         public void Rectangle()
         {
             for (int i = 0; i < 5; i++)
             {
+                //Ограничил до 200, но можно и больше
                 int length = _random.Next(200);
                 int widtht = _random.Next(200);
-                //Rectangle _currentRectangle = new Rectangle(length, widtht, RectangleColor[i]);
                 _rectangles[i] = new Rectangle(length, widtht, RectangleColor[i]);
                 RectangleListBoxItems[i] = ($"Rectangle{i + 1}");
             }
             RectanglesListBox.Items.AddRange(RectangleListBoxItems);
         }
-
-        //private void TextChangedHandler(int length, int widtht, string color, int index)
-        //{
-        //    try
-        //    {
-        //        _currentRectangle.Length = length;
-        //        _rectangles[index].Length = _currentRectangle.Length;
-
-        //        _currentRectangle.Width = widtht;
-        //        _rectangles[index].Width = _currentRectangle.Width;
-
-        //        _currentRectangle.Color = color;
-        //        _rectangles[index].Color = _currentRectangle.Color;
-        //    }
-        //    catch(Exception)
-        //    {
-        //        LengthTextBox.BackColor = System.Drawing.Color.LightPink;
-        //    }
-        //}
+        private int FindRectangleWithMaxWidth(Rectangle[] rectangles)
+        {
+            int MaxWidth = rectangles[0].Width;
+            int MaxWidthIndex = 0;
+            for(int i = 0; i < 5; i++)
+            {
+                if (rectangles[i].Width > MaxWidth)
+                {
+                    MaxWidth = rectangles[i].Width;
+                    MaxWidthIndex = i;
+                }
+            }
+            return MaxWidthIndex;
+           
+        }
         public MainForm()
         {
-
             InitializeComponent();
 
             object[] SeasonValues = Enum.GetValues(typeof(Season)).Cast<object>().ToArray();
             SeasonComboBox.Items.AddRange(SeasonValues);
 
+            //Вызов рандомной генерации полей прямоугольника
             Rectangle();
 
-            /*Random _random = new Random();
-            Rectangle[] _rectangles = new Rectangle[5];
-            string[] RectangleListBoxItems = new string[5];
-            string[] RectangleColor = new string[6] { "Black", "White", "Orange", "Purple", "Green", "Blue" };
-            for (int i = 0; i < 5; i++)
-            {
-                int length = _random.Next();
-                int widtht = _random.Next();
-                Rectangle _currentRectangle = new Rectangle(length, widtht, RectangleColor[i]);
-                _rectangles[i] = _currentRectangle;
-                RectangleListBoxItems[i] = ($"Rectangle{i + 1}");
-            }
-            RectanglesListBox.Items.AddRange(RectangleListBoxItems);*/
+           
         }
 
         //2 ЛАБА
@@ -192,7 +176,9 @@ namespace Programming
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-
+           int RectangleMaxWidthIndex = FindRectangleWithMaxWidth(_rectangles);
+           RectanglesListBox.SelectedIndex = RectangleMaxWidthIndex;
+        
         }
 
         private void RectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -211,39 +197,43 @@ namespace Programming
 
         private void LengthTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (_currentRectangle == null) return;
-            
-            //try
-            //{
+            //if (_currentRectangle == null) return;
+
+            try
+            {
+                LengthTextBox.BackColor = System.Drawing.Color.White;
                 int length = int.Parse(LengthTextBox.Text);
                 _currentRectangle.Length = length;
-            //}
-            //catch (Exception)
-            //{
-                //LengthTextBox.BackColor = System.Drawing.Color.LightPink;
-            //}
-            //try
-            //{
-            //    TextChangedHandler(Convert.ToInt16(LengthTextBox.Text), Convert.ToInt16(WidthTextBox.Text), ColorTextBox.Text, RectanglesListBox.SelectedIndex);
-            //}
-            //catch(Exception)
-            //{
-            //    LengthTextBox.BackColor = System.Drawing.Color.LightPink;
-            //}
+            }
+            catch (Exception)
+            {
+                LengthTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+            
         }
 
         private void WidthTextBox_TextChanged(object sender, EventArgs e)
         {
-            //if (LengthTextBox.Text == "" | WidthTextBox.Text == "" | ColorTextBox.Text == "") return;
+            //if (_currentRectangle == null) return;
 
-            //TextChangedHandler(Convert.ToInt16(LengthTextBox.Text), Convert.ToInt16(WidthTextBox.Text), ColorTextBox.Text, RectanglesListBox.SelectedIndex);
+            try
+            {
+                WidthTextBox.BackColor = System.Drawing.Color.White;
+                int width = int.Parse(WidthTextBox.Text);
+                _currentRectangle.Width = width;
+            }
+            catch (Exception)
+            {
+                WidthTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+            
         }
 
         private void ColorTextBox_TextChanged(object sender, EventArgs e)
         {
-            //if (LengthTextBox.Text == "" | WidthTextBox.Text == "" | ColorTextBox.Text == "") return;
+            string color = ColorTextBox.Text;
+            _currentRectangle.Color = color;
 
-            //TextChangedHandler(Convert.ToInt16(LengthTextBox.Text), Convert.ToInt16(WidthTextBox.Text), ColorTextBox.Text, RectanglesListBox.SelectedIndex);
         }
     }
 
