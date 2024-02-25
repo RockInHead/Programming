@@ -51,11 +51,27 @@ namespace Programming
             {
                 int durationMinutes = _random.Next(300);
                 int releaseYear = _random.Next(1900, 2024);
-                double rating = _random.NextDouble()*10;
+                double rating = Math.Round(_random.NextDouble() * 10, 2);
                 _films[i] = new Film(FilmName[i], durationMinutes, releaseYear, FilmGenre[i], rating);
                 FilmListBoxItems[i] = ($"Film{i + 1}");
             }
             FilmsListBox.Items.AddRange(FilmListBoxItems);
+        }
+
+        private int FindFilmWithMaxRating(Film[] films)
+        {
+            double MaxRating = films[0].Rating;
+            int MaxRatingIndex = 0;
+            for (int i = 0; i < 5; i++)
+            {
+                if (films[i].Rating > MaxRating)
+                {
+                    MaxRating = films[i].Rating;
+                    MaxRatingIndex = i;
+                }
+            }
+            return MaxRatingIndex;
+
         }
         public MainForm()
         {
@@ -64,9 +80,10 @@ namespace Programming
             object[] SeasonValues = Enum.GetValues(typeof(Season)).Cast<object>().ToArray();
             SeasonComboBox.Items.AddRange(SeasonValues);
 
-            //Вызов рандомной генерации полей прямоугольника
+            //Вызов рандомной генерации полей прямоугольников
             RectangleInitiaziation();
 
+            //Вызов рандомной генерации полей фильмов
             FilmInizialition();
 
 
@@ -257,14 +274,70 @@ namespace Programming
 
         private void FilmsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int FilmsSelectedIndex= FilmsListBox.SelectedIndex;
+            int FilmsSelectedIndex = FilmsListBox.SelectedIndex;
             _currentFilm = _films[FilmsSelectedIndex];
             NameTextBox.Text = _currentFilm.Name;
             DurationTextBox.Text = _currentFilm.DurationMinutes.ToString();
-            YearTextBox.Text=_currentFilm.ReleaseYear.ToString();
+            YearTextBox.Text = _currentFilm.ReleaseYear.ToString();
             GenreTextBox.Text = _currentFilm.Genre;
-            RatingTextBox.Text=_currentFilm.Rating.ToString();
+            RatingTextBox.Text = _currentFilm.Rating.ToString();
         }
-    }
 
+        private void NameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            _currentFilm.Name = NameTextBox.Text;
+        }
+
+        private void DurationTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                DurationTextBox.BackColor = System.Drawing.Color.White;
+                _currentFilm.DurationMinutes = int.Parse(DurationTextBox.Text);
+            }
+            catch (Exception ex)
+            {
+                DurationTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
+
+        private void YearTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                YearTextBox.BackColor = System.Drawing.Color.White;
+                _currentFilm.ReleaseYear = int.Parse(YearTextBox.Text);
+            }
+            catch (Exception ex)
+            {
+                YearTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
+
+        private void GenreTextBox_TextChanged(object sender, EventArgs e)
+        {
+            _currentFilm.Genre = NameTextBox.Text;
+        }
+
+        private void RatingTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                RatingTextBox.BackColor = System.Drawing.Color.White;
+                _currentFilm.Rating = double.Parse(RatingTextBox.Text);
+            }
+            catch (Exception ex)
+            {
+                RatingTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
+
+        private void FindMaxRatingButton_Click(object sender, EventArgs e)
+        {
+            int FilmWithMaxRatingIndex = FindFilmWithMaxRating(_films);
+            FilmsListBox.SelectedIndex= FilmWithMaxRatingIndex;
+        }
+        //3 ЛАБА
+    }
 }
+

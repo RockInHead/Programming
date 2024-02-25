@@ -119,6 +119,7 @@
             RatingTextBox.Name = "RatingTextBox";
             RatingTextBox.Size = new Size(125, 27);
             RatingTextBox.TabIndex = 10;
+            RatingTextBox.TextChanged += RatingTextBox_TextChanged;
             // 
             // label13
             // 
@@ -135,6 +136,7 @@
             GenreTextBox.Name = "GenreTextBox";
             GenreTextBox.Size = new Size(125, 27);
             GenreTextBox.TabIndex = 8;
+            GenreTextBox.TextChanged += GenreTextBox_TextChanged;
             // 
             // label12
             // 
@@ -151,6 +153,7 @@
             YearTextBox.Name = "YearTextBox";
             YearTextBox.Size = new Size(125, 27);
             YearTextBox.TabIndex = 6;
+            YearTextBox.TextChanged += YearTextBox_TextChanged;
             // 
             // DurationTextBox
             // 
@@ -158,6 +161,7 @@
             DurationTextBox.Name = "DurationTextBox";
             DurationTextBox.Size = new Size(125, 27);
             DurationTextBox.TabIndex = 5;
+            DurationTextBox.TextChanged += DurationTextBox_TextChanged;
             // 
             // NameTextBox
             // 
@@ -166,6 +170,7 @@
             NameTextBox.Name = "NameTextBox";
             NameTextBox.Size = new Size(125, 27);
             NameTextBox.TabIndex = 4;
+            NameTextBox.TextChanged += NameTextBox_TextChanged;
             // 
             // FindMaxRatingButton
             // 
@@ -176,6 +181,7 @@
             FindMaxRatingButton.TabIndex = 3;
             FindMaxRatingButton.Text = "Find";
             FindMaxRatingButton.UseVisualStyleBackColor = true;
+            FindMaxRatingButton.Click += FindMaxRatingButton_Click;
             // 
             // label9
             // 
