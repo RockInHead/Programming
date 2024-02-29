@@ -69,6 +69,7 @@
             IntTextBox = new TextBox();
             ValuesListBox = new ListBox();
             tabControl1 = new TabControl();
+            label14 = new Label();
             tabPage2.SuspendLayout();
             FilmGgroupBox.SuspendLayout();
             RectanglesGroupBox.SuspendLayout();
@@ -81,6 +82,7 @@
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(label14);
             tabPage2.Controls.Add(FilmGgroupBox);
             tabPage2.Controls.Add(RectanglesGroupBox);
             tabPage2.Location = new Point(4, 29);
@@ -494,6 +496,15 @@
             tabControl1.Size = new Size(873, 600);
             tabControl1.TabIndex = 0;
             // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Location = new Point(86, 371);
+            label14.Name = "label14";
+            label14.Size = new Size(58, 20);
+            label14.TabIndex = 3;
+            label14.Text = "label14";
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -503,6 +514,7 @@
             Name = "MainForm";
             Text = "Programming Demo";
             tabPage2.ResumeLayout(false);
+            tabPage2.PerformLayout();
             FilmGgroupBox.ResumeLayout(false);
             FilmGgroupBox.PerformLayout();
             RectanglesGroupBox.ResumeLayout(false);
@@ -561,5 +573,6 @@
         private Label label13;
         private TextBox GenreTextBox;
         private Label label12;
+        private Label label14;
     }
 }

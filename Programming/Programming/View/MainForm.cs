@@ -138,6 +138,7 @@ namespace Programming
         private void ParseButton_Click(object sender, EventArgs e)
         {
             string ParsingText = ParsingTextBox.Text;
+
             Weekday ParsedDay;
 
             if (!int.TryParse(ParsingText, out _) && Enum.TryParse<Weekday>(ParsingText, true, out ParsedDay))
@@ -149,6 +150,7 @@ namespace Programming
             {
                 ParsedValueLabel.Text = "Нет такого дня недели!!!!";
             }
+
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -206,7 +208,8 @@ namespace Programming
         //3 ЛАБА
         private void tabPage2_Click(object sender, EventArgs e)
         {
-
+            Contact contact = new Contact("DAD","",12,"");
+            label14.Text = contact.Surname;
 
         }
 
