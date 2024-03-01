@@ -43,6 +43,10 @@
             FilmsListBox = new ListBox();
             label11 = new Label();
             RectanglesGroupBox = new GroupBox();
+            YCoordinateTextBox = new TextBox();
+            XCoordinateTextBox = new TextBox();
+            label15 = new Label();
+            label14 = new Label();
             ColorTextBox = new TextBox();
             WidthTextBox = new TextBox();
             LengthTextBox = new TextBox();
@@ -69,7 +73,6 @@
             IntTextBox = new TextBox();
             ValuesListBox = new ListBox();
             tabControl1 = new TabControl();
-            label14 = new Label();
             tabPage2.SuspendLayout();
             FilmGgroupBox.SuspendLayout();
             RectanglesGroupBox.SuspendLayout();
@@ -82,13 +85,12 @@
             // 
             // tabPage2
             // 
-            tabPage2.Controls.Add(label14);
             tabPage2.Controls.Add(FilmGgroupBox);
             tabPage2.Controls.Add(RectanglesGroupBox);
             tabPage2.Location = new Point(4, 29);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(865, 567);
+            tabPage2.Size = new Size(996, 567);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Сlasses";
             tabPage2.UseVisualStyleBackColor = true;
@@ -108,7 +110,7 @@
             FilmGgroupBox.Controls.Add(label10);
             FilmGgroupBox.Controls.Add(FilmsListBox);
             FilmGgroupBox.Controls.Add(label11);
-            FilmGgroupBox.Location = new Point(402, 6);
+            FilmGgroupBox.Location = new Point(566, 6);
             FilmGgroupBox.Name = "FilmGgroupBox";
             FilmGgroupBox.Size = new Size(381, 409);
             FilmGgroupBox.TabIndex = 2;
@@ -223,6 +225,10 @@
             // 
             // RectanglesGroupBox
             // 
+            RectanglesGroupBox.Controls.Add(YCoordinateTextBox);
+            RectanglesGroupBox.Controls.Add(XCoordinateTextBox);
+            RectanglesGroupBox.Controls.Add(label15);
+            RectanglesGroupBox.Controls.Add(label14);
             RectanglesGroupBox.Controls.Add(ColorTextBox);
             RectanglesGroupBox.Controls.Add(WidthTextBox);
             RectanglesGroupBox.Controls.Add(LengthTextBox);
@@ -233,11 +239,49 @@
             RectanglesGroupBox.Controls.Add(label6);
             RectanglesGroupBox.Location = new Point(8, 6);
             RectanglesGroupBox.Name = "RectanglesGroupBox";
-            RectanglesGroupBox.Size = new Size(367, 296);
+            RectanglesGroupBox.Size = new Size(530, 375);
             RectanglesGroupBox.TabIndex = 1;
             RectanglesGroupBox.TabStop = false;
             RectanglesGroupBox.Text = "Rectangles";
             RectanglesGroupBox.Enter += RectanglesGroupBox_Enter;
+            // 
+            // YCoordinateTextBox
+            // 
+            YCoordinateTextBox.BackColor = System.Drawing.Color.White;
+            YCoordinateTextBox.Location = new Point(346, 115);
+            YCoordinateTextBox.Name = "YCoordinateTextBox";
+            YCoordinateTextBox.ReadOnly = true;
+            YCoordinateTextBox.Size = new Size(125, 27);
+            YCoordinateTextBox.TabIndex = 9;
+            // 
+            // XCoordinateTextBox
+            // 
+            XCoordinateTextBox.BackColor = System.Drawing.Color.White;
+            XCoordinateTextBox.Location = new Point(346, 49);
+            XCoordinateTextBox.Name = "XCoordinateTextBox";
+            XCoordinateTextBox.ReadOnly = true;
+            XCoordinateTextBox.Size = new Size(125, 27);
+            XCoordinateTextBox.TabIndex = 8;
+            XCoordinateTextBox.TextChanged += textBox1_TextChanged_1;
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Location = new Point(346, 92);
+            label15.Name = "label15";
+            label15.Size = new Size(98, 20);
+            label15.TabIndex = 7;
+            label15.Text = "Coordinate Y:";
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Location = new Point(346, 26);
+            label14.Name = "label14";
+            label14.Size = new Size(99, 20);
+            label14.TabIndex = 3;
+            label14.Text = "Coordinate X:";
+            label14.Click += label14_Click;
             // 
             // ColorTextBox
             // 
@@ -319,7 +363,7 @@
             tabPage1.Location = new Point(4, 29);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(865, 567);
+            tabPage1.Size = new Size(996, 567);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Enums";
             tabPage1.UseVisualStyleBackColor = true;
@@ -493,28 +537,18 @@
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(873, 600);
+            tabControl1.Size = new Size(1004, 600);
             tabControl1.TabIndex = 0;
-            // 
-            // label14
-            // 
-            label14.AutoSize = true;
-            label14.Location = new Point(86, 371);
-            label14.Name = "label14";
-            label14.Size = new Size(58, 20);
-            label14.TabIndex = 3;
-            label14.Text = "label14";
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(873, 600);
+            ClientSize = new Size(1004, 600);
             Controls.Add(tabControl1);
             Name = "MainForm";
             Text = "Programming Demo";
             tabPage2.ResumeLayout(false);
-            tabPage2.PerformLayout();
             FilmGgroupBox.ResumeLayout(false);
             FilmGgroupBox.PerformLayout();
             RectanglesGroupBox.ResumeLayout(false);
@@ -574,5 +608,8 @@
         private TextBox GenreTextBox;
         private Label label12;
         private Label label14;
+        private TextBox YCoordinateTextBox;
+        private TextBox XCoordinateTextBox;
+        private Label label15;
     }
 }

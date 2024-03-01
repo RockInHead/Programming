@@ -1,11 +1,11 @@
 ﻿public class Point2D
 {
     //Поля
-    public int _coordinateX;
-    public int _coordinateY;
+    public double _coordinateX;
+    public double _coordinateY;
 
     //Свойства
-    public int CoordinateX
+    public double CoordinateX
     {
         get
         {
@@ -18,7 +18,7 @@
             _coordinateX= value;
         }
     }
-    public int CoordinateY
+    public double CoordinateY
     {
         get
         {
@@ -31,7 +31,7 @@
         }
     }
 
-    public  Point2D(int coordinateX,int coordinateY)
+    public  Point2D(double coordinateX,double coordinateY)
     {
         CoordinateX = coordinateX;
         CoordinateY= coordinateY;

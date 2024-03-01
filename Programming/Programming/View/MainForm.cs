@@ -20,8 +20,8 @@ namespace Programming
                 //Ограничил до 200, но можно и больше
                 int length = _random.Next(200);
                 int widtht = _random.Next(200);
-                Point2D somepoint = new Point2D(length/2, widtht/2);
-                _rectangles[i] = new Rectangle(length, widtht, RectangleColor[i],somepoint);
+                //Point2D somepoint = new Point2D(length / 2, widtht / 2);
+                _rectangles[i] = new Rectangle(length, widtht, RectangleColor[i]);
                 RectangleListBoxItems[i] = ($"Rectangle{i + 1}");
             }
             RectanglesListBox.Items.AddRange(RectangleListBoxItems);
@@ -215,10 +215,10 @@ namespace Programming
         {
             /*Contact contact = new Contact("DAD","",12,"");
             label14.Text = contact.Surname;*/
-          /*  Point2D point = new Point2D(10, 20);
-            Rectangle rectangle = new Rectangle(1, 1, "",point);
-            label14.Text = rectangle.Center.CoordinateX.ToString();
-*/
+            /*  Point2D point = new Point2D(10, 20);
+              Rectangle rectangle = new Rectangle(1, 1, "",point);
+              label14.Text = rectangle.Center.CoordinateX.ToString();
+  */
             /*Point2D point = new Point2D();
         label14.Text = point.CoordinateX.ToString();*/
 
@@ -238,6 +238,9 @@ namespace Programming
             LengthTextBox.Text = _currentRectangle.Length.ToString();
             WidthTextBox.Text = _currentRectangle.Width.ToString();
             ColorTextBox.Text = _currentRectangle.Color;
+            XCoordinateTextBox.Text =_currentRectangle.Center.CoordinateX.ToString();
+            YCoordinateTextBox.Text = _currentRectangle.Center.CoordinateY.ToString();
+
         }
 
         private void RectanglesGroupBox_Enter(object sender, EventArgs e)
@@ -247,7 +250,7 @@ namespace Programming
 
         private void LengthTextBox_TextChanged(object sender, EventArgs e)
         {
-            
+
 
             try
             {
@@ -349,7 +352,17 @@ namespace Programming
         private void FindMaxRatingButton_Click(object sender, EventArgs e)
         {
             int FilmWithMaxRatingIndex = FindFilmWithMaxRating(_films);
-            FilmsListBox.SelectedIndex= FilmWithMaxRatingIndex;
+            FilmsListBox.SelectedIndex = FilmWithMaxRatingIndex;
+        }
+
+        private void label14_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
+        {
+
         }
         //3 ЛАБА
     }
