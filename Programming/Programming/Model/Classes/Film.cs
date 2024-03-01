@@ -19,7 +19,7 @@ public class Film
         }
         set
         {
-            i/*f( value < 0 ) 
+            /*f( value < 0 ) 
             { 
             throw new ArgumentException( "Не может быть отрицательным!" );
              }*/
@@ -35,10 +35,11 @@ public class Film
         }
         set
         {
-            if (1900 > value | value > 2024)
+            /*if (1900 > value | value > 2024)
             {
                 throw new ArgumentException("Год от 1900 до 2024!");
-            }
+            }*/
+            Validator.AssertValueInRange(value,1900,2024);
             _releaseYear= value;
         }
     }
@@ -51,11 +52,13 @@ public class Film
         }
         set
         {
-            if(0>value | value > 10)
+            /*if(0>value | value > 10)
             {
                 throw new ArgumentException("Рейтинг от 0 до 10!");
-            }
-            _rating= value;
+            }*/
+            Validator.AssertValueInRange(value, 0, 10);
+
+            _rating = value;
         }
     }
 

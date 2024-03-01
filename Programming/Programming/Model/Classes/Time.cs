@@ -13,10 +13,11 @@
         }
         set
         {
-            if (value <0 |value > 23 )
+            /*if (value <0 |value > 23 )
             {
                 throw new ArgumentException("Часы от 0 до 23!");
-            }
+            }*/
+            Validator.AssertValueInRange(value, 0, 23);
             _hours = value;
         }
     }
@@ -28,10 +29,11 @@
         }
         set
         {
-            if (value<0 | value > 60)
+            /*if (value<0 | value > 60)
             {
                 throw new ArgumentException("Минуты от 0 до 60");
-            }
+            }*/
+            Validator.AssertValueInRange(value, 0, 60);
             _minutes = value;
         }
     }
@@ -43,10 +45,11 @@
         }
         set
         {
-            if (value < 0 | value > 60)
+            /*if (value < 0 | value > 60)
             {
                 throw new ArgumentException("Секунды от 0 до 60");
-            }
+            }*/
+            Validator.AssertValueInRange(value, 0, 60);
             _seconds = value;
         }
     }
