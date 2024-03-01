@@ -19,10 +19,11 @@ public class Film
         }
         set
         {
-            if( value < 0 ) 
+            i/*f( value < 0 ) 
             { 
             throw new ArgumentException( "Не может быть отрицательным!" );
-             }
+             }*/
+            Validator.AssertOnPositiveValue(value);
             _durationMinutes = value;
         }
     }

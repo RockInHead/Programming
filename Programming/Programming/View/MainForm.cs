@@ -25,6 +25,7 @@ namespace Programming
             }
             RectanglesListBox.Items.AddRange(RectangleListBoxItems);
         }
+        //Метод для поиска индекса прямоугольника с максимальной шириной
         private int FindRectangleWithMaxWidth(Rectangle[] rectangles)
         {
             int MaxWidth = rectangles[0].Width;
@@ -40,11 +41,13 @@ namespace Programming
             return MaxWidthIndex;
 
         }
+        //Поля фильма
         private Film[] _films = new Film[6];
         private Film _currentFilm;
         private string[] FilmListBoxItems = new string[6];
         private string[] FilmName = new string[6] { "Титаник", "Аватар", "Чужой", "Терминатор", "Пила", "Джентельмены" };
         private string[] FilmGenre = Enum.GetValues(typeof(Genre)).Cast<Genre>().Select(x => x.ToString()).ToArray();
+        //Генерация рандомных полей в фильмах
         public void FilmInizialition()
         {
             for (int i = 0; i < 6; i++)
@@ -58,6 +61,7 @@ namespace Programming
             FilmsListBox.Items.AddRange(FilmListBoxItems);
         }
 
+        //Метод для поиска индекса фильма с максимальным рейтингом
         private int FindFilmWithMaxRating(Film[] films)
         {
             double MaxRating = films[0].Rating;
@@ -208,9 +212,11 @@ namespace Programming
         //3 ЛАБА
         private void tabPage2_Click(object sender, EventArgs e)
         {
-            Contact contact = new Contact("DAD","",12,"");
-            label14.Text = contact.Surname;
+            /*Contact contact = new Contact("DAD","",12,"");
+            label14.Text = contact.Surname;*/
 
+            Rectangle rectangle = new Rectangle(-12,12,"");
+            label14.Text = rectangle.Length.ToString(); 
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -236,7 +242,7 @@ namespace Programming
 
         private void LengthTextBox_TextChanged(object sender, EventArgs e)
         {
-            //if (_currentRectangle == null) return;
+            
 
             try
             {

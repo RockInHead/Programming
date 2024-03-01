@@ -17,10 +17,11 @@ public class Discipline
         }
         set
         {
-            if (value < 0)
+            /*if (value < 0)
             {
                 throw new ArgumentException("„асы положительны!");
-            }
+            }*/
+            Validator.AssertOnPositiveValue(value);
             _hoursInGeneral = value;
         }
     }
@@ -32,10 +33,11 @@ public class Discipline
         }
         set
         {
-            if(value<2 | value > 5)
+            /*if(value<2 | value > 5)
             {
                 throw new ArgumentException("ќценка от 2 до 5!");
-            }
+            }*/
+            Validator.AssertOnPositiveValue(value);
             _assessment = value;
         }
     }

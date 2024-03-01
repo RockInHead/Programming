@@ -55,10 +55,11 @@ public class Contact
         }
         set
         {
-            if (value < 0)
-            {
-                throw new ArgumentException();
-            }
+            /*  if (value < 0)
+              {
+                  throw new ArgumentException();
+              }*/
+            Validator.AssertOnPositiveValue(value);
             _phoneNumber = value;
         }
     }

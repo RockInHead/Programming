@@ -15,10 +15,11 @@
         }
         set
         {
-            if(value < 0)
+            /*if(value < 0)
             {
                 throw new ArgumentException("Минуты положительны!");
-            }
+            }*/
+            Validator.AssertOnPositiveValue(value);
             _flightTimeMinutes = value;
         }
     }

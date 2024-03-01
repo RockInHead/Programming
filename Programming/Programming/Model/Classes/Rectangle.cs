@@ -16,8 +16,11 @@ public class Rectangle
         }
         set
         {
-            if (value < 0) throw new ArgumentException("Длина положительна!");
+            //Validator validator = new Validator();
+            Validator.AssertOnPositiveValue(value);
             _length = value;
+            //if (value < 0) throw new ArgumentException("Длина положительна!");
+            //_length = value;
         }
     }
     public int Width
@@ -28,11 +31,13 @@ public class Rectangle
         }
         set
         {
-            if (value < 0)
+            Validator.AssertOnPositiveValue(value);
+            _width = value;
+
+            /*if (value < 0)
             {
                 throw new ArgumentException("Длина положительна!");
-            }
-            _width = value;
+            }*/
         }
     }
 

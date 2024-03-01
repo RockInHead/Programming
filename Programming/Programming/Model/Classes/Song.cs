@@ -17,10 +17,11 @@ public class Song
         }
         set
         {
-            if (value < 0)
+            /*if (value < 0)
             {
                 throw new ArgumentException("Положительное значение!");
-            }
+            }*/
+            Validator.AssertOnPositiveValue(value);
             _durationsSeconds = value;
         }
     }
