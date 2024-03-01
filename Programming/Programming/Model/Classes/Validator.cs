@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
-
 class Validator
 {
+    //Проверка положительности числа
     public static void AssertOnPositiveValue(int value)
     {
         if (value < 0)
@@ -18,7 +18,8 @@ class Validator
         }
 
     }
-
+    
+    //Проверка что число входит в указаный диапазон
     public static void AssertValueInRange(int value, int min, int max)
     {
         if(value < min | value > max)
@@ -26,7 +27,6 @@ class Validator
            throw new ArgumentException($"Диапазон для свойства класса {new StackTrace().GetFrame(1).GetMethod().Name} от {min} до {max}");
         }
     }
-
     public static void AssertValueInRange(double value, int min, int max)
     {
         if (value < min | value > max)

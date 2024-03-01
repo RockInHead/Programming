@@ -5,7 +5,7 @@ public class Rectangle
     //Поля
     private int _length;
     private int _width;
-    public string Color { get; set; }
+    
 
     //Свойства и автосвойства
     public int Length
@@ -40,6 +40,9 @@ public class Rectangle
             }*/
         }
     }
+    public string Color { get; set; }
+    public Point2D Center { get; set; }
+
 
     //Конструкторы
     public Rectangle()
@@ -47,12 +50,18 @@ public class Rectangle
         Length = 0;
         Width = 0;
         Color = "None";
+        //Center = new Point2D();
+
 
     }
-    public Rectangle(int length, int width, string color)
+    
+    public Rectangle(int length, int width, string color,Point2D center)
     {
         Length = length;
         Width = width;
         Color = color;
+        Center = center;
     }
+    
+
 }

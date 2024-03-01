@@ -1,5 +1,4 @@
 using System.Xml.Linq;
-
 public class Discipline
 {
     //Поля
@@ -7,6 +6,7 @@ public class Discipline
     private int _hoursInGeneral;
     private int _assessment;
     private string _teacherSurname;
+
     //Свойства и автосвойства
     public string Name { get; set; }
     public int HoursInGeneral

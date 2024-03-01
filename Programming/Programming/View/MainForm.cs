@@ -20,7 +20,8 @@ namespace Programming
                 //Ограничил до 200, но можно и больше
                 int length = _random.Next(200);
                 int widtht = _random.Next(200);
-                _rectangles[i] = new Rectangle(length, widtht, RectangleColor[i]);
+                Point2D somepoint = new Point2D(length/2, widtht/2);
+                _rectangles[i] = new Rectangle(length, widtht, RectangleColor[i],somepoint);
                 RectangleListBoxItems[i] = ($"Rectangle{i + 1}");
             }
             RectanglesListBox.Items.AddRange(RectangleListBoxItems);
@@ -214,9 +215,13 @@ namespace Programming
         {
             /*Contact contact = new Contact("DAD","",12,"");
             label14.Text = contact.Surname;*/
+          /*  Point2D point = new Point2D(10, 20);
+            Rectangle rectangle = new Rectangle(1, 1, "",point);
+            label14.Text = rectangle.Center.CoordinateX.ToString();
+*/
+            /*Point2D point = new Point2D();
+        label14.Text = point.CoordinateX.ToString();*/
 
-            Rectangle rectangle = new Rectangle(-12,12,"");
-            label14.Text = rectangle.Length.ToString(); 
         }
 
         private void button1_Click_1(object sender, EventArgs e)
