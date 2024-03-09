@@ -223,6 +223,9 @@ namespace Programming
             /*point.CoordinateX = 12;
             label14.Text = point.CoordinateX.ToString();*/
 
+            /*Ring ring = new Ring(20,10);
+            label14.Text=ring.Area.ToString();*/
+
         }
 
         private void button1_Click_1(object sender, EventArgs e)
