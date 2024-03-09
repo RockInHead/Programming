@@ -235,12 +235,11 @@ namespace Programming
         private void RectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             int selectedIndex = RectanglesListBox.SelectedIndex;
+            if (selectedIndex == -1) return;
             _currentRectangle = _rectangles[selectedIndex];
             LengthTextBox.Text = _currentRectangle.Length.ToString();
             WidthTextBox.Text = _currentRectangle.Width.ToString();
             ColorTextBox.Text = _currentRectangle.Color;
-            //XCoordinateTextBox.Text =_currentRectangle.Center.CoordinateX.ToString();
-            //YCoordinateTextBox.Text = _currentRectangle.Center.CoordinateY.ToString();
 
         }
 
@@ -296,6 +295,7 @@ namespace Programming
         private void FilmsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             int FilmsSelectedIndex = FilmsListBox.SelectedIndex;
+            if (FilmsSelectedIndex == -1) return;
             _currentFilm = _films[FilmsSelectedIndex];
             NameTextBox.Text = _currentFilm.Name;
             DurationTextBox.Text = _currentFilm.DurationMinutes.ToString();
@@ -337,7 +337,7 @@ namespace Programming
 
         private void GenreTextBox_TextChanged(object sender, EventArgs e)
         {
-            _currentFilm.Genre = NameTextBox.Text;
+            _currentFilm.Genre = GenreTextBox.Text;
         }
 
         private void RatingTextBox_TextChanged(object sender, EventArgs e)
