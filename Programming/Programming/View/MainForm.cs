@@ -213,14 +213,15 @@ namespace Programming
         //3 À¿¡¿
         private void tabPage2_Click(object sender, EventArgs e)
         {
-            /*Contact contact = new Contact("DAD","",12,"");
-            label14.Text = contact.Surname;*/
-            /*  Point2D point = new Point2D(10, 20);
-              Rectangle rectangle = new Rectangle(1, 1, "",point);
-              label14.Text = rectangle.Center.CoordinateX.ToString();
-  */
-            /*Point2D point = new Point2D();
-        label14.Text = point.CoordinateX.ToString();*/
+            //Contact contact = new Contact("DAD", "", 12, "");
+            //label14.Text = contact.Surname;
+            //Point2D point = new Point2D(10, 20);
+            //Rectangle rectangle = new Rectangle(1, 1, "", point);
+            // label14.Text = rectangle.Center.CoordinateX.ToString();
+
+            //Point2D point = new Point2D();
+            /*point.CoordinateX = 12;
+            label14.Text = point.CoordinateX.ToString();*/
 
         }
 
@@ -238,8 +239,8 @@ namespace Programming
             LengthTextBox.Text = _currentRectangle.Length.ToString();
             WidthTextBox.Text = _currentRectangle.Width.ToString();
             ColorTextBox.Text = _currentRectangle.Color;
-            XCoordinateTextBox.Text =_currentRectangle.Center.CoordinateX.ToString();
-            YCoordinateTextBox.Text = _currentRectangle.Center.CoordinateY.ToString();
+            //XCoordinateTextBox.Text =_currentRectangle.Center.CoordinateX.ToString();
+            //YCoordinateTextBox.Text = _currentRectangle.Center.CoordinateY.ToString();
 
         }
 
@@ -257,6 +258,7 @@ namespace Programming
                 LengthTextBox.BackColor = System.Drawing.Color.White;
                 int length = int.Parse(LengthTextBox.Text);
                 _currentRectangle.Length = length;
+                XCoordinateTextBox.Text = _currentRectangle.Center.CoordinateX.ToString();
             }
             catch (Exception)
             {
@@ -274,6 +276,8 @@ namespace Programming
                 WidthTextBox.BackColor = System.Drawing.Color.White;
                 int width = int.Parse(WidthTextBox.Text);
                 _currentRectangle.Width = width;
+                YCoordinateTextBox.Text = _currentRectangle.Center.CoordinateY.ToString();
+
             }
             catch (Exception)
             {

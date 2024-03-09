@@ -53,7 +53,12 @@ public class Rectangle
 
          }
      }*/
-    public Point2D Center { get; set; }
+    public Point2D Center {
+        get
+        {
+            return new Point2D((Length / 2.0), (Width / 2.0));
+        }
+    }
 
     //Конструкторы
     public Rectangle()
@@ -70,7 +75,8 @@ public class Rectangle
         Length = length;
         Width = width;
         Color = color;
-        Center = new Point2D((Length / 2.0), (Width / 2.0));
+        
+        //Center = new Point2D((Length / 2.0), (Width / 2.0));
 
     }
 
