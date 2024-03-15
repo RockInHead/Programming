@@ -226,6 +226,10 @@ namespace Programming
             /*Ring ring = new Ring(20,10);
             label14.Text=ring.Area.ToString();*/
 
+            //Rectangle rec = new Rectangle();
+
+            //label14.Text = _currentRectangle.AllRectanglesCount.ToString();
+
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -243,6 +247,7 @@ namespace Programming
             LengthTextBox.Text = _currentRectangle.Length.ToString();
             WidthTextBox.Text = _currentRectangle.Width.ToString();
             ColorTextBox.Text = _currentRectangle.Color;
+            RectangleIdTextBox.Text= _currentRectangle.Id.ToString();
 
         }
 
@@ -368,6 +373,11 @@ namespace Programming
         }
 
         private void textBox1_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged_2(object sender, EventArgs e)
         {
 
         }

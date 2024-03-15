@@ -43,6 +43,8 @@
             FilmsListBox = new ListBox();
             label11 = new Label();
             RectanglesGroupBox = new GroupBox();
+            RectangleIdTextBox = new TextBox();
+            label16 = new Label();
             YCoordinateTextBox = new TextBox();
             XCoordinateTextBox = new TextBox();
             label15 = new Label();
@@ -73,6 +75,7 @@
             IntTextBox = new TextBox();
             ValuesListBox = new ListBox();
             tabControl1 = new TabControl();
+            label17 = new Label();
             tabPage2.SuspendLayout();
             FilmGgroupBox.SuspendLayout();
             RectanglesGroupBox.SuspendLayout();
@@ -225,6 +228,9 @@
             // 
             // RectanglesGroupBox
             // 
+            RectanglesGroupBox.Controls.Add(label17);
+            RectanglesGroupBox.Controls.Add(RectangleIdTextBox);
+            RectanglesGroupBox.Controls.Add(label16);
             RectanglesGroupBox.Controls.Add(YCoordinateTextBox);
             RectanglesGroupBox.Controls.Add(XCoordinateTextBox);
             RectanglesGroupBox.Controls.Add(label15);
@@ -245,10 +251,27 @@
             RectanglesGroupBox.Text = "Rectangles";
             RectanglesGroupBox.Enter += RectanglesGroupBox_Enter;
             // 
+            // RectangleIdTextBox
+            // 
+            RectangleIdTextBox.BackColor = System.Drawing.Color.White;
+            RectangleIdTextBox.Location = new Point(198, 52);
+            RectangleIdTextBox.Name = "RectangleIdTextBox";
+            RectangleIdTextBox.ReadOnly = true;
+            RectangleIdTextBox.Size = new Size(52, 27);
+            RectangleIdTextBox.TabIndex = 11;
+            RectangleIdTextBox.TextChanged += textBox1_TextChanged_2;
+            // 
+            // label16
+            // 
+            label16.Location = new Point(0, 0);
+            label16.Name = "label16";
+            label16.Size = new Size(100, 23);
+            label16.TabIndex = 12;
+            // 
             // YCoordinateTextBox
             // 
             YCoordinateTextBox.BackColor = System.Drawing.Color.White;
-            YCoordinateTextBox.Location = new Point(346, 115);
+            YCoordinateTextBox.Location = new Point(342, 158);
             YCoordinateTextBox.Name = "YCoordinateTextBox";
             YCoordinateTextBox.ReadOnly = true;
             YCoordinateTextBox.Size = new Size(125, 27);
@@ -257,7 +280,7 @@
             // XCoordinateTextBox
             // 
             XCoordinateTextBox.BackColor = System.Drawing.Color.White;
-            XCoordinateTextBox.Location = new Point(346, 49);
+            XCoordinateTextBox.Location = new Point(342, 105);
             XCoordinateTextBox.Name = "XCoordinateTextBox";
             XCoordinateTextBox.ReadOnly = true;
             XCoordinateTextBox.Size = new Size(125, 27);
@@ -267,7 +290,7 @@
             // label15
             // 
             label15.AutoSize = true;
-            label15.Location = new Point(346, 92);
+            label15.Location = new Point(342, 135);
             label15.Name = "label15";
             label15.Size = new Size(98, 20);
             label15.TabIndex = 7;
@@ -276,7 +299,7 @@
             // label14
             // 
             label14.AutoSize = true;
-            label14.Location = new Point(346, 26);
+            label14.Location = new Point(341, 82);
             label14.Name = "label14";
             label14.Size = new Size(99, 20);
             label14.TabIndex = 3;
@@ -285,7 +308,7 @@
             // 
             // ColorTextBox
             // 
-            ColorTextBox.Location = new Point(189, 183);
+            ColorTextBox.Location = new Point(198, 219);
             ColorTextBox.Name = "ColorTextBox";
             ColorTextBox.Size = new Size(125, 27);
             ColorTextBox.TabIndex = 6;
@@ -293,7 +316,7 @@
             // 
             // WidthTextBox
             // 
-            WidthTextBox.Location = new Point(189, 115);
+            WidthTextBox.Location = new Point(198, 158);
             WidthTextBox.Name = "WidthTextBox";
             WidthTextBox.Size = new Size(125, 27);
             WidthTextBox.TabIndex = 5;
@@ -302,7 +325,7 @@
             // LengthTextBox
             // 
             LengthTextBox.BackColor = System.Drawing.Color.White;
-            LengthTextBox.Location = new Point(189, 49);
+            LengthTextBox.Location = new Point(198, 105);
             LengthTextBox.Name = "LengthTextBox";
             LengthTextBox.Size = new Size(125, 27);
             LengthTextBox.TabIndex = 4;
@@ -311,7 +334,7 @@
             // FindMaxWidthButton
             // 
             FindMaxWidthButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            FindMaxWidthButton.Location = new Point(189, 241);
+            FindMaxWidthButton.Location = new Point(198, 277);
             FindMaxWidthButton.Name = "FindMaxWidthButton";
             FindMaxWidthButton.Size = new Size(132, 29);
             FindMaxWidthButton.TabIndex = 3;
@@ -322,7 +345,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(189, 158);
+            label8.Location = new Point(198, 194);
             label8.Name = "label8";
             label8.Size = new Size(48, 20);
             label8.TabIndex = 2;
@@ -331,7 +354,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(189, 92);
+            label7.Location = new Point(198, 135);
             label7.Name = "label7";
             label7.Size = new Size(52, 20);
             label7.TabIndex = 1;
@@ -342,14 +365,14 @@
             RectanglesListBox.FormattingEnabled = true;
             RectanglesListBox.Location = new Point(6, 26);
             RectanglesListBox.Name = "RectanglesListBox";
-            RectanglesListBox.Size = new Size(172, 244);
+            RectanglesListBox.Size = new Size(172, 284);
             RectanglesListBox.TabIndex = 0;
             RectanglesListBox.SelectedIndexChanged += RectanglesListBox_SelectedIndexChanged;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(184, 26);
+            label6.Location = new Point(198, 82);
             label6.Name = "label6";
             label6.Size = new Size(57, 20);
             label6.TabIndex = 0;
@@ -540,6 +563,15 @@
             tabControl1.Size = new Size(1004, 600);
             tabControl1.TabIndex = 0;
             // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Location = new Point(198, 23);
+            label17.Name = "label17";
+            label17.Size = new Size(27, 20);
+            label17.TabIndex = 13;
+            label17.Text = "ID:";
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -611,5 +643,8 @@
         private TextBox YCoordinateTextBox;
         private TextBox XCoordinateTextBox;
         private Label label15;
+        private TextBox RectangleIdTextBox;
+        private Label label16;
+        private Label label17;
     }
 }
