@@ -1,6 +1,6 @@
 ﻿public class Ring
 {
-    //private Point2D _ringCenter;
+   
     private double _outerRadius;
     private double _innerRadius;
 

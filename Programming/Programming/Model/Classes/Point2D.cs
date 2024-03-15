@@ -1,8 +1,8 @@
 ﻿public class Point2D
 {
     //Поля
-    public double _coordinateX;
-    public double _coordinateY;
+    private double _coordinateX;
+    private double _coordinateY;
 
     //Свойства
     public double CoordinateX
