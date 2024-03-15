@@ -230,6 +230,8 @@ namespace Programming
 
             //label14.Text = _currentRectangle.AllRectanglesCount.ToString();
 
+
+
         }
 
         private void button1_Click_1(object sender, EventArgs e)

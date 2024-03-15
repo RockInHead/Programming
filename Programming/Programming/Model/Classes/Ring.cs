@@ -1,6 +1,6 @@
-﻿internal class Ring
+﻿public class Ring
 {
-    private Point2D _ringCenter;
+    //private Point2D _ringCenter;
     private double _outerRadius;
     private double _innerRadius;
 
@@ -37,12 +37,24 @@
         }
     }
 
+    public Point2D Center
+    {
+        get
+        {
+            return new Point2D((OuterRaduis / 2.0), (InnerRadius / 2.0));
+        }
+    }
     public double Area
     {
         get
         {
             return Math.PI * (Math.Pow(OuterRaduis, 2) -  Math.Pow(InnerRadius,2));
         }
+    }
+    public Ring()
+    {
+        OuterRaduis = 0;
+        InnerRadius=0;
     }
     public Ring(double  outerRadius, double innerRadius)
     {
