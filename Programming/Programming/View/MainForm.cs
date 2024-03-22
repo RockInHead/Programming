@@ -249,7 +249,7 @@ namespace Programming
             LengthTextBox.Text = _currentRectangle.Length.ToString();
             WidthTextBox.Text = _currentRectangle.Width.ToString();
             ColorTextBox.Text = _currentRectangle.Color;
-            RectangleIdTextBox.Text= _currentRectangle.Id.ToString();
+            RectangleIdTextBox.Text = _currentRectangle.Id.ToString();
 
         }
 
@@ -380,6 +380,26 @@ namespace Programming
         }
 
         private void textBox1_TextChanged_2(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label19_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabPage3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AddRectangleButton_Click(object sender, EventArgs e)
         {
 
         }
