@@ -78,6 +78,29 @@ namespace Programming
             return MaxRatingIndex;
 
         }
+
+        //5 лаба 
+        private List<Rectangle> _canvaRectangles= new List<Rectangle>();
+        private Rectangle _currentCanvaRectangle;
+        private List<string> CanvaRectanglesListBoxItems = new List<string>();
+        public void CanvaRectangleInitiaziation()
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                //Ограничил до 200, но можно и больше
+                int length = _random.Next(200);
+                int widtht = _random.Next(200);            
+                _canvaRectangles.Add(new Rectangle(length, widtht,""));
+                CanvaRectanglesListBoxItems.Add($"{i + 1}) L={_canvaRectangles[i].Length};W={_canvaRectangles[i].Width};X={_canvaRectangles[i].Center.CoordinateX};Y={_canvaRectangles[i].Center.CoordinateX}");
+            }
+            foreach (string el in CanvaRectanglesListBoxItems)
+            {
+                CanvaRectanglesListBox.Items.Add(el);
+            }
+        }
+
+
+
         public MainForm()
         {
             InitializeComponent();
@@ -91,6 +114,7 @@ namespace Programming
             //Вызов рандомной генерации полей фильмов
             FilmInizialition();
 
+            CanvaRectangleInitiaziation();
 
         }
 
@@ -398,12 +422,62 @@ namespace Programming
         {
 
         }
+        //3 ЛАБА
 
+        //5 ЛАБА
         private void AddRectangleButton_Click(object sender, EventArgs e)
         {
 
+
+
         }
-        //3 ЛАБА
+
+        private void CanvaRectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int selectedIndex = CanvaRectanglesListBox.SelectedIndex;
+            if (selectedIndex == -1) return;
+            _currentCanvaRectangle = _canvaRectangles[selectedIndex];
+            CanvaLengthTextBox.Text = _currentCanvaRectangle.Length.ToString();
+            CanvaWidthTextBox.Text = _currentCanvaRectangle.Width.ToString();
+            //ColorTextBox.Text = _currentRectangle.Color;
+            CanvaIdTextBox.Text = _currentCanvaRectangle.Id.ToString();
+        }
+
+        private void CanvaLengthTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                CanvaLengthTextBox.BackColor = System.Drawing.Color.White;
+                int length = int.Parse(CanvaLengthTextBox.Text);
+                _currentCanvaRectangle.Length = length;
+                CanvaXCoordinateTextBox.Text = _currentCanvaRectangle.Center.CoordinateX.ToString();
+            }
+            catch (Exception)
+            {
+                CanvaLengthTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
+
+        private void CanvaCoordinateXTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CanvaWidthTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                CanvaWidthTextBox.BackColor = System.Drawing.Color.White;
+                int width = int.Parse(CanvaWidthTextBox.Text);
+                _currentCanvaRectangle.Width = width;
+                CanvaYCoordinateTextBox.Text = _currentCanvaRectangle.Center.CoordinateY.ToString();
+            }
+            catch (Exception)
+            {
+                CanvaWidthTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
+      //5 ЛАБА
     }
 }
 

@@ -77,22 +77,22 @@
             ValuesListBox = new ListBox();
             tabControl1 = new TabControl();
             tabPage3 = new TabPage();
-            RectanglesPanel = new Panel();
-            AddRectangleButton = new Button();
-            RemoveRectangleButton = new Button();
-            listBox1 = new ListBox();
-            label18 = new Label();
-            label19 = new Label();
             label20 = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
+            CanvaIdTextBox = new TextBox();
+            CanvaYCoordinateTextBox = new TextBox();
+            CanvaXCoordinateTextBox = new TextBox();
             label21 = new Label();
             label22 = new Label();
-            textBox4 = new TextBox();
-            textBox5 = new TextBox();
+            CanvaWidthTextBox = new TextBox();
+            CanvaLengthTextBox = new TextBox();
             label23 = new Label();
             label24 = new Label();
+            label19 = new Label();
+            label18 = new Label();
+            CanvaRectanglesListBox = new ListBox();
+            RemoveRectangleButton = new Button();
+            AddRectangleButton = new Button();
+            RectanglesPanel = new Panel();
             tabPage2.SuspendLayout();
             FilmGgroupBox.SuspendLayout();
             RectanglesGroupBox.SuspendLayout();
@@ -594,18 +594,18 @@
             // tabPage3
             // 
             tabPage3.Controls.Add(label20);
-            tabPage3.Controls.Add(textBox1);
-            tabPage3.Controls.Add(textBox2);
-            tabPage3.Controls.Add(textBox3);
+            tabPage3.Controls.Add(CanvaIdTextBox);
+            tabPage3.Controls.Add(CanvaYCoordinateTextBox);
+            tabPage3.Controls.Add(CanvaXCoordinateTextBox);
             tabPage3.Controls.Add(label21);
             tabPage3.Controls.Add(label22);
-            tabPage3.Controls.Add(textBox4);
-            tabPage3.Controls.Add(textBox5);
+            tabPage3.Controls.Add(CanvaWidthTextBox);
+            tabPage3.Controls.Add(CanvaLengthTextBox);
             tabPage3.Controls.Add(label23);
             tabPage3.Controls.Add(label24);
             tabPage3.Controls.Add(label19);
             tabPage3.Controls.Add(label18);
-            tabPage3.Controls.Add(listBox1);
+            tabPage3.Controls.Add(CanvaRectanglesListBox);
             tabPage3.Controls.Add(RemoveRectangleButton);
             tabPage3.Controls.Add(AddRectangleButton);
             tabPage3.Controls.Add(RectanglesPanel);
@@ -618,66 +618,6 @@
             tabPage3.UseVisualStyleBackColor = true;
             tabPage3.Click += tabPage3_Click;
             // 
-            // RectanglesPanel
-            // 
-            RectanglesPanel.BorderStyle = BorderStyle.FixedSingle;
-            RectanglesPanel.Location = new Point(382, 8);
-            RectanglesPanel.Name = "RectanglesPanel";
-            RectanglesPanel.Size = new Size(606, 537);
-            RectanglesPanel.TabIndex = 0;
-            // 
-            // AddRectangleButton
-            // 
-            AddRectangleButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            AddRectangleButton.FlatStyle = FlatStyle.Flat;
-            AddRectangleButton.Location = new Point(3, 288);
-            AddRectangleButton.Name = "AddRectangleButton";
-            AddRectangleButton.Size = new Size(116, 42);
-            AddRectangleButton.TabIndex = 1;
-            AddRectangleButton.Text = "Добавить ▯";
-            AddRectangleButton.UseVisualStyleBackColor = true;
-            AddRectangleButton.Click += AddRectangleButton_Click;
-            // 
-            // RemoveRectangleButton
-            // 
-            RemoveRectangleButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            RemoveRectangleButton.FlatStyle = FlatStyle.Flat;
-            RemoveRectangleButton.Location = new Point(194, 288);
-            RemoveRectangleButton.Name = "RemoveRectangleButton";
-            RemoveRectangleButton.Size = new Size(116, 42);
-            RemoveRectangleButton.TabIndex = 2;
-            RemoveRectangleButton.Text = "Убрать ▯";
-            RemoveRectangleButton.UseVisualStyleBackColor = true;
-            // 
-            // listBox1
-            // 
-            listBox1.FormattingEnabled = true;
-            listBox1.Location = new Point(6, 32);
-            listBox1.Name = "listBox1";
-            listBox1.Size = new Size(302, 244);
-            listBox1.TabIndex = 3;
-            // 
-            // label18
-            // 
-            label18.AutoSize = true;
-            label18.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label18.Location = new Point(8, 6);
-            label18.Name = "label18";
-            label18.Size = new Size(101, 23);
-            label18.TabIndex = 4;
-            label18.Text = "Rectangles:";
-            // 
-            // label19
-            // 
-            label19.AutoSize = true;
-            label19.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label19.Location = new Point(63, 343);
-            label19.Name = "label19";
-            label19.Size = new Size(197, 28);
-            label19.TabIndex = 5;
-            label19.Text = "Selected Rectangle:";
-            label19.Click += label19_Click;
-            // 
             // label20
             // 
             label20.AutoSize = true;
@@ -687,33 +627,34 @@
             label20.TabIndex = 23;
             label20.Text = "ID:";
             // 
-            // textBox1
+            // CanvaIdTextBox
             // 
-            textBox1.BackColor = System.Drawing.Color.White;
-            textBox1.Location = new Point(20, 392);
-            textBox1.Name = "textBox1";
-            textBox1.ReadOnly = true;
-            textBox1.Size = new Size(52, 27);
-            textBox1.TabIndex = 22;
+            CanvaIdTextBox.BackColor = System.Drawing.Color.White;
+            CanvaIdTextBox.Location = new Point(20, 392);
+            CanvaIdTextBox.Name = "CanvaIdTextBox";
+            CanvaIdTextBox.ReadOnly = true;
+            CanvaIdTextBox.Size = new Size(52, 27);
+            CanvaIdTextBox.TabIndex = 22;
             // 
-            // textBox2
+            // CanvaYCoordinateTextBox
             // 
-            textBox2.BackColor = System.Drawing.Color.White;
-            textBox2.Location = new Point(180, 496);
-            textBox2.Name = "textBox2";
-            textBox2.ReadOnly = true;
-            textBox2.Size = new Size(125, 27);
-            textBox2.TabIndex = 21;
-            textBox2.TextChanged += textBox2_TextChanged;
+            CanvaYCoordinateTextBox.BackColor = System.Drawing.Color.White;
+            CanvaYCoordinateTextBox.Location = new Point(180, 496);
+            CanvaYCoordinateTextBox.Name = "CanvaYCoordinateTextBox";
+            CanvaYCoordinateTextBox.ReadOnly = true;
+            CanvaYCoordinateTextBox.Size = new Size(125, 27);
+            CanvaYCoordinateTextBox.TabIndex = 21;
+            CanvaYCoordinateTextBox.TextChanged += textBox2_TextChanged;
             // 
-            // textBox3
+            // CanvaXCoordinateTextBox
             // 
-            textBox3.BackColor = System.Drawing.Color.White;
-            textBox3.Location = new Point(180, 443);
-            textBox3.Name = "textBox3";
-            textBox3.ReadOnly = true;
-            textBox3.Size = new Size(125, 27);
-            textBox3.TabIndex = 20;
+            CanvaXCoordinateTextBox.BackColor = System.Drawing.Color.White;
+            CanvaXCoordinateTextBox.Location = new Point(180, 443);
+            CanvaXCoordinateTextBox.Name = "CanvaXCoordinateTextBox";
+            CanvaXCoordinateTextBox.ReadOnly = true;
+            CanvaXCoordinateTextBox.Size = new Size(125, 27);
+            CanvaXCoordinateTextBox.TabIndex = 20;
+            CanvaXCoordinateTextBox.TextChanged += CanvaCoordinateXTextBox_TextChanged;
             // 
             // label21
             // 
@@ -733,20 +674,22 @@
             label22.TabIndex = 16;
             label22.Text = "Coordinate X:";
             // 
-            // textBox4
+            // CanvaWidthTextBox
             // 
-            textBox4.Location = new Point(20, 496);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(125, 27);
-            textBox4.TabIndex = 18;
+            CanvaWidthTextBox.Location = new Point(20, 496);
+            CanvaWidthTextBox.Name = "CanvaWidthTextBox";
+            CanvaWidthTextBox.Size = new Size(125, 27);
+            CanvaWidthTextBox.TabIndex = 18;
+            CanvaWidthTextBox.TextChanged += CanvaWidthTextBox_TextChanged;
             // 
-            // textBox5
+            // CanvaLengthTextBox
             // 
-            textBox5.BackColor = System.Drawing.Color.White;
-            textBox5.Location = new Point(20, 443);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(125, 27);
-            textBox5.TabIndex = 17;
+            CanvaLengthTextBox.BackColor = System.Drawing.Color.White;
+            CanvaLengthTextBox.Location = new Point(20, 443);
+            CanvaLengthTextBox.Name = "CanvaLengthTextBox";
+            CanvaLengthTextBox.Size = new Size(125, 27);
+            CanvaLengthTextBox.TabIndex = 17;
+            CanvaLengthTextBox.TextChanged += CanvaLengthTextBox_TextChanged;
             // 
             // label23
             // 
@@ -765,6 +708,67 @@
             label24.Size = new Size(57, 20);
             label24.TabIndex = 14;
             label24.Text = "Lenght:";
+            // 
+            // label19
+            // 
+            label19.AutoSize = true;
+            label19.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            label19.Location = new Point(63, 343);
+            label19.Name = "label19";
+            label19.Size = new Size(197, 28);
+            label19.TabIndex = 5;
+            label19.Text = "Selected Rectangle:";
+            label19.Click += label19_Click;
+            // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            label18.Location = new Point(8, 6);
+            label18.Name = "label18";
+            label18.Size = new Size(101, 23);
+            label18.TabIndex = 4;
+            label18.Text = "Rectangles:";
+            // 
+            // CanvaRectanglesListBox
+            // 
+            CanvaRectanglesListBox.FormattingEnabled = true;
+            CanvaRectanglesListBox.Location = new Point(6, 32);
+            CanvaRectanglesListBox.Name = "CanvaRectanglesListBox";
+            CanvaRectanglesListBox.Size = new Size(302, 244);
+            CanvaRectanglesListBox.TabIndex = 3;
+            CanvaRectanglesListBox.SelectedIndexChanged += CanvaRectanglesListBox_SelectedIndexChanged;
+            // 
+            // RemoveRectangleButton
+            // 
+            RemoveRectangleButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            RemoveRectangleButton.FlatStyle = FlatStyle.Flat;
+            RemoveRectangleButton.Location = new Point(194, 288);
+            RemoveRectangleButton.Name = "RemoveRectangleButton";
+            RemoveRectangleButton.Size = new Size(116, 42);
+            RemoveRectangleButton.TabIndex = 2;
+            RemoveRectangleButton.Text = "Убрать ▯";
+            RemoveRectangleButton.UseVisualStyleBackColor = true;
+            // 
+            // AddRectangleButton
+            // 
+            AddRectangleButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            AddRectangleButton.FlatStyle = FlatStyle.Flat;
+            AddRectangleButton.Location = new Point(3, 288);
+            AddRectangleButton.Name = "AddRectangleButton";
+            AddRectangleButton.Size = new Size(116, 42);
+            AddRectangleButton.TabIndex = 1;
+            AddRectangleButton.Text = "Добавить ▯";
+            AddRectangleButton.UseVisualStyleBackColor = true;
+            AddRectangleButton.Click += AddRectangleButton_Click;
+            // 
+            // RectanglesPanel
+            // 
+            RectanglesPanel.BorderStyle = BorderStyle.FixedSingle;
+            RectanglesPanel.Location = new Point(382, 6);
+            RectanglesPanel.Name = "RectanglesPanel";
+            RectanglesPanel.Size = new Size(606, 537);
+            RectanglesPanel.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -847,16 +851,16 @@
         private Panel RectanglesPanel;
         private Label label19;
         private Label label18;
-        private ListBox listBox1;
+        private ListBox CanvaRectanglesListBox;
         private Button RemoveRectangleButton;
         private Label label20;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
+        private TextBox CanvaIdTextBox;
+        private TextBox CanvaYCoordinateTextBox;
+        private TextBox CanvaXCoordinateTextBox;
         private Label label21;
         private Label label22;
-        private TextBox textBox4;
-        private TextBox textBox5;
+        private TextBox CanvaWidthTextBox;
+        private TextBox CanvaLengthTextBox;
         private Label label23;
         private Label label24;
     }
