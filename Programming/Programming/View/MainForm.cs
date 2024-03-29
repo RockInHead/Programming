@@ -79,8 +79,10 @@ namespace Programming
 
         }
 
+
+
         //5 Î‡·‡ 
-        private List<Rectangle> _canvaRectangles= new List<Rectangle>();
+        private List<Rectangle> _canvaRectangles = new List<Rectangle>();
         private Rectangle _currentCanvaRectangle;
         private List<string> CanvaRectanglesListBoxItems = new List<string>();
         public void CanvaRectangleInitiaziation()
@@ -89,8 +91,8 @@ namespace Programming
             {
                 //Œ„‡ÌË˜ËÎ ‰Ó 200, ÌÓ ÏÓÊÌÓ Ë ·ÓÎ¸¯Â
                 int length = _random.Next(200);
-                int widtht = _random.Next(200);            
-                _canvaRectangles.Add(new Rectangle(length, widtht,""));
+                int widtht = _random.Next(200);
+                _canvaRectangles.Add(new Rectangle(length, widtht, ""));
                 CanvaRectanglesListBoxItems.Add($"{i + 1}) L={_canvaRectangles[i].Length};W={_canvaRectangles[i].Width};X={_canvaRectangles[i].Center.CoordinateX};Y={_canvaRectangles[i].Center.CoordinateX}");
             }
             foreach (string el in CanvaRectanglesListBoxItems)
@@ -98,7 +100,6 @@ namespace Programming
                 CanvaRectanglesListBox.Items.Add(el);
             }
         }
-
 
 
         public MainForm()
@@ -119,7 +120,6 @@ namespace Programming
         }
 
         //2 À¿¡¿
-
 
         private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -150,8 +150,6 @@ namespace Programming
 
         }
 
- 
-
         private void ValuesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             //if (ValuesListBox.SelectedIndex == -1) return;
@@ -175,12 +173,6 @@ namespace Programming
             }
 
         }
-
-
-
-
-
-
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -261,7 +253,6 @@ namespace Programming
             RectangleIdTextBox.Text = _currentRectangle.Id.ToString();
 
         }
-
 
         private void LengthTextBox_TextChanged(object sender, EventArgs e)
         {
@@ -373,25 +364,28 @@ namespace Programming
             int FilmWithMaxRatingIndex = FindFilmWithMaxRating(_films);
             FilmsListBox.SelectedIndex = FilmWithMaxRatingIndex;
         }
-
-
-
-
-
-
-
-
-
-
-
-
         //3 À¿¡¿
 
         //5 À¿¡¿
         private void AddRectangleButton_Click(object sender, EventArgs e)
         {
+            int length = _random.Next(200);
+            int widtht = _random.Next(200);
+            Rectangle NewRectangle = new Rectangle(length, widtht, "");
 
 
+            _canvaRectangles.Add(NewRectangle);
+            CanvaRectanglesListBoxItems.Add($"{CanvaRectanglesListBoxItems.Count + 1}) L={NewRectangle.Length};W={NewRectangle.Width};X={NewRectangle.Center.CoordinateX};Y={NewRectangle.Center.CoordinateX}");
+            CanvaRectanglesListBox.Items.Add(CanvaRectanglesListBoxItems[CanvaRectanglesListBoxItems.Count - 1]);
+            //CanvaRectanglesListBox.Items.Add($"{CanvaRectanglesListBox.Items.Count + 1}) L={NewRectangle.Length};W={NewRectangle.Width};X={NewRectangle.Center.CoordinateX};Y={NewRectangle.Center.CoordinateX}");
+        }
+
+        private void RemoveRectangleButton_Click(object sender, EventArgs e)
+        {
+            int selectedIndex = CanvaRectanglesListBox.SelectedIndex;
+            if (selectedIndex == -1) return;
+            //CanvaRectanglesListBoxItems.RemoveAt(selectedIndex);
+            CanvaRectanglesListBox.Items.RemoveAt(selectedIndex);
 
         }
 
@@ -440,7 +434,9 @@ namespace Programming
                 CanvaWidthTextBox.BackColor = System.Drawing.Color.LightPink;
             }
         }
-      //5 À¿¡¿
+
+       
+        //5 À¿¡¿
     }
 }
 

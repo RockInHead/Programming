@@ -267,7 +267,6 @@
             RectanglesGroupBox.TabIndex = 1;
             RectanglesGroupBox.TabStop = false;
             RectanglesGroupBox.Text = "Rectangles";
-            
             // 
             // label17
             // 
@@ -286,7 +285,6 @@
             RectangleIdTextBox.ReadOnly = true;
             RectangleIdTextBox.Size = new Size(52, 27);
             RectangleIdTextBox.TabIndex = 11;
-            
             // 
             // label16
             // 
@@ -312,7 +310,6 @@
             XCoordinateTextBox.ReadOnly = true;
             XCoordinateTextBox.Size = new Size(125, 27);
             XCoordinateTextBox.TabIndex = 8;
-            
             // 
             // label15
             // 
@@ -331,7 +328,6 @@
             label14.Size = new Size(99, 20);
             label14.TabIndex = 3;
             label14.Text = "Coordinate X:";
-
             // 
             // ColorTextBox
             // 
@@ -417,7 +413,6 @@
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Enums";
             tabPage1.UseVisualStyleBackColor = true;
-          
             // 
             // GroupBoxSeasonHandle
             // 
@@ -430,7 +425,6 @@
             GroupBoxSeasonHandle.TabIndex = 5;
             GroupBoxSeasonHandle.TabStop = false;
             GroupBoxSeasonHandle.Text = "Season Handle";
-            
             // 
             // SeasonComboBox
             // 
@@ -439,7 +433,6 @@
             SeasonComboBox.Name = "SeasonComboBox";
             SeasonComboBox.Size = new Size(222, 28);
             SeasonComboBox.TabIndex = 2;
-
             // 
             // SeasonButton
             // 
@@ -459,7 +452,6 @@
             label5.Size = new Size(114, 20);
             label5.TabIndex = 0;
             label5.Text = "Choose season: ";
-            
             // 
             // WeekdayParsingGroupBox
             // 
@@ -568,7 +560,6 @@
             IntTextBox.ReadOnly = true;
             IntTextBox.Size = new Size(163, 27);
             IntTextBox.TabIndex = 2;
-            
             // 
             // ValuesListBox
             // 
@@ -616,7 +607,6 @@
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Rectangles";
             tabPage3.UseVisualStyleBackColor = true;
-
             // 
             // label20
             // 
@@ -644,7 +634,6 @@
             CanvaYCoordinateTextBox.ReadOnly = true;
             CanvaYCoordinateTextBox.Size = new Size(125, 27);
             CanvaYCoordinateTextBox.TabIndex = 21;
- 
             // 
             // CanvaXCoordinateTextBox
             // 
@@ -718,7 +707,6 @@
             label19.Size = new Size(197, 28);
             label19.TabIndex = 5;
             label19.Text = "Selected Rectangle:";
-
             // 
             // label18
             // 
@@ -749,6 +737,7 @@
             RemoveRectangleButton.TabIndex = 2;
             RemoveRectangleButton.Text = "Убрать ▯";
             RemoveRectangleButton.UseVisualStyleBackColor = true;
+            RemoveRectangleButton.Click += RemoveRectangleButton_Click;
             // 
             // AddRectangleButton
             // 
