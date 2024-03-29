@@ -119,10 +119,7 @@ namespace Programming
         }
 
         //2 À¿¡¿
-        private void tabPage1_Click(object sender, EventArgs e)
-        {
 
-        }
 
         private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -153,10 +150,7 @@ namespace Programming
 
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+ 
 
         private void ValuesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -182,20 +176,11 @@ namespace Programming
 
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
 
-        }
 
-        private void label5_Click(object sender, EventArgs e)
-        {
 
-        }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -277,10 +262,6 @@ namespace Programming
 
         }
 
-        private void RectanglesGroupBox_Enter(object sender, EventArgs e)
-        {
-
-        }
 
         private void LengthTextBox_TextChanged(object sender, EventArgs e)
         {
@@ -393,35 +374,17 @@ namespace Programming
             FilmsListBox.SelectedIndex = FilmWithMaxRatingIndex;
         }
 
-        private void label14_Click(object sender, EventArgs e)
-        {
 
-        }
 
-        private void textBox1_TextChanged_1(object sender, EventArgs e)
-        {
 
-        }
 
-        private void textBox1_TextChanged_2(object sender, EventArgs e)
-        {
 
-        }
 
-        private void label19_Click(object sender, EventArgs e)
-        {
 
-        }
 
-        private void tabPage3_Click(object sender, EventArgs e)
-        {
 
-        }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
 
-        }
         //3 À¿¡¿
 
         //5 À¿¡¿
