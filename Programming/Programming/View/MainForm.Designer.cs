@@ -729,25 +729,27 @@
             // 
             // RemoveRectangleButton
             // 
+            RemoveRectangleButton.BackgroundImage = Properties.Resources._8664938_trash_can_delete_remove_icon;
+            RemoveRectangleButton.BackgroundImageLayout = ImageLayout.Zoom;
             RemoveRectangleButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
             RemoveRectangleButton.FlatStyle = FlatStyle.Flat;
-            RemoveRectangleButton.Location = new Point(194, 288);
+            RemoveRectangleButton.Location = new Point(155, 281);
             RemoveRectangleButton.Name = "RemoveRectangleButton";
-            RemoveRectangleButton.Size = new Size(116, 42);
+            RemoveRectangleButton.Size = new Size(66, 58);
             RemoveRectangleButton.TabIndex = 2;
-            RemoveRectangleButton.Text = "Убрать ▯";
             RemoveRectangleButton.UseVisualStyleBackColor = true;
             RemoveRectangleButton.Click += RemoveRectangleButton_Click;
             // 
             // AddRectangleButton
             // 
+            AddRectangleButton.BackgroundImage = Properties.Resources._4781840___add_circle_create_expand_icon;
+            AddRectangleButton.BackgroundImageLayout = ImageLayout.Zoom;
             AddRectangleButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
             AddRectangleButton.FlatStyle = FlatStyle.Flat;
-            AddRectangleButton.Location = new Point(3, 288);
+            AddRectangleButton.Location = new Point(52, 280);
             AddRectangleButton.Name = "AddRectangleButton";
-            AddRectangleButton.Size = new Size(116, 42);
+            AddRectangleButton.Size = new Size(70, 60);
             AddRectangleButton.TabIndex = 1;
-            AddRectangleButton.Text = "Добавить ▯";
             AddRectangleButton.UseVisualStyleBackColor = true;
             AddRectangleButton.Click += AddRectangleButton_Click;
             // 
