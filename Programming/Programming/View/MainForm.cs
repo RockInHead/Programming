@@ -373,20 +373,38 @@ namespace Programming
             int widtht = _random.Next(200);
             Rectangle NewRectangle = new Rectangle(length, widtht, "");
 
+            //Вот как было до экспериментов
+            /*_canvaRectangles.Add(NewRectangle);
+            CanvaRectanglesListBoxItems.Add($"{CanvaRectanglesListBoxItems.Count + 1}) L={NewRectangle.Length};W={NewRectangle.Width};X={NewRectangle.Center.CoordinateX};Y={NewRectangle.Center.CoordinateX}");
+            CanvaRectanglesListBox.Items.Add(CanvaRectanglesListBoxItems[CanvaRectanglesListBoxItems.Count - 1]);*/
+
+            //CanvaRectanglesListBox.Items.Add($"{CanvaRectanglesListBox.Items.Count + 1}) L={NewRectangle.Length};W={NewRectangle.Width};X={NewRectangle.Center.CoordinateX};Y={NewRectangle.Center.CoordinateX}");
+
+            int RectangleOrder;
+            if (CanvaRectanglesListBoxItems.Count != 0)
+            {
+                RectangleOrder = Convert.ToInt16(CanvaRectanglesListBoxItems[CanvaRectanglesListBoxItems.Count - 1].Substring(0, 2).Trim(')')) + 1;
+            }
+            else
+            {
+                RectangleOrder = 1;
+            }
+            //int RectangleOrder = CanvaRectanglesListBoxItems.Count + 1;
 
             _canvaRectangles.Add(NewRectangle);
-            CanvaRectanglesListBoxItems.Add($"{CanvaRectanglesListBoxItems.Count + 1}) L={NewRectangle.Length};W={NewRectangle.Width};X={NewRectangle.Center.CoordinateX};Y={NewRectangle.Center.CoordinateX}");
+            CanvaRectanglesListBoxItems.Add($"{RectangleOrder}) L={NewRectangle.Length};W={NewRectangle.Width};X={NewRectangle.Center.CoordinateX};Y={NewRectangle.Center.CoordinateX}");
             CanvaRectanglesListBox.Items.Add(CanvaRectanglesListBoxItems[CanvaRectanglesListBoxItems.Count - 1]);
-            //CanvaRectanglesListBox.Items.Add($"{CanvaRectanglesListBox.Items.Count + 1}) L={NewRectangle.Length};W={NewRectangle.Width};X={NewRectangle.Center.CoordinateX};Y={NewRectangle.Center.CoordinateX}");
-        }
+        } 
 
         private void RemoveRectangleButton_Click(object sender, EventArgs e)
         {
             int selectedIndex = CanvaRectanglesListBox.SelectedIndex;
             if (selectedIndex == -1) return;
             //CanvaRectanglesListBoxItems.RemoveAt(selectedIndex);
+            _canvaRectangles.RemoveAt(selectedIndex);
+            CanvaRectanglesListBoxItems.RemoveAt(selectedIndex);
             CanvaRectanglesListBox.Items.RemoveAt(selectedIndex);
-
+            CanvaRectanglesListBox.SelectedIndex = CanvaRectanglesListBox.Items.Count - 1;
         }
 
         private void CanvaRectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -397,7 +415,8 @@ namespace Programming
             CanvaLengthTextBox.Text = _currentCanvaRectangle.Length.ToString();
             CanvaWidthTextBox.Text = _currentCanvaRectangle.Width.ToString();
             //ColorTextBox.Text = _currentRectangle.Color;
-            CanvaIdTextBox.Text = _currentCanvaRectangle.Id.ToString();
+            CanvaIdTextBox.Text = (_currentCanvaRectangle.Id-5).ToString();
+            //CanvaRectanglesListBox.SelectedIndex= CanvaRectanglesListBox.Items.Count-1;
         }
 
         private void CanvaLengthTextBox_TextChanged(object sender, EventArgs e)
