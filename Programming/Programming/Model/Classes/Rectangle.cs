@@ -7,7 +7,7 @@ public class Rectangle
     private int _width;
     private static int _allRectanglesCount;
     private int _id;
-    //private Point2D _center;
+    private Point2D _center;
 
     //Свойства и автосвойства
     public int Length
@@ -45,10 +45,13 @@ public class Rectangle
     public string Color { get; set; }
 
     Random random = new Random();
-    public Point2D Center {
+    public Point2D Center
+    {
         get
         {
-            return new Point2D((Length / 2.0), (Width / 2.0));
+            // return new Point2D((Length / 2.0), (Width / 2.0));
+            //return new Point2D(random.Next(0, 300), random.Next(0, 300));
+            return _center;
         }
     }
 
@@ -88,7 +91,7 @@ public class Rectangle
         _allRectanglesCount += 1;
         _id = _allRectanglesCount;
         
-
+        _center= new Point2D(random.Next(0, 500), random.Next(0, 500));
     }
 
 
