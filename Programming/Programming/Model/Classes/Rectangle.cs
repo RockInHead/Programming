@@ -43,6 +43,8 @@ public class Rectangle
         }
     }
     public string Color { get; set; }
+
+    Random random = new Random();
     public Point2D Center {
         get
         {
