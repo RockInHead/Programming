@@ -6,6 +6,7 @@
         double halfLatitude = Math.Abs(rectangle1.Width + rectangle2.Width) / 2;
         double differenceY = Math.Abs(rectangle1.Center.CoordinateY - rectangle2.Center.CoordinateY);
         double halfLength = Math.Abs(rectangle1.Length + rectangle2.Length) / 2;
+
         return differenceX < halfLatitude && differenceY < halfLength;
     }
     static public bool isCollision(Ring ring1,Ring ring2)

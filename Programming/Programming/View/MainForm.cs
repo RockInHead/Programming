@@ -378,6 +378,27 @@ namespace Programming
         //3 À¿¡¿
 
         //5 À¿¡¿
+        private void FindCollision()
+        {
+            foreach(var panel in _rectanglesPanels)
+            {
+                panel.BackColor = System.Drawing.Color.LightGreen;
+            }
+
+            for(int i = 0; i < _canvaRectangles.Count;i++)
+            {
+                for(int j=0;j<_canvaRectangles.Count;j++) 
+                {
+                    if (!(_canvaRectangles[i]== _canvaRectangles[j]) && CollisionManager.isCollision(_canvaRectangles[i], _canvaRectangles[j]))
+                    {
+                        _rectanglesPanels[i].BackColor = System.Drawing.Color.Red;
+                            
+                        _rectanglesPanels[j].BackColor = System.Drawing.Color.Red;
+                    }
+                
+                }
+            }
+        }
         private int GiveRectangleOrder()
         {
             int RectangleOrder;
@@ -411,20 +432,24 @@ namespace Programming
             NewPanel.BackColor = System.Drawing.Color.LightGreen;
             RectanglesPanel.Controls.Add(NewPanel);
             _rectanglesPanels.Add(NewPanel);
+            FindCollision();
         } 
 
         private void RemoveRectangleButton_Click(object sender, EventArgs e)
         {
             int selectedIndex = CanvaRectanglesListBox.SelectedIndex;
+
             if (selectedIndex == -1) return;
+
             _canvaRectangles.RemoveAt(selectedIndex);
             CanvaRectanglesListBoxItems.RemoveAt(selectedIndex);
             CanvaRectanglesListBox.Items.RemoveAt(selectedIndex);
+            
             CanvaRectanglesListBox.SelectedIndex = CanvaRectanglesListBox.Items.Count - 1;
 
             _rectanglesPanels.RemoveAt(selectedIndex);
             RectanglesPanel.Controls.RemoveAt(selectedIndex);
-
+            FindCollision();
         }
 
         private void CanvaRectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -446,8 +471,11 @@ namespace Programming
             {
                 CanvaLengthTextBox.ReadOnly = false;
                 CanvaWidthTextBox.ReadOnly = false;
+
+
                 int selectedIndex = CanvaRectanglesListBox.SelectedIndex;
                 if (selectedIndex == -1) return;
+
                 _currentCanvaRectangle = _canvaRectangles[selectedIndex];
 
                 CanvaLengthTextBox.Text = _currentCanvaRectangle.Length.ToString();
