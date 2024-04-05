@@ -96,11 +96,11 @@ namespace Programming
                 int widtht = _random.Next(200);
                 _canvaRectangles.Add(new Rectangle(length, widtht, ""));
                 CanvaRectanglesListBoxItems.Add($"{i + 1})L={_canvaRectangles[i].Length};W={_canvaRectangles[i].Width};X={_canvaRectangles[i].Center.CoordinateX};Y={_canvaRectangles[i].Center.CoordinateY}");
-                
+
                 Panel InitPanel = new Panel();
                 InitPanel.Location = new Point((int)_canvaRectangles[i].Center.CoordinateX, (int)_canvaRectangles[i].Center.CoordinateY);
-                InitPanel.Height = length;
-                InitPanel.Width = widtht;
+                InitPanel.Height = _canvaRectangles[i].Length;
+                InitPanel.Width = _canvaRectangles[i].Width;
                 InitPanel.BackColor = System.Drawing.Color.LightGreen;
                 RectanglesPanel.Controls.Add(InitPanel);
                 _rectanglesPanels.Add(InitPanel);
@@ -126,12 +126,12 @@ namespace Programming
             //Вызов рандомной генерации полей фильмов
             FilmInizialition();
 
-            CanvaRectangleInitiaziation();
+            //CanvaRectangleInitiaziation();
 
         }
 
         //2 ЛАБА
-        
+
         private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             ValuesListBox.Items.Clear();
@@ -380,22 +380,22 @@ namespace Programming
         //5 ЛАБА
         private void FindCollision()
         {
-            foreach(var panel in _rectanglesPanels)
+            foreach (var panel in _rectanglesPanels)
             {
                 panel.BackColor = System.Drawing.Color.LightGreen;
             }
 
-            for(int i = 0; i < _canvaRectangles.Count;i++)
+            for (int i = 0; i < _canvaRectangles.Count; i++)
             {
-                for(int j=0;j<_canvaRectangles.Count;j++) 
+                for (int j = 0; j < _canvaRectangles.Count; j++)
                 {
-                    if (!(_canvaRectangles[i]== _canvaRectangles[j]) && CollisionManager.isCollision(_canvaRectangles[i], _canvaRectangles[j]))
+                    if (!(_canvaRectangles[i] == _canvaRectangles[j]) && CollisionManager.isCollision(_canvaRectangles[i], _canvaRectangles[j]))
                     {
                         _rectanglesPanels[i].BackColor = System.Drawing.Color.Red;
-                            
+
                         _rectanglesPanels[j].BackColor = System.Drawing.Color.Red;
                     }
-                
+
                 }
             }
         }
@@ -404,7 +404,7 @@ namespace Programming
             int RectangleOrder;
             if (CanvaRectanglesListBoxItems.Count != 0)
             {
-                
+
                 RectangleOrder = Convert.ToInt16(CanvaRectanglesListBoxItems[CanvaRectanglesListBoxItems.Count - 1].Substring(0, 2).Trim(')')) + 1;
             }
             else
@@ -426,14 +426,25 @@ namespace Programming
             CanvaRectanglesListBox.SelectedIndex = CanvaRectanglesListBox.Items.Count - 1;
 
             Panel NewPanel = new Panel();
-            NewPanel.Location = new Point((int)NewRectangle.Center.CoordinateX,(int)NewRectangle.Center.CoordinateY);
+            NewPanel.Location = new Point((int)NewRectangle.Center.CoordinateX- NewRectangle.Width/2, (int)NewRectangle.Center.CoordinateY- NewRectangle.Length/2);
             NewPanel.Height = NewRectangle.Length;
             NewPanel.Width = NewRectangle.Width;
             NewPanel.BackColor = System.Drawing.Color.LightGreen;
             RectanglesPanel.Controls.Add(NewPanel);
             _rectanglesPanels.Add(NewPanel);
             FindCollision();
-        } 
+
+           /* Panel NewPanel = new Panel();
+            NewPanel.Location = new Point(0, 0);
+            NewPanel.Height = 100;
+            NewPanel.Width = 100;
+            NewPanel.BackColor = System.Drawing.Color.LightGreen;
+            RectanglesPanel.Controls.Add(NewPanel);
+            _rectanglesPanels.Add(NewPanel);
+            FindCollision();*/
+
+
+        }
 
         private void RemoveRectangleButton_Click(object sender, EventArgs e)
         {
@@ -444,11 +455,12 @@ namespace Programming
             _canvaRectangles.RemoveAt(selectedIndex);
             CanvaRectanglesListBoxItems.RemoveAt(selectedIndex);
             CanvaRectanglesListBox.Items.RemoveAt(selectedIndex);
-            
+
             CanvaRectanglesListBox.SelectedIndex = CanvaRectanglesListBox.Items.Count - 1;
 
             _rectanglesPanels.RemoveAt(selectedIndex);
             RectanglesPanel.Controls.RemoveAt(selectedIndex);
+
             FindCollision();
         }
 
@@ -499,10 +511,10 @@ namespace Programming
                     int length = int.Parse(CanvaLengthTextBox.Text);
                     _currentCanvaRectangle.Length = length;
                     CanvaXCoordinateTextBox.Text = _currentCanvaRectangle.Center.CoordinateX.ToString();
-                  
-                        double X = _currentCanvaRectangle.Center.CoordinateX;
-                        double Y = _currentCanvaRectangle.Center.CoordinateY;
-                 
+
+                    double X = _currentCanvaRectangle.Center.CoordinateX;
+                    double Y = _currentCanvaRectangle.Center.CoordinateY;
+
                     CanvaRectanglesListBoxItems[selectedIndex] = CanvaRectanglesListBoxItems[selectedIndex].Substring(0, CanvaRectanglesListBoxItems[selectedIndex].IndexOf('L')) + ($"L={_currentCanvaRectangle.Length};W={_currentCanvaRectangle.Width};X={X};Y={Y}");
                     CanvaRectanglesListBox.Items[selectedIndex] = CanvaRectanglesListBoxItems[selectedIndex];
                 }
@@ -540,7 +552,9 @@ namespace Programming
             }
         }
 
-       
+      
+
+
         //5 ЛАБА
     }
 }
