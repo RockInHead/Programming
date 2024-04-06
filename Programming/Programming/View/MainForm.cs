@@ -92,13 +92,13 @@ namespace Programming
             for (int i = 0; i < 5; i++)
             {
                 //Ограничил до 200, но можно и больше
-                int length = _random.Next(200);
-                int widtht = _random.Next(200);
+                int length = _random.Next(10,200);
+                int widtht = _random.Next(10,200);
                 _canvaRectangles.Add(new Rectangle(length, widtht, ""));
                 CanvaRectanglesListBoxItems.Add($"{i + 1})L={_canvaRectangles[i].Length};W={_canvaRectangles[i].Width};X={_canvaRectangles[i].Center.CoordinateX};Y={_canvaRectangles[i].Center.CoordinateY}");
 
                 Panel InitPanel = new Panel();
-                InitPanel.Location = new Point((int)_canvaRectangles[i].Center.CoordinateX, (int)_canvaRectangles[i].Center.CoordinateY);
+                InitPanel.Location = new Point((int)_canvaRectangles[i].Center.CoordinateX - _canvaRectangles[i].Width / 2, (int)_canvaRectangles[i].Center.CoordinateY - _canvaRectangles[i].Length / 2);
                 InitPanel.Height = _canvaRectangles[i].Length;
                 InitPanel.Width = _canvaRectangles[i].Width;
                 InitPanel.BackColor = System.Drawing.Color.LightGreen;
@@ -109,6 +109,7 @@ namespace Programming
             {
                 CanvaRectanglesListBox.Items.Add(el);
             }
+            FindCollision();
         }
 
 
@@ -126,7 +127,7 @@ namespace Programming
             //Вызов рандомной генерации полей фильмов
             FilmInizialition();
 
-            //CanvaRectangleInitiaziation();
+            CanvaRectangleInitiaziation();
 
         }
 
@@ -415,8 +416,8 @@ namespace Programming
         }
         private void AddRectangleButton_Click(object sender, EventArgs e)
         {
-            int length = _random.Next(200);
-            int widtht = _random.Next(200);
+            int length = _random.Next(10,200);
+            int widtht = _random.Next(10,200);
             Rectangle NewRectangle = new Rectangle(length, widtht, "");
 
 
@@ -430,8 +431,10 @@ namespace Programming
             NewPanel.Height = NewRectangle.Length;
             NewPanel.Width = NewRectangle.Width;
             NewPanel.BackColor = System.Drawing.Color.LightGreen;
-            RectanglesPanel.Controls.Add(NewPanel);
+
             _rectanglesPanels.Add(NewPanel);
+            RectanglesPanel.Controls.Add(NewPanel);
+            
             FindCollision();
 
            /* Panel NewPanel = new Panel();
@@ -507,6 +510,7 @@ namespace Programming
             {
                 if (CanvaRectanglesListBox.Items.Count != 0)
                 {
+                 
                     CanvaLengthTextBox.BackColor = System.Drawing.Color.White;
                     int length = int.Parse(CanvaLengthTextBox.Text);
                     _currentCanvaRectangle.Length = length;
@@ -517,6 +521,13 @@ namespace Programming
 
                     CanvaRectanglesListBoxItems[selectedIndex] = CanvaRectanglesListBoxItems[selectedIndex].Substring(0, CanvaRectanglesListBoxItems[selectedIndex].IndexOf('L')) + ($"L={_currentCanvaRectangle.Length};W={_currentCanvaRectangle.Width};X={X};Y={Y}");
                     CanvaRectanglesListBox.Items[selectedIndex] = CanvaRectanglesListBoxItems[selectedIndex];
+
+                    _rectanglesPanels[selectedIndex].Location = new Point((int)_currentCanvaRectangle.Center.CoordinateX - _currentCanvaRectangle.Width / 2, (int)_currentCanvaRectangle.Center.CoordinateY - _currentCanvaRectangle.Length / 2);
+                    _rectanglesPanels[selectedIndex].Height = _currentCanvaRectangle.Length;
+
+                    FindCollision();
+                    /*RectanglesPanel.Controls.RemoveAt(selectedIndex);
+                    RectanglesPanel.Controls.Add(_rectanglesPanels[selectedIndex]);*/
                 }
             }
             catch (Exception)
@@ -537,6 +548,7 @@ namespace Programming
             {
                 if (CanvaRectanglesListBox.Items.Count != 0)
                 {
+
                     CanvaWidthTextBox.BackColor = System.Drawing.Color.White;
                     int width = int.Parse(CanvaWidthTextBox.Text);
                     _currentCanvaRectangle.Width = width;
@@ -544,6 +556,12 @@ namespace Programming
 
                     CanvaRectanglesListBoxItems[selectedIndex] = CanvaRectanglesListBoxItems[selectedIndex].Substring(0, CanvaRectanglesListBoxItems[selectedIndex].IndexOf('L')) + ($"L={_currentCanvaRectangle.Length};W={_currentCanvaRectangle.Width};X={_currentCanvaRectangle.Center.CoordinateX};Y={_currentCanvaRectangle.Center.CoordinateY}");
                     CanvaRectanglesListBox.Items[selectedIndex] = CanvaRectanglesListBoxItems[selectedIndex];
+
+                    _rectanglesPanels[selectedIndex].Width = width;
+
+                    _rectanglesPanels[selectedIndex].Location = new Point((int)_currentCanvaRectangle.Center.CoordinateX - _currentCanvaRectangle.Width / 2, (int)_currentCanvaRectangle.Center.CoordinateY - _currentCanvaRectangle.Length / 2);
+                    _rectanglesPanels[selectedIndex].Width = _currentCanvaRectangle.Width;
+                    FindCollision();
                 }
             }
             catch (Exception)
