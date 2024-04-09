@@ -92,9 +92,10 @@ namespace Programming
             for (int i = 0; i < 5; i++)
             {
                 //ќграничил до 200, но можно и больше
-                int length = _random.Next(10,200);
-                int widtht = _random.Next(10,200);
-                _canvaRectangles.Add(new Rectangle(length, widtht, ""));
+                //int length = _random.Next(10,200);
+                //int widtht = _random.Next(10,200);
+                //_canvaRectangles.Add(new Rectangle(length, widtht, ""));
+                _canvaRectangles.Add(RectangleFactory.Randomize());
                 CanvaRectanglesListBoxItems.Add($"{i + 1})L={_canvaRectangles[i].Length};W={_canvaRectangles[i].Width};X={_canvaRectangles[i].Center.CoordinateX};Y={_canvaRectangles[i].Center.CoordinateY}");
 
                 Panel InitPanel = new Panel();
@@ -416,9 +417,9 @@ namespace Programming
         }
         private void AddRectangleButton_Click(object sender, EventArgs e)
         {
-            int length = _random.Next(10,200);
-            int widtht = _random.Next(10,200);
-            Rectangle NewRectangle = new Rectangle(length, widtht, "");
+            //int length = _random.Next(10,200);
+            //int widtht = _random.Next(10,200);
+            Rectangle NewRectangle = RectangleFactory.Randomize();
 
 
             _canvaRectangles.Add(NewRectangle);
@@ -434,7 +435,10 @@ namespace Programming
 
             _rectanglesPanels.Add(NewPanel);
             RectanglesPanel.Controls.Add(NewPanel);
-            
+
+            CanvaLengthTextBox.BackColor = System.Drawing.Color.White;
+            CanvaWidthTextBox.BackColor = System.Drawing.Color.White;
+
             FindCollision();
 
            /* Panel NewPanel = new Panel();
@@ -466,10 +470,44 @@ namespace Programming
 
             FindCollision();
         }
+        private void UpdateRectangleInfo()
+        {
 
-        private void CanvaRectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
+            int selectedIndex = CanvaRectanglesListBox.SelectedIndex;
+            if (selectedIndex == -1) return;
+
+            _currentCanvaRectangle = _canvaRectangles[selectedIndex];
+
+            CanvaLengthTextBox.Text = _currentCanvaRectangle.Length.ToString();
+            CanvaWidthTextBox.Text = _currentCanvaRectangle.Width.ToString();
+
+            //ѕо сути показывает общее кол-во пр€моугольников,но чтобы было красивее сделал -5
+            CanvaIdTextBox.Text = (_currentCanvaRectangle.Id - 5).ToString();
+
+        }
+        private void ClearRectangleInfo()
         {
             if (CanvaRectanglesListBox.Items.Count == 0)
+            {
+                CanvaLengthTextBox.Text = "";
+                CanvaLengthTextBox.ReadOnly = true;
+
+                CanvaWidthTextBox.Text = "";
+                CanvaWidthTextBox.ReadOnly = true;
+
+                CanvaXCoordinateTextBox.Text = "";
+                CanvaYCoordinateTextBox.Text = "";
+
+                CanvaIdTextBox.Text = "";
+            }
+            else {
+                CanvaLengthTextBox.ReadOnly = false;
+                CanvaWidthTextBox.ReadOnly = false;
+            }
+        }
+        private void CanvaRectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            /*if (CanvaRectanglesListBox.Items.Count == 0)
             {
                 CanvaLengthTextBox.Text = "";
                 CanvaLengthTextBox.ReadOnly = true;
@@ -485,23 +523,24 @@ namespace Programming
             else
             {
                 CanvaLengthTextBox.ReadOnly = false;
-                CanvaWidthTextBox.ReadOnly = false;
-
-
-                int selectedIndex = CanvaRectanglesListBox.SelectedIndex;
+                CanvaWidthTextBox.ReadOnly = false;*/
+                ClearRectangleInfo();
+                UpdateRectangleInfo();
+                /*int selectedIndex = CanvaRectanglesListBox.SelectedIndex;
                 if (selectedIndex == -1) return;
 
                 _currentCanvaRectangle = _canvaRectangles[selectedIndex];
 
                 CanvaLengthTextBox.Text = _currentCanvaRectangle.Length.ToString();
                 CanvaWidthTextBox.Text = _currentCanvaRectangle.Width.ToString();
+
                 //ѕо сути показывает общее кол-во пр€моугольников,но чтобы было красивее сделал -5
                 CanvaIdTextBox.Text = (_currentCanvaRectangle.Id - 5).ToString();
-
+*/
             }
 
 
-        }
+        
 
         private void CanvaLengthTextBox_TextChanged(object sender, EventArgs e)
         {
