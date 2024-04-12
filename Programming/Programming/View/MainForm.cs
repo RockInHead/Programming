@@ -82,7 +82,7 @@ namespace Programming
 
 
         //5 лаба 
-        private List<Rectangle> _canvaRectangles = new List<Rectangle>();
+        /*private List<Rectangle> _canvaRectangles = new List<Rectangle>();
         private Rectangle _currentCanvaRectangle;
         private List<string> CanvaRectanglesListBoxItems = new List<string>();
 
@@ -112,7 +112,7 @@ namespace Programming
                 CanvaRectanglesListBox.Items.Add(el);
             }
             FindCollision();
-        }
+        }*/
 
 
         public MainForm()
@@ -129,7 +129,7 @@ namespace Programming
             //Вызов рандомной генерации полей фильмов
             FilmInizialition();
 
-            CanvaRectangleInitiaziation();
+           /* CanvaRectangleInitiaziation();*/
 
         }
 
@@ -381,7 +381,7 @@ namespace Programming
         //3 ЛАБА
 
         //5 ЛАБА
-        private void FindCollision()
+        /*private void FindCollision()
         {
             foreach (var panel in _rectanglesPanels)
             {
@@ -532,8 +532,8 @@ namespace Programming
                     _rectanglesPanels[selectedIndex].Height = _currentCanvaRectangle.Length;
 
                     FindCollision();
-                    /*RectanglesPanel.Controls.RemoveAt(selectedIndex);
-                    RectanglesPanel.Controls.Add(_rectanglesPanels[selectedIndex]);*/
+                    *//*RectanglesPanel.Controls.RemoveAt(selectedIndex);
+                    RectanglesPanel.Controls.Add(_rectanglesPanels[selectedIndex]);*//*
                 }
             }
             catch (Exception)
@@ -574,7 +574,7 @@ namespace Programming
             {
                 CanvaWidthTextBox.BackColor = System.Drawing.Color.LightPink;
             }
-        }
+        }*/
 
       
 
