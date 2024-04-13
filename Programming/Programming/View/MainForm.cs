@@ -135,7 +135,7 @@ namespace Programming
 
         //2 À¿¡¿
 
-        private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)
+       /* private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             ValuesListBox.Items.Clear();
             IntTextBox.Clear();
@@ -169,7 +169,9 @@ namespace Programming
             //if (ValuesListBox.SelectedIndex == -1) return;
             IntTextBox.Text = ValuesListBox.SelectedIndex.ToString();
         }
-
+*/
+       
+        
         private void ParseButton_Click(object sender, EventArgs e)
         {
             string ParsingText = ParsingTextBox.Text;
@@ -216,7 +218,7 @@ namespace Programming
         }
         private void SetBackColor(System.Drawing.Color color)
         {
-            EnumerationsGroupBox.BackColor = color;
+            //EnumerationsGroupBox.BackColor = color;
             WeekdayParsingGroupBox.BackColor = color;
             SeasonComboBox.BackColor = color;
             this.BackColor = color;
