@@ -120,8 +120,8 @@ namespace Programming
 
             InitializeComponent();
 
-            object[] SeasonValues = Enum.GetValues(typeof(Season)).Cast<object>().ToArray();
-            SeasonComboBox.Items.AddRange(SeasonValues);
+            /*object[] SeasonValues = Enum.GetValues(typeof(Season)).Cast<object>().ToArray();
+            SeasonComboBox.Items.AddRange(SeasonValues);*/
 
             //Вызов рандомной генерации полей прямоугольников
             /*RectangleInitiaziation();*/
@@ -190,7 +190,7 @@ namespace Programming
 
         }*/
 
-        private void button1_Click(object sender, EventArgs e)
+        /*private void button1_Click(object sender, EventArgs e)
         {
             if (SeasonComboBox.SelectedItem == null)
             {
@@ -222,7 +222,7 @@ namespace Programming
             //WeekdayParsingGroupBox.BackColor = color;
             SeasonComboBox.BackColor = color;
             this.BackColor = color;
-        }
+        }*/
 
         //2 ЛАБА
 

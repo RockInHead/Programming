@@ -34,16 +34,12 @@
             tabPage1 = new TabPage();
             weekdayParsingControl1 = new View.Panels.WeekdayParsingControl();
             enumerationsControl1 = new View.Panels.EnumerationsControl();
-            GroupBoxSeasonHandle = new GroupBox();
-            SeasonComboBox = new ComboBox();
-            SeasonButton = new Button();
-            label5 = new Label();
             tabControl1 = new TabControl();
             tabPage3 = new TabPage();
             rectanglesCollisionControl1 = new View.Panels.RectanglesCollisionControl();
+            seasonsHandleControl1 = new View.Panels.SeasonsHandleControl();
             tabPage2.SuspendLayout();
             tabPage1.SuspendLayout();
-            GroupBoxSeasonHandle.SuspendLayout();
             tabControl1.SuspendLayout();
             tabPage3.SuspendLayout();
             SuspendLayout();
@@ -76,9 +72,9 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(seasonsHandleControl1);
             tabPage1.Controls.Add(weekdayParsingControl1);
             tabPage1.Controls.Add(enumerationsControl1);
-            tabPage1.Controls.Add(GroupBoxSeasonHandle);
             tabPage1.Location = new Point(4, 29);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
@@ -100,45 +96,6 @@
             enumerationsControl1.Name = "enumerationsControl1";
             enumerationsControl1.Size = new Size(853, 342);
             enumerationsControl1.TabIndex = 6;
-            // 
-            // GroupBoxSeasonHandle
-            // 
-            GroupBoxSeasonHandle.Controls.Add(SeasonComboBox);
-            GroupBoxSeasonHandle.Controls.Add(SeasonButton);
-            GroupBoxSeasonHandle.Controls.Add(label5);
-            GroupBoxSeasonHandle.Location = new Point(491, 348);
-            GroupBoxSeasonHandle.Name = "GroupBoxSeasonHandle";
-            GroupBoxSeasonHandle.Size = new Size(362, 180);
-            GroupBoxSeasonHandle.TabIndex = 5;
-            GroupBoxSeasonHandle.TabStop = false;
-            GroupBoxSeasonHandle.Text = "Season Handle";
-            // 
-            // SeasonComboBox
-            // 
-            SeasonComboBox.FormattingEnabled = true;
-            SeasonComboBox.Location = new Point(6, 57);
-            SeasonComboBox.Name = "SeasonComboBox";
-            SeasonComboBox.Size = new Size(222, 28);
-            SeasonComboBox.TabIndex = 2;
-            // 
-            // SeasonButton
-            // 
-            SeasonButton.Location = new Point(240, 55);
-            SeasonButton.Name = "SeasonButton";
-            SeasonButton.Size = new Size(107, 29);
-            SeasonButton.TabIndex = 1;
-            SeasonButton.Text = "Go!";
-            SeasonButton.UseVisualStyleBackColor = true;
-            SeasonButton.Click += button1_Click;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(0, 34);
-            label5.Name = "label5";
-            label5.Size = new Size(114, 20);
-            label5.TabIndex = 0;
-            label5.Text = "Choose season: ";
             // 
             // tabControl1
             // 
@@ -171,6 +128,13 @@
             rectanglesCollisionControl1.Size = new Size(1018, 576);
             rectanglesCollisionControl1.TabIndex = 0;
             // 
+            // seasonsHandleControl1
+            // 
+            seasonsHandleControl1.Location = new Point(491, 348);
+            seasonsHandleControl1.Name = "seasonsHandleControl1";
+            seasonsHandleControl1.Size = new Size(370, 180);
+            seasonsHandleControl1.TabIndex = 8;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -181,8 +145,6 @@
             Text = "Programming Demo";
             tabPage2.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
-            GroupBoxSeasonHandle.ResumeLayout(false);
-            GroupBoxSeasonHandle.PerformLayout();
             tabControl1.ResumeLayout(false);
             tabPage3.ResumeLayout(false);
             ResumeLayout(false);
@@ -192,10 +154,6 @@
 
         private TabPage tabPage2;
         private TabPage tabPage1;
-        private GroupBox GroupBoxSeasonHandle;
-        private ComboBox SeasonComboBox;
-        private Button SeasonButton;
-        private Label label5;
         private TabControl tabControl1;
         private TabPage tabPage3;
         private View.Panels.RectanglesCollisionControl rectanglesCollisionControl1;
@@ -203,5 +161,6 @@
         private View.Panels.FilmsPropertiesControl filmsPropertiesControl1;
         private View.Panels.EnumerationsControl enumerationsControl1;
         private View.Panels.WeekdayParsingControl weekdayParsingControl1;
+        private View.Panels.SeasonsHandleControl seasonsHandleControl1;
     }
 }
