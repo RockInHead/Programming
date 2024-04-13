@@ -172,7 +172,7 @@ namespace Programming
 */
        
         
-        private void ParseButton_Click(object sender, EventArgs e)
+        /*private void ParseButton_Click(object sender, EventArgs e)
         {
             string ParsingText = ParsingTextBox.Text;
 
@@ -188,7 +188,7 @@ namespace Programming
                 ParsedValueLabel.Text = "Нет такого дня недели!!!!";
             }
 
-        }
+        }*/
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -219,7 +219,7 @@ namespace Programming
         private void SetBackColor(System.Drawing.Color color)
         {
             //EnumerationsGroupBox.BackColor = color;
-            WeekdayParsingGroupBox.BackColor = color;
+            //WeekdayParsingGroupBox.BackColor = color;
             SeasonComboBox.BackColor = color;
             this.BackColor = color;
         }
