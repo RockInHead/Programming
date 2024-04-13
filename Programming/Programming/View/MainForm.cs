@@ -43,7 +43,7 @@ namespace Programming
 
         }*/
         //Поля фильма
-        private Film[] _films = new Film[6];
+        /*private Film[] _films = new Film[6];
         private Film _currentFilm;
         private string[] FilmListBoxItems = new string[6];
         private string[] FilmName = new string[6] { "Титаник", "Аватар", "Чужой", "Терминатор", "Пила", "Джентельмены" };
@@ -77,7 +77,7 @@ namespace Programming
             }
             return MaxRatingIndex;
 
-        }
+        }*/
 
 
 
@@ -127,7 +127,7 @@ namespace Programming
             /*RectangleInitiaziation();*/
 
             //Вызов рандомной генерации полей фильмов
-            FilmInizialition();
+            /*FilmInizialition();*/
 
             /* CanvaRectangleInitiaziation();*/
 
@@ -314,7 +314,7 @@ namespace Programming
 
 
 
-        private void FilmsListBox_SelectedIndexChanged(object sender, EventArgs e)
+       /* private void FilmsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             int FilmsSelectedIndex = FilmsListBox.SelectedIndex;
             if (FilmsSelectedIndex == -1) return;
@@ -380,7 +380,7 @@ namespace Programming
             int FilmWithMaxRatingIndex = FindFilmWithMaxRating(_films);
             FilmsListBox.SelectedIndex = FilmWithMaxRatingIndex;
         }
-
+*/
         private void rectanglesPropertiesControl1_Load(object sender, EventArgs e)
         {
 
