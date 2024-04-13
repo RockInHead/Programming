@@ -6,14 +6,14 @@ namespace Programming
     public partial class MainForm : Form
     {
         //Поля прямоугольника
-        private Rectangle[] _rectangles = new Rectangle[5];
+        /*private Rectangle[] _rectangles = new Rectangle[5];
         private Rectangle _currentRectangle;
         private string[] RectangleListBoxItems = new string[5];
-        private string[] RectangleColor = new string[6] { "Black", "White", "Orange", "Purple", "Green", "Blue" };
+        private string[] RectangleColor = new string[6] { "Black", "White", "Orange", "Purple", "Green", "Blue" };*/
 
         //Генерация рандомных полей в прямоугольник
         Random _random = new Random();
-        public void RectangleInitiaziation()
+        /*public void RectangleInitiaziation()
         {
             for (int i = 0; i < 5; i++)
             {
@@ -25,9 +25,9 @@ namespace Programming
                 RectangleListBoxItems[i] = ($"Rectangle{i + 1}");
             }
             RectanglesListBox.Items.AddRange(RectangleListBoxItems);
-        }
+        }*/
         //Метод для поиска индекса прямоугольника с максимальной шириной
-        private int FindRectangleWithMaxWidth(Rectangle[] rectangles)
+        /*private int FindRectangleWithMaxWidth(Rectangle[] rectangles)
         {
             int MaxWidth = rectangles[0].Width;
             int MaxWidthIndex = 0;
@@ -41,7 +41,7 @@ namespace Programming
             }
             return MaxWidthIndex;
 
-        }
+        }*/
         //Поля фильма
         private Film[] _films = new Film[6];
         private Film _currentFilm;
@@ -124,12 +124,12 @@ namespace Programming
             SeasonComboBox.Items.AddRange(SeasonValues);
 
             //Вызов рандомной генерации полей прямоугольников
-            RectangleInitiaziation();
+            /*RectangleInitiaziation();*/
 
             //Вызов рандомной генерации полей фильмов
             FilmInizialition();
 
-           /* CanvaRectangleInitiaziation();*/
+            /* CanvaRectangleInitiaziation();*/
 
         }
 
@@ -226,91 +226,93 @@ namespace Programming
 
 
         //3 ЛАБА
-        private void tabPage2_Click(object sender, EventArgs e)
-        {
-            //Contact contact = new Contact("DAD", "", 12, "");
-            //label14.Text = contact.Surname;
-            //Point2D point = new Point2D(10, 20);
-            //Rectangle rectangle = new Rectangle(1, 1, "", point);
-            // label14.Text = rectangle.Center.CoordinateX.ToString();
+        /* private void tabPage2_Click(object sender, EventArgs e)
+         {
+             //Contact contact = new Contact("DAD", "", 12, "");
+             //label14.Text = contact.Surname;
+             //Point2D point = new Point2D(10, 20);
+             //Rectangle rectangle = new Rectangle(1, 1, "", point);
+             // label14.Text = rectangle.Center.CoordinateX.ToString();
 
-            //Point2D point = new Point2D();
-            /*point.CoordinateX = 12;
-            label14.Text = point.CoordinateX.ToString();*/
+             //Point2D point = new Point2D();
+             *//*point.CoordinateX = 12;
+             label14.Text = point.CoordinateX.ToString();
 
-            /*Ring ring = new Ring(20,10);
-            label14.Text=ring.Area.ToString();*/
+             Ring ring = new Ring(20, 10);
+             label14.Text = ring.Area.ToString();*//*
 
-            //Rectangle rec = new Rectangle();
+             //Rectangle rec = new Rectangle();
 
-            //label14.Text = _currentRectangle.AllRectanglesCount.ToString();
-
-
-
-        }
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            int RectangleMaxWidthIndex = FindRectangleWithMaxWidth(_rectangles);
-            RectanglesListBox.SelectedIndex = RectangleMaxWidthIndex;
-
-        }
-
-        private void RectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int selectedIndex = RectanglesListBox.SelectedIndex;
-            if (selectedIndex == -1) return;
-            _currentRectangle = _rectangles[selectedIndex];
-            LengthTextBox.Text = _currentRectangle.Length.ToString();
-            WidthTextBox.Text = _currentRectangle.Width.ToString();
-            ColorTextBox.Text = _currentRectangle.Color;
-            RectangleIdTextBox.Text = _currentRectangle.Id.ToString();
-
-        }
-
-        private void LengthTextBox_TextChanged(object sender, EventArgs e)
-        {
+             //label14.Text = _currentRectangle.AllRectanglesCount.ToString();
 
 
-            try
-            {
-                LengthTextBox.BackColor = System.Drawing.Color.White;
-                int length = int.Parse(LengthTextBox.Text);
-                _currentRectangle.Length = length;
-                XCoordinateTextBox.Text = _currentRectangle.Center.CoordinateX.ToString();
-            }
-            catch (Exception)
-            {
-                LengthTextBox.BackColor = System.Drawing.Color.LightPink;
-            }
 
-        }
+         }
 
-        private void WidthTextBox_TextChanged(object sender, EventArgs e)
-        {
-            //if (_currentRectangle == null) return;
+         private void button1_Click_1(object sender, EventArgs e)
+         {
+             int RectangleMaxWidthIndex = FindRectangleWithMaxWidth(_rectangles);
+             RectanglesListBox.SelectedIndex = RectangleMaxWidthIndex;
 
-            try
-            {
-                WidthTextBox.BackColor = System.Drawing.Color.White;
-                int width = int.Parse(WidthTextBox.Text);
-                _currentRectangle.Width = width;
-                YCoordinateTextBox.Text = _currentRectangle.Center.CoordinateY.ToString();
+         }
 
-            }
-            catch (Exception)
-            {
-                WidthTextBox.BackColor = System.Drawing.Color.LightPink;
-            }
+         private void RectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
+         {
+             int selectedIndex = RectanglesListBox.SelectedIndex;
+             if (selectedIndex == -1) return;
+             _currentRectangle = _rectangles[selectedIndex];
+             LengthTextBox.Text = _currentRectangle.Length.ToString();
+             WidthTextBox.Text = _currentRectangle.Width.ToString();
+             ColorTextBox.Text = _currentRectangle.Color;
+             RectangleIdTextBox.Text = _currentRectangle.Id.ToString();
 
-        }
+         }
 
-        private void ColorTextBox_TextChanged(object sender, EventArgs e)
-        {
-            string color = ColorTextBox.Text;
-            _currentRectangle.Color = color;
+         private void LengthTextBox_TextChanged(object sender, EventArgs e)
+         {
 
-        }
+
+             try
+             {
+                 LengthTextBox.BackColor = System.Drawing.Color.White;
+                 int length = int.Parse(LengthTextBox.Text);
+                 _currentRectangle.Length = length;
+                 XCoordinateTextBox.Text = _currentRectangle.Center.CoordinateX.ToString();
+             }
+             catch (Exception)
+             {
+                 LengthTextBox.BackColor = System.Drawing.Color.LightPink;
+             }
+
+         }
+
+         private void WidthTextBox_TextChanged(object sender, EventArgs e)
+         {
+             //if (_currentRectangle == null) return;
+
+             try
+             {
+                 WidthTextBox.BackColor = System.Drawing.Color.White;
+                 int width = int.Parse(WidthTextBox.Text);
+                 _currentRectangle.Width = width;
+                 YCoordinateTextBox.Text = _currentRectangle.Center.CoordinateY.ToString();
+
+             }
+             catch (Exception)
+             {
+                 WidthTextBox.BackColor = System.Drawing.Color.LightPink;
+             }
+
+         }
+
+         private void ColorTextBox_TextChanged(object sender, EventArgs e)
+         {
+             string color = ColorTextBox.Text;
+             _currentRectangle.Color = color;
+
+         }*/
+
+
 
         private void FilmsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -377,6 +379,11 @@ namespace Programming
         {
             int FilmWithMaxRatingIndex = FindFilmWithMaxRating(_films);
             FilmsListBox.SelectedIndex = FilmWithMaxRatingIndex;
+        }
+
+        private void rectanglesPropertiesControl1_Load(object sender, EventArgs e)
+        {
+
         }
         //3 ЛАБА
 
@@ -576,7 +583,7 @@ namespace Programming
             }
         }*/
 
-      
+
 
 
         //5 ЛАБА

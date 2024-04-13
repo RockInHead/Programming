@@ -42,22 +42,6 @@
             label10 = new Label();
             FilmsListBox = new ListBox();
             label11 = new Label();
-            RectanglesGroupBox = new GroupBox();
-            label17 = new Label();
-            RectangleIdTextBox = new TextBox();
-            label16 = new Label();
-            YCoordinateTextBox = new TextBox();
-            XCoordinateTextBox = new TextBox();
-            label15 = new Label();
-            label14 = new Label();
-            ColorTextBox = new TextBox();
-            WidthTextBox = new TextBox();
-            LengthTextBox = new TextBox();
-            FindMaxWidthButton = new Button();
-            label8 = new Label();
-            label7 = new Label();
-            RectanglesListBox = new ListBox();
-            label6 = new Label();
             tabPage1 = new TabPage();
             GroupBoxSeasonHandle = new GroupBox();
             SeasonComboBox = new ComboBox();
@@ -78,9 +62,9 @@
             tabControl1 = new TabControl();
             tabPage3 = new TabPage();
             rectanglesCollisionControl1 = new View.Panels.RectanglesCollisionControl();
+            rectanglesPropertiesControl1 = new View.Panels.RectanglesPropertiesControl();
             tabPage2.SuspendLayout();
             FilmGgroupBox.SuspendLayout();
-            RectanglesGroupBox.SuspendLayout();
             tabPage1.SuspendLayout();
             GroupBoxSeasonHandle.SuspendLayout();
             WeekdayParsingGroupBox.SuspendLayout();
@@ -91,16 +75,15 @@
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(rectanglesPropertiesControl1);
             tabPage2.Controls.Add(FilmGgroupBox);
-            tabPage2.Controls.Add(RectanglesGroupBox);
             tabPage2.Location = new Point(4, 29);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(996, 567);
+            tabPage2.Size = new Size(1024, 582);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Сlasses";
             tabPage2.UseVisualStyleBackColor = true;
-            tabPage2.Click += tabPage2_Click;
             // 
             // FilmGgroupBox
             // 
@@ -118,7 +101,7 @@
             FilmGgroupBox.Controls.Add(label11);
             FilmGgroupBox.Location = new Point(566, 6);
             FilmGgroupBox.Name = "FilmGgroupBox";
-            FilmGgroupBox.Size = new Size(381, 409);
+            FilmGgroupBox.Size = new Size(381, 402);
             FilmGgroupBox.TabIndex = 2;
             FilmGgroupBox.TabStop = false;
             FilmGgroupBox.Text = "Films";
@@ -229,163 +212,6 @@
             label11.TabIndex = 0;
             label11.Text = "Name:";
             // 
-            // RectanglesGroupBox
-            // 
-            RectanglesGroupBox.Controls.Add(label17);
-            RectanglesGroupBox.Controls.Add(RectangleIdTextBox);
-            RectanglesGroupBox.Controls.Add(label16);
-            RectanglesGroupBox.Controls.Add(YCoordinateTextBox);
-            RectanglesGroupBox.Controls.Add(XCoordinateTextBox);
-            RectanglesGroupBox.Controls.Add(label15);
-            RectanglesGroupBox.Controls.Add(label14);
-            RectanglesGroupBox.Controls.Add(ColorTextBox);
-            RectanglesGroupBox.Controls.Add(WidthTextBox);
-            RectanglesGroupBox.Controls.Add(LengthTextBox);
-            RectanglesGroupBox.Controls.Add(FindMaxWidthButton);
-            RectanglesGroupBox.Controls.Add(label8);
-            RectanglesGroupBox.Controls.Add(label7);
-            RectanglesGroupBox.Controls.Add(RectanglesListBox);
-            RectanglesGroupBox.Controls.Add(label6);
-            RectanglesGroupBox.Location = new Point(8, 6);
-            RectanglesGroupBox.Name = "RectanglesGroupBox";
-            RectanglesGroupBox.Size = new Size(530, 375);
-            RectanglesGroupBox.TabIndex = 1;
-            RectanglesGroupBox.TabStop = false;
-            RectanglesGroupBox.Text = "Rectangles";
-            // 
-            // label17
-            // 
-            label17.AutoSize = true;
-            label17.Location = new Point(198, 23);
-            label17.Name = "label17";
-            label17.Size = new Size(27, 20);
-            label17.TabIndex = 13;
-            label17.Text = "ID:";
-            // 
-            // RectangleIdTextBox
-            // 
-            RectangleIdTextBox.BackColor = System.Drawing.Color.White;
-            RectangleIdTextBox.Location = new Point(198, 52);
-            RectangleIdTextBox.Name = "RectangleIdTextBox";
-            RectangleIdTextBox.ReadOnly = true;
-            RectangleIdTextBox.Size = new Size(52, 27);
-            RectangleIdTextBox.TabIndex = 11;
-            // 
-            // label16
-            // 
-            label16.Location = new Point(0, 0);
-            label16.Name = "label16";
-            label16.Size = new Size(100, 23);
-            label16.TabIndex = 12;
-            // 
-            // YCoordinateTextBox
-            // 
-            YCoordinateTextBox.BackColor = System.Drawing.Color.White;
-            YCoordinateTextBox.Location = new Point(342, 158);
-            YCoordinateTextBox.Name = "YCoordinateTextBox";
-            YCoordinateTextBox.ReadOnly = true;
-            YCoordinateTextBox.Size = new Size(125, 27);
-            YCoordinateTextBox.TabIndex = 9;
-            // 
-            // XCoordinateTextBox
-            // 
-            XCoordinateTextBox.BackColor = System.Drawing.Color.White;
-            XCoordinateTextBox.Location = new Point(342, 105);
-            XCoordinateTextBox.Name = "XCoordinateTextBox";
-            XCoordinateTextBox.ReadOnly = true;
-            XCoordinateTextBox.Size = new Size(125, 27);
-            XCoordinateTextBox.TabIndex = 8;
-            // 
-            // label15
-            // 
-            label15.AutoSize = true;
-            label15.Location = new Point(342, 135);
-            label15.Name = "label15";
-            label15.Size = new Size(98, 20);
-            label15.TabIndex = 7;
-            label15.Text = "Coordinate Y:";
-            // 
-            // label14
-            // 
-            label14.AutoSize = true;
-            label14.Location = new Point(341, 82);
-            label14.Name = "label14";
-            label14.Size = new Size(99, 20);
-            label14.TabIndex = 3;
-            label14.Text = "Coordinate X:";
-            // 
-            // ColorTextBox
-            // 
-            ColorTextBox.Location = new Point(198, 219);
-            ColorTextBox.Name = "ColorTextBox";
-            ColorTextBox.Size = new Size(125, 27);
-            ColorTextBox.TabIndex = 6;
-            ColorTextBox.TextChanged += ColorTextBox_TextChanged;
-            // 
-            // WidthTextBox
-            // 
-            WidthTextBox.Location = new Point(198, 158);
-            WidthTextBox.Name = "WidthTextBox";
-            WidthTextBox.Size = new Size(125, 27);
-            WidthTextBox.TabIndex = 5;
-            WidthTextBox.TextChanged += WidthTextBox_TextChanged;
-            // 
-            // LengthTextBox
-            // 
-            LengthTextBox.BackColor = System.Drawing.Color.White;
-            LengthTextBox.Location = new Point(198, 105);
-            LengthTextBox.Name = "LengthTextBox";
-            LengthTextBox.Size = new Size(125, 27);
-            LengthTextBox.TabIndex = 4;
-            LengthTextBox.TextChanged += LengthTextBox_TextChanged;
-            // 
-            // FindMaxWidthButton
-            // 
-            FindMaxWidthButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            FindMaxWidthButton.Location = new Point(198, 277);
-            FindMaxWidthButton.Name = "FindMaxWidthButton";
-            FindMaxWidthButton.Size = new Size(132, 29);
-            FindMaxWidthButton.TabIndex = 3;
-            FindMaxWidthButton.Text = "Find";
-            FindMaxWidthButton.UseVisualStyleBackColor = true;
-            FindMaxWidthButton.Click += button1_Click_1;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Location = new Point(198, 194);
-            label8.Name = "label8";
-            label8.Size = new Size(48, 20);
-            label8.TabIndex = 2;
-            label8.Text = "Color:";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(198, 135);
-            label7.Name = "label7";
-            label7.Size = new Size(52, 20);
-            label7.TabIndex = 1;
-            label7.Text = "Width:";
-            // 
-            // RectanglesListBox
-            // 
-            RectanglesListBox.FormattingEnabled = true;
-            RectanglesListBox.Location = new Point(6, 26);
-            RectanglesListBox.Name = "RectanglesListBox";
-            RectanglesListBox.Size = new Size(172, 284);
-            RectanglesListBox.TabIndex = 0;
-            RectanglesListBox.SelectedIndexChanged += RectanglesListBox_SelectedIndexChanged;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(198, 82);
-            label6.Name = "label6";
-            label6.Size = new Size(57, 20);
-            label6.TabIndex = 0;
-            label6.Text = "Lenght:";
-            // 
             // tabPage1
             // 
             tabPage1.Controls.Add(GroupBoxSeasonHandle);
@@ -394,7 +220,7 @@
             tabPage1.Location = new Point(4, 29);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(996, 567);
+            tabPage1.Size = new Size(1024, 582);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Enums";
             tabPage1.UseVisualStyleBackColor = true;
@@ -575,7 +401,7 @@
             tabPage3.Padding = new Padding(3);
             tabPage3.Size = new Size(1024, 582);
             tabPage3.TabIndex = 2;
-            tabPage3.Text = "tabPage3";
+            tabPage3.Text = "Rectangles";
             tabPage3.UseVisualStyleBackColor = true;
             // 
             // rectanglesCollisionControl1
@@ -585,6 +411,13 @@
             rectanglesCollisionControl1.Name = "rectanglesCollisionControl1";
             rectanglesCollisionControl1.Size = new Size(1018, 576);
             rectanglesCollisionControl1.TabIndex = 0;
+            // 
+            // rectanglesPropertiesControl1
+            // 
+            rectanglesPropertiesControl1.Location = new Point(0, 6);
+            rectanglesPropertiesControl1.Name = "rectanglesPropertiesControl1";
+            rectanglesPropertiesControl1.Size = new Size(560, 402);
+            rectanglesPropertiesControl1.TabIndex = 3;
             // 
             // MainForm
             // 
@@ -597,8 +430,6 @@
             tabPage2.ResumeLayout(false);
             FilmGgroupBox.ResumeLayout(false);
             FilmGgroupBox.PerformLayout();
-            RectanglesGroupBox.ResumeLayout(false);
-            RectanglesGroupBox.PerformLayout();
             tabPage1.ResumeLayout(false);
             GroupBoxSeasonHandle.ResumeLayout(false);
             GroupBoxSeasonHandle.PerformLayout();
@@ -632,15 +463,6 @@
         private TextBox IntTextBox;
         private ListBox ValuesListBox;
         private TabControl tabControl1;
-        private Label label6;
-        private GroupBox RectanglesGroupBox;
-        private Label label8;
-        private Label label7;
-        private ListBox RectanglesListBox;
-        private TextBox WidthTextBox;
-        private TextBox LengthTextBox;
-        private Button FindMaxWidthButton;
-        private TextBox ColorTextBox;
         private GroupBox FilmGgroupBox;
         private TextBox YearTextBox;
         private TextBox DurationTextBox;
@@ -654,14 +476,8 @@
         private Label label13;
         private TextBox GenreTextBox;
         private Label label12;
-        private Label label14;
-        private TextBox YCoordinateTextBox;
-        private TextBox XCoordinateTextBox;
-        private Label label15;
-        private TextBox RectangleIdTextBox;
-        private Label label16;
-        private Label label17;
         private TabPage tabPage3;
         private View.Panels.RectanglesCollisionControl rectanglesCollisionControl1;
+        private View.Panels.RectanglesPropertiesControl rectanglesPropertiesControl1;
     }
 }
