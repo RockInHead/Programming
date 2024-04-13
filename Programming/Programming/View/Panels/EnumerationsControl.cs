@@ -48,7 +48,7 @@ namespace Programming.View.Panels
 
         private void ValuesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //if (ValuesListBox.SelectedIndex == -1) return;
+            if (ValuesListBox.SelectedIndex == -1) return;
             IntTextBox.Text = ValuesListBox.SelectedIndex.ToString();
         }
 

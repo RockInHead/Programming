@@ -20,7 +20,7 @@ namespace Programming.View.Panels
             SeasonComboBox.Items.AddRange(SeasonValues);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void GoButton_Click(object sender, EventArgs e)
         {
             if (SeasonComboBox.SelectedItem == null)
             {
@@ -48,8 +48,6 @@ namespace Programming.View.Panels
         }
         private void SetBackColor(System.Drawing.Color color)
         {
-            //EnumerationsGroupBox.BackColor = color;
-            //WeekdayParsingGroupBox.BackColor = color;
             SeasonComboBox.BackColor = color;
             this.BackColor = color;
         }

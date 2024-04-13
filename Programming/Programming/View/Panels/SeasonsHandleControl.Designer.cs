@@ -63,7 +63,7 @@
             SeasonButton.TabIndex = 1;
             SeasonButton.Text = "Go!";
             SeasonButton.UseVisualStyleBackColor = true;
-            SeasonButton.Click += button1_Click;
+            SeasonButton.Click += GoButton_Click;
             // 
             // label5
             // 

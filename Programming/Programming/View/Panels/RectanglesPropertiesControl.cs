@@ -19,7 +19,6 @@ namespace Programming.View.Panels
         private string[] RectangleColor = new string[6] { "Black", "White", "Orange", "Purple", "Green", "Blue" };
 
         Random _random = new Random();
-
         public void RectangleInitiaziation()
         {
             for (int i = 0; i < 5; i++)
@@ -55,29 +54,6 @@ namespace Programming.View.Panels
             InitializeComponent();
 
             RectangleInitiaziation();
-        }
-
-        private void tabPage2_Click(object sender, EventArgs e)
-        {
-            //Contact contact = new Contact("DAD", "", 12, "");
-            //label14.Text = contact.Surname;
-            //Point2D point = new Point2D(10, 20);
-            //Rectangle rectangle = new Rectangle(1, 1, "", point);
-            // label14.Text = rectangle.Center.CoordinateX.ToString();
-
-            //Point2D point = new Point2D();
-            /*point.CoordinateX = 12;
-            label14.Text = point.CoordinateX.ToString();*/
-
-            /*Ring ring = new Ring(20,10);
-            label14.Text=ring.Area.ToString();*/
-
-            //Rectangle rec = new Rectangle();
-
-            //label14.Text = _currentRectangle.AllRectanglesCount.ToString();
-
-
-
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -119,7 +95,7 @@ namespace Programming.View.Panels
 
         private void WidthTextBox_TextChanged(object sender, EventArgs e)
         {
-            //if (_currentRectangle == null) return;
+            
 
             try
             {
@@ -142,9 +118,6 @@ namespace Programming.View.Panels
             _currentRectangle.Color = color;
 
         }
-        private void label16_Click(object sender, EventArgs e)
-        {
 
-        }
     }
 }

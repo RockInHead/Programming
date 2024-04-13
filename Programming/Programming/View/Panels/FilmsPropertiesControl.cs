@@ -12,7 +12,6 @@ namespace Programming.View.Panels
 {
     public partial class FilmsPropertiesControl : UserControl
     {
-
         //Поля фильма
         private Film[] _films = new Film[6];
         private Film _currentFilm;
@@ -21,7 +20,6 @@ namespace Programming.View.Panels
         private string[] FilmGenre = Enum.GetValues(typeof(Genre)).Cast<Genre>().Select(x => x.ToString()).ToArray();
 
         Random _random = new Random();
-
         //Генерация рандомных полей в фильмах
         public void FilmInizialition()
         {

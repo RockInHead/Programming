@@ -12,7 +12,7 @@ namespace Programming
         private string[] RectangleColor = new string[6] { "Black", "White", "Orange", "Purple", "Green", "Blue" };*/
 
         //Генерация рандомных полей в прямоугольник
-        Random _random = new Random();
+        //Random _random = new Random();
         /*public void RectangleInitiaziation()
         {
             for (int i = 0; i < 5; i++)
@@ -383,10 +383,7 @@ namespace Programming
             FilmsListBox.SelectedIndex = FilmWithMaxRatingIndex;
         }
 */
-        private void rectanglesPropertiesControl1_Load(object sender, EventArgs e)
-        {
-
-        }
+       
         //3 ЛАБА
 
         //5 ЛАБА

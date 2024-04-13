@@ -12,6 +12,7 @@ namespace Programming.View.Panels
 {
     public partial class RectanglesCollisionControl : UserControl
     {
+        //Поля
         private List<Rectangle> _canvaRectangles = new List<Rectangle>();
         private Rectangle _currentCanvaRectangle;
         private List<string> CanvaRectanglesListBoxItems = new List<string>();
@@ -111,10 +112,6 @@ namespace Programming.View.Panels
             CanvaWidthTextBox.BackColor = System.Drawing.Color.White;
 
             FindCollision();
-
-
-
-
         }
 
         private void RemoveRectangleButton_Click(object sender, EventArgs e)
@@ -145,8 +142,7 @@ namespace Programming.View.Panels
             CanvaLengthTextBox.Text = _currentCanvaRectangle.Length.ToString();
             CanvaWidthTextBox.Text = _currentCanvaRectangle.Width.ToString();
 
-            //По сути показывает общее кол-во прямоугольников,но чтобы было красивее сделал -5
-            CanvaIdTextBox.Text = (_currentCanvaRectangle.Id).ToString();
+            CanvaIdTextBox.Text = (_currentCanvaRectangle.Id-5).ToString();
 
         }
         private void ClearRectangleInfo()
@@ -176,9 +172,6 @@ namespace Programming.View.Panels
             UpdateRectangleInfo();
         }
 
-
-
-
         private void CanvaLengthTextBox_TextChanged(object sender, EventArgs e)
         {
             int selectedIndex = CanvaRectanglesListBox.SelectedIndex;
@@ -202,19 +195,13 @@ namespace Programming.View.Panels
                     _rectanglesPanels[selectedIndex].Height = _currentCanvaRectangle.Length;
 
                     FindCollision();
-                    /*RectanglesPanel.Controls.RemoveAt(selectedIndex);
-                    RectanglesPanel.Controls.Add(_rectanglesPanels[selectedIndex]);*/
+                  
                 }
             }
             catch (Exception)
             {
                 CanvaLengthTextBox.BackColor = System.Drawing.Color.LightPink;
             }
-        }
-
-        private void CanvaCoordinateXTextBox_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void CanvaWidthTextBox_TextChanged(object sender, EventArgs e)
@@ -246,7 +233,5 @@ namespace Programming.View.Panels
             }
         }
 
-
-       
     }
 }
