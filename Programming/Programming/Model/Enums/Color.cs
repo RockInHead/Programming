@@ -1,4 +1,7 @@
-﻿public enum Color
+﻿/// <summary>
+/// Перечисление,содержащее 7 цветов на английском языке.
+/// </summary>
+public enum Color
 {
     Black, 
     White, 
