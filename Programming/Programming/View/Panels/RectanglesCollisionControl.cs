@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace Programming.View.Panels
 {
+    /// <summary>
+    /// Осуществляет динамическое отображение пересечений прмоугольников на канве.
+    /// </summary>
     public partial class RectanglesCollisionControl : UserControl
     {
         //Поля
@@ -18,6 +21,9 @@ namespace Programming.View.Panels
         private List<string> CanvaRectanglesListBoxItems = new List<string>();
 
         private List<Panel> _rectanglesPanels = new List<Panel>();
+        /// <summary>
+        /// Осуществялет рандомную генерацию 5 прямоугольников с выводом их на канву.
+        /// </summary>
         public void CanvaRectangleInitiaziation()
         {
             for (int i = 0; i < 5; i++)
@@ -50,7 +56,9 @@ namespace Programming.View.Panels
 
             CanvaRectangleInitiaziation();
         }
-
+        /// <summary>
+        /// Осуществляет проверку пересечений всех существующих прямоугольников на канве. При пересечении окрашивает, пересекающиеся прямоугольники в красный цвет, иначе зеленый.
+        /// </summary>
         private void FindCollision()
         {
             foreach (var panel in _rectanglesPanels)
@@ -72,6 +80,10 @@ namespace Programming.View.Panels
                 }
             }
         }
+        /// <summary>
+        /// Считает номер для конретного объекта на ЛистБоксе.
+        /// </summary>
+        /// <returns>Номер объекта</returns>
         private int GiveRectangleOrder()
         {
             int RectangleOrder;
@@ -86,6 +98,11 @@ namespace Programming.View.Panels
             }
             return RectangleOrder;
         }
+        /// <summary>
+        /// Осуществляет добавление нового прямоугольника с рандомными полями и выводом его на канву. Так же добавляет его в массив прямоугольников.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddRectangleButton_Click(object sender, EventArgs e)
         {
             //int length = _random.Next(10,200);
@@ -113,7 +130,11 @@ namespace Programming.View.Panels
 
             FindCollision();
         }
-
+        /// <summary>
+        /// Осуществляет удаление прямоугольника по выбранному индексу. Так же удаляет его с канвы и массива прямоугольников.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RemoveRectangleButton_Click(object sender, EventArgs e)
         {
             int selectedIndex = CanvaRectanglesListBox.SelectedIndex;
@@ -131,6 +152,9 @@ namespace Programming.View.Panels
 
             FindCollision();
         }
+        /// <summary>
+        /// Обновляет информацию о полях выбранного прямоугольника в ТексБоксах.
+        /// </summary>
         private void UpdateRectangleInfo()
         {
 
@@ -145,6 +169,9 @@ namespace Programming.View.Panels
             CanvaIdTextBox.Text = (_currentCanvaRectangle.Id-5).ToString();
 
         }
+        /// <summary>
+        /// Очищает все ТекстБоксы ,если не созданно ни одного прямоугольника.
+        /// </summary>
         private void ClearRectangleInfo()
         {
             if (CanvaRectanglesListBox.Items.Count == 0)
@@ -166,12 +193,21 @@ namespace Programming.View.Panels
                 CanvaWidthTextBox.ReadOnly = false;
             }
         }
+        /// <summary>
+        /// Вызывает 2 метода при изменении индекса в ЛистБоксе.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CanvaRectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             ClearRectangleInfo();
             UpdateRectangleInfo();
         }
-
+        /// <summary>
+        /// Осуществляет изменениия поля Length у конкретного объекта. Так же динамически изменяет его на канве с проверкой пересечений.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CanvaLengthTextBox_TextChanged(object sender, EventArgs e)
         {
             int selectedIndex = CanvaRectanglesListBox.SelectedIndex;
@@ -204,6 +240,11 @@ namespace Programming.View.Panels
             }
         }
 
+        /// <summary>
+        /// Осуществляет изменениия поля Width у конкретного объекта. Так же динамически изменяет его на канве с проверкой пересечений.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CanvaWidthTextBox_TextChanged(object sender, EventArgs e)
         {
             int selectedIndex = CanvaRectanglesListBox.SelectedIndex;
