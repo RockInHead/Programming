@@ -1,6 +1,12 @@
-﻿static public class RectangleFactory
+﻿/// <summary>
+/// Осуществляет рандомную генерацию прямоугольника.
+/// </summary>
+static public class RectangleFactory
 {
-    
+    /// <summary>
+    /// Генерирует прямоугольник с рандомными полями.
+    /// </summary>
+    /// <returns>Возвращает рандомно сгенерируемый прямоугольник.</returns>
     static public Rectangle Randomize()
     {
         Random random = new Random();
