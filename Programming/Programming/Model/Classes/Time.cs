@@ -1,10 +1,25 @@
-﻿public class Time
+﻿/// <summary>
+/// Хранит данные о времени:Часы,Минуты,Секунды.
+/// </summary>
+public class Time
 {
     //Поля
+    /// <summary>
+    /// Часы.
+    /// </summary>
     private int _hours;
+    /// <summary>
+    /// Минуты.
+    /// </summary>
     private int _minutes;
+    /// <summary>
+    /// Секунды.
+    /// </summary>
     private int _seconds;
     //Свойства и автосвойства
+    /// <summary>
+    /// Возвращает и задает часы.Должно от 0 до 23.
+    /// </summary>
     public int Hours
     {
         get
@@ -21,6 +36,9 @@
             _hours = value;
         }
     }
+    /// <summary>
+    /// Возвращает и задает минуты.Должно от 0 до 60.
+    /// </summary>
     public int Minutes
     {
         get
@@ -37,6 +55,9 @@
             _minutes = value;
         }
     }
+    /// <summary>
+    /// Возвращает и задает секунды.Должно от 0 до 60.
+    /// </summary>
     public int Seconds
     {
         get
@@ -55,12 +76,21 @@
     }
 
     //Конструктор
+    /// <summary>
+    /// Создает пустой/начальный экземпляр класса.Всем полям присваивается значение по умолчанию.
+    /// </summary>
     public Time()
     {
         Hours = 0;
         Minutes = 0;
         Seconds =0;
     }
+    /// <summary>
+    /// Создает экземпляр класса.
+    /// </summary>
+    /// <param name="hours">Часы.Должны быть от 0 до 23.</param>
+    /// <param name="minutes">Минуты.Должны быть от 0 до 60.</param>
+    /// <param name="seconds">Секунды.Должны быть от 0 до 60.</param>
     public Time(int hours, int minutes, int seconds)
     {
         Hours = hours;
