@@ -59,8 +59,8 @@ public class Song
     /// Создает экземпляр класса.
     /// </summary>
     /// <param name="name">Название песни.</param>
-    /// <param name="author"></param>
-    /// <param name="durationSeconds"></param>
+    /// <param name="author">Автор песни.</param>
+    /// <param name="durationSeconds">Продолжительность песни в сек. Должна быть положительной.</param>
     public Song(string name, string author,int durationSeconds)
     {
         Name = name;
