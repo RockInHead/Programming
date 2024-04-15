@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace Programming.View.Panels
 {
+    /// <summary>
+    /// Осуществляет отображение полей экземпляра класса Films по выбранному индексу,а также предоставляет возможнсть изменениния полей определенного экземпляра класса. 
+    /// </summary>
     public partial class FilmsPropertiesControl : UserControl
     {
         //Поля фильма
@@ -21,6 +24,9 @@ namespace Programming.View.Panels
 
         Random _random = new Random();
         //Генерация рандомных полей в фильмах
+        /// <summary>
+        /// Осуществялет рандомную генерацию 5 объектов типа данных Film и вывода их на ЛистБокс.
+        /// </summary>
         public void FilmInizialition()
         {
             for (int i = 0; i < 6; i++)
@@ -35,6 +41,11 @@ namespace Programming.View.Panels
         }
 
         //Метод для поиска индекса фильма с максимальным рейтингом
+        /// <summary>
+        /// Осуществляет поиск индекс элемента массива с максиммальным рейтингом.
+        /// </summary>
+        /// <param name="films">Проверяемый массив</param>
+        /// <returns>Индекс элемента с максиммальным рейтингом</returns>
         private int FindFilmWithMaxRating(Film[] films)
         {
             double MaxRating = films[0].Rating;
@@ -56,7 +67,11 @@ namespace Programming.View.Panels
 
             FilmInizialition();
         }
-
+        /// <summary>
+        /// Осуществялет отображение полей конкретного объекта по выбранному индексу.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FilmsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             int FilmsSelectedIndex = FilmsListBox.SelectedIndex;
@@ -68,12 +83,21 @@ namespace Programming.View.Panels
             GenreTextBox.Text = _currentFilm.Genre;
             RatingTextBox.Text = _currentFilm.Rating.ToString();
         }
-
+        /// <summary>
+        /// Осуществляет изменениие поля Name конкретного объекта в ТекстБоксе.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NameTextBox_TextChanged(object sender, EventArgs e)
         {
             _currentFilm.Name = NameTextBox.Text;
         }
 
+        /// <summary>
+        /// Осуществляет изменениие поля Duration конкретного объекта в ТекстБоксе. Если валидация неправильная то ТекстБокс окрашивается в красный и изменение поля не происходит.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DurationTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -86,7 +110,12 @@ namespace Programming.View.Panels
                 DurationTextBox.BackColor = System.Drawing.Color.LightPink;
             }
         }
-
+        /// <summary>
+        /// Осуществляет изменениие поля Year конкретного объекта в ТекстБоксе. 
+        /// Если валидация неправильная то ТекстБокс окрашивается в красный и изменение поля не происходит.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void YearTextBox_TextChanged(object sender, EventArgs e)
         {
             try
@@ -99,12 +128,20 @@ namespace Programming.View.Panels
                 YearTextBox.BackColor = System.Drawing.Color.LightPink;
             }
         }
-
+        /// <summary>
+        /// Осуществляет изменениие поля Genre конкретного объекта в ТекстБоксе.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void GenreTextBox_TextChanged(object sender, EventArgs e)
         {
             _currentFilm.Genre = GenreTextBox.Text;
         }
-
+        /// <summary>
+        /// Осуществляет изменениие поля Rating конкретного объекта в ТекстБоксе. Если валидация неправильная то ТекстБокс окрашивается в красный и изменение поля не происходит.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RatingTextBox_TextChanged(object sender, EventArgs e)
         {
             try
