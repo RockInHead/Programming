@@ -155,6 +155,11 @@ namespace Programming.View.Panels
             }
         }
 
+        /// <summary>
+        /// Выводит в ТекстБоксы поля фильма с наибольшим рейтингом.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FindMaxRatingButton_Click(object sender, EventArgs e)
         {
             int FilmWithMaxRatingIndex = FindFilmWithMaxRating(_films);

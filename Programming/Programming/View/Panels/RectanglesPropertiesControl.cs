@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace Programming.View.Panels
 {
+    /// <summary>
+    /// Осуществляет отображение полей экземпляра класса Rectangles по выбранному индексу,а также предоставляет возможнсть изменениния полей определенного экземпляра класса. 
+    /// </summary>
     public partial class RectanglesPropertiesControl : UserControl
     {
         //Поля прямоугольника
@@ -34,6 +37,11 @@ namespace Programming.View.Panels
         }
 
         //Метод для поиска индекса прямоугольника с максимальной шириной
+        /// <summary>
+        /// Осуществляет поиск индекс элемента массива rectangles с максимальной шириной.
+        /// </summary>
+        /// <param name="rectangles"></param>
+        /// <returns>Индекс элемента с максимальной шириной.</returns>
         private int FindRectangleWithMaxWidth(Rectangle[] rectangles)
         {
             int MaxWidth = rectangles[0].Width;
@@ -55,14 +63,22 @@ namespace Programming.View.Panels
 
             RectangleInitiaziation();
         }
-
+        /// <summary>
+        /// Выводит в ТекстБоксы поля прямоугольника с наибольшей шириной.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click_1(object sender, EventArgs e)
         {
             int RectangleMaxWidthIndex = FindRectangleWithMaxWidth(_rectangles);
             RectanglesListBox.SelectedIndex = RectangleMaxWidthIndex;
 
         }
-
+        /// <summary>
+        /// Осуществляет вывод в ТекстБоксы поля конкретного прямоугольника по выбранному индексу.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RectanglesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             int selectedIndex = RectanglesListBox.SelectedIndex;
@@ -74,7 +90,11 @@ namespace Programming.View.Panels
             RectangleIdTextBox.Text = _currentRectangle.Id.ToString();
 
         }
-
+        /// <summary>
+        /// Осуществляет изменениие поля Length конкретного объекта в ТекстБоксе. Если валидация неправильная то ТекстБокс окрашивается в красный и изменение поля не происходит.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void LengthTextBox_TextChanged(object sender, EventArgs e)
         {
 
@@ -92,7 +112,11 @@ namespace Programming.View.Panels
             }
 
         }
-
+        /// <summary>
+        /// Осуществляет изменениие поля Width конкретного объекта в ТекстБоксе. Если валидация неправильная то ТекстБокс окрашивается в красный и изменение поля не происходит.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void WidthTextBox_TextChanged(object sender, EventArgs e)
         {
             
@@ -111,7 +135,11 @@ namespace Programming.View.Panels
             }
 
         }
-
+        /// <summary>
+        /// Осуществляет изменениие поля Color конкретного объекта в ТекстБоксе.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ColorTextBox_TextChanged(object sender, EventArgs e)
         {
             string color = ColorTextBox.Text;
