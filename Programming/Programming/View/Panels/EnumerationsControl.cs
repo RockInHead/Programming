@@ -10,13 +10,20 @@ using System.Windows.Forms;
 
 namespace Programming.View.Panels
 {
+    /// <summary>
+    /// Осуществялет отображение элементов перечеслений в ЛистБокс и индекса конкретного элемента перечсиления.
+    /// </summary>
     public partial class EnumerationsControl : UserControl
     {
         public EnumerationsControl()
         {
             InitializeComponent();
         }
-
+        /// <summary>
+        /// Осуществялет вывод на ЛистБокс Перечислений по выбранному индексу.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             ValuesListBox.Items.Clear();
@@ -46,6 +53,11 @@ namespace Programming.View.Panels
 
         }
 
+        /// <summary>
+        /// Осуществляет вывод в ТекстБокс индекс выбранного элемента перечисления по выбранному элементу.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ValuesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ValuesListBox.SelectedIndex == -1) return;
