@@ -8,26 +8,47 @@ namespace _8_laba
         private List<string> _flightsListBoxItems = new List<string>();
         private string[] Cities = (string[])Enum.GetNames(typeof(Cities));
 
-        public void CanvaRectangleInitiaziation()
+
+        public void FlightsInitiaziation()
         {
             for (int i = 0; i < 5; i++)
             {
-                string departute = Cities[random.Next(0, Cities.Length)];
-                string destination = Cities[random.Next(0, Cities.Length)];
+                int cityIndex = random.Next(0, Cities.Length);
+                string departute = Cities[cityIndex];        
+                string destination = Cities[cityIndex==Cities.Length-1 ?cityIndex-random.Next(0,cityIndex):cityIndex+1];
+                DateTime dateTime = new DateTime(random.Next(2024, 2050), random.Next(1, 12), random.Next(28));
                 int flightDuration = random.Next(60, 600);
+                TypesOfFlight typesOfFlight = (TypesOfFlight)random.Next(2);
+
+                _flights.Add(new Flight(departute, destination, dateTime, flightDuration, typesOfFlight));
+                _flightsListBoxItems.Add($"{dateTime.ToShortDateString()}: {departute} - {destination}");
 
             }
-            foreach (string el in CanvaRectanglesListBoxItems)
+            foreach (string el in _flightsListBoxItems)
             {
-                CanvaRectanglesListBox.Items.Add(el);
+                FlightsListBox.Items.Add(el);
             }
-            FindCollision();
+
         }
         public MainForm()
         {
             InitializeComponent();
+            FlightsInitiaziation();
         }
-        
-     
+
+        private void FlightsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int selectedIndex = FlightsListBox.SelectedIndex;
+
+            if (selectedIndex == null) return;
+            _currentFlight = _flights[selectedIndex];
+
+            DepartureTextBox.Text = _currentFlight.DeparturePoint.ToString();
+            DestinationTextBox.Text = _currentFlight.DestinationPoint.ToString();
+            DepartureDateTimePicker.Text=_currentFlight.DepartureDate.ToString();
+            FlightTimeNumericUpDown.Text=_currentFlight.FlightTimeMinutes.ToString();
+            TypeOfFlightComboBox.Text=_currentFlight.TypeOfFlight.ToString();
+
+        }
     }
 }

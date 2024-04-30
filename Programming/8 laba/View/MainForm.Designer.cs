@@ -34,7 +34,7 @@
             label4 = new Label();
             label3 = new Label();
             label2 = new Label();
-            TypeOfFlightComboBox1 = new ComboBox();
+            TypeOfFlightComboBox = new ComboBox();
             FlightTimeNumericUpDown = new NumericUpDown();
             label1 = new Label();
             DepartureDateTimePicker = new DateTimePicker();
@@ -51,8 +51,9 @@
             FlightsListBox.FormattingEnabled = true;
             FlightsListBox.Location = new Point(12, 12);
             FlightsListBox.Name = "FlightsListBox";
-            FlightsListBox.Size = new Size(219, 384);
+            FlightsListBox.Size = new Size(307, 384);
             FlightsListBox.TabIndex = 0;
+            FlightsListBox.SelectedIndexChanged += FlightsListBox_SelectedIndexChanged;
             // 
             // groupBox1
             // 
@@ -60,13 +61,13 @@
             groupBox1.Controls.Add(label4);
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(label2);
-            groupBox1.Controls.Add(TypeOfFlightComboBox1);
+            groupBox1.Controls.Add(TypeOfFlightComboBox);
             groupBox1.Controls.Add(FlightTimeNumericUpDown);
             groupBox1.Controls.Add(label1);
             groupBox1.Controls.Add(DepartureDateTimePicker);
             groupBox1.Controls.Add(DestinationTextBox);
             groupBox1.Controls.Add(DepartureTextBox);
-            groupBox1.Location = new Point(246, 12);
+            groupBox1.Location = new Point(325, 12);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(412, 302);
             groupBox1.TabIndex = 1;
@@ -113,13 +114,13 @@
             label2.TabIndex = 6;
             label2.Text = "Destination:";
             // 
-            // TypeOfFlightComboBox1
+            // TypeOfFlightComboBox
             // 
-            TypeOfFlightComboBox1.FormattingEnabled = true;
-            TypeOfFlightComboBox1.Location = new Point(177, 241);
-            TypeOfFlightComboBox1.Name = "TypeOfFlightComboBox1";
-            TypeOfFlightComboBox1.Size = new Size(186, 28);
-            TypeOfFlightComboBox1.TabIndex = 5;
+            TypeOfFlightComboBox.FormattingEnabled = true;
+            TypeOfFlightComboBox.Location = new Point(177, 241);
+            TypeOfFlightComboBox.Name = "TypeOfFlightComboBox";
+            TypeOfFlightComboBox.Size = new Size(186, 28);
+            TypeOfFlightComboBox.TabIndex = 5;
             // 
             // FlightTimeNumericUpDown
             // 
@@ -181,7 +182,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(679, 469);
+            ClientSize = new Size(851, 469);
             Controls.Add(RemoveFlightButton);
             Controls.Add(AddFlightButton);
             Controls.Add(groupBox1);
@@ -204,7 +205,7 @@
         private TextBox DepartureTextBox;
         private NumericUpDown FlightTimeNumericUpDown;
         private Label label2;
-        private ComboBox TypeOfFlightComboBox1;
+        private ComboBox TypeOfFlightComboBox;
         private Button AddFlightButton;
         private Button RemoveFlightButton;
         private Label label3;
