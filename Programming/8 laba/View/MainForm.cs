@@ -1,5 +1,3 @@
-using System;
-
 namespace _8_laba
 {
     public partial class MainForm : Form
@@ -44,12 +42,31 @@ namespace _8_laba
         {
             InitializeComponent();
             FlightsInitiaziation();
+
+            DepartureTextBox.ReadOnly = true;
+            DestinationTextBox.ReadOnly = true;
+            DepartureDateTimePicker.Enabled = false;
+            FlightTimeNumericUpDown.Enabled = false;
+            TypeOfFlightComboBox.Enabled = false;
+
+            TypeOfFlightComboBox.Items.AddRange(Enum.GetValues(typeof(TypesOfFlight)).Cast<object>().ToArray());
+
         }
 
         private void FlightsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             int selectedIndex = FlightsListBox.SelectedIndex;
+
             if (selectedIndex == -1) return;
+
+            DepartureTextBox.ReadOnly = false;
+            DestinationTextBox.ReadOnly = false;
+            DepartureDateTimePicker.Enabled = true;
+            FlightTimeNumericUpDown.Enabled = true;
+            TypeOfFlightComboBox.Enabled = true;
+
+
+
             _currentFlight = _flights[selectedIndex];
 
             DepartureTextBox.Text = _currentFlight.DeparturePoint.ToString();
@@ -88,8 +105,6 @@ namespace _8_laba
             {
                 DestinationTextBox.BackColor = System.Drawing.Color.White;
 
-
-
                 string departure = DestinationTextBox.Text;
                 _currentFlight.DestinationPoint = departure;
 
@@ -121,6 +136,33 @@ namespace _8_laba
             {
                 MessageBox.Show("Нельзя выбрать дату раньше сегодняшней!");
             }
+        }
+
+        private void FlightTimeNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                int selectedIndex = FlightsListBox.SelectedIndex;
+
+
+                int duration = (int)FlightTimeNumericUpDown.Value;
+                _currentFlight.FlightTimeMinutes = duration;
+
+
+            }
+            catch (Exception)
+            {
+                FlightTimeNumericUpDown.BackColor = System.Drawing.Color.LightPink;
+            }
+
+        }
+
+        private void TypeOfFlightComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int selectedIndex= FlightsListBox.SelectedIndex;
+
+            TypesOfFlight type = (TypesOfFlight)TypeOfFlightComboBox.SelectedItem;
+            _currentFlight.TypeOfFlight = type;
         }
     }
 }

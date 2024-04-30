@@ -48,6 +48,7 @@
             // 
             // FlightsListBox
             // 
+            FlightsListBox.AllowDrop = true;
             FlightsListBox.FormattingEnabled = true;
             FlightsListBox.Location = new Point(12, 12);
             FlightsListBox.Name = "FlightsListBox";
@@ -121,14 +122,17 @@
             TypeOfFlightComboBox.Name = "TypeOfFlightComboBox";
             TypeOfFlightComboBox.Size = new Size(186, 28);
             TypeOfFlightComboBox.TabIndex = 5;
+            TypeOfFlightComboBox.SelectedIndexChanged += TypeOfFlightComboBox_SelectedIndexChanged;
             // 
             // FlightTimeNumericUpDown
             // 
+            FlightTimeNumericUpDown.Increment = new decimal(new int[] { 10, 0, 0, 0 });
             FlightTimeNumericUpDown.Location = new Point(177, 186);
             FlightTimeNumericUpDown.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             FlightTimeNumericUpDown.Name = "FlightTimeNumericUpDown";
             FlightTimeNumericUpDown.Size = new Size(186, 27);
             FlightTimeNumericUpDown.TabIndex = 4;
+            FlightTimeNumericUpDown.ValueChanged += FlightTimeNumericUpDown_ValueChanged;
             // 
             // label1
             // 
