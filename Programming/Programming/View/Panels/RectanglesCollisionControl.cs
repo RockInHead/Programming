@@ -254,6 +254,7 @@ namespace Programming.View.Panels
                 {
 
                     CanvaWidthTextBox.BackColor = System.Drawing.Color.White;
+
                     int width = int.Parse(CanvaWidthTextBox.Text);
                     _currentCanvaRectangle.Width = width;
                     CanvaYCoordinateTextBox.Text = _currentCanvaRectangle.Center.CoordinateY.ToString();

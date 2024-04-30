@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Text.RegularExpressions;
 /// <summary>
 /// Осуществляет проверку/валидацию определенных данных.
 /// </summary>
@@ -60,5 +61,16 @@ class Validator
         {
             throw new ArgumentException($"Диапазон для свойства класса {new StackTrace().GetFrame(1).GetMethod().Name} от {min} до {max}");
         }
+    }
+
+    public static void AssertStringContainsSymbolsForCities(string value)
+    {
+
+        if (!Regex.IsMatch(value, "^[a-zA-Zа-яА-Я-_ ]*$"))
+        {
+
+            throw new ArgumentException($"Без цифр! {new StackTrace().GetFrame(1).GetMethod().Name}");
+        }
+      
     }
 }

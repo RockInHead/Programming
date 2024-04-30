@@ -1,4 +1,8 @@
-﻿/// <summary>
+﻿using System.Diagnostics;
+
+using System.Text.RegularExpressions;
+
+/// <summary>
 /// Хранит данные о рейсе:Пункт отправления, Пункт прибытия Продолжительность полета в мин.
 /// </summary>
 public class Flight
@@ -29,12 +33,34 @@ public class Flight
     /// <summary>
     /// Возвращает и задает пункт отправления.
     /// </summary>
-    public string DeparturePoint { get; set; }
+    public string DeparturePoint
+    {
+        get
+        {
+            return _departurePoint;
+        }
+        set
+        {
+            Validator.AssertStringContainsSymbolsForCities(value);
+            _departurePoint = value;
+        }
+    }
 
     /// <summary>
     /// Возвращает и задает пункт следования.
     /// </summary>
-    public string DestinationPoint { get; set; }
+    public string DestinationPoint
+    {
+        get
+        {
+            return _destinationPoint;
+        }
+        set 
+        {
+            Validator.AssertStringContainsSymbolsForCities(value);
+            _destinationPoint = value;
+        }
+    }
 
     /// <summary>
     /// Возвращает и задает дату вылета. Должна быть не ранее сегодняшней.

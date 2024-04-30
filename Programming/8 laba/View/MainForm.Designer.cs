@@ -125,6 +125,7 @@
             // FlightTimeNumericUpDown
             // 
             FlightTimeNumericUpDown.Location = new Point(177, 186);
+            FlightTimeNumericUpDown.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
             FlightTimeNumericUpDown.Name = "FlightTimeNumericUpDown";
             FlightTimeNumericUpDown.Size = new Size(186, 27);
             FlightTimeNumericUpDown.TabIndex = 4;
@@ -141,24 +142,32 @@
             // 
             // DepartureDateTimePicker
             // 
+            DepartureDateTimePicker.DropDownAlign = LeftRightAlignment.Right;
             DepartureDateTimePicker.Location = new Point(177, 129);
+            DepartureDateTimePicker.MinDate = new DateTime(2024, 4, 30, 13, 52, 13, 0);
             DepartureDateTimePicker.Name = "DepartureDateTimePicker";
             DepartureDateTimePicker.Size = new Size(186, 27);
             DepartureDateTimePicker.TabIndex = 2;
+            DepartureDateTimePicker.Value = new DateTime(2024, 4, 30, 13, 52, 13, 0);
+            DepartureDateTimePicker.ValueChanged += DepartureDateTimePicker_ValueChanged;
             // 
             // DestinationTextBox
             // 
             DestinationTextBox.Location = new Point(177, 80);
+            DestinationTextBox.MaxLength = 100;
             DestinationTextBox.Name = "DestinationTextBox";
             DestinationTextBox.Size = new Size(186, 27);
             DestinationTextBox.TabIndex = 1;
+            DestinationTextBox.TextChanged += DestinationTextBox_TextChanged;
             // 
             // DepartureTextBox
             // 
             DepartureTextBox.Location = new Point(177, 37);
+            DepartureTextBox.MaxLength = 100;
             DepartureTextBox.Name = "DepartureTextBox";
             DepartureTextBox.Size = new Size(186, 27);
             DepartureTextBox.TabIndex = 0;
+            DepartureTextBox.TextChanged += DepartureTextBox_TextChanged;
             // 
             // AddFlightButton
             // 
