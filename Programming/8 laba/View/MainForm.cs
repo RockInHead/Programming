@@ -1,3 +1,5 @@
+using System;
+
 namespace _8_laba
 {
     public partial class MainForm : Form
@@ -38,11 +40,31 @@ namespace _8_laba
             }
 
         }
+        public void Sort()
+        {
+            for (int i = 0; i < _flights.Count; i++)
+            {
+                for (int j = 0; j < _flights.Count; j++)
+                {
+                    if (_flights[i].DepartureDate < _flights[j].DepartureDate)
+                    {
+                        (_flights[i], _flights[j]) = (_flights[j], _flights[i]);
+                        (_flightsListBoxItems[i], _flightsListBoxItems[j]) = (_flightsListBoxItems[j], _flightsListBoxItems[i]);
+                    }
+                }
+            }
+            FlightsListBox.Items.Clear();
+            foreach (string el in _flightsListBoxItems)
+            {
+                FlightsListBox.Items.Add(el);
+            }
+
+        }
         public MainForm()
         {
             InitializeComponent();
             FlightsInitiaziation();
-
+            // Sort();
             DepartureTextBox.ReadOnly = true;
             DestinationTextBox.ReadOnly = true;
             DepartureDateTimePicker.Enabled = false;
@@ -131,11 +153,14 @@ namespace _8_laba
 
                 _flightsListBoxItems[selectedIndex] = $"{_currentFlight.DepartureDate.ToShortDateString()}: {_currentFlight.DeparturePoint} Ч {_currentFlight.DestinationPoint}";
                 FlightsListBox.Items[selectedIndex] = _flightsListBoxItems[selectedIndex];
+
+
             }
             catch (Exception)
             {
                 MessageBox.Show("Ќельз€ выбрать дату раньше сегодн€шней!");
             }
+
         }
 
         private void FlightTimeNumericUpDown_ValueChanged(object sender, EventArgs e)
@@ -159,10 +184,32 @@ namespace _8_laba
 
         private void TypeOfFlightComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int selectedIndex= FlightsListBox.SelectedIndex;
+            int selectedIndex = FlightsListBox.SelectedIndex;
 
             TypesOfFlight type = (TypesOfFlight)TypeOfFlightComboBox.SelectedItem;
             _currentFlight.TypeOfFlight = type;
+        }
+
+        private void AddFlightButton_Click(object sender, EventArgs e)
+        {
+            Flight newFlight = FlightFactory.Randomize();
+            _flights.Add(newFlight);
+            _flightsListBoxItems.Add($"{newFlight.DepartureDate.ToShortDateString()}: {newFlight.DeparturePoint} Ч {newFlight.DestinationPoint}");
+            FlightsListBox.Items.Add($"{newFlight.DepartureDate.ToShortDateString()}: {newFlight.DeparturePoint} Ч {newFlight.DestinationPoint}");
+
+        }
+
+        private void RemoveFlightButton_Click(object sender, EventArgs e)
+        {
+            int selectedIndex = FlightsListBox.SelectedIndex;
+
+            if (selectedIndex == -1) return;
+
+            _flights.RemoveAt(selectedIndex);
+            _flightsListBoxItems.RemoveAt(selectedIndex);
+            FlightsListBox.Items.RemoveAt(selectedIndex);
+
+            FlightsListBox.SelectedIndex = FlightsListBox.Items.Count - 1;
         }
     }
 }

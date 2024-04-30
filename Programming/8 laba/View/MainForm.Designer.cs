@@ -42,17 +42,20 @@
             DepartureTextBox = new TextBox();
             AddFlightButton = new Button();
             RemoveFlightButton = new Button();
+            comboBox1 = new ComboBox();
+            groupBox2 = new GroupBox();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)FlightTimeNumericUpDown).BeginInit();
+            groupBox2.SuspendLayout();
             SuspendLayout();
             // 
             // FlightsListBox
             // 
             FlightsListBox.AllowDrop = true;
             FlightsListBox.FormattingEnabled = true;
-            FlightsListBox.Location = new Point(12, 12);
+            FlightsListBox.Location = new Point(12, 78);
             FlightsListBox.Name = "FlightsListBox";
-            FlightsListBox.Size = new Size(307, 384);
+            FlightsListBox.Size = new Size(307, 344);
             FlightsListBox.TabIndex = 0;
             FlightsListBox.SelectedIndexChanged += FlightsListBox_SelectedIndexChanged;
             // 
@@ -68,9 +71,9 @@
             groupBox1.Controls.Add(DepartureDateTimePicker);
             groupBox1.Controls.Add(DestinationTextBox);
             groupBox1.Controls.Add(DepartureTextBox);
-            groupBox1.Location = new Point(325, 12);
+            groupBox1.Location = new Point(376, 12);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(412, 302);
+            groupBox1.Size = new Size(412, 368);
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             groupBox1.Text = "Selected Flight";
@@ -175,27 +178,49 @@
             // 
             // AddFlightButton
             // 
-            AddFlightButton.Location = new Point(12, 418);
+            AddFlightButton.Location = new Point(376, 393);
             AddFlightButton.Name = "AddFlightButton";
             AddFlightButton.Size = new Size(94, 29);
             AddFlightButton.TabIndex = 2;
             AddFlightButton.Text = "Добавить";
             AddFlightButton.UseVisualStyleBackColor = true;
+            AddFlightButton.Click += AddFlightButton_Click;
             // 
             // RemoveFlightButton
             // 
-            RemoveFlightButton.Location = new Point(137, 418);
+            RemoveFlightButton.Location = new Point(502, 393);
             RemoveFlightButton.Name = "RemoveFlightButton";
             RemoveFlightButton.Size = new Size(94, 29);
             RemoveFlightButton.TabIndex = 3;
             RemoveFlightButton.Text = "Удалить";
             RemoveFlightButton.UseVisualStyleBackColor = true;
+            RemoveFlightButton.Click += RemoveFlightButton_Click;
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "Ближайшие даты вылета", "Позднейшие даты вылета" });
+            comboBox1.Location = new Point(6, 26);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(248, 28);
+            comboBox1.TabIndex = 10;
+            // 
+            // groupBox2
+            // 
+            groupBox2.Controls.Add(comboBox1);
+            groupBox2.Location = new Point(12, 12);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(264, 60);
+            groupBox2.TabIndex = 11;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Отсортировано по:";
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(851, 469);
+            Controls.Add(groupBox2);
             Controls.Add(RemoveFlightButton);
             Controls.Add(AddFlightButton);
             Controls.Add(groupBox1);
@@ -205,6 +230,7 @@
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)FlightTimeNumericUpDown).EndInit();
+            groupBox2.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -224,5 +250,7 @@
         private Label label3;
         private Label label4;
         private Label label5;
+        private ComboBox comboBox1;
+        private GroupBox groupBox2;
     }
 }
