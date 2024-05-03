@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             FlightsListBox = new ListBox();
             groupBox1 = new GroupBox();
             label5 = new Label();
@@ -71,9 +72,9 @@
             groupBox1.Controls.Add(DepartureDateTimePicker);
             groupBox1.Controls.Add(DestinationTextBox);
             groupBox1.Controls.Add(DepartureTextBox);
-            groupBox1.Location = new Point(376, 12);
+            groupBox1.Location = new Point(373, 12);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(412, 368);
+            groupBox1.Size = new Size(412, 297);
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             groupBox1.Text = "Selected Flight";
@@ -179,21 +180,25 @@
             // 
             // AddFlightButton
             // 
-            AddFlightButton.Location = new Point(436, 390);
+            AddFlightButton.BackgroundImage = (Image)resources.GetObject("AddFlightButton.BackgroundImage");
+            AddFlightButton.BackgroundImageLayout = ImageLayout.Zoom;
+            AddFlightButton.FlatStyle = FlatStyle.Flat;
+            AddFlightButton.Location = new Point(438, 335);
             AddFlightButton.Name = "AddFlightButton";
-            AddFlightButton.Size = new Size(96, 47);
+            AddFlightButton.Size = new Size(91, 62);
             AddFlightButton.TabIndex = 2;
-            AddFlightButton.Text = "Добавить";
             AddFlightButton.UseVisualStyleBackColor = true;
             AddFlightButton.Click += AddFlightButton_Click;
             // 
             // RemoveFlightButton
             // 
-            RemoveFlightButton.Location = new Point(620, 386);
+            RemoveFlightButton.BackgroundImage = (Image)resources.GetObject("RemoveFlightButton.BackgroundImage");
+            RemoveFlightButton.BackgroundImageLayout = ImageLayout.Zoom;
+            RemoveFlightButton.FlatStyle = FlatStyle.Flat;
+            RemoveFlightButton.Location = new Point(605, 335);
             RemoveFlightButton.Name = "RemoveFlightButton";
-            RemoveFlightButton.Size = new Size(91, 54);
+            RemoveFlightButton.Size = new Size(91, 62);
             RemoveFlightButton.TabIndex = 3;
-            RemoveFlightButton.Text = "Удалить";
             RemoveFlightButton.UseVisualStyleBackColor = true;
             RemoveFlightButton.Click += RemoveFlightButton_Click;
             // 

@@ -17,21 +17,25 @@ namespace _8_laba
         {
             for (int i = 0; i < 5; i++)
             {
-                int cityIndex = random.Next(0, Cities.Length);
-                string departute = Cities[cityIndex];
-                string destination = Cities[cityIndex == Cities.Length - 1 ? cityIndex - random.Next(0, cityIndex) : cityIndex + 1];
+                /* int cityIndex = random.Next(0, Cities.Length);
+                 string departute = Cities[cityIndex];
+                 string destination = Cities[cityIndex == Cities.Length - 1 ? cityIndex - random.Next(0, cityIndex) : cityIndex + 1];
 
-                DateTime start = DateTime.Today;
-                DateTime end = new DateTime(2050, 12, 31);
-                int range = (end - start).Days;
-                DateTime dateTime = start.AddDays(random.Next(range));
+                 DateTime start = DateTime.Today;
+                 DateTime end = new DateTime(2050, 12, 31);
+                 int range = (end - start).Days;
+                 DateTime dateTime = start.AddDays(random.Next(range));
 
-                //DateTime dateTime = new DateTime(random.Next(2024, 2050), random.Next(1, 12), random.Next(27));
-                int flightDuration = random.Next(0, 1000);
-                TypesOfFlight typesOfFlight = (TypesOfFlight)random.Next(2);
+                 //DateTime dateTime = new DateTime(random.Next(2024, 2050), random.Next(1, 12), random.Next(27));
+                 int flightDuration = random.Next(0, 1000);
+                 TypesOfFlight typesOfFlight = (TypesOfFlight)random.Next(2);*/
+                Flight newFlight = FlightFactory.Randomize();
+                _flights.Add(newFlight);
+                _flightsListBoxItems.Add($"{newFlight.DepartureDate.ToShortDateString()}: {newFlight.DeparturePoint} Ч {newFlight.DestinationPoint}");
+               
 
-                _flights.Add(new Flight(departute, destination, dateTime, flightDuration, typesOfFlight));
-                _flightsListBoxItems.Add($"{dateTime.ToShortDateString()}: {departute} Ч {destination}");
+               // _flights.Add(new Flight(departute, destination, dateTime, flightDuration, typesOfFlight));
+                //_flightsListBoxItems.Add($"{dateTime.ToShortDateString()}: {departute} Ч {destination}");
 
             }
             foreach (string el in _flightsListBoxItems)
@@ -95,8 +99,35 @@ namespace _8_laba
 
         }
 
+        private void ClearRectangleInfo()
+        {
+            if (FlightsListBox.Items.Count == 0)
+            {
+                DepartureTextBox.Text = "";
+                DepartureTextBox.ReadOnly = true;
+
+                DestinationTextBox.Text = "";
+                DestinationTextBox.ReadOnly = true;
+
+                FlightTimeNumericUpDown.Value = 0;
+                FlightTimeNumericUpDown.Enabled = false;
+
+                DepartureDateTimePicker.Enabled = false;
+
+                TypeOfFlightComboBox.Enabled = false;
+            }
+            else
+            {
+                DepartureTextBox.ReadOnly = false;
+                DestinationTextBox.ReadOnly = false;
+                DepartureDateTimePicker.Enabled = true;
+                FlightTimeNumericUpDown.Enabled = true;
+                TypeOfFlightComboBox.Enabled = true;
+            }
+        }
         private void FlightsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ClearRectangleInfo();
             int selectedIndex = FlightsListBox.SelectedIndex;
 
             if (selectedIndex == -1) return;
@@ -183,7 +214,7 @@ namespace _8_laba
             {
                 MessageBox.Show("Ќельз€ выбрать дату раньше сегодн€шней!");
             }
-            SortedByComboBox.Text = "<Ќе отсортировано>";
+           // SortedByComboBox.Text = "<Ќе отсортировано>";
 
         }
 
@@ -194,7 +225,7 @@ namespace _8_laba
                 int selectedIndex = FlightsListBox.SelectedIndex;
 
 
-                int duration = (int)FlightTimeNumericUpDown.Value;
+                int duration = ((int)FlightTimeNumericUpDown.Value);
                 _currentFlight.FlightTimeMinutes = duration;
 
 
@@ -220,7 +251,7 @@ namespace _8_laba
             _flights.Add(newFlight);
             _flightsListBoxItems.Add($"{newFlight.DepartureDate.ToShortDateString()}: {newFlight.DeparturePoint} Ч {newFlight.DestinationPoint}");
             FlightsListBox.Items.Add($"{newFlight.DepartureDate.ToShortDateString()}: {newFlight.DeparturePoint} Ч {newFlight.DestinationPoint}");
-            SortedByComboBox.Text = "<Ќе отсортировано>";
+            //SortedByComboBox.Text = "<Ќе отсортировано>";
         }
 
         private void RemoveFlightButton_Click(object sender, EventArgs e)
@@ -233,7 +264,7 @@ namespace _8_laba
             _flightsListBoxItems.RemoveAt(selectedIndex);
             FlightsListBox.Items.RemoveAt(selectedIndex);
 
-            FlightsListBox.SelectedIndex = FlightsListBox.Items.Count - 1;
+           // FlightsListBox.SelectedIndex = FlightsListBox.Items.Count - 1;
 
             
         }

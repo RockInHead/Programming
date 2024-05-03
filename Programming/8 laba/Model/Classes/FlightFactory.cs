@@ -1,6 +1,12 @@
-﻿static public class FlightFactory
+﻿/// <summary>
+/// Осуществляет рандомную генерацию рейсов.
+/// </summary>
+static public class FlightFactory
 {
-
+    /// <summary>
+    /// Генерирует рейс с рандомными полями.
+    /// </summary>
+    /// <returns>Возвращает рандомно сгенерируемый рейс.</returns>
     static public Flight Randomize()
     {
         string[] Cities = (string[])Enum.GetNames(typeof(Cities));
