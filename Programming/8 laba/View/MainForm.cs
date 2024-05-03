@@ -40,13 +40,33 @@ namespace _8_laba
             }
 
         }
-        public void Sort()
+        public void SortedByUpcomingDates()
         {
             for (int i = 0; i < _flights.Count; i++)
             {
                 for (int j = 0; j < _flights.Count; j++)
                 {
                     if (_flights[i].DepartureDate < _flights[j].DepartureDate)
+                    {
+                        (_flights[i], _flights[j]) = (_flights[j], _flights[i]);
+                        (_flightsListBoxItems[i], _flightsListBoxItems[j]) = (_flightsListBoxItems[j], _flightsListBoxItems[i]);
+                    }
+                }
+            }
+            FlightsListBox.Items.Clear();
+            foreach (string el in _flightsListBoxItems)
+            {
+                FlightsListBox.Items.Add(el);
+            }
+
+        }
+        public void SortedByLaterDates()
+        {
+            for (int i = 0; i < _flights.Count; i++)
+            {
+                for (int j = 0; j < _flights.Count; j++)
+                {
+                    if (_flights[i].DepartureDate >_flights[j].DepartureDate)
                     {
                         (_flights[i], _flights[j]) = (_flights[j], _flights[i]);
                         (_flightsListBoxItems[i], _flightsListBoxItems[j]) = (_flightsListBoxItems[j], _flightsListBoxItems[i]);
@@ -143,9 +163,10 @@ namespace _8_laba
 
         private void DepartureDateTimePicker_ValueChanged(object sender, EventArgs e)
         {
+            int selectedIndex = FlightsListBox.SelectedIndex;
+            
             try
             {
-                int selectedIndex = FlightsListBox.SelectedIndex;
                 DepartureDateTimePicker.MinDate = DateTime.Today;
 
                 DateTime date = DepartureDateTimePicker.Value;
@@ -154,12 +175,15 @@ namespace _8_laba
                 _flightsListBoxItems[selectedIndex] = $"{_currentFlight.DepartureDate.ToShortDateString()}: {_currentFlight.DeparturePoint} Ч {_currentFlight.DestinationPoint}";
                 FlightsListBox.Items[selectedIndex] = _flightsListBoxItems[selectedIndex];
 
+                
 
             }
+
             catch (Exception)
             {
                 MessageBox.Show("Ќельз€ выбрать дату раньше сегодн€шней!");
             }
+            SortedByComboBox.Text = "<Ќе отсортировано>";
 
         }
 
@@ -196,7 +220,7 @@ namespace _8_laba
             _flights.Add(newFlight);
             _flightsListBoxItems.Add($"{newFlight.DepartureDate.ToShortDateString()}: {newFlight.DeparturePoint} Ч {newFlight.DestinationPoint}");
             FlightsListBox.Items.Add($"{newFlight.DepartureDate.ToShortDateString()}: {newFlight.DeparturePoint} Ч {newFlight.DestinationPoint}");
-
+            SortedByComboBox.Text = "<Ќе отсортировано>";
         }
 
         private void RemoveFlightButton_Click(object sender, EventArgs e)
@@ -210,6 +234,22 @@ namespace _8_laba
             FlightsListBox.Items.RemoveAt(selectedIndex);
 
             FlightsListBox.SelectedIndex = FlightsListBox.Items.Count - 1;
+
+            
+        }
+
+        private void SortedByComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+            switch (SortedByComboBox.SelectedIndex)
+            {
+                case 0:
+                    SortedByUpcomingDates();
+                    break;
+                case 1:
+                    SortedByLaterDates();
+                    break;
+            }
         }
     }
 }

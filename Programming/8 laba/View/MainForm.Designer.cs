@@ -42,7 +42,7 @@
             DepartureTextBox = new TextBox();
             AddFlightButton = new Button();
             RemoveFlightButton = new Button();
-            comboBox1 = new ComboBox();
+            SortedByComboBox = new ComboBox();
             groupBox2 = new GroupBox();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)FlightTimeNumericUpDown).BeginInit();
@@ -120,6 +120,7 @@
             // 
             // TypeOfFlightComboBox
             // 
+            TypeOfFlightComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             TypeOfFlightComboBox.FormattingEnabled = true;
             TypeOfFlightComboBox.Location = new Point(177, 241);
             TypeOfFlightComboBox.Name = "TypeOfFlightComboBox";
@@ -178,9 +179,9 @@
             // 
             // AddFlightButton
             // 
-            AddFlightButton.Location = new Point(376, 393);
+            AddFlightButton.Location = new Point(436, 390);
             AddFlightButton.Name = "AddFlightButton";
-            AddFlightButton.Size = new Size(94, 29);
+            AddFlightButton.Size = new Size(96, 47);
             AddFlightButton.TabIndex = 2;
             AddFlightButton.Text = "Добавить";
             AddFlightButton.UseVisualStyleBackColor = true;
@@ -188,26 +189,28 @@
             // 
             // RemoveFlightButton
             // 
-            RemoveFlightButton.Location = new Point(502, 393);
+            RemoveFlightButton.Location = new Point(620, 386);
             RemoveFlightButton.Name = "RemoveFlightButton";
-            RemoveFlightButton.Size = new Size(94, 29);
+            RemoveFlightButton.Size = new Size(91, 54);
             RemoveFlightButton.TabIndex = 3;
             RemoveFlightButton.Text = "Удалить";
             RemoveFlightButton.UseVisualStyleBackColor = true;
             RemoveFlightButton.Click += RemoveFlightButton_Click;
             // 
-            // comboBox1
+            // SortedByComboBox
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Ближайшие даты вылета", "Позднейшие даты вылета" });
-            comboBox1.Location = new Point(6, 26);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(248, 28);
-            comboBox1.TabIndex = 10;
+            SortedByComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            SortedByComboBox.FormattingEnabled = true;
+            SortedByComboBox.Items.AddRange(new object[] { "Ближайшие даты вылета", "Позднейшие даты вылета" });
+            SortedByComboBox.Location = new Point(6, 26);
+            SortedByComboBox.Name = "SortedByComboBox";
+            SortedByComboBox.Size = new Size(248, 28);
+            SortedByComboBox.TabIndex = 10;
+            SortedByComboBox.SelectedIndexChanged += SortedByComboBox_SelectedIndexChanged;
             // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(comboBox1);
+            groupBox2.Controls.Add(SortedByComboBox);
             groupBox2.Location = new Point(12, 12);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(264, 60);
@@ -250,7 +253,7 @@
         private Label label3;
         private Label label4;
         private Label label5;
-        private ComboBox comboBox1;
+        private ComboBox SortedByComboBox;
         private GroupBox groupBox2;
     }
 }
