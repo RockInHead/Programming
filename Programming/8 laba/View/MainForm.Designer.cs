@@ -31,12 +31,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             FlightsListBox = new ListBox();
             groupBox1 = new GroupBox();
+            FlightTimeTextBox = new TextBox();
             label5 = new Label();
             label4 = new Label();
             label3 = new Label();
             label2 = new Label();
             TypeOfFlightComboBox = new ComboBox();
-            FlightTimeNumericUpDown = new NumericUpDown();
             label1 = new Label();
             DepartureDateTimePicker = new DateTimePicker();
             DestinationTextBox = new TextBox();
@@ -46,7 +46,6 @@
             SortedByComboBox = new ComboBox();
             groupBox2 = new GroupBox();
             groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)FlightTimeNumericUpDown).BeginInit();
             groupBox2.SuspendLayout();
             SuspendLayout();
             // 
@@ -56,28 +55,37 @@
             FlightsListBox.FormattingEnabled = true;
             FlightsListBox.Location = new Point(12, 78);
             FlightsListBox.Name = "FlightsListBox";
-            FlightsListBox.Size = new Size(307, 344);
+            FlightsListBox.Size = new Size(307, 244);
             FlightsListBox.TabIndex = 0;
             FlightsListBox.SelectedIndexChanged += FlightsListBox_SelectedIndexChanged;
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(FlightTimeTextBox);
             groupBox1.Controls.Add(label5);
             groupBox1.Controls.Add(label4);
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(TypeOfFlightComboBox);
-            groupBox1.Controls.Add(FlightTimeNumericUpDown);
             groupBox1.Controls.Add(label1);
             groupBox1.Controls.Add(DepartureDateTimePicker);
             groupBox1.Controls.Add(DestinationTextBox);
             groupBox1.Controls.Add(DepartureTextBox);
-            groupBox1.Location = new Point(373, 12);
+            groupBox1.Location = new Point(373, 38);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(412, 297);
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             groupBox1.Text = "Selected Flight";
+            // 
+            // FlightTimeTextBox
+            // 
+            FlightTimeTextBox.Location = new Point(177, 186);
+            FlightTimeTextBox.MaxLength = 100;
+            FlightTimeTextBox.Name = "FlightTimeTextBox";
+            FlightTimeTextBox.Size = new Size(186, 27);
+            FlightTimeTextBox.TabIndex = 10;
+            FlightTimeTextBox.TextChanged += FlightTimeTextBox_TextChanged;
             // 
             // label5
             // 
@@ -129,16 +137,6 @@
             TypeOfFlightComboBox.TabIndex = 5;
             TypeOfFlightComboBox.SelectedIndexChanged += TypeOfFlightComboBox_SelectedIndexChanged;
             // 
-            // FlightTimeNumericUpDown
-            // 
-            FlightTimeNumericUpDown.Increment = new decimal(new int[] { 10, 0, 0, 0 });
-            FlightTimeNumericUpDown.Location = new Point(177, 186);
-            FlightTimeNumericUpDown.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
-            FlightTimeNumericUpDown.Name = "FlightTimeNumericUpDown";
-            FlightTimeNumericUpDown.Size = new Size(186, 27);
-            FlightTimeNumericUpDown.TabIndex = 4;
-            FlightTimeNumericUpDown.ValueChanged += FlightTimeNumericUpDown_ValueChanged;
-            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -183,7 +181,7 @@
             AddFlightButton.BackgroundImage = (Image)resources.GetObject("AddFlightButton.BackgroundImage");
             AddFlightButton.BackgroundImageLayout = ImageLayout.Zoom;
             AddFlightButton.FlatStyle = FlatStyle.Flat;
-            AddFlightButton.Location = new Point(438, 335);
+            AddFlightButton.Location = new Point(39, 342);
             AddFlightButton.Name = "AddFlightButton";
             AddFlightButton.Size = new Size(91, 62);
             AddFlightButton.TabIndex = 2;
@@ -195,7 +193,7 @@
             RemoveFlightButton.BackgroundImage = (Image)resources.GetObject("RemoveFlightButton.BackgroundImage");
             RemoveFlightButton.BackgroundImageLayout = ImageLayout.Zoom;
             RemoveFlightButton.FlatStyle = FlatStyle.Flat;
-            RemoveFlightButton.Location = new Point(605, 335);
+            RemoveFlightButton.Location = new Point(185, 342);
             RemoveFlightButton.Name = "RemoveFlightButton";
             RemoveFlightButton.Size = new Size(91, 62);
             RemoveFlightButton.TabIndex = 3;
@@ -227,17 +225,19 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(851, 469);
+            ClientSize = new Size(811, 423);
             Controls.Add(groupBox2);
             Controls.Add(RemoveFlightButton);
             Controls.Add(AddFlightButton);
             Controls.Add(groupBox1);
             Controls.Add(FlightsListBox);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "MainForm";
             Text = "Air Travels";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)FlightTimeNumericUpDown).EndInit();
             groupBox2.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -250,7 +250,6 @@
         private DateTimePicker DepartureDateTimePicker;
         private TextBox DestinationTextBox;
         private TextBox DepartureTextBox;
-        private NumericUpDown FlightTimeNumericUpDown;
         private Label label2;
         private ComboBox TypeOfFlightComboBox;
         private Button AddFlightButton;
@@ -260,5 +259,6 @@
         private Label label5;
         private ComboBox SortedByComboBox;
         private GroupBox groupBox2;
+        private TextBox FlightTimeTextBox;
     }
 }
