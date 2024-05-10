@@ -89,11 +89,12 @@ namespace _8_laba
             InitializeComponent();
             FlightsInitiaziation();
 
-            DepartureTextBox.ReadOnly = true;
+            ClearFlighteInfo();
+            /*DepartureTextBox.ReadOnly = true;
             DestinationTextBox.ReadOnly = true;
             DepartureDateTimePicker.Enabled = false;
             FlightTimeTextBox.Enabled = false;
-            TypeOfFlightComboBox.Enabled = false;
+            TypeOfFlightComboBox.Enabled = false;*/
 
             TypeOfFlightComboBox.Items.AddRange(Enum.GetValues(typeof(TypesOfFlight)).Cast<object>().ToArray());
 
@@ -101,7 +102,7 @@ namespace _8_laba
 
         private void ClearFlighteInfo()
         {
-            if (FlightsListBox.Items.Count == 0)
+            if (FlightsListBox.Items.Count == 0 | FlightsListBox.SelectedIndex==-1)
             {
                 DepartureTextBox.Text = "";
                 DepartureTextBox.ReadOnly = true;
@@ -120,24 +121,29 @@ namespace _8_laba
             else
             {
                 DepartureTextBox.ReadOnly = false;
+
                 DestinationTextBox.ReadOnly = false;
+
+                FlightTimeTextBox.ReadOnly = false;
+
                 DepartureDateTimePicker.Enabled = true;
-                FlightTimeTextBox.Enabled = true;
+   
                 TypeOfFlightComboBox.Enabled = true;
             }
         }
         private void FlightsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             ClearFlighteInfo();
+
             int selectedIndex = FlightsListBox.SelectedIndex;
 
             if (selectedIndex == -1) return;
 
-            DepartureTextBox.ReadOnly = false;
+           /* DepartureTextBox.ReadOnly = false;
             DestinationTextBox.ReadOnly = false;
             DepartureDateTimePicker.Enabled = true;
             FlightTimeTextBox.Enabled = true;
-            TypeOfFlightComboBox.Enabled = true;
+            TypeOfFlightComboBox.Enabled = true;*/
 
 
 
@@ -154,6 +160,7 @@ namespace _8_laba
         private void DepartureTextBox_TextChanged(object sender, EventArgs e)
         {
             int selectedIndex = FlightsListBox.SelectedIndex;
+            if (selectedIndex == -1) return;
             try
             {
                 if (FlightsListBox.Items.Count != 0)
@@ -165,6 +172,8 @@ namespace _8_laba
 
                     _flightsListBoxItems[selectedIndex] = $"{_currentFlight.DepartureDate.ToShortDateString()}: {_currentFlight.DeparturePoint} — {_currentFlight.DestinationPoint}";
                     FlightsListBox.Items[selectedIndex] = _flightsListBoxItems[selectedIndex];
+
+                    DepartureTextBox.Select(DepartureTextBox.Text.Length, 0);
                 }
             }
             catch (Exception)
@@ -177,6 +186,7 @@ namespace _8_laba
         private void DestinationTextBox_TextChanged(object sender, EventArgs e)
         {
             int selectedIndex = FlightsListBox.SelectedIndex;
+            if (selectedIndex == -1) return;
             try
             {
                 if (FlightsListBox.Items.Count != 0)
@@ -188,6 +198,7 @@ namespace _8_laba
 
                     _flightsListBoxItems[selectedIndex] = $"{_currentFlight.DepartureDate.ToShortDateString()}: {_currentFlight.DeparturePoint} — {_currentFlight.DestinationPoint}";
                     FlightsListBox.Items[selectedIndex] = _flightsListBoxItems[selectedIndex];
+                    DestinationTextBox.Select(DestinationTextBox.Text.Length, 0);
                 }
             }
             catch (Exception)
@@ -196,11 +207,30 @@ namespace _8_laba
             }
 
         }
+        private void FlightTimeTextBox_TextChanged(object sender, EventArgs e)
+        {
+            int selectedIndex = FlightsListBox.SelectedIndex;
+            if (selectedIndex == -1) return;
+            try
+            {
+                FlightTimeTextBox.BackColor = System.Drawing.Color.White;
+
+
+
+                int duration = int.Parse(FlightTimeTextBox.Text);
+                _currentFlight.FlightTimeMinutes = duration;
+            }
+            catch (Exception)
+            {
+                FlightTimeTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+
+        }
 
         private void DepartureDateTimePicker_ValueChanged(object sender, EventArgs e)
         {
             int selectedIndex = FlightsListBox.SelectedIndex;
-            bool SortedFlag = false;
+            //bool SortedFlag = false;
             if (selectedIndex == -1) return;
             /*try
             {*/
@@ -222,7 +252,7 @@ namespace _8_laba
                         SortedByLaterDates();
                         break;
                 }
-                SortedFlag = true;
+                //SortedFlag = true;
 
             FlightsListBox.SelectedIndex = _flightsListBoxItems.IndexOf($"{_currentFlight.DepartureDate.ToShortDateString()}: {_currentFlight.DeparturePoint} — {_currentFlight.DestinationPoint}");
             /* }*/
@@ -277,7 +307,7 @@ namespace _8_laba
             FlightsListBox.Items.RemoveAt(selectedIndex);
 
             // FlightsListBox.SelectedIndex = FlightsListBox.Items.Count - 1;
-            switch (SortedByComboBox.SelectedIndex)
+            /*switch (SortedByComboBox.SelectedIndex)
             {
                 case 0:
                     SortedByUpcomingDates();
@@ -285,9 +315,9 @@ namespace _8_laba
                 case 1:
                     SortedByLaterDates();
                     break;
-            }
-
-            DepartureTextBox.Text = "";
+            }*/
+            ClearFlighteInfo();
+            /*DepartureTextBox.Text = "";
             DepartureTextBox.ReadOnly = true;
 
             DestinationTextBox.Text = "";
@@ -298,7 +328,7 @@ namespace _8_laba
 
             DepartureDateTimePicker.Enabled = false;
 
-            TypeOfFlightComboBox.Enabled = false;
+            TypeOfFlightComboBox.Enabled = false;*/
 
         }
 
@@ -314,25 +344,11 @@ namespace _8_laba
                     SortedByLaterDates();
                     break;
             }
+
+            ClearFlighteInfo();
         }
 
-        private void FlightTimeTextBox_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                FlightTimeTextBox.BackColor = System.Drawing.Color.White;
-                int selectedIndex = FlightsListBox.SelectedIndex;
-
-
-                int duration = int.Parse(FlightTimeTextBox.Text);
-                _currentFlight.FlightTimeMinutes = duration;
-            }
-            catch (Exception)
-            {
-                FlightTimeTextBox.BackColor = System.Drawing.Color.LightPink;
-            }
-
-        }
+        
 
        
     }
