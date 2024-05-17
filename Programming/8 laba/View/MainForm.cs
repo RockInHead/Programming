@@ -1,9 +1,18 @@
+using _8_laba.Model.Classes;
+using Newtonsoft.Json;
 using System;
+using System.IO;
+using System.Text.Json;
 
 namespace _8_laba
 {
     public partial class MainForm : Form
     {
+      
+
+
+
+
         Random random = new Random();
         private List<Flight> _flights = new List<Flight>();
         private Flight _currentFlight = new Flight();
@@ -87,7 +96,7 @@ namespace _8_laba
         public MainForm()
         {
             InitializeComponent();
-            FlightsInitiaziation();
+            //FlightsInitiaziation();
 
             ClearFlighteInfo();
             /*DepartureTextBox.ReadOnly = true;
@@ -98,11 +107,21 @@ namespace _8_laba
 
             TypeOfFlightComboBox.Items.AddRange(Enum.GetValues(typeof(TypesOfFlight)).Cast<object>().ToArray());
 
+            this.Load += new System.EventHandler(this.AirTravelForm_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AirTravelForm_FormClosing);
+
+
+
+
+
+
+
+
         }
 
         private void ClearFlighteInfo()
         {
-            if (FlightsListBox.Items.Count == 0 | FlightsListBox.SelectedIndex==-1)
+            if (FlightsListBox.Items.Count == 0 | FlightsListBox.SelectedIndex == -1)
             {
                 DepartureTextBox.Text = "";
                 DepartureTextBox.ReadOnly = true;
@@ -127,7 +146,7 @@ namespace _8_laba
                 FlightTimeTextBox.ReadOnly = false;
 
                 DepartureDateTimePicker.Enabled = true;
-   
+
                 TypeOfFlightComboBox.Enabled = true;
             }
         }
@@ -139,11 +158,11 @@ namespace _8_laba
 
             if (selectedIndex == -1) return;
 
-           /* DepartureTextBox.ReadOnly = false;
-            DestinationTextBox.ReadOnly = false;
-            DepartureDateTimePicker.Enabled = true;
-            FlightTimeTextBox.Enabled = true;
-            TypeOfFlightComboBox.Enabled = true;*/
+            /* DepartureTextBox.ReadOnly = false;
+             DestinationTextBox.ReadOnly = false;
+             DepartureDateTimePicker.Enabled = true;
+             FlightTimeTextBox.Enabled = true;
+             TypeOfFlightComboBox.Enabled = true;*/
 
 
 
@@ -232,42 +251,42 @@ namespace _8_laba
             int selectedIndex = FlightsListBox.SelectedIndex;
             //bool SortedFlag = false;
             if (selectedIndex == -1) return;
-            /*try
-            {*/
-            DepartureDateTimePicker.MinDate = DateTime.Today;
+            try
+            {
+                DepartureDateTimePicker.MinDate = DateTime.Today;
 
-                DateTime date = DepartureDateTimePicker.Value;
-                _currentFlight.DepartureDate = date;
+            DateTime date = DepartureDateTimePicker.Value;
+            _currentFlight.DepartureDate = date;
 
-                _flightsListBoxItems[selectedIndex] = $"{_currentFlight.DepartureDate.ToShortDateString()}: {_currentFlight.DeparturePoint} Ч {_currentFlight.DestinationPoint}";
-                FlightsListBox.Items[selectedIndex] = _flightsListBoxItems[selectedIndex];
-                
-            
-                switch (SortedByComboBox.SelectedIndex)
-                {
-                    case 0:
-                        SortedByUpcomingDates();
-                        break;
-                    case 1:
-                        SortedByLaterDates();
-                        break;
-                }
-                //SortedFlag = true;
+            _flightsListBoxItems[selectedIndex] = $"{_currentFlight.DepartureDate.ToShortDateString()}: {_currentFlight.DeparturePoint} Ч {_currentFlight.DestinationPoint}";
+            FlightsListBox.Items[selectedIndex] = _flightsListBoxItems[selectedIndex];
+
+
+            switch (SortedByComboBox.SelectedIndex)
+            {
+                case 0:
+                    SortedByUpcomingDates();
+                    break;
+                case 1:
+                    SortedByLaterDates();
+                    break;
+            }
+            //SortedFlag = true;
 
             FlightsListBox.SelectedIndex = _flightsListBoxItems.IndexOf($"{_currentFlight.DepartureDate.ToShortDateString()}: {_currentFlight.DeparturePoint} Ч {_currentFlight.DestinationPoint}");
-            /* }*/
+            }
 
-            /*catch (Exception)
+            catch (Exception)
             {
                 MessageBox.Show("Ќельз€ выбрать дату раньше сегодн€шней!");
-            }*/
+            }
 
 
             // SortedByComboBox.Text = "<Ќе отсортировано>";
 
         }
 
-       
+
 
         private void TypeOfFlightComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -294,6 +313,69 @@ namespace _8_laba
                     SortedByLaterDates();
                     break;
             }
+        }
+
+        private void SaveDataToFile(string filePath)
+        {
+            var flightDataList = _flights.Select(flight => new FlightDate
+            {
+                DeparturePoint = flight.DeparturePoint,
+                DestinationPoint = flight.DestinationPoint,
+                DepartureDate = flight.DepartureDate,
+                FlightTimeMinutes = flight.FlightTimeMinutes,
+                TypeOfFlight = flight.TypeOfFlight,
+                
+            }).ToList();
+
+            string jsonData = JsonConvert.SerializeObject(flightDataList, Formatting.Indented);
+            File.WriteAllText(filePath, jsonData);
+        }
+
+        private void LoadDataFromFile(string filePath)
+        {
+            if (!File.Exists(filePath))
+                return;
+
+            string jsonData = File.ReadAllText(filePath);
+            var flightDataList = JsonConvert.DeserializeObject<List<FlightDate>>(jsonData);
+
+            _flights.Clear();
+            FlightsListBox.Items.Clear();
+
+            foreach (var flightData in flightDataList)
+            {
+                Flight flight = new Flight
+                {
+                    DeparturePoint = flightData.DeparturePoint,
+                    DestinationPoint = flightData.DestinationPoint,
+                    DepartureDate = flightData.DepartureDate,
+                    FlightTimeMinutes = flightData.FlightTimeMinutes,
+                    TypeOfFlight = flightData.TypeOfFlight,
+                   
+                };
+
+                _flights.Add(flight);
+                _flightsListBoxItems.Add($"{flight.DepartureDate.ToShortDateString()}: {flight.DeparturePoint} Ч {flight.DestinationPoint}");
+                FlightsListBox.Items.Add($"{flight.DepartureDate.ToShortDateString()}: {flight.DeparturePoint} Ч {flight.DestinationPoint}");
+            }
+        }
+
+        private void AirTravelForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            string folderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "AirTravel");
+            Directory.CreateDirectory(folderPath); // —оздаем папку, если она не существует
+            string filePath = Path.Combine(folderPath, "flights_data.json");
+            SaveDataToFile(filePath);
+        }
+
+        private void AirTravelForm_Load(object sender, EventArgs e)
+        {
+            string folderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "AirTravel");
+            Directory.CreateDirectory(folderPath); // —оздаем папку, если она не существует
+            string filePath = Path.Combine(folderPath, "flights_data.json");
+
+            // «агрузка данных из файла
+            LoadDataFromFile(filePath);
         }
 
         private void RemoveFlightButton_Click(object sender, EventArgs e)
@@ -348,8 +430,31 @@ namespace _8_laba
             ClearFlighteInfo();
         }
 
-        
+        private void button1_Click(object sender, EventArgs e)
+        {
+            /*Flight someFlights = new Flight();
+            foreach (ListViewItem item in FlightsListBox.Items) 
+            { 
+                if(item.Tag!= null)
+                {
+                    someFlights.
+                }
+            
+            }*/
 
-       
+
+
+        }
+
+        /*private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            // ќткрываем поток дл€ записи в файл
+            using FileStream stream = new FileStream(_appFolderPath + @"\data.json", FileMode.Create);
+            // —ериализуем список книг в XML и записываем его в файл
+            JsonSerializer.Serialize(stream, FlightsListBox.Items);
+        }*/
+
+
+
     }
 }
