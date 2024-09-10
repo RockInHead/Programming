@@ -123,9 +123,9 @@ public class Item
         Cost = 0;
 
     }
-    
+
     /// <summary>
-    /// 
+    /// Создает экземпляр класса.
     /// </summary>
     /// <param name="name">Имя товара. Не более 200 символов</param>
     /// <param name="info">Описание товара. Не более 1000 символов</param>
