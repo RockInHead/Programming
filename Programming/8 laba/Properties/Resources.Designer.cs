@@ -59,5 +59,25 @@ namespace _8_laba.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_add_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_add_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Icon, аналогичного (Значок).
+        /// </summary>
+        internal static System.Drawing.Icon logo_telegram_airplane_air_plane_paper_airplane_icon_1431691 {
+            get {
+                object obj = ResourceManager.GetObject("logo_telegram_airplane_air_plane_paper_airplane_icon_1431691", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
     }
 }

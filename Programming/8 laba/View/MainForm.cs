@@ -8,11 +8,6 @@ namespace _8_laba
 {
     public partial class MainForm : Form
     {
-      
-
-
-
-
         Random random = new Random();
         private List<Flight> _flights = new List<Flight>();
         private Flight _currentFlight = new Flight();
@@ -217,6 +212,7 @@ namespace _8_laba
 
                     _flightsListBoxItems[selectedIndex] = $"{_currentFlight.DepartureDate.ToShortDateString()}: {_currentFlight.DeparturePoint} Ч {_currentFlight.DestinationPoint}";
                     FlightsListBox.Items[selectedIndex] = _flightsListBoxItems[selectedIndex];
+
                     DestinationTextBox.Select(DestinationTextBox.Text.Length, 0);
                 }
             }
@@ -234,10 +230,9 @@ namespace _8_laba
             {
                 FlightTimeTextBox.BackColor = System.Drawing.Color.White;
 
-
-
                 int duration = int.Parse(FlightTimeTextBox.Text);
                 _currentFlight.FlightTimeMinutes = duration;
+
             }
             catch (Exception)
             {
@@ -249,31 +244,31 @@ namespace _8_laba
         private void DepartureDateTimePicker_ValueChanged(object sender, EventArgs e)
         {
             int selectedIndex = FlightsListBox.SelectedIndex;
-            //bool SortedFlag = false;
+            
             if (selectedIndex == -1) return;
             try
             {
                 DepartureDateTimePicker.MinDate = DateTime.Today;
 
-            DateTime date = DepartureDateTimePicker.Value;
-            _currentFlight.DepartureDate = date;
+                DateTime date = DepartureDateTimePicker.Value;
+                _currentFlight.DepartureDate = date;
 
-            _flightsListBoxItems[selectedIndex] = $"{_currentFlight.DepartureDate.ToShortDateString()}: {_currentFlight.DeparturePoint} Ч {_currentFlight.DestinationPoint}";
-            FlightsListBox.Items[selectedIndex] = _flightsListBoxItems[selectedIndex];
+                _flightsListBoxItems[selectedIndex] = $"{_currentFlight.DepartureDate.ToShortDateString()}: {_currentFlight.DeparturePoint} Ч {_currentFlight.DestinationPoint}";
+                FlightsListBox.Items[selectedIndex] = _flightsListBoxItems[selectedIndex];
 
 
-            switch (SortedByComboBox.SelectedIndex)
-            {
-                case 0:
-                    SortedByUpcomingDates();
-                    break;
-                case 1:
-                    SortedByLaterDates();
-                    break;
-            }
-            //SortedFlag = true;
+                switch (SortedByComboBox.SelectedIndex)
+                {
+                    case 0:
+                        SortedByUpcomingDates();
+                        break;
+                    case 1:
+                        SortedByLaterDates();
+                        break;
+                }
+                //SortedFlag = true;
 
-            FlightsListBox.SelectedIndex = _flightsListBoxItems.IndexOf($"{_currentFlight.DepartureDate.ToShortDateString()}: {_currentFlight.DeparturePoint} Ч {_currentFlight.DestinationPoint}");
+                FlightsListBox.SelectedIndex = _flightsListBoxItems.IndexOf($"{_currentFlight.DepartureDate.ToShortDateString()}: {_currentFlight.DeparturePoint} Ч {_currentFlight.DestinationPoint}");
             }
 
             catch (Exception)
@@ -324,7 +319,7 @@ namespace _8_laba
                 DepartureDate = flight.DepartureDate,
                 FlightTimeMinutes = flight.FlightTimeMinutes,
                 TypeOfFlight = flight.TypeOfFlight,
-                
+
             }).ToList();
 
             string jsonData = JsonConvert.SerializeObject(flightDataList, Formatting.Indented);
@@ -351,7 +346,7 @@ namespace _8_laba
                     DepartureDate = flightData.DepartureDate,
                     FlightTimeMinutes = flightData.FlightTimeMinutes,
                     TypeOfFlight = flightData.TypeOfFlight,
-                   
+
                 };
 
                 _flights.Add(flight);
@@ -429,32 +424,6 @@ namespace _8_laba
 
             ClearFlighteInfo();
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            /*Flight someFlights = new Flight();
-            foreach (ListViewItem item in FlightsListBox.Items) 
-            { 
-                if(item.Tag!= null)
-                {
-                    someFlights.
-                }
-            
-            }*/
-
-
-
-        }
-
-        /*private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            // ќткрываем поток дл€ записи в файл
-            using FileStream stream = new FileStream(_appFolderPath + @"\data.json", FileMode.Create);
-            // —ериализуем список книг в XML и записываем его в файл
-            JsonSerializer.Serialize(stream, FlightsListBox.Items);
-        }*/
-
-
 
     }
 }

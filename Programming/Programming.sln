@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Programming", "Programming\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "8 laba", "8 laba\8 laba.csproj", "{D077DEAA-1A30-4D0C-BDE1-BDEDC94E72B8}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "AirTravels", "AirTravels\AirTravels.vdproj", "{241DDAD9-12F8-46B4-9C6A-EAFDC3909C8A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OOP", "OOP\OOP.csproj", "{B9D570F6-7DB7-40F4-B03B-A55D96B89B81}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,12 @@ Global
 		{D077DEAA-1A30-4D0C-BDE1-BDEDC94E72B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D077DEAA-1A30-4D0C-BDE1-BDEDC94E72B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D077DEAA-1A30-4D0C-BDE1-BDEDC94E72B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{241DDAD9-12F8-46B4-9C6A-EAFDC3909C8A}.Debug|Any CPU.ActiveCfg = Debug
+		{241DDAD9-12F8-46B4-9C6A-EAFDC3909C8A}.Release|Any CPU.ActiveCfg = Release
+		{B9D570F6-7DB7-40F4-B03B-A55D96B89B81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9D570F6-7DB7-40F4-B03B-A55D96B89B81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9D570F6-7DB7-40F4-B03B-A55D96B89B81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9D570F6-7DB7-40F4-B03B-A55D96B89B81}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
