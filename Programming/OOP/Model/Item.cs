@@ -98,7 +98,7 @@ public class Item
         }
         set
         {
-            if(value<100000 && value > 0)
+            if(value<100000 && value >= 0)
             {
                 _cost = value;
 
@@ -122,6 +122,8 @@ public class Item
         Info = "None";
         Cost = 0;
 
+        _allItemsCount += 1;
+        _id = _allItemsCount;
     }
 
     /// <summary>

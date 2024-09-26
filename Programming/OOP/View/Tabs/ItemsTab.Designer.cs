@@ -30,8 +30,9 @@
         {
             tableLayoutPanel1 = new TableLayoutPanel();
             ItemsGroupBox = new GroupBox();
-            RemoveButton = new Button();
+            tableLayoutPanel2 = new TableLayoutPanel();
             AddButton = new Button();
+            RemoveButton = new Button();
             ItemsListBox = new ListBox();
             SelectedItemGroupBox = new GroupBox();
             label3 = new Label();
@@ -39,14 +40,13 @@
             label5 = new Label();
             label1 = new Label();
             DescriptionRichTextBox = new RichTextBox();
-            NamrRichTextBox = new RichTextBox();
+            NameRichTextBox = new RichTextBox();
             CostTextBox = new TextBox();
             IdTextBox = new TextBox();
-            tableLayoutPanel2 = new TableLayoutPanel();
             tableLayoutPanel1.SuspendLayout();
             ItemsGroupBox.SuspendLayout();
-            SelectedItemGroupBox.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
+            SelectedItemGroupBox.SuspendLayout();
             SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -76,15 +76,20 @@
             ItemsGroupBox.TabStop = false;
             ItemsGroupBox.Text = "Items";
             // 
-            // RemoveButton
+            // tableLayoutPanel2
             // 
-            RemoveButton.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            RemoveButton.Location = new Point(174, 3);
-            RemoveButton.Name = "RemoveButton";
-            RemoveButton.Size = new Size(165, 41);
-            RemoveButton.TabIndex = 2;
-            RemoveButton.Text = "Remove";
-            RemoveButton.UseVisualStyleBackColor = true;
+            tableLayoutPanel2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            tableLayoutPanel2.ColumnCount = 2;
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel2.Controls.Add(AddButton, 0, 0);
+            tableLayoutPanel2.Controls.Add(RemoveButton, 1, 0);
+            tableLayoutPanel2.Location = new Point(6, 608);
+            tableLayoutPanel2.Name = "tableLayoutPanel2";
+            tableLayoutPanel2.RowCount = 1;
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel2.Size = new Size(342, 47);
+            tableLayoutPanel2.TabIndex = 3;
             // 
             // AddButton
             // 
@@ -95,6 +100,18 @@
             AddButton.TabIndex = 1;
             AddButton.Text = "Add";
             AddButton.UseVisualStyleBackColor = true;
+            AddButton.Click += AddButton_Click;
+            // 
+            // RemoveButton
+            // 
+            RemoveButton.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            RemoveButton.Location = new Point(174, 3);
+            RemoveButton.Name = "RemoveButton";
+            RemoveButton.Size = new Size(165, 41);
+            RemoveButton.TabIndex = 2;
+            RemoveButton.Text = "Remove";
+            RemoveButton.UseVisualStyleBackColor = true;
+            RemoveButton.Click += RemoveButton_Click;
             // 
             // ItemsListBox
             // 
@@ -104,6 +121,7 @@
             ItemsListBox.Name = "ItemsListBox";
             ItemsListBox.Size = new Size(342, 564);
             ItemsListBox.TabIndex = 0;
+            ItemsListBox.SelectedIndexChanged += ItemsListBox_SelectedIndexChanged;
             // 
             // SelectedItemGroupBox
             // 
@@ -113,7 +131,7 @@
             SelectedItemGroupBox.Controls.Add(label5);
             SelectedItemGroupBox.Controls.Add(label1);
             SelectedItemGroupBox.Controls.Add(DescriptionRichTextBox);
-            SelectedItemGroupBox.Controls.Add(NamrRichTextBox);
+            SelectedItemGroupBox.Controls.Add(NameRichTextBox);
             SelectedItemGroupBox.Controls.Add(CostTextBox);
             SelectedItemGroupBox.Controls.Add(IdTextBox);
             SelectedItemGroupBox.Location = new Point(380, 3);
@@ -172,16 +190,18 @@
             DescriptionRichTextBox.Size = new Size(525, 234);
             DescriptionRichTextBox.TabIndex = 3;
             DescriptionRichTextBox.Text = "";
+            DescriptionRichTextBox.TextChanged += DescriptionRichTextBox_TextChanged;
             // 
-            // NamrRichTextBox
+            // NameRichTextBox
             // 
-            NamrRichTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            NamrRichTextBox.Location = new Point(6, 186);
-            NamrRichTextBox.MinimumSize = new Size(525, 120);
-            NamrRichTextBox.Name = "NamrRichTextBox";
-            NamrRichTextBox.Size = new Size(525, 120);
-            NamrRichTextBox.TabIndex = 2;
-            NamrRichTextBox.Text = "";
+            NameRichTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            NameRichTextBox.Location = new Point(6, 186);
+            NameRichTextBox.MinimumSize = new Size(525, 120);
+            NameRichTextBox.Name = "NameRichTextBox";
+            NameRichTextBox.Size = new Size(525, 120);
+            NameRichTextBox.TabIndex = 2;
+            NameRichTextBox.Text = "";
+            NameRichTextBox.TextChanged += NameRichTextBox_TextChanged;
             // 
             // CostTextBox
             // 
@@ -190,29 +210,16 @@
             CostTextBox.Name = "CostTextBox";
             CostTextBox.Size = new Size(191, 34);
             CostTextBox.TabIndex = 1;
+            CostTextBox.TextChanged += CostTextBox_TextChanged_1;
             // 
             // IdTextBox
             // 
             IdTextBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
             IdTextBox.Location = new Point(70, 47);
             IdTextBox.Name = "IdTextBox";
+            IdTextBox.ReadOnly = true;
             IdTextBox.Size = new Size(191, 34);
             IdTextBox.TabIndex = 0;
-            // 
-            // tableLayoutPanel2
-            // 
-            tableLayoutPanel2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            tableLayoutPanel2.ColumnCount = 2;
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel2.Controls.Add(AddButton, 0, 0);
-            tableLayoutPanel2.Controls.Add(RemoveButton, 1, 0);
-            tableLayoutPanel2.Location = new Point(6, 608);
-            tableLayoutPanel2.Name = "tableLayoutPanel2";
-            tableLayoutPanel2.RowCount = 1;
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel2.Size = new Size(342, 47);
-            tableLayoutPanel2.TabIndex = 3;
             // 
             // ItemsTab
             // 
@@ -223,9 +230,9 @@
             Size = new Size(945, 678);
             tableLayoutPanel1.ResumeLayout(false);
             ItemsGroupBox.ResumeLayout(false);
+            tableLayoutPanel2.ResumeLayout(false);
             SelectedItemGroupBox.ResumeLayout(false);
             SelectedItemGroupBox.PerformLayout();
-            tableLayoutPanel2.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -241,7 +248,7 @@
         private TextBox IdTextBox;
         private Label label1;
         private RichTextBox DescriptionRichTextBox;
-        private RichTextBox NamrRichTextBox;
+        private RichTextBox NameRichTextBox;
         private Label label5;
         private Label label3;
         private Label label2;

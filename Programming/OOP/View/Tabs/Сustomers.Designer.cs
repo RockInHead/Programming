@@ -57,6 +57,7 @@
             CustomersListBox.Name = "CustomersListBox";
             CustomersListBox.Size = new Size(395, 464);
             CustomersListBox.TabIndex = 0;
+            CustomersListBox.SelectedIndexChanged += CustomersListBox_SelectedIndexChanged;
             // 
             // AddCustomerButton
             // 
@@ -67,6 +68,7 @@
             AddCustomerButton.TabIndex = 1;
             AddCustomerButton.Text = "Add";
             AddCustomerButton.UseVisualStyleBackColor = true;
+            AddCustomerButton.Click += AddCustomerButton_Click;
             // 
             // RemoveCustomerButton
             // 
@@ -172,12 +174,14 @@
             FullNameTextBox.Name = "FullNameTextBox";
             FullNameTextBox.Size = new Size(344, 34);
             FullNameTextBox.TabIndex = 4;
+            FullNameTextBox.TextChanged += FullNameTextBox_TextChanged;
             // 
             // IdTextBox
             // 
             IdTextBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
             IdTextBox.Location = new Point(133, 41);
             IdTextBox.Name = "IdTextBox";
+            IdTextBox.ReadOnly = true;
             IdTextBox.Size = new Size(99, 34);
             IdTextBox.TabIndex = 3;
             // 

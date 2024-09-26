@@ -96,6 +96,8 @@ public class Customer
         FullName = "None";
         Address = "None";
 
+        _allCustomersCount += 1;
+        _id = _allCustomersCount;
     }
 
     /// <summary>
