@@ -38,7 +38,7 @@ namespace OOP.View.Tabs
                 label6.Visible = false;
 
                 Item NewItem = new Item();
-
+                
                 NewItem.Cost = Convert.ToDouble((CostTextBox.Text));
                 NewItem.Name = NameRichTextBox.Text;
                 NewItem.Info = DescriptionRichTextBox.Text;
@@ -81,7 +81,7 @@ namespace OOP.View.Tabs
                 IdTextBox.Text = "";
 
                 CostTextBox.Text = "";
-
+                
 
                 NameRichTextBox.Text = "";
 

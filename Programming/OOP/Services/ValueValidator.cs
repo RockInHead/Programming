@@ -19,7 +19,15 @@ class ValueValidator
         }
 
     }
-   
-   
-   
+    public static void AssertStringOnLength(int value, int MaxLength, string propertyName)
+    {
+        if (value.ToString().Length > MaxLength)
+        {
+            throw new ArgumentException($"{propertyName} должен быть меньше {MaxLength} символов!");
+        }
+
+    }
+
+
+
 }
