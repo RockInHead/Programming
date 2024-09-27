@@ -19,7 +19,6 @@ namespace OOP.View.Tabs
         {
             InitializeComponent();
         }
-
         private void RemoveCustomerButton_Click(object sender, EventArgs e)
         {
             int selectedIndex = CustomersListBox.SelectedIndex;
