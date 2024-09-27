@@ -34,9 +34,12 @@
             ItemsTabPage = new TabPage();
             itemsTab1 = new View.Tabs.ItemsTab();
             tabControl1 = new TabControl();
+            tabPage1 = new TabPage();
+            addressControl1 = new View.AddressControl();
             CustomersTabPage.SuspendLayout();
             ItemsTabPage.SuspendLayout();
             tabControl1.SuspendLayout();
+            tabPage1.SuspendLayout();
             SuspendLayout();
             // 
             // CustomersTabPage
@@ -81,12 +84,31 @@
             // 
             tabControl1.Controls.Add(ItemsTabPage);
             tabControl1.Controls.Add(CustomersTabPage);
+            tabControl1.Controls.Add(tabPage1);
             tabControl1.Dock = DockStyle.Fill;
             tabControl1.Location = new Point(0, 0);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
             tabControl1.Size = new Size(957, 722);
             tabControl1.TabIndex = 0;
+            // 
+            // tabPage1
+            // 
+            tabPage1.Controls.Add(addressControl1);
+            tabPage1.Location = new Point(4, 29);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Padding = new Padding(3);
+            tabPage1.Size = new Size(949, 689);
+            tabPage1.TabIndex = 2;
+            tabPage1.Text = "tabPage1";
+            tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // addressControl1
+            // 
+            addressControl1.Location = new Point(0, 3);
+            addressControl1.Name = "addressControl1";
+            addressControl1.Size = new Size(946, 325);
+            addressControl1.TabIndex = 0;
             // 
             // MainFormOOP
             // 
@@ -102,6 +124,7 @@
             CustomersTabPage.ResumeLayout(false);
             ItemsTabPage.ResumeLayout(false);
             tabControl1.ResumeLayout(false);
+            tabPage1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -112,5 +135,7 @@
         private TabControl tabControl1;
         private View.Tabs.СustomersTab сustomers1;
         private View.Tabs.ItemsTab itemsTab1;
+        private TabPage tabPage1;
+        private View.AddressControl addressControl1;
     }
 }
