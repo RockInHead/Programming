@@ -50,6 +50,8 @@ namespace OOP.View.Tabs
         {
             if (CustomersListBox.Items.Count == 0 || CustomersListBox.SelectedIndex == -1)
             {
+
+                AddCustomerButton.Enabled = true;
                 IdTextBox.Text = "";
 
                 FullNameTextBox.Text = "";
@@ -58,18 +60,20 @@ namespace OOP.View.Tabs
                 AddressRichTextBox.Text = "";
 
             }
+            else
+            {
+                AddCustomerButton.Enabled = false;
 
 
+                int selectedIndex = CustomersListBox.SelectedIndex;
+                if (selectedIndex == -1) return;
 
-            int selectedIndex = CustomersListBox.SelectedIndex;
-            if (selectedIndex == -1) return;
+                _currentCustomer = _customers[selectedIndex];
 
-            _currentCustomer = _customers[selectedIndex];
-
-            IdTextBox.Text = _currentCustomer.Id.ToString();
-            FullNameTextBox.Text = _currentCustomer.FullName;
-            AddressRichTextBox.Text = _currentCustomer.Address;
-
+                IdTextBox.Text = _currentCustomer.Id.ToString();
+                FullNameTextBox.Text = _currentCustomer.FullName;
+                AddressRichTextBox.Text = _currentCustomer.Address;
+            }
         }
 
         private void AddCustomerButton_Click(object sender, EventArgs e)
@@ -100,6 +104,16 @@ namespace OOP.View.Tabs
             if ((CustomersListBox.SelectedIndex != -1))
             {
                 _currentCustomer.FullName = FullNameTextBox.Text;
+            }
+        }
+
+        private void CustomersListBox_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (CustomersListBox.IndexFromPoint(e.Location) == -1)
+            {
+                // Если кликнули на пустое место, сбрасываем выбор
+                CustomersListBox.ClearSelected();
+                CustomersListBox.SelectedIndex = -1;
             }
         }
     }

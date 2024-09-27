@@ -57,6 +57,7 @@
             CustomersListBox.Name = "CustomersListBox";
             CustomersListBox.Size = new Size(395, 464);
             CustomersListBox.TabIndex = 0;
+            CustomersListBox.MouseClick += CustomersListBox_MouseClick;
             CustomersListBox.SelectedIndexChanged += CustomersListBox_SelectedIndexChanged;
             // 
             // AddCustomerButton
@@ -95,7 +96,6 @@
             CustomersGroupBox.TabIndex = 3;
             CustomersGroupBox.TabStop = false;
             CustomersGroupBox.Text = "Customers";
-
             // 
             // tableLayoutPanel2
             // 
@@ -153,12 +153,12 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(502, 160);
             panel1.TabIndex = 5;
-
             // 
             // AddressRichTextBox
             // 
             AddressRichTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             AddressRichTextBox.Location = new Point(133, 139);
+            AddressRichTextBox.MaxLength = 500;
             AddressRichTextBox.MinimumSize = new Size(344, 181);
             AddressRichTextBox.Name = "AddressRichTextBox";
             AddressRichTextBox.Size = new Size(344, 181);
@@ -171,6 +171,7 @@
             FullNameTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             FullNameTextBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
             FullNameTextBox.Location = new Point(133, 89);
+            FullNameTextBox.MaxLength = 200;
             FullNameTextBox.Name = "FullNameTextBox";
             FullNameTextBox.Size = new Size(344, 34);
             FullNameTextBox.TabIndex = 4;
@@ -204,7 +205,6 @@
             label2.Size = new Size(113, 28);
             label2.TabIndex = 1;
             label2.Text = "Full Name:";
-
             // 
             // label1
             // 
@@ -216,14 +216,13 @@
             label1.TabIndex = 0;
             label1.Text = "ID:";
             // 
-            // Сustomers
+            // СustomersTab
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(tableLayoutPanel1);
-            Name = "Сustomers";
+            Name = "СustomersTab";
             Size = new Size(936, 661);
-
             CustomersGroupBox.ResumeLayout(false);
             tableLayoutPanel2.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);
