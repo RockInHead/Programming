@@ -1,6 +1,6 @@
 ﻿namespace OOP.View.Tabs
 {
-    partial class Сustomers
+    partial class СustomersTab
     {
         /// <summary> 
         /// Обязательная переменная конструктора.
@@ -79,7 +79,7 @@
             RemoveCustomerButton.TabIndex = 2;
             RemoveCustomerButton.Text = "Remove";
             RemoveCustomerButton.UseVisualStyleBackColor = true;
-            RemoveCustomerButton.Click += button2_Click;
+            RemoveCustomerButton.Click += RemoveCustomerButton_Click;
             // 
             // CustomersGroupBox
             // 
@@ -95,7 +95,7 @@
             CustomersGroupBox.TabIndex = 3;
             CustomersGroupBox.TabStop = false;
             CustomersGroupBox.Text = "Customers";
-            CustomersGroupBox.Enter += CustomersGroupBox_Enter;
+
             // 
             // tableLayoutPanel2
             // 
@@ -153,7 +153,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(502, 160);
             panel1.TabIndex = 5;
-            panel1.Paint += panel1_Paint;
+
             // 
             // AddressRichTextBox
             // 
@@ -164,7 +164,7 @@
             AddressRichTextBox.Size = new Size(344, 181);
             AddressRichTextBox.TabIndex = 5;
             AddressRichTextBox.Text = "";
-            AddressRichTextBox.TextChanged += richTextBox1_TextChanged;
+            AddressRichTextBox.TextChanged += AddressRichTextBox_TextChanged;
             // 
             // FullNameTextBox
             // 
@@ -204,7 +204,7 @@
             label2.Size = new Size(113, 28);
             label2.TabIndex = 1;
             label2.Text = "Full Name:";
-            label2.Click += label2_Click;
+
             // 
             // label1
             // 
@@ -223,7 +223,7 @@
             Controls.Add(tableLayoutPanel1);
             Name = "Сustomers";
             Size = new Size(936, 661);
-            Load += Сustomers_Load;
+
             CustomersGroupBox.ResumeLayout(false);
             tableLayoutPanel2.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);

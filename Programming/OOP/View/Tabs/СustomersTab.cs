@@ -10,17 +10,17 @@ using System.Windows.Forms;
 
 namespace OOP.View.Tabs
 {
-    public partial class Сustomers : UserControl
+    public partial class СustomersTab : UserControl
     {
         private List<Customer> _customers = new List<Customer>();
         private Customer _currentCustomer;
         private List<string> CustomersListBoxItems = new List<string>();
-        public Сustomers()
+        public СustomersTab()
         {
             InitializeComponent();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void RemoveCustomerButton_Click(object sender, EventArgs e)
         {
             int selectedIndex = CustomersListBox.SelectedIndex;
 
@@ -36,7 +36,7 @@ namespace OOP.View.Tabs
 
         }
 
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        private void AddressRichTextBox_TextChanged(object sender, EventArgs e)
         {
             if ((CustomersListBox.SelectedIndex != -1))
             {
@@ -44,25 +44,7 @@ namespace OOP.View.Tabs
             }
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
 
-        }
-
-        private void CustomersGroupBox_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Сustomers_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void CustomersListBox_SelectedIndexChanged(object sender, EventArgs e)
         {

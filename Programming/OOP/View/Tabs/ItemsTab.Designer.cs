@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             tableLayoutPanel1 = new TableLayoutPanel();
             ItemsGroupBox = new GroupBox();
             tableLayoutPanel2 = new TableLayoutPanel();
@@ -43,6 +44,8 @@
             NameRichTextBox = new RichTextBox();
             CostTextBox = new TextBox();
             IdTextBox = new TextBox();
+            NameToolTip = new ToolTip(components);
+            DesriptionToolTip = new ToolTip(components);
             tableLayoutPanel1.SuspendLayout();
             ItemsGroupBox.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
@@ -121,6 +124,7 @@
             ItemsListBox.Name = "ItemsListBox";
             ItemsListBox.Size = new Size(342, 564);
             ItemsListBox.TabIndex = 0;
+            ItemsListBox.MouseClick += ItemsListBox_MouseClick;
             ItemsListBox.SelectedIndexChanged += ItemsListBox_SelectedIndexChanged;
             // 
             // SelectedItemGroupBox
@@ -185,23 +189,27 @@
             // 
             DescriptionRichTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             DescriptionRichTextBox.Location = new Point(6, 356);
+            DescriptionRichTextBox.MaxLength = 1000;
             DescriptionRichTextBox.MinimumSize = new Size(525, 133);
             DescriptionRichTextBox.Name = "DescriptionRichTextBox";
             DescriptionRichTextBox.Size = new Size(525, 234);
             DescriptionRichTextBox.TabIndex = 3;
             DescriptionRichTextBox.Text = "";
             DescriptionRichTextBox.TextChanged += DescriptionRichTextBox_TextChanged;
+            DescriptionRichTextBox.MouseMove += DescriptionRichTextBox_MouseMove;
             // 
             // NameRichTextBox
             // 
             NameRichTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             NameRichTextBox.Location = new Point(6, 186);
+            NameRichTextBox.MaxLength = 200;
             NameRichTextBox.MinimumSize = new Size(525, 120);
             NameRichTextBox.Name = "NameRichTextBox";
             NameRichTextBox.Size = new Size(525, 120);
             NameRichTextBox.TabIndex = 2;
             NameRichTextBox.Text = "";
             NameRichTextBox.TextChanged += NameRichTextBox_TextChanged;
+            NameRichTextBox.MouseMove += NameRichTextBox_MouseMove;
             // 
             // CostTextBox
             // 
@@ -210,7 +218,7 @@
             CostTextBox.Name = "CostTextBox";
             CostTextBox.Size = new Size(191, 34);
             CostTextBox.TabIndex = 1;
-            CostTextBox.TextChanged += CostTextBox_TextChanged_1;
+            CostTextBox.TextChanged += CostTextBox_TextChanged;
             // 
             // IdTextBox
             // 
@@ -253,5 +261,7 @@
         private Label label3;
         private Label label2;
         private TableLayoutPanel tableLayoutPanel2;
+        private ToolTip NameToolTip;
+        private ToolTip DesriptionToolTip;
     }
 }

@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainFormOOP));
             CustomersTabPage = new TabPage();
-            сustomers1 = new View.Tabs.Сustomers();
+            сustomers1 = new View.Tabs.СustomersTab();
             ItemsTabPage = new TabPage();
             itemsTab1 = new View.Tabs.ItemsTab();
             tabControl1 = new TabControl();
@@ -110,7 +110,7 @@
         private TabPage CustomersTabPage;
         private TabPage ItemsTabPage;
         private TabControl tabControl1;
-        private View.Tabs.Сustomers сustomers1;
+        private View.Tabs.СustomersTab сustomers1;
         private View.Tabs.ItemsTab itemsTab1;
     }
 }
