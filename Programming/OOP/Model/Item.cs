@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Text.RegularExpressions;
 
 /// <summary>
-/// Хранит данные о товаре:Уникальный айди,Имя товара,Имя товара,Описание товара, Стоимость товара.
+/// Хранит данные о товаре:Уникальный айди,Имя товара,Имя товара,Описание товара, Стоимость товара, Категорию товара.
 /// </summary>
 public class Item
 {
@@ -30,6 +30,10 @@ public class Item
     /// </summary>
     private  double _cost;
 
+    /// <summary>
+    /// Категория товара.
+    /// </summary>
+    private Category _category;
 
 
     //Свойства  автосвойства
@@ -110,7 +114,7 @@ public class Item
         }
     }
 
-    
+    public Category Category { get; set; }
 
     //Конструктор
     /// <summary>
@@ -132,15 +136,17 @@ public class Item
     /// <param name="name">Имя товара. Не более 200 символов</param>
     /// <param name="info">Описание товара. Не более 1000 символов</param>
     /// <param name="cost">Стоимость товара. От 0 до 100000</param>
-    public Item(string name, string info, double cost)
+    /// <param name="category">Категория товара. Одна из 7</param>
+    /// 
+    public Item(string name, string info, double cost, Category category)
     {
-        Name= name;
+        Name = name;
         Info = info;
         Cost = cost;
+        Category = category;
 
         _allItemsCount += 1;
         _id = _allItemsCount;
-
     }
 }
 
