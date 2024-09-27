@@ -36,6 +36,8 @@
             RemoveButton = new Button();
             ItemsListBox = new ListBox();
             SelectedItemGroupBox = new GroupBox();
+            CategoryComboBox = new ComboBox();
+            label4 = new Label();
             label3 = new Label();
             label2 = new Label();
             label5 = new Label();
@@ -46,6 +48,7 @@
             IdTextBox = new TextBox();
             NameToolTip = new ToolTip(components);
             DesriptionToolTip = new ToolTip(components);
+            label6 = new Label();
             tableLayoutPanel1.SuspendLayout();
             ItemsGroupBox.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
@@ -130,6 +133,9 @@
             // SelectedItemGroupBox
             // 
             SelectedItemGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            SelectedItemGroupBox.Controls.Add(label6);
+            SelectedItemGroupBox.Controls.Add(CategoryComboBox);
+            SelectedItemGroupBox.Controls.Add(label4);
             SelectedItemGroupBox.Controls.Add(label3);
             SelectedItemGroupBox.Controls.Add(label2);
             SelectedItemGroupBox.Controls.Add(label5);
@@ -145,11 +151,33 @@
             SelectedItemGroupBox.TabStop = false;
             SelectedItemGroupBox.Text = "Selected Item";
             // 
+            // CategoryComboBox
+            // 
+            CategoryComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            CategoryComboBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            CategoryComboBox.FormattingEnabled = true;
+            CategoryComboBox.Location = new Point(110, 149);
+            CategoryComboBox.Name = "CategoryComboBox";
+            CategoryComboBox.Size = new Size(151, 36);
+            CategoryComboBox.TabIndex = 13;
+            CategoryComboBox.SelectedIndexChanged += CategoryComboBox_SelectedIndexChanged;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            label4.Location = new Point(6, 145);
+            label4.Name = "label4";
+            label4.Size = new Size(103, 28);
+            label4.TabIndex = 12;
+            label4.Text = "Category:";
+            label4.Click += label4_Click;
+            // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label3.Location = new Point(6, 325);
+            label3.Location = new Point(6, 350);
             label3.Name = "label3";
             label3.Size = new Size(126, 28);
             label3.TabIndex = 10;
@@ -159,7 +187,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label2.Location = new Point(6, 155);
+            label2.Location = new Point(6, 196);
             label2.Name = "label2";
             label2.Size = new Size(73, 28);
             label2.TabIndex = 9;
@@ -188,7 +216,7 @@
             // DescriptionRichTextBox
             // 
             DescriptionRichTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            DescriptionRichTextBox.Location = new Point(6, 356);
+            DescriptionRichTextBox.Location = new Point(6, 381);
             DescriptionRichTextBox.MaxLength = 1000;
             DescriptionRichTextBox.MinimumSize = new Size(525, 133);
             DescriptionRichTextBox.Name = "DescriptionRichTextBox";
@@ -201,7 +229,7 @@
             // NameRichTextBox
             // 
             NameRichTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            NameRichTextBox.Location = new Point(6, 186);
+            NameRichTextBox.Location = new Point(6, 227);
             NameRichTextBox.MaxLength = 200;
             NameRichTextBox.MinimumSize = new Size(525, 120);
             NameRichTextBox.Name = "NameRichTextBox";
@@ -228,6 +256,18 @@
             IdTextBox.ReadOnly = true;
             IdTextBox.Size = new Size(191, 34);
             IdTextBox.TabIndex = 0;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label6.ForeColor = Color.Firebrick;
+            label6.Location = new Point(267, 152);
+            label6.Name = "label6";
+            label6.Size = new Size(210, 28);
+            label6.TabIndex = 14;
+            label6.Text = "Выберите категорию!";
+            label6.Visible = false;
             // 
             // ItemsTab
             // 
@@ -263,5 +303,8 @@
         private TableLayoutPanel tableLayoutPanel2;
         private ToolTip NameToolTip;
         private ToolTip DesriptionToolTip;
+        private Label label4;
+        private ComboBox CategoryComboBox;
+        private Label label6;
     }
 }
