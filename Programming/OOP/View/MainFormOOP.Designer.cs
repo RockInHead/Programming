@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            Model.Address address1 = new Model.Address();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainFormOOP));
             CustomersTabPage = new TabPage();
             сustomers1 = new View.Tabs.СustomersTab();
@@ -105,10 +106,18 @@
             // 
             // addressControl1
             // 
+            address1.Apartment = "";
+            address1.Building = "";
+            address1.City = "";
+            address1.Country = "";
+            address1.Index = 111111;
+            address1.Street = "";
+            addressControl1.Address = address1;
             addressControl1.Location = new Point(0, 3);
             addressControl1.Name = "addressControl1";
-            addressControl1.Size = new Size(946, 325);
+            addressControl1.Size = new Size(946, 518);
             addressControl1.TabIndex = 0;
+            addressControl1.Load += addressControl1_Load;
             // 
             // MainFormOOP
             // 

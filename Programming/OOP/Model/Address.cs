@@ -25,8 +25,13 @@ namespace OOP.Model
 
             set
             {
-                ValueValidator.AssertStringOnLength(value, 6, "Index");
+                if (value.ToString().Length != 6)
+                {
+                    throw new Exception("Полная хуйня!");
+                }
+                
                 _index = value;
+                
             }
         }
         /// <summary>
@@ -62,6 +67,7 @@ namespace OOP.Model
             set
             {
                 ValueValidator.AssertStringOnLength(value, 100, "Street");
+
                 _street = value;
             }
         }
@@ -73,8 +79,15 @@ namespace OOP.Model
             get { return _building; }
             set
             {
-                ValueValidator.AssertStringOnLength(value, 10, "Building");
-                _building = value;
+                try
+                {
+                    ValueValidator.AssertStringOnLength(value, 10, "Building");
+
+                    _building = value;
+                }catch (Exception ex)
+                {
+                    throw new Exception();
+                }
             }
         }
         /// <summary>
@@ -95,7 +108,7 @@ namespace OOP.Model
         /// </summary>
         public Address()
         {
-            Index = 0;
+            Index = 111111;
             Country = "";
             City = "";
             Street = "";
