@@ -93,9 +93,9 @@ namespace OOP.View
         {
 
             NewAddress = new AddressControl();
-            /*NewAddress.Address = new Address(123456, "Россия", "Томск", "Репина", "12", "36");*//*
+            /*NewAddress.Address = new Address(123456, "Россия", "Томск", "Репина", "12", "36");*/
             PostIndexTextBox.Text = NewAddress.Address.Index.ToString();
-            CountryTextBox.Text = NewAddress.Address.Country.ToString();
+            /*CountryTextBox.Text = NewAddress.Address.Country.ToString();
             CityTextBox.Text = NewAddress.Address.City.ToString();
             StreetTextBox.Text = NewAddress.Address.Street.ToString();
             BuildingTextBox.Text = NewAddress.Address.Building.ToString();

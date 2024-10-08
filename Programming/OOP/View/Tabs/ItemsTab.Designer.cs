@@ -36,6 +36,7 @@
             RemoveButton = new Button();
             ItemsListBox = new ListBox();
             SelectedItemGroupBox = new GroupBox();
+            label6 = new Label();
             CategoryComboBox = new ComboBox();
             label4 = new Label();
             label3 = new Label();
@@ -48,7 +49,6 @@
             IdTextBox = new TextBox();
             NameToolTip = new ToolTip(components);
             DesriptionToolTip = new ToolTip(components);
-            label6 = new Label();
             tableLayoutPanel1.SuspendLayout();
             ItemsGroupBox.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
@@ -150,6 +150,19 @@
             SelectedItemGroupBox.TabIndex = 1;
             SelectedItemGroupBox.TabStop = false;
             SelectedItemGroupBox.Text = "Selected Item";
+            SelectedItemGroupBox.Enter += SelectedItemGroupBox_Enter;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label6.ForeColor = Color.Firebrick;
+            label6.Location = new Point(267, 152);
+            label6.Name = "label6";
+            label6.Size = new Size(210, 28);
+            label6.TabIndex = 14;
+            label6.Text = "Выберите категорию!";
+            label6.Visible = false;
             // 
             // CategoryComboBox
             // 
@@ -256,18 +269,6 @@
             IdTextBox.ReadOnly = true;
             IdTextBox.Size = new Size(191, 34);
             IdTextBox.TabIndex = 0;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label6.ForeColor = Color.Firebrick;
-            label6.Location = new Point(267, 152);
-            label6.Name = "label6";
-            label6.Size = new Size(210, 28);
-            label6.TabIndex = 14;
-            label6.Text = "Выберите категорию!";
-            label6.Visible = false;
             // 
             // ItemsTab
             // 
