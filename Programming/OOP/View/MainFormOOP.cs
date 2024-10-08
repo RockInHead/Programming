@@ -1,4 +1,5 @@
 using OOP.Model;
+using OOP.View.Tabs;
 
 namespace OOP
 {
@@ -8,7 +9,9 @@ namespace OOP
         public MainFormOOP()
         {
             InitializeComponent();
-
+            Store _store = new Store();
+            itemsTab1.Items=_store.Items;
+            ñustomersTab.Customers = _store.Customerss;
         }
       
         private void Form1_Load(object sender, EventArgs e)

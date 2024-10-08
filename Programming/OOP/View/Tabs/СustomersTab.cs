@@ -12,13 +12,20 @@ namespace OOP.View.Tabs
 {
     public partial class СustomersTab : UserControl
     {
-        private List<Customer> _customers = new List<Customer>();
+        private List<Customer> _customers;
         private Customer _currentCustomer;
         private List<string> CustomersListBoxItems = new List<string>();
+
+        public List<Customer> Customers
+        {
+            get { return _customers; }
+            set { _customers = value; }
+        }
         public СustomersTab()
         {
             InitializeComponent();
         }
+        
         private void RemoveCustomerButton_Click(object sender, EventArgs e)
         {
             int selectedIndex = CustomersListBox.SelectedIndex;
@@ -26,7 +33,7 @@ namespace OOP.View.Tabs
 
             if (selectedIndex == -1) return;
 
-            _customers.RemoveAt(selectedIndex);
+            Customers.RemoveAt(selectedIndex);
             CustomersListBoxItems.RemoveAt(selectedIndex);
             CustomersListBox.Items.RemoveAt(selectedIndex);
 
@@ -73,7 +80,7 @@ namespace OOP.View.Tabs
                 int selectedIndex = CustomersListBox.SelectedIndex;
                 if (selectedIndex == -1) return;
 
-                _currentCustomer = _customers[selectedIndex];
+                _currentCustomer = Customers[selectedIndex];
 
                 IdTextBox.Text = _currentCustomer.Id.ToString();
                 FullNameTextBox.Text = _currentCustomer.FullName;
@@ -93,7 +100,7 @@ namespace OOP.View.Tabs
             /* NewCustomer.Address = AddressRichTextBox.Text;*/
 
 
-            _customers.Add(NewCustomer);
+            Customers.Add(NewCustomer);
             CustomersListBoxItems.Add($"{NewCustomer.Id.ToString()})");
             CustomersListBox.Items.Add(CustomersListBoxItems[CustomersListBoxItems.Count - 1]);
             /*CanvaRectanglesListBox.SelectedIndex = CanvaRectanglesListBox.Items.Count - 1;*/
