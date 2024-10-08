@@ -29,6 +29,9 @@ namespace OOP.Model
         /// </summary>
         public List<Customer> Customerss { get; set; }
 
+        /// <summary>
+        /// Создает пустой/начальный экземпляр класса.Всем полям присваивается значение по умолчанию.
+        /// </summary>
         public Store()
         {
             Items = new List<Item>();
