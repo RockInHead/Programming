@@ -42,14 +42,12 @@
             label6 = new Label();
             ApartmentTextBox = new TextBox();
             label7 = new Label();
-            AddButton = new Button();
             PostIndexToolTip = new ToolTip(components);
             CityToolTip = new ToolTip(components);
             CountryToolTip = new ToolTip(components);
             StreetToolTip = new ToolTip(components);
             BuildingToolTip = new ToolTip(components);
             ApartmentToolTip = new ToolTip(components);
-            label8 = new Label();
             SuspendLayout();
             // 
             // label1
@@ -104,11 +102,12 @@
             // 
             // CityTextBox
             // 
+            CityTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             CityTextBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            CityTextBox.Location = new Point(471, 115);
+            CityTextBox.Location = new Point(445, 115);
             CityTextBox.MaxLength = 50;
             CityTextBox.Name = "CityTextBox";
-            CityTextBox.Size = new Size(278, 34);
+            CityTextBox.Size = new Size(189, 34);
             CityTextBox.TabIndex = 6;
             CityTextBox.TextChanged += CityTextBox_TextChanged;
             // 
@@ -116,7 +115,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label4.Location = new Point(415, 115);
+            label4.Location = new Point(398, 115);
             label4.Name = "label4";
             label4.Size = new Size(50, 28);
             label4.TabIndex = 5;
@@ -124,11 +123,12 @@
             // 
             // StreetTextBox
             // 
+            StreetTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             StreetTextBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
             StreetTextBox.Location = new Point(114, 173);
             StreetTextBox.MaxLength = 100;
             StreetTextBox.Name = "StreetTextBox";
-            StreetTextBox.Size = new Size(635, 34);
+            StreetTextBox.Size = new Size(520, 34);
             StreetTextBox.TabIndex = 8;
             StreetTextBox.TextChanged += StreetTextBox_TextChanged;
             // 
@@ -182,16 +182,6 @@
             label7.TabIndex = 11;
             label7.Text = "Apartment:";
             // 
-            // AddButton
-            // 
-            AddButton.Location = new Point(174, 331);
-            AddButton.Name = "AddButton";
-            AddButton.Size = new Size(168, 46);
-            AddButton.TabIndex = 13;
-            AddButton.Text = "button1";
-            AddButton.UseVisualStyleBackColor = true;
-            AddButton.Click += AddButton_Click;
-            // 
             // PostIndexToolTip
             // 
             PostIndexToolTip.BackColor = SystemColors.ButtonHighlight;
@@ -202,21 +192,10 @@
             CityToolTip.BackColor = SystemColors.ButtonHighlight;
             CityToolTip.ForeColor = SystemColors.ActiveCaptionText;
             // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Location = new Point(79, 393);
-            label8.Name = "label8";
-            label8.Size = new Size(50, 20);
-            label8.TabIndex = 14;
-            label8.Text = "label8";
-            // 
             // AddressControl
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(label8);
-            Controls.Add(AddButton);
             Controls.Add(ApartmentTextBox);
             Controls.Add(label7);
             Controls.Add(BuildingTextBox);
@@ -231,7 +210,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "AddressControl";
-            Size = new Size(865, 471);
+            Size = new Size(637, 283);
             Load += AddressControl_Load;
             ResumeLayout(false);
             PerformLayout();
@@ -252,13 +231,11 @@
         private Label label6;
         private TextBox ApartmentTextBox;
         private Label label7;
-        private Button AddButton;
         private ToolTip PostIndexToolTip;
         private ToolTip CityToolTip;
         private ToolTip CountryToolTip;
         private ToolTip StreetToolTip;
         private ToolTip BuildingToolTip;
         private ToolTip ApartmentToolTip;
-        private Label label8;
     }
 }

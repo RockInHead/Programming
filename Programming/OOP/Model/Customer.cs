@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using OOP.Model;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 
 using System.Text.RegularExpressions;
@@ -24,7 +25,7 @@ public class Customer
     /// <summary>
     /// Адрес покупателя.
     /// </summary>
-    private string _address;
+    private Address _address;
    
 
 
@@ -71,7 +72,7 @@ public class Customer
     /// <summary>
     /// Возвращает и задает адресс покупателя.
     /// </summary>
-    public string Address
+    public Address Address
     {
         get
         {
@@ -79,7 +80,7 @@ public class Customer
         }
         set
         {
-            ValueValidator.AssertStringOnLength(value, 500, Address);
+            /*ValueValidator.AssertStringOnLength(value, 500, Address);*/
             _address = value;
         }
     }
@@ -94,7 +95,7 @@ public class Customer
     public Customer()
     {
         FullName = "None";
-        Address = "None";
+        Address = new Address();
 
         _allCustomersCount += 1;
         _id = _allCustomersCount;
@@ -105,7 +106,7 @@ public class Customer
     /// </summary>
     /// <param name="fullname">Полное ФИО покупателя. Не более 200 символов</param>
     /// <param name="address">Адрес покупателя. Не более 500 символов</param>
-    public Customer(string fullname, string address)
+    public Customer(string fullname, Address address)
     {
         FullName = fullname;
         Address = address;

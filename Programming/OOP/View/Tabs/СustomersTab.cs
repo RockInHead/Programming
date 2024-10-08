@@ -31,36 +31,42 @@ namespace OOP.View.Tabs
             CustomersListBox.Items.RemoveAt(selectedIndex);
 
             FullNameTextBox.Text = "";
-            AddressRichTextBox.Text = "";
+            /*AddressRichTextBox.Text = "";*/
 
         }
 
         private void AddressRichTextBox_TextChanged(object sender, EventArgs e)
         {
-            if ((CustomersListBox.SelectedIndex != -1))
-            {
-                _currentCustomer.Address = AddressRichTextBox.Text;
-            }
+            /* if ((CustomersListBox.SelectedIndex != -1))
+             {
+                 _currentCustomer.Address = AddressRichTextBox.Text;
+             }*/
         }
-
+        private int ListBoxState()
+        {
+            return CustomersListBox.SelectedIndex;
+        }
 
 
         private void CustomersListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            /*addressControl1.ListBoxfromCustomersTabState(CustomersListBox.SelectedIndex);*/
             if (CustomersListBox.Items.Count == 0 || CustomersListBox.SelectedIndex == -1)
             {
-
+                addressControl1.ListBoxNull = true;
                 AddCustomerButton.Enabled = true;
                 IdTextBox.Text = "";
 
                 FullNameTextBox.Text = "";
+                addressControl1.ClearForm();
 
-
-                AddressRichTextBox.Text = "";
+                /*AddressRichTextBox.Text = "";*/
 
             }
             else
             {
+                addressControl1.ListBoxNull = false;
+
                 AddCustomerButton.Enabled = false;
 
 
@@ -71,7 +77,9 @@ namespace OOP.View.Tabs
 
                 IdTextBox.Text = _currentCustomer.Id.ToString();
                 FullNameTextBox.Text = _currentCustomer.FullName;
-                AddressRichTextBox.Text = _currentCustomer.Address;
+
+                addressControl1.ShowValues(_currentCustomer.Address);
+                /*AddressRichTextBox.Text = _currentCustomer.Address;*/
             }
         }
 
@@ -80,7 +88,9 @@ namespace OOP.View.Tabs
 
             Customer NewCustomer = new Customer();
             NewCustomer.FullName = FullNameTextBox.Text;
-            NewCustomer.Address = AddressRichTextBox.Text;
+            NewCustomer.Address = addressControl1.GiveValues();
+            /*NewCustomer.Address = addressControl1.Address;*/
+            /* NewCustomer.Address = AddressRichTextBox.Text;*/
 
 
             _customers.Add(NewCustomer);
@@ -90,8 +100,10 @@ namespace OOP.View.Tabs
 
             FullNameTextBox.Text = "";
 
+            addressControl1.ClearForm();
+            /*addressControl1.ListBoxfromCustomersTabState(CustomersListBox.SelectedIndex);*/
 
-            AddressRichTextBox.Text = "";
+            /*AddressRichTextBox.Text = "";*/
 
 
 
@@ -111,9 +123,21 @@ namespace OOP.View.Tabs
             if (CustomersListBox.IndexFromPoint(e.Location) == -1)
             {
                 // Если кликнули на пустое место, сбрасываем выбор
+                addressControl1.ListBoxNull = true;
                 CustomersListBox.ClearSelected();
                 CustomersListBox.SelectedIndex = -1;
+
             }
+        }
+
+        private void SelectedCustomerGroupBox_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addressControl1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
