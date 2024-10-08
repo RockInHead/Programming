@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Model.Address address1 = new Model.Address();
+            Model.Address address2 = new Model.Address();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainFormOOP));
             CustomersTabPage = new TabPage();
-            сustomers1 = new View.Tabs.СustomersTab();
+            сustomersTab = new View.Tabs.СustomersTab();
             ItemsTabPage = new TabPage();
             itemsTab1 = new View.Tabs.ItemsTab();
             tabControl1 = new TabControl();
@@ -45,7 +45,7 @@
             // 
             // CustomersTabPage
             // 
-            CustomersTabPage.Controls.Add(сustomers1);
+            CustomersTabPage.Controls.Add(сustomersTab);
             CustomersTabPage.Location = new Point(4, 29);
             CustomersTabPage.Name = "CustomersTabPage";
             CustomersTabPage.Padding = new Padding(3);
@@ -54,13 +54,13 @@
             CustomersTabPage.Text = "Customers";
             CustomersTabPage.UseVisualStyleBackColor = true;
             // 
-            // сustomers1
+            // сustomersTab
             // 
-            сustomers1.Dock = DockStyle.Fill;
-            сustomers1.Location = new Point(3, 3);
-            сustomers1.Name = "сustomers1";
-            сustomers1.Size = new Size(943, 683);
-            сustomers1.TabIndex = 0;
+            сustomersTab.Dock = DockStyle.Fill;
+            сustomersTab.Location = new Point(3, 3);
+            сustomersTab.Name = "сustomersTab";
+            сustomersTab.Size = new Size(943, 683);
+            сustomersTab.TabIndex = 0;
             // 
             // ItemsTabPage
             // 
@@ -76,6 +76,7 @@
             // itemsTab1
             // 
             itemsTab1.Dock = DockStyle.Fill;
+            itemsTab1.Items = null;
             itemsTab1.Location = new Point(3, 3);
             itemsTab1.Name = "itemsTab1";
             itemsTab1.Size = new Size(943, 683);
@@ -106,13 +107,13 @@
             // 
             // addressControl1
             // 
-            address1.Apartment = "";
-            address1.Building = "";
-            address1.City = "";
-            address1.Country = "";
-            address1.Index = 111111;
-            address1.Street = "";
-            addressControl1.Address = address1;
+            address2.Apartment = "";
+            address2.Building = "";
+            address2.City = "";
+            address2.Country = "";
+            address2.Index = 111111;
+            address2.Street = "";
+            addressControl1.Address = address2;
             addressControl1.Location = new Point(0, 3);
             addressControl1.Name = "addressControl1";
             addressControl1.Size = new Size(946, 518);
@@ -142,7 +143,7 @@
         private TabPage CustomersTabPage;
         private TabPage ItemsTabPage;
         private TabControl tabControl1;
-        private View.Tabs.СustomersTab сustomers1;
+        private View.Tabs.СustomersTab сustomersTab;
         private View.Tabs.ItemsTab itemsTab1;
         private TabPage tabPage1;
         private View.AddressControl addressControl1;

@@ -15,11 +15,15 @@ namespace OOP.View.Tabs
     public partial class ItemsTab : UserControl
     {
         //Поля
-        private List<Item> _items = new List<Item>();
+        private List<Item> _items;
         private Item _currentItem;
         private List<string> ItemsListBoxItems = new List<string>();
 
-
+        public List<Item> Items
+        {
+            get { return _items; }
+            set { _items = value; }
+        }
         public ItemsTab()
         {
 
@@ -45,7 +49,7 @@ namespace OOP.View.Tabs
 
                 NewItem.Category = NewCategory;
 
-                _items.Add(NewItem);
+                Items.Add(NewItem);
                 ItemsListBoxItems.Add($"{NewItem.Id.ToString()})");
                 ItemsListBox.Items.Add(ItemsListBoxItems[ItemsListBoxItems.Count - 1]);
 
@@ -55,7 +59,6 @@ namespace OOP.View.Tabs
                 NameRichTextBox.Text = "";
                 DescriptionRichTextBox.Text = "";
                 CategoryComboBox.SelectedIndex = -1;
-
 
             }
 
@@ -95,7 +98,7 @@ namespace OOP.View.Tabs
 
                 int selectedIndex = ItemsListBox.SelectedIndex;
 
-                _currentItem = _items[selectedIndex];
+                _currentItem = Items[selectedIndex];
                 IdTextBox.Text = _currentItem.Id.ToString();
                 CostTextBox.Text = _currentItem.Cost.ToString();
                 NameRichTextBox.Text = _currentItem.Name;
@@ -111,7 +114,7 @@ namespace OOP.View.Tabs
 
             if (selectedIndex == -1) return;
 
-            _items.RemoveAt(selectedIndex);
+            Items.RemoveAt(selectedIndex);
             ItemsListBoxItems.RemoveAt(selectedIndex);
             ItemsListBox.Items.RemoveAt(selectedIndex);
 
@@ -192,7 +195,7 @@ namespace OOP.View.Tabs
             if (ItemsListBox.SelectedIndex != -1)
             {
                 int selectedIndex = ItemsListBox.SelectedIndex;
-                _currentItem = _items[selectedIndex];
+                _currentItem = Items[selectedIndex];
                 _currentItem.Info = DescriptionRichTextBox.Text;
             }
         }
