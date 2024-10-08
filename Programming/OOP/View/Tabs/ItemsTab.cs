@@ -36,20 +36,20 @@ namespace OOP.View.Tabs
             {
                 CostTextBox.BackColor = System.Drawing.Color.White;
                 label6.Visible = false;
-
+                Category NewCategory = (Category)Enum.Parse(typeof(Category), CategoryComboBox.Text);
                 Item NewItem = new Item();
-                
+
                 NewItem.Cost = Convert.ToDouble((CostTextBox.Text));
                 NewItem.Name = NameRichTextBox.Text;
                 NewItem.Info = DescriptionRichTextBox.Text;
 
-                NewItem.Category = (Category)Enum.Parse(typeof(Category), CategoryComboBox.Text);
-            
+                NewItem.Category = NewCategory;
+
                 _items.Add(NewItem);
                 ItemsListBoxItems.Add($"{NewItem.Id.ToString()})");
                 ItemsListBox.Items.Add(ItemsListBoxItems[ItemsListBoxItems.Count - 1]);
 
-               
+
 
                 CostTextBox.Text = "";
                 NameRichTextBox.Text = "";
@@ -58,7 +58,7 @@ namespace OOP.View.Tabs
 
 
             }
-           
+
             catch (ArgumentException)
             {
                 label6.Visible = true;
@@ -81,7 +81,7 @@ namespace OOP.View.Tabs
                 IdTextBox.Text = "";
 
                 CostTextBox.Text = "";
-                
+
 
                 NameRichTextBox.Text = "";
 
@@ -122,7 +122,7 @@ namespace OOP.View.Tabs
             CostTextBox.Text = "";
 
             NameRichTextBox.Text = "";
- 
+
             DescriptionRichTextBox.Text = "";
 
             CategoryComboBox.SelectedIndex = -1;
@@ -142,7 +142,7 @@ namespace OOP.View.Tabs
                     {
                         CostTextBox.BackColor = System.Drawing.Color.White;
                         double cost = double.Parse(CostTextBox.Text);
-                       
+
                     }
                 }
                 catch (Exception)
@@ -172,7 +172,7 @@ namespace OOP.View.Tabs
                     CostTextBox.BackColor = System.Drawing.Color.LightPink;
                 }
             }
-       
+
         }
 
         private void NameRichTextBox_TextChanged(object sender, EventArgs e)
@@ -234,6 +234,11 @@ namespace OOP.View.Tabs
                 Category category = (Category)CategoryComboBox.SelectedItem;
                 _currentItem.Category = category;
             }
+        }
+
+        private void SelectedItemGroupBox_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }
