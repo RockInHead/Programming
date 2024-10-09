@@ -106,10 +106,10 @@ public class Customer
     /// </summary>
     /// <param name="fullname">Полное ФИО покупателя. Не более 200 символов</param>
     /// <param name="address">Адрес покупателя. Не более 500 символов</param>
-    public Customer(string fullname, Address address)
+    public Customer(string fullname)
     {
         FullName = fullname;
-        Address = address;
+        Address = new Address();
 
         _allCustomersCount += 1;
         _id = _allCustomersCount;
