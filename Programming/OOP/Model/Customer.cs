@@ -29,6 +29,7 @@ public class Customer
 
     private Cart _cart;
 
+    private Order[] _orders;
     //Свойства  автосвойства
 
     /// <summary>
@@ -85,6 +86,8 @@ public class Customer
     }
 
     public Cart Cart { get; set; }
+    public Order[] Orders { get; set; }
+
 
 
     //Конструктор
@@ -96,6 +99,7 @@ public class Customer
         FullName = "None";
         Address = new Address();
         Cart = new Cart();
+        Orders= new Order[0];
 
         _allCustomersCount += 1;
         _id = _allCustomersCount;
@@ -112,6 +116,7 @@ public class Customer
         FullName = fullname;
         Address = new Address();
         Cart = new Cart();
+        Orders = new Order[0];
 
         _allCustomersCount += 1;
         _id = _allCustomersCount;
