@@ -26,9 +26,8 @@ public class Customer
     /// Адрес покупателя.
     /// </summary>
     private Address _address;
-   
 
-
+    private Cart _cart;
 
     //Свойства  автосвойства
 
@@ -85,7 +84,7 @@ public class Customer
         }
     }
 
-
+    public Cart Cart { get; set; }
 
 
     //Конструктор
@@ -96,9 +95,11 @@ public class Customer
     {
         FullName = "None";
         Address = new Address();
+        Cart = new Cart();
 
         _allCustomersCount += 1;
         _id = _allCustomersCount;
+
     }
 
     /// <summary>
@@ -110,6 +111,7 @@ public class Customer
     {
         FullName = fullname;
         Address = new Address();
+        Cart = new Cart();
 
         _allCustomersCount += 1;
         _id = _allCustomersCount;
