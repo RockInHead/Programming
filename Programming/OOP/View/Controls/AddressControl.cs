@@ -116,8 +116,8 @@ namespace OOP.View
         }
         private void PostIndexTextBox_TextChanged(object sender, EventArgs e)
         {
-           /* if (value != -1)
-            {*/
+            if (ListBoxNull == false)
+            {
                 try
             {
                 
@@ -131,7 +131,7 @@ namespace OOP.View
                 PostIndexToolTip.SetToolTip(PostIndexTextBox, "Индекс должен состоять из 6 цифр");
                 PostIndexTextBox.BackColor = Color.LightPink;
             }
-            /*}*/
+            }
         }
 
         private void CountryTextBox_TextChanged(object sender, EventArgs e)
