@@ -31,7 +31,7 @@ namespace OOP.Model
             get
             {
                 double summ=0;
-                foreach(Item cost in _items) 
+                foreach(Item cost in Items) 
                 {
                     summ += cost.Cost;
                 }

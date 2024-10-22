@@ -43,6 +43,19 @@ namespace OOP.View.Tabs
                 CartListBox.Items.Clear();
             }
         }
+        /// <summary>
+        /// Обновляет информацию о сумме товаров в корзине и отображает ее в AmountLabel.
+        /// </summary>
+        private void UpdateAmount()
+        {
+
+            if (_currentCustomer == null)
+            {
+                AmountLabel.Text = "0";
+                return;
+            };
+            AmountLabel.Text = _currentCustomer.Cart.Amount.ToString();
+        }
         public CartsTab()
         {
             InitializeComponent();
@@ -63,6 +76,7 @@ namespace OOP.View.Tabs
                 CartListBox.Items.Clear();
                 _currentCustomer = Customers[CustomersComboBox.SelectedIndex];
                 CartListBox.Items.AddRange(_currentCustomer.Cart.Items.ToArray());
+                UpdateAmount();
             }
             else
             {
@@ -81,6 +95,7 @@ namespace OOP.View.Tabs
                 _currentCustomer.Cart.Items.Add((Item)ItemsListBox.SelectedItem);
                 CartListBox.Items.Add(ItemsListBox.SelectedItem);
                 ItemsListBox.SelectedIndex = -1;
+                UpdateAmount();
             }
 
 
@@ -92,12 +107,14 @@ namespace OOP.View.Tabs
             {
                 _currentCustomer.Cart.Items.RemoveAt(CartListBox.SelectedIndex);
                 CartListBox.Items.RemoveAt(CartListBox.SelectedIndex);
+                UpdateAmount();
             }
         }
 
         private void ClearCartButton_Click(object sender, EventArgs e)
         {
             ClearCart();
+            UpdateAmount();
         }
     }
 }
