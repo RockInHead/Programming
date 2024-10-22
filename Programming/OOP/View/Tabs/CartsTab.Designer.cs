@@ -194,6 +194,7 @@
             RemoveItemButton.TabIndex = 2;
             RemoveItemButton.Text = "Remove Item";
             RemoveItemButton.UseVisualStyleBackColor = true;
+            RemoveItemButton.Click += RemoveItemButton_Click;
             // 
             // CustomersComboBox
             // 

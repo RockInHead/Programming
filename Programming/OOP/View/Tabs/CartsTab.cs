@@ -67,11 +67,22 @@ namespace OOP.View.Tabs
         {
             if (ItemsListBox.SelectedIndex != -1)
             {
+
                 _currentCustomer.Cart.Items.Add((Item)ItemsListBox.SelectedItem);
                 CartListBox.Items.Add(ItemsListBox.SelectedItem);
                 ItemsListBox.SelectedIndex = -1;
             }
 
+
+        }
+
+        private void RemoveItemButton_Click(object sender, EventArgs e)
+        {
+            if (CartListBox.SelectedIndex != -1)
+            {
+                _currentCustomer.Cart.Items.RemoveAt(CartListBox.SelectedIndex);
+                CartListBox.Items.RemoveAt(CartListBox.SelectedIndex);
+            }
         }
     }
 }
