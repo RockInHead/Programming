@@ -14,11 +14,12 @@ namespace OOP.View.Tabs
     {
         private Item _items;
         private Customer _customer;
+        private Customer _currentCustomer;
         public List<Item> Items { get; set; }
         public List<Customer> Customers { get; set; }
         public void RefreshData()
         {
-            if(Items != null)
+            if (Items != null)
             {
                 ItemsListBox.Items.Clear();
                 ItemsListBox.Items.AddRange(Items.ToArray());
@@ -26,8 +27,8 @@ namespace OOP.View.Tabs
             }
             if (Customers != null)
             {
-                CustomerComboBox.Items.Clear();
-                CustomerComboBox.Items.AddRange(Customers.ToArray());
+                CustomersComboBox.Items.Clear();
+                CustomersComboBox.Items.AddRange(Customers.ToArray());
 
             }
         }
@@ -35,6 +36,7 @@ namespace OOP.View.Tabs
         public CartsTab()
         {
             InitializeComponent();
+            AddToCartButton.Enabled = false;
 
         }
 
@@ -43,15 +45,34 @@ namespace OOP.View.Tabs
 
         }
 
-        private void CustomerComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void CustomersComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (CustomersComboBox.SelectedIndex != -1 && CustomersComboBox.SelectedIndex != null)
+            {
+                AddToCartButton.Enabled = true;
+                CartListBox.Items.Clear();
+                _currentCustomer = Customers[CustomersComboBox.SelectedIndex];
+                CartListBox.Items.AddRange(_currentCustomer.Cart.Items.ToArray());
+            }
+            else
+            {
+                AddToCartButton.Enabled = false;
+            }
 
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+
+        private void AddToCartButton_Click(object sender, EventArgs e)
         {
-           
+            if (ItemsListBox.SelectedIndex != -1)
+            {
+                _currentCustomer.Cart.Items.Add((Item)ItemsListBox.SelectedItem);
+                CartListBox.Items.Add(ItemsListBox.SelectedItem);
+                ItemsListBox.SelectedIndex = -1;
+            }
+
         }
     }
 }
+

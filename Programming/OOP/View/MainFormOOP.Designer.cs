@@ -94,7 +94,6 @@
             tabControl1.Size = new Size(957, 664);
             tabControl1.TabIndex = 0;
             tabControl1.SelectedIndexChanged += tabControl1_SelectedIndexChanged;
-            tabControl1.TabIndexChanged += tabControl1_TabIndexChanged;
             // 
             // CartsTabPage
             // 

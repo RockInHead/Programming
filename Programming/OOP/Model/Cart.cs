@@ -14,7 +14,7 @@ namespace OOP.Model
         /// <summary>
         /// Список товаров.
         /// </summary>
-        private Item[] _items;
+        private List<Item> _items;
         /// <summary>
         /// Суммарная стоимость всех товаров.
         /// </summary>
@@ -22,7 +22,7 @@ namespace OOP.Model
         /// <summary>
         /// Задает и возвращает список всех товаров.
         /// </summary>
-        public Item[] Items { get; set; }
+        public List<Item> Items { get; set; }
         /// <summary>
         /// Возвращает суммарную стоимость всех товаров.
         /// </summary>
@@ -50,13 +50,13 @@ namespace OOP.Model
         /// </summary>
         public Cart()
         {
-            Items = new Item[0];
+            Items = [];
         }
         /// <summary>
         /// Создает экземпляр класса.
         /// </summary>
         /// <param name="items">Список товаров.</param>
-        public Cart(Item[] items)
+        public Cart(List<Item> items)
         {
             Items = items;
         }

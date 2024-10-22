@@ -28,11 +28,7 @@ namespace OOP
 
         }
 
-        private void tabControl1_TabIndexChanged(object sender, EventArgs e)
-        {
 
-
-        }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
