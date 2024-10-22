@@ -53,22 +53,22 @@
             ItemsListBox.FormattingEnabled = true;
             ItemsListBox.Location = new Point(6, 26);
             ItemsListBox.Name = "ItemsListBox";
-            ItemsListBox.Size = new Size(295, 524);
+            ItemsListBox.Size = new Size(296, 524);
             ItemsListBox.TabIndex = 0;
             // 
             // tableLayoutPanel1
             // 
-            tableLayoutPanel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             tableLayoutPanel1.ColumnCount = 2;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 36.26883F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 63.73117F));
             tableLayoutPanel1.Controls.Add(groupBox1, 0, 0);
             tableLayoutPanel1.Controls.Add(groupBox2, 1, 0);
+            tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.Size = new Size(863, 623);
+            tableLayoutPanel1.Size = new Size(866, 626);
             tableLayoutPanel1.TabIndex = 1;
             // 
             // groupBox1
@@ -78,7 +78,7 @@
             groupBox1.Controls.Add(ItemsListBox);
             groupBox1.Location = new Point(3, 3);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(307, 617);
+            groupBox1.Size = new Size(308, 620);
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             groupBox1.Text = "Items";
@@ -86,7 +86,7 @@
             // AddToCartButton
             // 
             AddToCartButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            AddToCartButton.Location = new Point(6, 565);
+            AddToCartButton.Location = new Point(6, 568);
             AddToCartButton.Name = "AddToCartButton";
             AddToCartButton.Size = new Size(140, 46);
             AddToCartButton.TabIndex = 1;
@@ -106,9 +106,9 @@
             groupBox2.Controls.Add(CreateOrderButton);
             groupBox2.Controls.Add(RemoveItemButton);
             groupBox2.Controls.Add(CustomersComboBox);
-            groupBox2.Location = new Point(316, 3);
+            groupBox2.Location = new Point(317, 3);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(544, 617);
+            groupBox2.Size = new Size(546, 620);
             groupBox2.TabIndex = 2;
             groupBox2.TabStop = false;
             // 
@@ -119,7 +119,7 @@
             CartListBox.Location = new Point(10, 116);
             CartListBox.MinimumSize = new Size(520, 180);
             CartListBox.Name = "CartListBox";
-            CartListBox.Size = new Size(521, 184);
+            CartListBox.Size = new Size(523, 184);
             CartListBox.TabIndex = 10;
             // 
             // AmountLabel
@@ -127,7 +127,7 @@
             AmountLabel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             AmountLabel.AutoSize = true;
             AmountLabel.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            AmountLabel.Location = new Point(439, 376);
+            AmountLabel.Location = new Point(441, 379);
             AmountLabel.Name = "AmountLabel";
             AmountLabel.Size = new Size(98, 31);
             AmountLabel.TabIndex = 9;
@@ -138,7 +138,7 @@
             label3.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label3.Location = new Point(446, 348);
+            label3.Location = new Point(448, 351);
             label3.Name = "label3";
             label3.Size = new Size(91, 28);
             label3.TabIndex = 8;
@@ -167,7 +167,7 @@
             // ClearCartButton
             // 
             ClearCartButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            ClearCartButton.Location = new Point(397, 445);
+            ClearCartButton.Location = new Point(399, 448);
             ClearCartButton.Name = "ClearCartButton";
             ClearCartButton.Size = new Size(140, 56);
             ClearCartButton.TabIndex = 4;
@@ -178,7 +178,7 @@
             // CreateOrderButton
             // 
             CreateOrderButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            CreateOrderButton.Location = new Point(0, 446);
+            CreateOrderButton.Location = new Point(0, 449);
             CreateOrderButton.Name = "CreateOrderButton";
             CreateOrderButton.Size = new Size(133, 55);
             CreateOrderButton.TabIndex = 3;
@@ -189,7 +189,7 @@
             // RemoveItemButton
             // 
             RemoveItemButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            RemoveItemButton.Location = new Point(241, 445);
+            RemoveItemButton.Location = new Point(243, 448);
             RemoveItemButton.Name = "RemoveItemButton";
             RemoveItemButton.Size = new Size(140, 56);
             RemoveItemButton.TabIndex = 2;
@@ -205,7 +205,7 @@
             CustomersComboBox.FormattingEnabled = true;
             CustomersComboBox.Location = new Point(120, 26);
             CustomersComboBox.Name = "CustomersComboBox";
-            CustomersComboBox.Size = new Size(418, 36);
+            CustomersComboBox.Size = new Size(420, 36);
             CustomersComboBox.TabIndex = 0;
             CustomersComboBox.SelectedIndexChanged += CustomersComboBox_SelectedIndexChanged;
             // 
