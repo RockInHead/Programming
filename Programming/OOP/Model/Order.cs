@@ -15,7 +15,7 @@ namespace OOP.Model
         private static int _allOrdersCount;
         private string _dateOfCreation;
         private Address _deliveryAddress;
-        private Item[] _items;
+        private List<Item> _items;
         private double _totalCost;
 
 
@@ -49,7 +49,7 @@ namespace OOP.Model
         {
             DateOfCreation = "01.01.2000";
             DeliveryAddress = new Address();
-            Items = new Item[0];
+            Items = [];
             _allOrdersCount += 1;
             _id = _allOrdersCount;
         }
