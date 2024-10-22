@@ -174,6 +174,7 @@
             ClearCartButton.TabIndex = 4;
             ClearCartButton.Text = "Clear Cart";
             ClearCartButton.UseVisualStyleBackColor = true;
+            ClearCartButton.Click += ClearCartButton_Click;
             // 
             // CreateOrderButton
             // 

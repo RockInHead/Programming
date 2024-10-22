@@ -32,7 +32,17 @@ namespace OOP.View.Tabs
 
             }
         }
-
+        /// <summary>
+        /// Очищает все товары в корзине текущего клиента и CartItemsListBox.
+        /// </summary>
+        private void ClearCart()
+        {
+            if (_currentCustomer != null)
+            {
+                _currentCustomer.Cart.Items.Clear();
+                CartListBox.Items.Clear();
+            }
+        }
         public CartsTab()
         {
             InitializeComponent();
@@ -83,6 +93,11 @@ namespace OOP.View.Tabs
                 _currentCustomer.Cart.Items.RemoveAt(CartListBox.SelectedIndex);
                 CartListBox.Items.RemoveAt(CartListBox.SelectedIndex);
             }
+        }
+
+        private void ClearCartButton_Click(object sender, EventArgs e)
+        {
+            ClearCart();
         }
     }
 }
