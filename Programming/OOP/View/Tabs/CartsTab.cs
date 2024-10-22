@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OOP.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,7 @@ namespace OOP.View.Tabs
 {
     public partial class CartsTab : UserControl
     {
+
         private Item _items;
         private Customer _customer;
         private Customer _currentCustomer;
@@ -63,10 +65,6 @@ namespace OOP.View.Tabs
 
         }
 
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
 
         private void CustomersComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -82,11 +80,7 @@ namespace OOP.View.Tabs
             {
                 AddToCartButton.Enabled = false;
             }
-
-
         }
-
-
         private void AddToCartButton_Click(object sender, EventArgs e)
         {
             if (ItemsListBox.SelectedIndex != -1)
@@ -97,10 +91,7 @@ namespace OOP.View.Tabs
                 ItemsListBox.SelectedIndex = -1;
                 UpdateAmount();
             }
-
-
         }
-
         private void RemoveItemButton_Click(object sender, EventArgs e)
         {
             if (CartListBox.SelectedIndex != -1)
@@ -110,11 +101,28 @@ namespace OOP.View.Tabs
                 UpdateAmount();
             }
         }
-
         private void ClearCartButton_Click(object sender, EventArgs e)
         {
             ClearCart();
             UpdateAmount();
+            
+        }
+
+        private void CreateOrderButton_Click(object sender, EventArgs e)
+        {
+            if (CartListBox.Items.Count != 0)
+            {
+                string year = DateTime.Now.Year.ToString();
+                string month = DateTime.Now.Month.ToString();
+                string day = DateTime.Now.Day.ToString();
+                string hour = DateTime.Now.Hour.ToString();
+                string minute = DateTime.Now.Minute.ToString();
+                string Date = day + month + year + hour + minute;
+
+                _currentCustomer.Orders.Add(new Order(OrderStatus.New, Date, _currentCustomer.Cart.Items));
+                ClearCart();
+                UpdateAmount();
+            }
         }
     }
 }

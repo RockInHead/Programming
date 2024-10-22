@@ -13,6 +13,7 @@ namespace OOP.Model
         /// </summary>
         private int _id;
         private static int _allOrdersCount;
+        private OrderStatus _status;
         private string _dateOfCreation;
         private Address _deliveryAddress;
         private List<Item> _items;
@@ -21,10 +22,11 @@ namespace OOP.Model
 
 
         public int Id { get; }
+        public OrderStatus Status { get; set; }
         public string DateOfCreation { get; }
         public Address DeliveryAddress { get; set; }
 
-        public Item[] Items { get; set; }
+        public List<Item> Items { get; set; }
         public double TotalCost
         {
             get
@@ -47,14 +49,16 @@ namespace OOP.Model
 
         public Order()
         {
+            Status = OrderStatus.New;
             DateOfCreation = "01.01.2000";
             DeliveryAddress = new Address();
             Items = [];
             _allOrdersCount += 1;
             _id = _allOrdersCount;
         }
-        public Order(string dateOfCreation, Item[] items)
+        public Order(OrderStatus status,string dateOfCreation, List<Item> items)
         {
+            Status = status;
             DateOfCreation = dateOfCreation;
             Items = items;
         }
