@@ -93,6 +93,8 @@
             tabControl1.SelectedIndex = 0;
             tabControl1.Size = new Size(957, 664);
             tabControl1.TabIndex = 0;
+            tabControl1.SelectedIndexChanged += tabControl1_SelectedIndexChanged;
+            tabControl1.TabIndexChanged += tabControl1_TabIndexChanged;
             // 
             // CartsTabPage
             // 
@@ -107,7 +109,9 @@
             // 
             // cartsTab1
             // 
+            cartsTab1.Customers = null;
             cartsTab1.Dock = DockStyle.Fill;
+            cartsTab1.Items = null;
             cartsTab1.Location = new Point(3, 3);
             cartsTab1.Name = "cartsTab1";
             cartsTab1.Size = new Size(943, 625);

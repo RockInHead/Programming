@@ -42,6 +42,7 @@
             CreateOrderButton = new Button();
             RemoveItemButton = new Button();
             CustomerComboBox = new ComboBox();
+            button1 = new Button();
             tableLayoutPanel1.SuspendLayout();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -97,6 +98,7 @@
             // groupBox2
             // 
             groupBox2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            groupBox2.Controls.Add(button1);
             groupBox2.Controls.Add(AmountLabel);
             groupBox2.Controls.Add(label3);
             groupBox2.Controls.Add(label2);
@@ -201,6 +203,17 @@
             CustomerComboBox.Name = "CustomerComboBox";
             CustomerComboBox.Size = new Size(418, 36);
             CustomerComboBox.TabIndex = 0;
+            CustomerComboBox.SelectedIndexChanged += CustomerComboBox_SelectedIndexChanged;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(94, 465);
+            button1.Name = "button1";
+            button1.Size = new Size(94, 29);
+            button1.TabIndex = 10;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // CartsTab
             // 
@@ -232,5 +245,6 @@
         private Label label2;
         private Label label1;
         private RichTextBox CartRichTextBox;
+        private Button button1;
     }
 }
