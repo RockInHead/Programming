@@ -50,15 +50,19 @@ namespace OOP.Model
         /// </summary>
         public Cart()
         {
-            Items = [];
+            //тут было Items = [];
+            Items = new List<Item>();
         }
+        //
         /// <summary>
         /// Создает экземпляр класса.
         /// </summary>
         /// <param name="items">Список товаров.</param>
-        public Cart(List<Item> items)
-        {
-            Items = items;
-        }
+        /// //
+        //ТУТ БЫЛО Cart()
+        /*        public Cart(List<Item> items)
+                {
+                    Items = items;
+                }*/
     }
 }

@@ -117,9 +117,13 @@ namespace OOP.View.Tabs
                 string day = DateTime.Now.Day.ToString();
                 string hour = DateTime.Now.Hour.ToString();
                 string minute = DateTime.Now.Minute.ToString();
-                string Date = day + month + year + hour + minute;
+                string Date = day +"."+ month + "." + year + ". " + hour + ":" +minute;
+                List<Item> items = _currentCustomer.Cart.Items;
+                Order newOrder = new Order(OrderStatus.New, Date, items);
+                _currentCustomer.Orders.Add(newOrder);
 
-                _currentCustomer.Orders.Add(new Order(OrderStatus.New, Date, _currentCustomer.Cart.Items));
+
+                items.Clear();
                 ClearCart();
                 UpdateAmount();
             }

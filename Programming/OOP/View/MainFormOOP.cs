@@ -11,10 +11,11 @@ namespace OOP
             InitializeComponent();
             Store _store = new Store();
             itemsTab1.Items = _store.Items;
-            ñustomersTab.Customers = _store.Customerss;
+            ñustomersTab.Customers = _store.Customers;
 
             cartsTab1.Items = _store.Items;
-            cartsTab1.Customers = _store.Customerss;
+            cartsTab1.Customers = _store.Customers;
+            ordersTab1.Customers= _store.Customers;
 
         }
 
@@ -32,9 +33,17 @@ namespace OOP
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (TabControl.SelectedIndex == 3)
+            {
+                ordersTab1.UpdateOrders();
 
-            cartsTab1.RefreshData();
+            }
+            else if (TabControl.SelectedIndex == 2)
+            {
 
+                cartsTab1.RefreshData();
+            }
         }
+
     }
 }

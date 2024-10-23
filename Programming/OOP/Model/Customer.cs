@@ -99,7 +99,7 @@ public class Customer
         FullName = "None";
         Address = new Address();
         Cart = new Cart();
-        Orders= [];
+        Orders= new List<Order>();
 
         _allCustomersCount += 1;
         _id = _allCustomersCount;
@@ -116,7 +116,7 @@ public class Customer
         FullName = fullname;
         Address = new Address();
         Cart = new Cart();
-        Orders = [];
+        Orders = new List<Order>();
 
         _allCustomersCount += 1;
         _id = _allCustomersCount;

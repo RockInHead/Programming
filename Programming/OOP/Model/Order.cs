@@ -32,7 +32,7 @@ namespace OOP.Model
             get
             {
                 double summ = 0;
-                foreach (Item cost in _items)
+                foreach (Item cost in Items)
                 {
                     summ += cost.Cost;
                 }
@@ -60,7 +60,7 @@ namespace OOP.Model
         {
             Status = status;
             DateOfCreation = dateOfCreation;
-            Items = items;
+            Items = new List<Item>(items); ;
         }
     }
 }

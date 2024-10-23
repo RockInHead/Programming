@@ -36,12 +36,12 @@
             label3 = new Label();
             textBox2 = new TextBox();
             label2 = new Label();
-            textBox1 = new TextBox();
+            OrderIdTextBox = new TextBox();
             label1 = new Label();
-            dataGridView1 = new DataGridView();
+            OrdersDataGridView = new DataGridView();
             tableLayoutPanel1.SuspendLayout();
             groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)OrdersDataGridView).BeginInit();
             SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -50,7 +50,7 @@
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 41.37168F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 58.62832F));
             tableLayoutPanel1.Controls.Add(groupBox1, 1, 0);
-            tableLayoutPanel1.Controls.Add(dataGridView1, 0, 0);
+            tableLayoutPanel1.Controls.Add(OrdersDataGridView, 0, 0);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -67,8 +67,9 @@
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(textBox2);
             groupBox1.Controls.Add(label2);
-            groupBox1.Controls.Add(textBox1);
+            groupBox1.Controls.Add(OrderIdTextBox);
             groupBox1.Controls.Add(label1);
+            groupBox1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
             groupBox1.Location = new Point(487, 3);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(680, 569);
@@ -87,9 +88,10 @@
             addressControl1.Address = address1;
             addressControl1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             addressControl1.Enabled = false;
-            addressControl1.Location = new Point(6, 216);
+            addressControl1.Location = new Point(7, 207);
+            addressControl1.Margin = new Padding(4);
             addressControl1.Name = "addressControl1";
-            addressControl1.Size = new Size(650, 318);
+            addressControl1.Size = new Size(640, 308);
             addressControl1.TabIndex = 6;
             // 
             // comboBox1
@@ -134,16 +136,16 @@
             label2.TabIndex = 2;
             label2.Text = "Created:";
             // 
-            // textBox1
+            // OrderIdTextBox
             // 
-            textBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            textBox1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            textBox1.Location = new Point(100, 33);
-            textBox1.MinimumSize = new Size(260, 34);
-            textBox1.Name = "textBox1";
-            textBox1.ReadOnly = true;
-            textBox1.Size = new Size(260, 34);
-            textBox1.TabIndex = 1;
+            OrderIdTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            OrderIdTextBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            OrderIdTextBox.Location = new Point(100, 33);
+            OrderIdTextBox.MinimumSize = new Size(260, 34);
+            OrderIdTextBox.Name = "OrderIdTextBox";
+            OrderIdTextBox.ReadOnly = true;
+            OrderIdTextBox.Size = new Size(260, 34);
+            OrderIdTextBox.TabIndex = 1;
             // 
             // label1
             // 
@@ -155,16 +157,20 @@
             label1.TabIndex = 0;
             label1.Text = "ID:";
             // 
-            // dataGridView1
+            // OrdersDataGridView
             // 
-            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(3, 3);
-            dataGridView1.MultiSelect = false;
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(478, 569);
-            dataGridView1.TabIndex = 1;
+            OrdersDataGridView.AllowUserToAddRows = false;
+            OrdersDataGridView.AllowUserToDeleteRows = false;
+            OrdersDataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            OrdersDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            OrdersDataGridView.Location = new Point(3, 3);
+            OrdersDataGridView.MultiSelect = false;
+            OrdersDataGridView.Name = "OrdersDataGridView";
+            OrdersDataGridView.ReadOnly = true;
+            OrdersDataGridView.RowHeadersVisible = false;
+            OrdersDataGridView.RowHeadersWidth = 51;
+            OrdersDataGridView.Size = new Size(478, 569);
+            OrdersDataGridView.TabIndex = 1;
             // 
             // OrdersTab
             // 
@@ -176,7 +182,7 @@
             tableLayoutPanel1.ResumeLayout(false);
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)OrdersDataGridView).EndInit();
             ResumeLayout(false);
         }
 
@@ -184,13 +190,13 @@
 
         private TableLayoutPanel tableLayoutPanel1;
         private GroupBox groupBox1;
-        private TextBox textBox1;
+        private TextBox OrderIdTextBox;
         private Label label1;
         private AddressControl addressControl1;
         private ComboBox comboBox1;
         private Label label3;
         private TextBox textBox2;
         private Label label2;
-        private DataGridView dataGridView1;
+        private DataGridView OrdersDataGridView;
     }
 }
