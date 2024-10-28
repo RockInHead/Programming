@@ -148,5 +148,10 @@ public class Item
         _allItemsCount += 1;
         _id = _allItemsCount;
     }
+
+    public override string ToString()
+    {
+        return Name;
+    }
 }
 

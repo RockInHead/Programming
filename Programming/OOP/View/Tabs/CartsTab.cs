@@ -73,7 +73,10 @@ namespace OOP.View.Tabs
                 AddToCartButton.Enabled = true;
                 CartListBox.Items.Clear();
                 _currentCustomer = Customers[CustomersComboBox.SelectedIndex];
-                CartListBox.Items.AddRange(_currentCustomer.Cart.Items.ToArray());
+/*                if (_currentCustomer.Cart.Items != null)
+                {*/
+                    CartListBox.Items.AddRange(_currentCustomer.Cart.Items.ToArray());
+/*                }*/
                 UpdateAmount();
             }
             else
@@ -119,7 +122,7 @@ namespace OOP.View.Tabs
                 string minute = DateTime.Now.Minute.ToString();
                 string Date = day +"."+ month + "." + year + ". " + hour + ":" +minute;
                 List<Item> items = _currentCustomer.Cart.Items;
-                Order newOrder = new Order(OrderStatus.New, Date, items);
+                Order newOrder = new Order(OrderStatus.New, Date, items,_currentCustomer.Address);
                 _currentCustomer.Orders.Add(newOrder);
 
 

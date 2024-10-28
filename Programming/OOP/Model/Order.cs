@@ -53,14 +53,18 @@ namespace OOP.Model
             DateOfCreation = "01.01.2000";
             DeliveryAddress = new Address();
             Items = [];
+
             _allOrdersCount += 1;
-            _id = _allOrdersCount;
+            Id = _allOrdersCount;
         }
-        public Order(OrderStatus status,string dateOfCreation, List<Item> items)
+        public Order(OrderStatus status,string dateOfCreation, List<Item> items,Address address)
         {
             Status = status;
             DateOfCreation = dateOfCreation;
-            Items = new List<Item>(items); ;
+            Items = new List<Item>(items);
+            DeliveryAddress = address;
+            _allOrdersCount += 1;
+            Id = _allOrdersCount;
         }
     }
 }

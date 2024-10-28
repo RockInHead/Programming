@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 
 using System.Text.RegularExpressions;
+using System.Xml.Linq;
 
 /// <summary>
 /// Хранит данные о покупателе:Уникальный айди,Полное ФИО,Адрес.
@@ -121,6 +122,10 @@ public class Customer
         _allCustomersCount += 1;
         _id = _allCustomersCount;
 
+    }
+    public override string ToString()
+    {
+        return FullName;
     }
 }
 

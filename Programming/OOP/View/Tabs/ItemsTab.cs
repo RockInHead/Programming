@@ -50,7 +50,7 @@ namespace OOP.View.Tabs
                 NewItem.Category = NewCategory;
 
                 Items.Add(NewItem);
-                ItemsListBoxItems.Add($"{NewItem.Id.ToString()})");
+                ItemsListBoxItems.Add($"{NewItem.Id.ToString()}){NewItem.Name.ToString()}");
                 ItemsListBox.Items.Add(ItemsListBoxItems[ItemsListBoxItems.Count - 1]);
 
 

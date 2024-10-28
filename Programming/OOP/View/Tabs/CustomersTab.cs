@@ -85,6 +85,8 @@ namespace OOP.View.Tabs
                 IdTextBox.Text = _currentCustomer.Id.ToString();
                 FullNameTextBox.Text = _currentCustomer.FullName;
 
+                /*                AddressControl.Get(_currentCustomer.Address);
+                                addressControl1.ShowValues();*/
                 addressControl1.ShowValues(_currentCustomer.Address);
                 /*AddressRichTextBox.Text = _currentCustomer.Address;*/
             }

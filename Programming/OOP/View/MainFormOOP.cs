@@ -15,6 +15,7 @@ namespace OOP
 
             cartsTab1.Items = _store.Items;
             cartsTab1.Customers = _store.Customers;
+
             ordersTab1.Customers= _store.Customers;
 
         }
@@ -35,14 +36,15 @@ namespace OOP
         {
             if (TabControl.SelectedIndex == 3)
             {
+
                 ordersTab1.UpdateOrders();
 
             }
-            else if (TabControl.SelectedIndex == 2)
-            {
+/*            else if (TabControl.SelectedIndex == 2)
+            {*/
 
                 cartsTab1.RefreshData();
-            }
+/*            }*/
         }
 
     }

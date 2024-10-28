@@ -27,9 +27,7 @@ namespace OOP.View
                 _address = value;
             }
         }
-        /*public AddressControl()
-        {
-        }*/
+
 
         public AddressControl(Address address)
         {
@@ -45,21 +43,9 @@ namespace OOP.View
             BuildingTextBox.Text = "";
             ApartmentTextBox.Text = "";
         }
+        /* public static AddressControl NewAddress;*/
         public AddressControl NewAddress;
-        public void ShowValues(Address SomeAddress)
-        {
-
-            NewAddress.Address = SomeAddress;
-
-            PostIndexTextBox.Text = NewAddress.Address.Index.ToString();
-            CountryTextBox.Text = NewAddress.Address.Country.ToString();
-            CityTextBox.Text = NewAddress.Address.City.ToString();
-            StreetTextBox.Text = NewAddress.Address.Street.ToString();
-            BuildingTextBox.Text = NewAddress.Address.Building.ToString();
-            ApartmentTextBox.Text = NewAddress.Address.Apartment.ToString();
-
-
-        }
+ /*       NewAddress = new AddressControl();*/
         public Address GiveValues()
         {
             /*NewAddress.Address = SomeAddress;*/
@@ -84,6 +70,7 @@ namespace OOP.View
             InitializeComponent();
 
             Address = new Address();
+            /*          NewAddress = new AddressControl();*/
 
         }
 
@@ -102,6 +89,32 @@ namespace OOP.View
             ApartmentTextBox.Text = NewAddress.Address.Apartment.ToString();*/
 
         }
+        public void ShowValues(Address SomeAddress)
+        {
+            NewAddress.Address = SomeAddress;
+
+            PostIndexTextBox.Text = NewAddress.Address.Index.ToString();
+            CountryTextBox.Text = NewAddress.Address.Country.ToString();
+            CityTextBox.Text = NewAddress.Address.City.ToString();
+            StreetTextBox.Text = NewAddress.Address.Street.ToString();
+            BuildingTextBox.Text = NewAddress.Address.Building.ToString();
+            ApartmentTextBox.Text = NewAddress.Address.Apartment.ToString();
+        }
+/*        public void ShowValues()
+        {
+            PostIndexTextBox.Text = NewAddress.Address.Index.ToString();
+            CountryTextBox.Text = NewAddress.Address.Country.ToString();
+            CityTextBox.Text = NewAddress.Address.City.ToString();
+            StreetTextBox.Text = NewAddress.Address.Street.ToString();
+            BuildingTextBox.Text = NewAddress.Address.Building.ToString();
+            ApartmentTextBox.Text = NewAddress.Address.Apartment.ToString();
+        }
+        public static void Get(Address SomeAddress)
+        {
+*//*          NewAddress = new AddressControl();*//*
+
+            NewAddress.Address = SomeAddress;
+        }*/
 
         /*        private void AddButton_Click(object sender, EventArgs e)
                 {

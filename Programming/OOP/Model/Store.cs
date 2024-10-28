@@ -28,7 +28,6 @@ namespace OOP.Model
         /// Возвращает и задает список покупателей.
         /// </summary>
         public List<Customer> Customers { get; set; }
-
         /// <summary>
         /// Создает пустой/начальный экземпляр класса.Всем полям присваивается значение по умолчанию.
         /// </summary>
@@ -36,6 +35,7 @@ namespace OOP.Model
         {
             Items = new List<Item>();
             Customers = new List<Customer>();
+            
         }
 
 
