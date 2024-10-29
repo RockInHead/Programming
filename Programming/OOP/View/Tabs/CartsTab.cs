@@ -122,8 +122,17 @@ namespace OOP.View.Tabs
                 string minute = DateTime.Now.Minute.ToString();
                 string Date = day +"."+ month + "." + year + ". " + hour + ":" +minute;
                 List<Item> items = _currentCustomer.Cart.Items;
+                Order newOrder; 
 
-                Order newOrder = new Order(OrderStatus.New, Date, items,_currentCustomer.Address);
+                if (_currentCustomer.IsPriority == true)
+                {
+                    newOrder=new PriorityOrder(OrderStatus.New, Date, items, _currentCustomer.Address,DateTime.Now,DeliveryTimeRange.Range9To11);
+                }
+                else
+                {
+                    newOrder = new Order(OrderStatus.New, Date, items, _currentCustomer.Address);
+                }
+
                 _currentCustomer.Orders.Add(newOrder);
 
 
