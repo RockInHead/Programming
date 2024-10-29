@@ -42,6 +42,7 @@
             IdTextBox = new TextBox();
             label2 = new Label();
             label1 = new Label();
+            IsPriorityCheckBox = new CheckBox();
             CustomersGroupBox.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
@@ -141,6 +142,7 @@
             // SelectedCustomerGroupBox
             // 
             SelectedCustomerGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            SelectedCustomerGroupBox.Controls.Add(IsPriorityCheckBox);
             SelectedCustomerGroupBox.Controls.Add(addressControl1);
             SelectedCustomerGroupBox.Controls.Add(FullNameTextBox);
             SelectedCustomerGroupBox.Controls.Add(IdTextBox);
@@ -165,7 +167,7 @@
             address1.Street = "";
             addressControl1.Address = address1;
             addressControl1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            addressControl1.Location = new Point(6, 129);
+            addressControl1.Location = new Point(6, 185);
             addressControl1.MinimumSize = new Size(813, 282);
             addressControl1.Name = "addressControl1";
             addressControl1.Size = new Size(813, 282);
@@ -212,6 +214,17 @@
             label1.TabIndex = 0;
             label1.Text = "ID:";
             // 
+            // IsPriorityCheckBox
+            // 
+            IsPriorityCheckBox.AutoSize = true;
+            IsPriorityCheckBox.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            IsPriorityCheckBox.Location = new Point(133, 129);
+            IsPriorityCheckBox.Name = "IsPriorityCheckBox";
+            IsPriorityCheckBox.Size = new Size(126, 32);
+            IsPriorityCheckBox.TabIndex = 8;
+            IsPriorityCheckBox.Text = "is Priority";
+            IsPriorityCheckBox.UseVisualStyleBackColor = true;
+            // 
             // СustomersTab
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -242,5 +255,6 @@
         private TableLayoutPanel tableLayoutPanel1;
         private TableLayoutPanel tableLayoutPanel2;
         private AddressControl addressControl1;
+        private CheckBox IsPriorityCheckBox;
     }
 }
