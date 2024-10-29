@@ -37,12 +37,12 @@
             panel1 = new Panel();
             tableLayoutPanel1 = new TableLayoutPanel();
             SelectedCustomerGroupBox = new GroupBox();
+            IsPriorityCheckBox = new CheckBox();
             addressControl1 = new AddressControl();
             FullNameTextBox = new TextBox();
             IdTextBox = new TextBox();
             label2 = new Label();
             label1 = new Label();
-            IsPriorityCheckBox = new CheckBox();
             CustomersGroupBox.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
@@ -157,6 +157,18 @@
             SelectedCustomerGroupBox.Text = "Selected Customer";
             SelectedCustomerGroupBox.Enter += SelectedCustomerGroupBox_Enter;
             // 
+            // IsPriorityCheckBox
+            // 
+            IsPriorityCheckBox.AutoSize = true;
+            IsPriorityCheckBox.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            IsPriorityCheckBox.Location = new Point(133, 129);
+            IsPriorityCheckBox.Name = "IsPriorityCheckBox";
+            IsPriorityCheckBox.Size = new Size(126, 32);
+            IsPriorityCheckBox.TabIndex = 8;
+            IsPriorityCheckBox.Text = "is Priority";
+            IsPriorityCheckBox.UseVisualStyleBackColor = true;
+            IsPriorityCheckBox.CheckedChanged += IsPriorityCheckBox_CheckedChanged;
+            // 
             // addressControl1
             // 
             address1.Apartment = "";
@@ -213,17 +225,6 @@
             label1.Size = new Size(38, 28);
             label1.TabIndex = 0;
             label1.Text = "ID:";
-            // 
-            // IsPriorityCheckBox
-            // 
-            IsPriorityCheckBox.AutoSize = true;
-            IsPriorityCheckBox.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            IsPriorityCheckBox.Location = new Point(133, 129);
-            IsPriorityCheckBox.Name = "IsPriorityCheckBox";
-            IsPriorityCheckBox.Size = new Size(126, 32);
-            IsPriorityCheckBox.TabIndex = 8;
-            IsPriorityCheckBox.Text = "is Priority";
-            IsPriorityCheckBox.UseVisualStyleBackColor = true;
             // 
             // СustomersTab
             // 

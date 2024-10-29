@@ -25,7 +25,7 @@ namespace OOP.View.Tabs
         {
             InitializeComponent();
         }
-        
+
         private void RemoveCustomerButton_Click(object sender, EventArgs e)
         {
             int selectedIndex = CustomersListBox.SelectedIndex;
@@ -65,6 +65,7 @@ namespace OOP.View.Tabs
                 IdTextBox.Text = "";
 
                 FullNameTextBox.Text = "";
+                IsPriorityCheckBox.Checked = false;
                 addressControl1.ClearForm();
 
                 /*AddressRichTextBox.Text = "";*/
@@ -84,6 +85,7 @@ namespace OOP.View.Tabs
 
                 IdTextBox.Text = _currentCustomer.Id.ToString();
                 FullNameTextBox.Text = _currentCustomer.FullName;
+                IsPriorityCheckBox.Checked = _currentCustomer.IsPriority;
 
                 /*                AddressControl.Get(_currentCustomer.Address);
                                 addressControl1.ShowValues();*/
@@ -97,6 +99,7 @@ namespace OOP.View.Tabs
 
             Customer NewCustomer = new Customer();
             NewCustomer.FullName = FullNameTextBox.Text;
+            NewCustomer.IsPriority = IsPriorityCheckBox.Checked;
             NewCustomer.Address = addressControl1.GiveValues();
             /*NewCustomer.Address = addressControl1.Address;*/
             /* NewCustomer.Address = AddressRichTextBox.Text;*/
@@ -108,7 +111,7 @@ namespace OOP.View.Tabs
             /*CanvaRectanglesListBox.SelectedIndex = CanvaRectanglesListBox.Items.Count - 1;*/
 
             FullNameTextBox.Text = "";
-
+            IsPriorityCheckBox.Checked = false;
             addressControl1.ClearForm();
             /*addressControl1.ListBoxfromCustomersTabState(CustomersListBox.SelectedIndex);*/
 
@@ -147,6 +150,14 @@ namespace OOP.View.Tabs
         private void addressControl1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void IsPriorityCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if ((CustomersListBox.SelectedIndex != -1))
+            {
+                _currentCustomer.IsPriority = IsPriorityCheckBox.Checked;
+            }
         }
     }
 }

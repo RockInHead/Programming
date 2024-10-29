@@ -122,6 +122,7 @@ namespace OOP.View.Tabs
                 string minute = DateTime.Now.Minute.ToString();
                 string Date = day +"."+ month + "." + year + ". " + hour + ":" +minute;
                 List<Item> items = _currentCustomer.Cart.Items;
+
                 Order newOrder = new Order(OrderStatus.New, Date, items,_currentCustomer.Address);
                 _currentCustomer.Orders.Add(newOrder);
 

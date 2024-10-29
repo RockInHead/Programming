@@ -89,6 +89,10 @@ public class Customer
     public Cart Cart { get; set; }
     public List<Order> Orders { get; set; }
 
+    /// <summary>
+    /// Возвращает или меняет приоритет клиента.
+    /// </summary>
+    public bool IsPriority { get; set; }
 
 
     //Конструктор
