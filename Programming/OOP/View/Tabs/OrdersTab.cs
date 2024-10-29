@@ -23,11 +23,11 @@ namespace OOP.View.Tabs
         
         public void UpdateOrders()
         {
-            /*                if (dataTable.Rows.Count <= 0)
-                            {
-
-                            }*/
-            /*            dataTable.Rows.Clear();*/
+/*                if (dataTable.Rows.Count <= 0)
+                {
+                    
+                }*/
+/*            dataTable.Rows.Clear();*/
             dataTable.Clear();
             foreach (DataGridViewColumn column in OrdersDataGridView.Columns)
             {
