@@ -61,6 +61,7 @@ namespace OOP.View.Tabs
             dataTable.Columns.Add("Full Name", typeof(string));
             dataTable.Columns.Add("Address", typeof(string));
             dataTable.Columns.Add("Amount", typeof(string));
+            OrderStatusComboBox.Enabled = false;
 
             /*            addressControl1 = new AddressControl();*/
 
@@ -100,7 +101,7 @@ namespace OOP.View.Tabs
 
         private void OrdersDataGridView_CurrentCellChanged(object sender, EventArgs e)
         {
-            if (OrdersDataGridView.CurrentCell != null && OrdersDataGridView.CurrentCell.RowIndex != -1)
+            if (OrdersDataGridView.CurrentCell != null && OrdersDataGridView.CurrentCell.RowIndex != -1 && dataTable.Rows.Count != 0)
             {
 
                 /*                AmountLabel.Text = OrdersDataGridView.CurrentCell.RowIndex;*/
@@ -127,6 +128,7 @@ namespace OOP.View.Tabs
         {
             if (OrdersDataGridView.CurrentCell.RowIndex != -1 && OrdersDataGridView.CurrentCell.RowIndex != null && OrdersDataGridView.Rows.Count != 0)
             {
+                OrderStatusComboBox.Enabled = true;
                 _currentOrder.Status= (OrderStatus)OrderStatusComboBox.SelectedItem;
 
                 dataTable.Rows[OrdersDataGridView.CurrentCell.RowIndex][2] = _currentOrder.Status.ToString();
