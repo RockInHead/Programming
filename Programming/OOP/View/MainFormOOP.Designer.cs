@@ -138,7 +138,7 @@
             ordersTab1.Customers = null;
             ordersTab1.Location = new Point(-4, 3);
             ordersTab1.Name = "ordersTab1";
-            ordersTab1.Size = new Size(1256, 666);
+            ordersTab1.Size = new Size(1170, 666);
             ordersTab1.TabIndex = 0;
             // 
             // MainFormOOP

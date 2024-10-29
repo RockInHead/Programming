@@ -16,18 +16,19 @@ namespace OOP.View.Tabs
         private List<Customer> _customers;
         private Customer _currentCustomer;
         private Order _currentOrder;
+        private PriorityOrder _currentPriorityOrder;
         private List<Order> _orders = new List<Order>();
         private List<Order> _ordersCurrentCustomer = new List<Order>();
         public List<Customer> Customers { get; set; }
         DataTable dataTable = new DataTable();
-        
+
         public void UpdateOrders()
         {
-/*                if (dataTable.Rows.Count <= 0)
-                {
-                    
-                }*/
-/*            dataTable.Rows.Clear();*/
+            /*                if (dataTable.Rows.Count <= 0)
+                            {
+
+                            }*/
+            /*            dataTable.Rows.Clear();*/
             dataTable.Clear();
             foreach (DataGridViewColumn column in OrdersDataGridView.Columns)
             {
@@ -50,6 +51,31 @@ namespace OOP.View.Tabs
             OrdersDataGridView.DataSource = dataTable;
             OrdersDataGridView.Columns[0].Width = 30;
         }
+        /// <summary>
+        /// Получить выбранный диапазон в удобном формате.
+        /// </summary>
+        /// <param name="range">Выбранный диапазон.</param>
+        /// <returns>Строка в которой написаны диапазоны в удобном формате.</returns>
+        private string GetDisplayName(DeliveryTimeRange range)
+        {
+            switch (range)
+            {
+                case DeliveryTimeRange.Range9To11:
+                    return "9:00 – 11:00";
+                case DeliveryTimeRange.Range11To13:
+                    return "11:00 – 13:00";
+                case DeliveryTimeRange.Range13To15:
+                    return "13:00 – 15:00";
+                case DeliveryTimeRange.Range15To17:
+                    return "15:00 – 17:00";
+                case DeliveryTimeRange.Range17To19:
+                    return "17:00 – 19:00";
+                case DeliveryTimeRange.Range19To21:
+                    return "19:00 – 21:00";
+                default:
+                    return string.Empty;
+            }
+        }
         public OrdersTab()
         {
 
@@ -62,6 +88,13 @@ namespace OOP.View.Tabs
             dataTable.Columns.Add("Address", typeof(string));
             dataTable.Columns.Add("Amount", typeof(string));
             OrderStatusComboBox.Enabled = false;
+            DeliveryTimeRangeComboBox.DataSource = Enum.GetValues(typeof(DeliveryTimeRange)).Cast<DeliveryTimeRange>().Select(range => new { Value = range, Display = GetDisplayName(range) }).ToList();
+            DeliveryTimeRangeComboBox.DisplayMember = "Display";
+            DeliveryTimeRangeComboBox.ValueMember = "Value";
+
+
+            PriorityOrdersPanel.Enabled = false;
+            PriorityOrdersPanel.Visible = false;
 
             /*            addressControl1 = new AddressControl();*/
 
@@ -103,17 +136,10 @@ namespace OOP.View.Tabs
         {
             if (OrdersDataGridView.CurrentCell != null && OrdersDataGridView.CurrentCell.RowIndex != -1 && dataTable.Rows.Count != 0)
             {
-
-                /*                AmountLabel.Text = OrdersDataGridView.CurrentCell.RowIndex;*/
-                /*                _currentCustomer = Customers[Customers];*/
-                /*                _currentOrder = _currentCustomer.Orders[_currentCustomer.Orders.IndexOf(OrdersDataGridView.CurrentCell.RowIndex)];*/
-                /*_currentOrder = Customers.Orders[OrdersDataGridView.CurrentCell.RowIndex.ToString()];*/
-
-                /*                addressControl1.ClearForm();*/
-
                 OrderItemsListBox.Items.Clear();
                 /*                _currentOrder = _orders[OrdersDataGridView.CurrentCell.RowIndex];*/
                 _currentOrder = _ordersCurrentCustomer[OrdersDataGridView.CurrentCell.RowIndex];
+                /*                PriorityOrder _currentPriorityOrder = (PriorityOrder)_currentOrder;*/
                 OrderIdTextBox.Text = _currentOrder.Id.ToString();
                 OrderCreatedTextBox.Text = _currentOrder.DateOfCreation.ToString();
                 OrderStatusComboBox.Text = _currentOrder.Status.ToString();
@@ -121,6 +147,21 @@ namespace OOP.View.Tabs
 
                 OrderItemsListBox.Items.AddRange(_currentOrder.Items.ToArray());
                 AmountLabel.Text = _currentOrder.TotalCost.ToString();
+
+                if (_currentOrder.GetType() == typeof(PriorityOrder))
+                {
+                    PriorityOrdersPanel.Enabled = true;
+                    PriorityOrdersPanel.Visible = true;
+                    _currentPriorityOrder = (PriorityOrder)_currentOrder;
+                    DeliveryTimeRangeComboBox.Text = GetDisplayName(_currentPriorityOrder.DeliveryTimeRange);
+
+
+                }
+                else
+                {
+                    PriorityOrdersPanel.Enabled = false;
+                    PriorityOrdersPanel.Visible = false;
+                }
             }
         }
 
@@ -129,7 +170,7 @@ namespace OOP.View.Tabs
             if (OrdersDataGridView.CurrentCell.RowIndex != -1 && OrdersDataGridView.CurrentCell.RowIndex != null && OrdersDataGridView.Rows.Count != 0)
             {
                 OrderStatusComboBox.Enabled = true;
-                _currentOrder.Status= (OrderStatus)OrderStatusComboBox.SelectedItem;
+                _currentOrder.Status = (OrderStatus)OrderStatusComboBox.SelectedItem;
 
                 dataTable.Rows[OrdersDataGridView.CurrentCell.RowIndex][2] = _currentOrder.Status.ToString();
                 /*UpdateOrders();*/
@@ -142,6 +183,17 @@ namespace OOP.View.Tabs
                              *//*                }*//*
                              UpdateAmount();*/
             }
+        }
+
+        private void DeliveryTimeRangeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_currentPriorityOrder == null) return;
+            _currentPriorityOrder.DeliveryTimeRange = (DeliveryTimeRange)DeliveryTimeRangeComboBox.SelectedValue;
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }
