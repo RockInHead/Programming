@@ -28,6 +28,19 @@ class ValueValidator
 
     }
 
-
+    public static void AssertOnPositiveValue(int value)
+    {
+        if (value < 0)
+        {
+            throw new ArgumentException($"Значение должно быть положительным!");
+        }
+    }
+    public static void AssertOnPositiveValue(double value)
+    {
+        if (value < 0)
+        {
+            throw new ArgumentException($"Значение должно быть положительным!");
+        }
+    }
 
 }
