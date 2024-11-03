@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OOP.Model
+namespace OOP.Model.Orders
 {
 
     internal class PriorityOrder : Order

@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OOP.Model
+namespace OOP.Model.Discounts
 {
-    public class PercentDiscount
+    public class PercentDiscount : IDiscount
     {
 
-    
-    
+
+
         /// <summary>
         /// Текущая скидка в процентах
         /// </summary>
@@ -50,11 +50,11 @@ namespace OOP.Model
         /// <returns></returns>
         private double GetAmount(List<Item> items)
         {
-            
+
             /*double sum = 0;*/
             foreach (Item item in items)
             {
-                if(item.Category == _discountCategory)
+                if (item.Category == _discountCategory)
                 {
                     AccumulatedAmount += item.Cost;
                 }
@@ -68,10 +68,10 @@ namespace OOP.Model
             return Math.Round(sum, 2);*/
         }
 
-        public int Calculate(List<Item> items)
+        public double Calculate(List<Item> items)
         {
             double amount = GetAmount(items);
-            if (CurrentDiscountPercent<10)
+            if (CurrentDiscountPercent < 10)
             {
                 return CurrentDiscountPercent;
             }
@@ -79,7 +79,7 @@ namespace OOP.Model
             {
                 return 10;
             }
-            
+
             /*if (AccumulatedPoints > amount * 0.3)
             {
                 return Math.Floor(amount * 0.3);
@@ -94,18 +94,19 @@ namespace OOP.Model
         {
             double amount = GetAmount(items);
 
-            int discountPercent = Calculate(items);
+            int discountPercent = (int)Calculate(items);
             double discountAmount = AccumulatedAmount * discountPercent;
-            CurrentDiscountPercent -=discountPercent;
+            CurrentDiscountPercent -= discountPercent;
             /*AccumulatedPoints -= (int)discountAmount;*/
             return discountAmount;
         }
-  
+
         public void Update(List<Item> items)
         {
-            CurrentDiscountPercent +=(int)Math.Floor((AccumulatedAmount / 1000));
+            CurrentDiscountPercent += (int)Math.Floor(AccumulatedAmount / 1000);
             /*double amount = GetAmount(items);
-            AccumulatedPoints += (int)Math.Ceiling(amount * 0.1)*/;
+            AccumulatedPoints += (int)Math.Ceiling(amount * 0.1)*/
+            ;
         }
     }
 }

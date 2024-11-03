@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OOP.Model
+namespace OOP.Model.Orders
 {
     public class Order
     {
@@ -25,7 +25,17 @@ namespace OOP.Model
         public OrderStatus Status { get; set; }
         public string DateOfCreation { get; }
         public Address DeliveryAddress { get; set; }
-
+        /// <summary>
+        /// Размер примененной скидки
+        /// </summary>
+        public double DiscountAmount { get; set; }
+        public double Total
+        {
+            get
+            {
+                return TotalCost - DiscountAmount;
+            }
+        }
         public List<Item> Items { get; set; }
         public double TotalCost
         {
@@ -57,7 +67,7 @@ namespace OOP.Model
             _allOrdersCount += 1;
             Id = _allOrdersCount;
         }
-        public Order(OrderStatus status,string dateOfCreation, List<Item> items,Address address)
+        public Order(OrderStatus status, string dateOfCreation, List<Item> items, Address address)
         {
             Status = status;
             DateOfCreation = dateOfCreation;

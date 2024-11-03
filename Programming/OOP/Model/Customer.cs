@@ -1,4 +1,6 @@
 ﻿using OOP.Model;
+using OOP.Model.Discounts;
+using OOP.Model.Orders;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 
@@ -31,6 +33,8 @@ public class Customer
     private Cart _cart;
 
     private List<Order> _orders;
+
+    private List<IDiscount> _discounts;
     //Свойства  автосвойства
 
     /// <summary>
@@ -94,6 +98,7 @@ public class Customer
     /// </summary>
     public bool IsPriority { get; set; }
 
+    public List<IDiscount> Discounts{get;set;}
 
     //Конструктор
     /// <summary>
@@ -105,6 +110,8 @@ public class Customer
         Address = new Address();
         Cart = new Cart();
         Orders= new List<Order>();
+        Discounts = new List<IDiscount>();
+        Discounts.Add(new PointsDiscount());
 
         _allCustomersCount += 1;
         _id = _allCustomersCount;
@@ -122,6 +129,8 @@ public class Customer
         Address = new Address();
         Cart = new Cart();
         Orders = new List<Order>();
+        Discounts= new List<IDiscount>();
+        Discounts.Add(new PointsDiscount());
 
         _allCustomersCount += 1;
         _id = _allCustomersCount;

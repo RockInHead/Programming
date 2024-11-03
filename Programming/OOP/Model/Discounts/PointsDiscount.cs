@@ -4,15 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OOP.Model
+namespace OOP.Model.Discounts
 {
-    public class PointsDiscount
+    public class PointsDiscount : IDiscount
     {
         private int _accumulatedPoints;
-        public int AccumulatedPoints {
-            get 
+        public int AccumulatedPoints
+        {
+            get
             {
-            return _accumulatedPoints;
+                return _accumulatedPoints;
             }
             private set
             {
@@ -39,7 +40,7 @@ namespace OOP.Model
             {
                 sum += item.Cost;
             }
-            return Math.Round(sum,2);
+            return Math.Round(sum, 2);
         }
         /// <summary>
         /// Считает доступную скидку. Если кол-во баллов больше 30% от общей стоимости товаров, 
