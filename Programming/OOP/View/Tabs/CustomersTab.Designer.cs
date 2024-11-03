@@ -174,6 +174,7 @@
             RemovePercentDiscountButton.TabIndex = 11;
             RemovePercentDiscountButton.Text = "Remove";
             RemovePercentDiscountButton.UseVisualStyleBackColor = true;
+            RemovePercentDiscountButton.Click += RemovePercentDiscountButton_Click;
             // 
             // AddPercentDiscountButton
             // 
@@ -183,6 +184,7 @@
             AddPercentDiscountButton.TabIndex = 10;
             AddPercentDiscountButton.Text = "Add";
             AddPercentDiscountButton.UseVisualStyleBackColor = true;
+            AddPercentDiscountButton.Click += AddPercentDiscountButton_Click;
             // 
             // DiscountsListBox
             // 

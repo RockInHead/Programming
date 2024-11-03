@@ -9,8 +9,6 @@ namespace OOP.Model.Discounts
     public class PercentDiscount : IDiscount
     {
 
-
-
         /// <summary>
         /// Текущая скидка в процентах
         /// </summary>
@@ -24,6 +22,13 @@ namespace OOP.Model.Discounts
         /// </summary>
         private double _accumulatedAmount;
         public int CurrentDiscountPercent { get; set; }
+        public Category DiscountCategory {
+            get {
+            return _discountCategory;
+            }
+             set{
+                _discountCategory = value;
+            }}
         public double AccumulatedAmount
         {
             get
@@ -40,7 +45,7 @@ namespace OOP.Model.Discounts
         {
             get
             {
-                return $"Процентная {_discountCategory.ToString()} - {_currentDiscountPercent}%";
+                return $"Процентная {DiscountCategory.ToString()} - {CurrentDiscountPercent}%";
             }
         }
         /// <summary>
@@ -106,7 +111,11 @@ namespace OOP.Model.Discounts
             CurrentDiscountPercent += (int)Math.Floor(AccumulatedAmount / 1000);
             /*double amount = GetAmount(items);
             AccumulatedPoints += (int)Math.Ceiling(amount * 0.1)*/
-            ;
+            
+        }
+        public PercentDiscount()
+        {
+            CurrentDiscountPercent = 1;
         }
     }
 }

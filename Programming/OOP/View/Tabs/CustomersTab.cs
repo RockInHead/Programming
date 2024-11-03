@@ -1,4 +1,6 @@
-﻿using System;
+﻿using OOP.Model;
+using OOP.Model.Discounts;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -67,12 +69,14 @@ namespace OOP.View.Tabs
                 FullNameTextBox.Text = "";
                 IsPriorityCheckBox.Checked = false;
                 addressControl1.ClearForm();
-
+                DiscountsListBox.Items.Clear();
                 /*AddressRichTextBox.Text = "";*/
 
             }
             else
             {
+                DiscountsListBox.Items.Clear();
+
                 addressControl1.ListBoxNull = false;
 
                 AddCustomerButton.Enabled = false;
@@ -90,6 +94,11 @@ namespace OOP.View.Tabs
                 /*                AddressControl.Get(_currentCustomer.Address);
                                 addressControl1.ShowValues();*/
                 addressControl1.ShowValues(_currentCustomer.Address);
+
+                foreach (IDiscount discount in _currentCustomer.Discounts)
+                {
+                    DiscountsListBox.Items.Add(discount.Info);
+                }
                 /*AddressRichTextBox.Text = _currentCustomer.Address;*/
             }
         }
@@ -157,6 +166,37 @@ namespace OOP.View.Tabs
             if ((CustomersListBox.SelectedIndex != -1))
             {
                 _currentCustomer.IsPriority = IsPriorityCheckBox.Checked;
+            }
+        }
+
+        private void AddPercentDiscountButton_Click(object sender, EventArgs e)
+        {
+            /*using (DiscountCategoryForm discountCategoryForm = new DiscountCategoryForm())
+            {*/
+            if ((CustomersListBox.SelectedIndex != -1))
+            {
+                DiscountCategoryForm discountCategoryForm = new DiscountCategoryForm();
+                if (discountCategoryForm.ShowDialog() == DialogResult.OK)
+                {
+                    _currentCustomer.Discounts.Add(discountCategoryForm.Discount);
+                    DiscountsListBox.Items.Add(discountCategoryForm.Discount.Info);
+                }
+            }
+
+        }
+
+        private void RemovePercentDiscountButton_Click(object sender, EventArgs e)
+        {
+            if((CustomersListBox.SelectedIndex != -1)) 
+            { 
+            if(DiscountsListBox.SelectedIndex != -1)
+                {
+                    if (_currentCustomer.Discounts[DiscountsListBox.SelectedIndex] is not PointsDiscount)
+                    {
+                        _currentCustomer.Discounts.RemoveAt(DiscountsListBox.SelectedIndex);
+                        DiscountsListBox.Items.RemoveAt(DiscountsListBox.SelectedIndex);
+                    }
+                }
             }
         }
     }
