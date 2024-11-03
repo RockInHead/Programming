@@ -37,6 +37,10 @@
             panel1 = new Panel();
             tableLayoutPanel1 = new TableLayoutPanel();
             SelectedCustomerGroupBox = new GroupBox();
+            RemovePercentDiscountButton = new Button();
+            AddPercentDiscountButton = new Button();
+            DiscountsListBox = new ListBox();
+            label3 = new Label();
             IsPriorityCheckBox = new CheckBox();
             addressControl1 = new AddressControl();
             FullNameTextBox = new TextBox();
@@ -111,6 +115,7 @@
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 1;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel2.Size = new Size(406, 45);
             tableLayoutPanel2.TabIndex = 3;
             // 
@@ -142,6 +147,10 @@
             // SelectedCustomerGroupBox
             // 
             SelectedCustomerGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            SelectedCustomerGroupBox.Controls.Add(RemovePercentDiscountButton);
+            SelectedCustomerGroupBox.Controls.Add(AddPercentDiscountButton);
+            SelectedCustomerGroupBox.Controls.Add(DiscountsListBox);
+            SelectedCustomerGroupBox.Controls.Add(label3);
             SelectedCustomerGroupBox.Controls.Add(IsPriorityCheckBox);
             SelectedCustomerGroupBox.Controls.Add(addressControl1);
             SelectedCustomerGroupBox.Controls.Add(FullNameTextBox);
@@ -156,6 +165,43 @@
             SelectedCustomerGroupBox.TabStop = false;
             SelectedCustomerGroupBox.Text = "Selected Customer";
             SelectedCustomerGroupBox.Enter += SelectedCustomerGroupBox_Enter;
+            // 
+            // RemovePercentDiscountButton
+            // 
+            RemovePercentDiscountButton.Location = new Point(379, 524);
+            RemovePercentDiscountButton.Name = "RemovePercentDiscountButton";
+            RemovePercentDiscountButton.Size = new Size(140, 39);
+            RemovePercentDiscountButton.TabIndex = 11;
+            RemovePercentDiscountButton.Text = "Remove";
+            RemovePercentDiscountButton.UseVisualStyleBackColor = true;
+            // 
+            // AddPercentDiscountButton
+            // 
+            AddPercentDiscountButton.Location = new Point(379, 479);
+            AddPercentDiscountButton.Name = "AddPercentDiscountButton";
+            AddPercentDiscountButton.Size = new Size(140, 39);
+            AddPercentDiscountButton.TabIndex = 10;
+            AddPercentDiscountButton.Text = "Add";
+            AddPercentDiscountButton.UseVisualStyleBackColor = true;
+            // 
+            // DiscountsListBox
+            // 
+            DiscountsListBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            DiscountsListBox.FormattingEnabled = true;
+            DiscountsListBox.Location = new Point(6, 479);
+            DiscountsListBox.Name = "DiscountsListBox";
+            DiscountsListBox.Size = new Size(355, 164);
+            DiscountsListBox.TabIndex = 6;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            label3.Location = new Point(6, 448);
+            label3.Name = "label3";
+            label3.Size = new Size(110, 28);
+            label3.TabIndex = 9;
+            label3.Text = "Discounts:";
             // 
             // IsPriorityCheckBox
             // 
@@ -179,7 +225,7 @@
             address1.Street = "";
             addressControl1.Address = address1;
             addressControl1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            addressControl1.Location = new Point(6, 185);
+            addressControl1.Location = new Point(0, 167);
             addressControl1.MinimumSize = new Size(813, 282);
             addressControl1.Name = "addressControl1";
             addressControl1.Size = new Size(813, 282);
@@ -190,7 +236,7 @@
             // 
             FullNameTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             FullNameTextBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            FullNameTextBox.Location = new Point(133, 89);
+            FullNameTextBox.Location = new Point(133, 81);
             FullNameTextBox.MaxLength = 200;
             FullNameTextBox.Name = "FullNameTextBox";
             FullNameTextBox.Size = new Size(686, 34);
@@ -220,7 +266,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label1.Location = new Point(6, 41);
+            label1.Location = new Point(6, 47);
             label1.Name = "label1";
             label1.Size = new Size(38, 28);
             label1.TabIndex = 0;
@@ -257,5 +303,9 @@
         private TableLayoutPanel tableLayoutPanel2;
         private AddressControl addressControl1;
         private CheckBox IsPriorityCheckBox;
+        private Button RemovePercentDiscountButton;
+        private Button AddPercentDiscountButton;
+        private ListBox DiscountsListBox;
+        private Label label3;
     }
 }
