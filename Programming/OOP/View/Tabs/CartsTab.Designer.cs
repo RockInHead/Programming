@@ -128,9 +128,9 @@
             TotalLabel.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
             TotalLabel.Location = new Point(496, 257);
             TotalLabel.Name = "TotalLabel";
-            TotalLabel.Size = new Size(98, 31);
+            TotalLabel.Size = new Size(27, 31);
             TotalLabel.TabIndex = 15;
-            TotalLabel.Text = "1234.59";
+            TotalLabel.Text = "0";
             // 
             // label4
             // 
@@ -159,9 +159,9 @@
             DiscountAmountLabel.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
             DiscountAmountLabel.Location = new Point(496, 51);
             DiscountAmountLabel.Name = "DiscountAmountLabel";
-            DiscountAmountLabel.Size = new Size(98, 31);
+            DiscountAmountLabel.Size = new Size(27, 31);
             DiscountAmountLabel.TabIndex = 13;
-            DiscountAmountLabel.Text = "1234.59";
+            DiscountAmountLabel.Text = "0";
             // 
             // groupBox2
             // 
@@ -197,9 +197,9 @@
             AmountLabel.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
             AmountLabel.Location = new Point(648, 322);
             AmountLabel.Name = "AmountLabel";
-            AmountLabel.Size = new Size(98, 31);
+            AmountLabel.Size = new Size(27, 31);
             AmountLabel.TabIndex = 9;
-            AmountLabel.Text = "1234.59";
+            AmountLabel.Text = "0";
             // 
             // label3
             // 

@@ -86,6 +86,7 @@ namespace OOP.View.Tabs
                     DiscountCheckedListBox.SetItemChecked(i, true);
                 }
                 UpdateAmount();
+                UpdateDiscountAndTotalAmount();
             }
             else
             {
@@ -101,6 +102,7 @@ namespace OOP.View.Tabs
                 CartListBox.Items.Add(ItemsListBox.SelectedItem);
                 ItemsListBox.SelectedIndex = -1;
                 UpdateAmount();
+                UpdateDiscountAndTotalAmount();
             }
         }
         private void RemoveItemButton_Click(object sender, EventArgs e)
@@ -110,13 +112,15 @@ namespace OOP.View.Tabs
                 _currentCustomer.Cart.Items.RemoveAt(CartListBox.SelectedIndex);
                 CartListBox.Items.RemoveAt(CartListBox.SelectedIndex);
                 UpdateAmount();
+                UpdateDiscountAndTotalAmount();
             }
         }
         private void ClearCartButton_Click(object sender, EventArgs e)
         {
+
             ClearCart();
             UpdateAmount();
-
+            UpdateDiscountAndTotalAmount();
         }
 
         private void CreateOrderButton_Click(object sender, EventArgs e)
@@ -144,13 +148,18 @@ namespace OOP.View.Tabs
                 _currentCustomer.Orders.Add(newOrder);
                 
                 DiscountAmountLabel.Text = CreateOrder().ToString();
+                ClearDiscountAndTotalLabels();
 
                 items.Clear();
                 ClearCart();
                 UpdateAmount();
             }
         }
-
+        private void ClearDiscountAndTotalLabels()
+        {
+            DiscountAmountLabel.Text = "0";
+            TotalLabel.Text = "0";
+        }
         private void DiscountCheckedListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateDiscountAndTotalAmount();
@@ -161,8 +170,7 @@ namespace OOP.View.Tabs
         private void UpdateDiscountAndTotalAmount()
         {
             int discountAmount = 0;
-            DiscountAmountLabel.Text = "0";
-            TotalLabel.Text = "0";
+            ClearDiscountAndTotalLabels();
             if (_currentCustomer == null) return;
             foreach (int indexOfDiscount in DiscountCheckedListBox.CheckedIndices)
             {
@@ -184,8 +192,7 @@ namespace OOP.View.Tabs
         public int CreateOrder()
         {
             int discountAmount = 0;
-            DiscountAmountLabel.Text = "0";
-            TotalLabel.Text = "0";
+            ClearDiscountAndTotalLabels();
             if (_currentCustomer == null) return 0;
             foreach (int indexOfDiscount in DiscountCheckedListBox.CheckedIndices)
             {
