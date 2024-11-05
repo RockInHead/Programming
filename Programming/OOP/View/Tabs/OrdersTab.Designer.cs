@@ -31,13 +31,16 @@
             Model.Address address1 = new Model.Address();
             tableLayoutPanel1 = new TableLayoutPanel();
             groupBox1 = new GroupBox();
+            tableLayoutPanel2 = new TableLayoutPanel();
+            TotalLabel = new Label();
+            label8 = new Label();
+            label4 = new Label();
+            AmountLabel = new Label();
             PriorityOrdersPanel = new Panel();
             label7 = new Label();
             DeliveryTimeRangeComboBox = new ComboBox();
             label6 = new Label();
             label5 = new Label();
-            AmountLabel = new Label();
-            label4 = new Label();
             OrderItemsListBox = new ListBox();
             addressControl1 = new AddressControl();
             OrderStatusComboBox = new ComboBox();
@@ -49,6 +52,7 @@
             OrdersDataGridView = new DataGridView();
             tableLayoutPanel1.SuspendLayout();
             groupBox1.SuspendLayout();
+            tableLayoutPanel2.SuspendLayout();
             PriorityOrdersPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)OrdersDataGridView).BeginInit();
             SuspendLayout();
@@ -71,10 +75,9 @@
             // groupBox1
             // 
             groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            groupBox1.Controls.Add(tableLayoutPanel2);
             groupBox1.Controls.Add(PriorityOrdersPanel);
             groupBox1.Controls.Add(label5);
-            groupBox1.Controls.Add(AmountLabel);
-            groupBox1.Controls.Add(label4);
             groupBox1.Controls.Add(OrderItemsListBox);
             groupBox1.Controls.Add(addressControl1);
             groupBox1.Controls.Add(OrderStatusComboBox);
@@ -92,6 +95,68 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Selected Order";
             groupBox1.Enter += groupBox1_Enter;
+            // 
+            // tableLayoutPanel2
+            // 
+            tableLayoutPanel2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            tableLayoutPanel2.ColumnCount = 2;
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel2.Controls.Add(TotalLabel, 1, 1);
+            tableLayoutPanel2.Controls.Add(label8, 1, 0);
+            tableLayoutPanel2.Controls.Add(label4, 0, 0);
+            tableLayoutPanel2.Controls.Add(AmountLabel, 0, 1);
+            tableLayoutPanel2.Location = new Point(0, 606);
+            tableLayoutPanel2.Name = "tableLayoutPanel2";
+            tableLayoutPanel2.RowCount = 2;
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel2.Size = new Size(329, 70);
+            tableLayoutPanel2.TabIndex = 12;
+            // 
+            // TotalLabel
+            // 
+            TotalLabel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            TotalLabel.AutoSize = true;
+            TotalLabel.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            TotalLabel.Location = new Point(167, 39);
+            TotalLabel.Name = "TotalLabel";
+            TotalLabel.Size = new Size(46, 31);
+            TotalLabel.TabIndex = 11;
+            TotalLabel.Text = "0,0";
+            // 
+            // label8
+            // 
+            label8.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            label8.Location = new Point(167, 0);
+            label8.Name = "label8";
+            label8.Size = new Size(89, 35);
+            label8.TabIndex = 10;
+            label8.Text = "Total:";
+            // 
+            // label4
+            // 
+            label4.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            label4.Location = new Point(3, 0);
+            label4.Name = "label4";
+            label4.Size = new Size(133, 35);
+            label4.TabIndex = 8;
+            label4.Text = "Amount:";
+            // 
+            // AmountLabel
+            // 
+            AmountLabel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            AmountLabel.AutoSize = true;
+            AmountLabel.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            AmountLabel.Location = new Point(3, 39);
+            AmountLabel.Name = "AmountLabel";
+            AmountLabel.Size = new Size(46, 31);
+            AmountLabel.TabIndex = 9;
+            AmountLabel.Text = "0,0";
             // 
             // PriorityOrdersPanel
             // 
@@ -146,28 +211,6 @@
             label5.Size = new Size(129, 28);
             label5.TabIndex = 10;
             label5.Text = "Order Items:";
-            // 
-            // AmountLabel
-            // 
-            AmountLabel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            AmountLabel.AutoSize = true;
-            AmountLabel.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            AmountLabel.Location = new Point(4, 635);
-            AmountLabel.Name = "AmountLabel";
-            AmountLabel.Size = new Size(46, 31);
-            AmountLabel.TabIndex = 9;
-            AmountLabel.Text = "0,0";
-            // 
-            // label4
-            // 
-            label4.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label4.Location = new Point(0, 597);
-            label4.Name = "label4";
-            label4.Size = new Size(133, 38);
-            label4.TabIndex = 8;
-            label4.Text = "Amount:";
             // 
             // OrderItemsListBox
             // 
@@ -287,6 +330,8 @@
             tableLayoutPanel1.ResumeLayout(false);
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
+            tableLayoutPanel2.ResumeLayout(false);
+            tableLayoutPanel2.PerformLayout();
             PriorityOrdersPanel.ResumeLayout(false);
             PriorityOrdersPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)OrdersDataGridView).EndInit();
@@ -313,5 +358,8 @@
         private ComboBox DeliveryTimeRangeComboBox;
         private Label label6;
         private Label label7;
+        private TableLayoutPanel tableLayoutPanel2;
+        private Label TotalLabel;
+        private Label label8;
     }
 }

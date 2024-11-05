@@ -148,7 +148,7 @@ namespace OOP.View.Tabs
 
                 OrderItemsListBox.Items.AddRange(_currentOrder.Items.ToArray());
                 AmountLabel.Text = _currentOrder.Amount.ToString();
-
+                TotalLabel.Text = _currentOrder.Total.ToString();
                 if (_currentOrder.GetType() == typeof(PriorityOrder))
                 {
                     PriorityOrdersPanel.Enabled = true;
