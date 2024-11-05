@@ -136,18 +136,19 @@ namespace OOP.View.Tabs
                 List<Item> items = _currentCustomer.Cart.Items;
                 Order newOrder;
 
+
                 if (_currentCustomer.IsPriority == true)
                 {
-                    newOrder = new PriorityOrder(OrderStatus.New, Date, items, _currentCustomer.Address, DateTime.Now, DeliveryTimeRange.Range9To11);
+                    newOrder = new PriorityOrder(OrderStatus.New, Date, items, _currentCustomer.Address, Convert.ToDouble(DiscountAmountLabel.Text), DateTime.Now, DeliveryTimeRange.Range9To11);
                 }
                 else
                 {
-                    newOrder = new Order(OrderStatus.New, Date, items, _currentCustomer.Address);
+                    newOrder = new Order(OrderStatus.New, Date, items, _currentCustomer.Address,Convert.ToDouble(DiscountAmountLabel.Text));
                 }
 
                 _currentCustomer.Orders.Add(newOrder);
 
-                DiscountAmountLabel.Text = CreateOrder().ToString();
+                CreateOrder();
                 ClearDiscountAndTotalLabels();
 
                 items.Clear();

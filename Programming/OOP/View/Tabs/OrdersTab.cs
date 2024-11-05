@@ -43,7 +43,7 @@ namespace OOP.View.Tabs
                 for (int j = 0; j < _currentCustomer.Orders.Count; j++)
                 {
                     _ordersCurrentCustomer.Add(_currentCustomer.Orders[j]);
-                    dataTable.Rows.Add(_currentCustomer.Orders[j].Id.ToString(), _currentCustomer.Orders[j].DateOfCreation, _currentCustomer.Orders[j].Status, _currentCustomer.FullName, _currentCustomer.Address.AddressToString(), _currentCustomer.Orders[j].Amount.ToString());
+                    dataTable.Rows.Add(_currentCustomer.Orders[j].Id.ToString(), _currentCustomer.Orders[j].DateOfCreation, _currentCustomer.Orders[j].Status, _currentCustomer.FullName, _currentCustomer.Address.AddressToString(), _currentCustomer.Orders[j].Amount.ToString(), _currentCustomer.Orders[j].Total.ToString());
                 }
 /*                _orders.AddRange(_ordersCurrentCustomer);*/
 /*                _ordersCurrentCustomer.Clear()*/;
@@ -87,6 +87,7 @@ namespace OOP.View.Tabs
             dataTable.Columns.Add("Full Name", typeof(string));
             dataTable.Columns.Add("Address", typeof(string));
             dataTable.Columns.Add("Amount", typeof(string));
+            dataTable.Columns.Add("Total", typeof(string));
             OrderStatusComboBox.Enabled = false;
             DeliveryTimeRangeComboBox.DataSource = Enum.GetValues(typeof(DeliveryTimeRange)).Cast<DeliveryTimeRange>().Select(range => new { Value = range, Display = GetDisplayName(range) }).ToList();
             DeliveryTimeRangeComboBox.DisplayMember = "Display";

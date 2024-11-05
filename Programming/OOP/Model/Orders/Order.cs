@@ -18,7 +18,7 @@ namespace OOP.Model.Orders
         private Address _deliveryAddress;
         private List<Item> _items;
         private double _amount;
-
+        private double _discountAmount;
 
 
         public int Id { get; }
@@ -28,7 +28,18 @@ namespace OOP.Model.Orders
         /// <summary>
         /// Размер примененной скидки
         /// </summary>
-        public double DiscountAmount { get; set; }
+        public double DiscountAmount
+        {
+            get
+            {
+                return _discountAmount;
+            }
+            set
+            {
+                ValueValidator.AssertOnPositiveValue(value);
+                _discountAmount = value;
+            }
+        }
         public double Total
         {
             get
@@ -67,12 +78,14 @@ namespace OOP.Model.Orders
             _allOrdersCount += 1;
             Id = _allOrdersCount;
         }
-        public Order(OrderStatus status, string dateOfCreation, List<Item> items, Address address)
+        public Order(OrderStatus status, string dateOfCreation, List<Item> items, Address address,double discountAmount)
         {
             Status = status;
             DateOfCreation = dateOfCreation;
             Items = new List<Item>(items);
             DeliveryAddress = address;
+            DiscountAmount= discountAmount;
+
             _allOrdersCount += 1;
             Id = _allOrdersCount;
         }
