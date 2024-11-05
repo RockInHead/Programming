@@ -146,7 +146,7 @@ namespace OOP.View.Tabs
                 }
 
                 _currentCustomer.Orders.Add(newOrder);
-                
+
                 DiscountAmountLabel.Text = CreateOrder().ToString();
                 ClearDiscountAndTotalLabels();
 
@@ -201,7 +201,8 @@ namespace OOP.View.Tabs
 
             /*foreach (int indexOfDiscount in DiscountCheckedListBox.CheckedIndices)
             {*/
-            for(int indexOfDiscount = 0; indexOfDiscount < DiscountCheckedListBox.Items.Count; indexOfDiscount++) { 
+            for (int indexOfDiscount = 0; indexOfDiscount < DiscountCheckedListBox.Items.Count; indexOfDiscount++)
+            {
                 _currentCustomer.Discounts[indexOfDiscount].Update(_currentCustomer.Cart.Items);
             }
             UpdateDiscountsCheckedListBox();
@@ -220,6 +221,11 @@ namespace OOP.View.Tabs
                 DiscountCheckedListBox.Items.Add(_currentCustomer.Discounts[i].Info);
             }
             CheckAllItems();
+            UpdateDiscountAndTotalAmount();
+        }
+
+        private void DiscountCheckedListBox_SelectedValueChanged(object sender, EventArgs e)
+        {
             UpdateDiscountAndTotalAmount();
         }
     }

@@ -21,7 +21,17 @@ namespace OOP.Model.Discounts
         /// Сумма стоимости всех товаров конкретной категории.
         /// </summary>
         private double _accumulatedAmount;
-        public int CurrentDiscountPercent { get; set; }
+        public int CurrentDiscountPercent 
+        {
+            get {
+                return _currentDiscountPercent;
+                    }
+            set {
+                if (value <= 10)
+                {
+                    _currentDiscountPercent = value;
+                }
+            } }
         public Category DiscountCategory {
             get {
             return _discountCategory;
@@ -56,15 +66,15 @@ namespace OOP.Model.Discounts
         private double GetAmount(List<Item> items)
         {
 
-            /*double sum = 0;*/
+            double sum = 0;
             foreach (Item item in items)
             {
                 if (item.Category == _discountCategory)
                 {
-                    AccumulatedAmount += item.Cost;
+                    sum += item.Cost;
                 }
             }
-            return Math.Round(AccumulatedAmount, 2);
+            return Math.Round(sum, 2);
             /*double sum = 0;
             foreach (Item item in items)
             {
@@ -76,15 +86,16 @@ namespace OOP.Model.Discounts
         public double Calculate(List<Item> items)
         {
             double amount = GetAmount(items);
-            if (CurrentDiscountPercent < 10)
-            {
-                return CurrentDiscountPercent;
-            }
+/*            if (CurrentDiscountPercent < 10)
+            {*/
+            double res= amount * (CurrentDiscountPercent / 100.0);
+            return res;
+/*            }
             else
             {
                 return 10;
             }
-
+*/
             /*if (AccumulatedPoints > amount * 0.3)
             {
                 return Math.Floor(amount * 0.3);
@@ -97,24 +108,30 @@ namespace OOP.Model.Discounts
 
         public double Apply(List<Item> items)
         {
-            double amount = GetAmount(items);
+            double discountAmount = GetAmount(items);
 
-            int discountPercent = (int)Calculate(items);
+/*            int discountPercent = (int)Calculate(items);
             double discountAmount = AccumulatedAmount * discountPercent;
-            CurrentDiscountPercent -= discountPercent;
+            CurrentDiscountPercent -= discountPercent;*/
             /*AccumulatedPoints -= (int)discountAmount;*/
             return discountAmount;
         }
 
         public void Update(List<Item> items)
         {
-            CurrentDiscountPercent += (int)Math.Floor(AccumulatedAmount / 1000);
+            int updateRes= (int)(GetAmount(items) / 1000);
+            for(int percent=0;percent<updateRes;percent++)
+            { 
+                CurrentDiscountPercent += 1;
+            }
+            /*CurrentDiscountPercent += (int)Math.Floor(GetAmount(items) / 1000);*/
             /*double amount = GetAmount(items);
             AccumulatedPoints += (int)Math.Ceiling(amount * 0.1)*/
-            
+
         }
         public PercentDiscount()
         {
+/*            DiscountCategory = category;*/
             CurrentDiscountPercent = 1;
         }
     }

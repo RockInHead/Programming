@@ -120,6 +120,7 @@
             DiscountCheckedListBox.Size = new Size(475, 264);
             DiscountCheckedListBox.TabIndex = 11;
             DiscountCheckedListBox.SelectedIndexChanged += DiscountCheckedListBox_SelectedIndexChanged;
+            DiscountCheckedListBox.SelectedValueChanged += DiscountCheckedListBox_SelectedValueChanged;
             // 
             // TotalLabel
             // 
