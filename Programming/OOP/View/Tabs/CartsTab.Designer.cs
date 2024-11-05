@@ -36,7 +36,7 @@
             TotalLabel = new Label();
             label4 = new Label();
             label6 = new Label();
-            DiscountLabel = new Label();
+            DiscountAmountLabel = new Label();
             groupBox2 = new GroupBox();
             CartListBox = new ListBox();
             AmountLabel = new Label();
@@ -102,7 +102,7 @@
             groupBox3.Controls.Add(TotalLabel);
             groupBox3.Controls.Add(label4);
             groupBox3.Controls.Add(label6);
-            groupBox3.Controls.Add(DiscountLabel);
+            groupBox3.Controls.Add(DiscountAmountLabel);
             groupBox3.Location = new Point(3, 443);
             groupBox3.Name = "groupBox3";
             groupBox3.Size = new Size(753, 313);
@@ -112,11 +112,14 @@
             // DiscountCheckedListBox
             // 
             DiscountCheckedListBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            DiscountCheckedListBox.BackColor = Color.Gainsboro;
+            DiscountCheckedListBox.BorderStyle = BorderStyle.None;
             DiscountCheckedListBox.FormattingEnabled = true;
             DiscountCheckedListBox.Location = new Point(0, 20);
             DiscountCheckedListBox.Name = "DiscountCheckedListBox";
-            DiscountCheckedListBox.Size = new Size(475, 268);
+            DiscountCheckedListBox.Size = new Size(475, 264);
             DiscountCheckedListBox.TabIndex = 11;
+            DiscountCheckedListBox.SelectedIndexChanged += DiscountCheckedListBox_SelectedIndexChanged;
             // 
             // TotalLabel
             // 
@@ -150,15 +153,15 @@
             label6.TabIndex = 14;
             label6.Text = "TOTAL:";
             // 
-            // DiscountLabel
+            // DiscountAmountLabel
             // 
-            DiscountLabel.AutoSize = true;
-            DiscountLabel.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            DiscountLabel.Location = new Point(496, 51);
-            DiscountLabel.Name = "DiscountLabel";
-            DiscountLabel.Size = new Size(98, 31);
-            DiscountLabel.TabIndex = 13;
-            DiscountLabel.Text = "1234.59";
+            DiscountAmountLabel.AutoSize = true;
+            DiscountAmountLabel.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            DiscountAmountLabel.Location = new Point(496, 51);
+            DiscountAmountLabel.Name = "DiscountAmountLabel";
+            DiscountAmountLabel.Size = new Size(98, 31);
+            DiscountAmountLabel.TabIndex = 13;
+            DiscountAmountLabel.Text = "1234.59";
             // 
             // groupBox2
             // 
@@ -331,7 +334,7 @@
         private Label label1;
         private ListBox CartListBox;
         private Label label6;
-        private Label DiscountLabel;
+        private Label DiscountAmountLabel;
         private Label label4;
         private CheckedListBox DiscountCheckedListBox;
         private TableLayoutPanel tableLayoutPanel2;
