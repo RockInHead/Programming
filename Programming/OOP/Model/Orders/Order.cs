@@ -17,7 +17,7 @@ namespace OOP.Model.Orders
         private string _dateOfCreation;
         private Address _deliveryAddress;
         private List<Item> _items;
-        private double _totalCost;
+        private double _amount;
 
 
 
@@ -33,11 +33,11 @@ namespace OOP.Model.Orders
         {
             get
             {
-                return TotalCost - DiscountAmount;
+                return Amount - DiscountAmount;
             }
         }
         public List<Item> Items { get; set; }
-        public double TotalCost
+        public double Amount
         {
             get
             {
@@ -48,11 +48,11 @@ namespace OOP.Model.Orders
                 }
                 if (summ > 0)
                 {
-                    return _totalCost = summ;
+                    return _amount = summ;
                 }
                 else
                 {
-                    return _totalCost = 0;
+                    return _amount = 0;
                 }
             }
         }

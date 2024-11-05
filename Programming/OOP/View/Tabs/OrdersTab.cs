@@ -43,7 +43,7 @@ namespace OOP.View.Tabs
                 for (int j = 0; j < _currentCustomer.Orders.Count; j++)
                 {
                     _ordersCurrentCustomer.Add(_currentCustomer.Orders[j]);
-                    dataTable.Rows.Add(_currentCustomer.Orders[j].Id.ToString(), _currentCustomer.Orders[j].DateOfCreation, _currentCustomer.Orders[j].Status, _currentCustomer.FullName, _currentCustomer.Address.AddressToString(), _currentCustomer.Orders[j].TotalCost.ToString());
+                    dataTable.Rows.Add(_currentCustomer.Orders[j].Id.ToString(), _currentCustomer.Orders[j].DateOfCreation, _currentCustomer.Orders[j].Status, _currentCustomer.FullName, _currentCustomer.Address.AddressToString(), _currentCustomer.Orders[j].Amount.ToString());
                 }
 /*                _orders.AddRange(_ordersCurrentCustomer);*/
 /*                _ordersCurrentCustomer.Clear()*/;
@@ -146,7 +146,7 @@ namespace OOP.View.Tabs
                 addressControl1.ShowValues(_currentOrder.DeliveryAddress);
 
                 OrderItemsListBox.Items.AddRange(_currentOrder.Items.ToArray());
-                AmountLabel.Text = _currentOrder.TotalCost.ToString();
+                AmountLabel.Text = _currentOrder.Amount.ToString();
 
                 if (_currentOrder.GetType() == typeof(PriorityOrder))
                 {
