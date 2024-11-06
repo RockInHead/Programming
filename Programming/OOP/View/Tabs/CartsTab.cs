@@ -91,6 +91,7 @@ namespace OOP.View.Tabs
             else
             {
                 AddToCartButton.Enabled = false;
+                DiscountCheckedListBox.Items.Clear();
             }
         }
         private void AddToCartButton_Click(object sender, EventArgs e)
