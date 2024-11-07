@@ -162,5 +162,22 @@ public class Item : ICloneable
     {
         return new Item(this.Name, this.Info,this.Cost,this.Category);
     }
-}
+    /// <summary>
+    /// Объекты равны тогда, когда у них равны все поля кроме ID.
+    /// </summary>
+    /// <param name="other"></param>
+    /// <returns></returns>
+    public override bool Equals(object other)
+    {
+        if (other == null)
+            return false;
+        if (other is not Item)
+            return false;
+        if (object.ReferenceEquals(this, other))
+            return true;
+        Item item = (Item)other;
+        return (this.Name == item.Name && this.Info == item.Info && this.Cost == item.Cost && this.Category==item.Category);
+    }
+
+    }
 

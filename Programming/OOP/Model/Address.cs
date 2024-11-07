@@ -147,6 +147,23 @@ namespace OOP.Model
         {
             return new Address(this.Index, this.Country, this.City, this.Street,this.Building,this.Apartment);
         }
+        /// <summary>
+        /// Объекты равны тогда, когда у них равны все поля.
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public override bool Equals(object other)
+        {
+            if (other == null)
+                return false;
+            if (other is not Address)
+                return false;
+            if (object.ReferenceEquals(this, other))
+                return true;
+            Address address = (Address)other;
+            return (this.Index == address.Index && this.Country == address.Country && this.City == address.City && this.Street == address.Street && this.Building== address.Building && this.Apartment== address.Apartment);
+        }
+
     }
-  }
+}
 
