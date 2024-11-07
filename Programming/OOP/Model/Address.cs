@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OOP.Model
 {
-    public class Address
+    public class Address:ICloneable
     {
         
         private int _index;
@@ -137,6 +137,15 @@ namespace OOP.Model
         public string AddressToString()
         {
             return Index.ToString()+" "+Country+" "+City+" "+Street+" "+Building+" "+Apartment;
+        }
+
+        /// <summary>
+        /// Делает копию объекта по всем полям.
+        /// </summary>
+        /// <returns></returns>
+        public object Clone()
+        {
+            return new Address(this.Index, this.Country, this.City, this.Street,this.Building,this.Apartment);
         }
     }
   }

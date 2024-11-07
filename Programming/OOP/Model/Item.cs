@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 
 using System.Text.RegularExpressions;
@@ -6,7 +7,7 @@ using System.Text.RegularExpressions;
 /// <summary>
 /// Хранит данные о товаре:Уникальный айди,Имя товара,Имя товара,Описание товара, Стоимость товара, Категорию товара.
 /// </summary>
-public class Item
+public class Item : ICloneable
 {
     //Поля
     /// <summary>
@@ -152,6 +153,14 @@ public class Item
     public override string ToString()
     {
         return Name;
+    }
+    /// <summary>
+    /// Делает копию объекта по всем полям, кроме Id.
+    /// </summary>
+    /// <returns></returns>
+    public object Clone()
+    {
+        return new Item(this.Name, this.Info,this.Cost,this.Category);
     }
 }
 

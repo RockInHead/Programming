@@ -9,7 +9,7 @@ namespace OOP.Model
     /// <summary>
     /// Хранит данные о корзине покупок:Список товаров,Суммарная стоимость всех товаров.
     /// </summary>
-    public class Cart
+    public class Cart:ICloneable
     {
         /// <summary>
         /// Список товаров.
@@ -60,9 +60,17 @@ namespace OOP.Model
         /// <param name="items">Список товаров.</param>
         /// //
         //ТУТ БЫЛО Cart()
-        /*        public Cart(List<Item> items)
-                {
-                    Items = items;
-                }*/
+        public Cart(List<Item> items)
+        {
+            Items = items;
+        }
+        /// <summary>
+        /// Возвращает копию по всем полям,кроме Amount.
+        /// </summary>
+        /// <returns></returns>
+        public object Clone()
+        {
+            return new Cart(this.Items);
+        }
     }
 }
