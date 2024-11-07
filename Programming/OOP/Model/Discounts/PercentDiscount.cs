@@ -137,7 +137,6 @@ namespace OOP.Model.Discounts
         /// <inheritdoc/>
         public int CompareTo(PercentDiscount? discount2)
         {
-
             if (object.ReferenceEquals(this, discount2))
                 return 0;
             if (CurrentDiscountPercent > discount2.CurrentDiscountPercent)
