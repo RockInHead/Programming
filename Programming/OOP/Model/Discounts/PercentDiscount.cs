@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OOP.Model.Discounts
 {
-    public class PercentDiscount : IDiscount
+    public class PercentDiscount : IDiscount,IComparable<PercentDiscount>
     {
 
         /// <summary>
@@ -133,6 +133,26 @@ namespace OOP.Model.Discounts
         {
 /*            DiscountCategory = category;*/
             CurrentDiscountPercent = 1;
+        }
+        /// <inheritdoc/>
+        public int CompareTo(PercentDiscount? discount2)
+        {
+
+            if (object.ReferenceEquals(this, discount2))
+                return 0;
+            if (CurrentDiscountPercent > discount2.CurrentDiscountPercent)
+            {
+                return 1;
+            }
+            if (CurrentDiscountPercent < discount2.CurrentDiscountPercent)
+            {
+                return -1;
+            }
+            else if (CurrentDiscountPercent == discount2.CurrentDiscountPercent)
+            {
+                return 0;
+            }
+            return 1;
         }
     }
 }

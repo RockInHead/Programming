@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 /// <summary>
 /// Хранит данные о товаре:Уникальный айди,Имя товара,Имя товара,Описание товара, Стоимость товара, Категорию товара.
 /// </summary>
-public class Item : ICloneable
+public class Item : ICloneable ,IComparable<Item>
 {
     //Поля
     /// <summary>
@@ -178,6 +178,25 @@ public class Item : ICloneable
         Item item = (Item)other;
         return (this.Name == item.Name && this.Info == item.Info && this.Cost == item.Cost && this.Category==item.Category);
     }
+    /// <inheritdoc/>
+    public int CompareTo(Item? item2)
+    {
 
+        if (object.ReferenceEquals(this, item2))
+            return 0;
+        if (Cost > item2.Cost)
+        {
+            return 1;
+        }
+        if (Cost < item2.Cost)
+        {
+            return -1;
+        }
+        else if (Cost == item2.Cost)
+        {
+            return 0;
+        }
+        return 1;
     }
+}
 
