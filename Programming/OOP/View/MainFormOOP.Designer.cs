@@ -29,24 +29,62 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainFormOOP));
+            OrdersTabPage = new TabPage();
+            ordersTab1 = new View.Tabs.OrdersTab();
+            CartsTabPage = new TabPage();
+            cartsTab1 = new View.Tabs.CartsTab();
             CustomersTabPage = new TabPage();
             сustomersTab = new View.Tabs.СustomersTab();
             ItemsTabPage = new TabPage();
             itemsTab1 = new View.Tabs.ItemsTab();
             TabControl = new TabControl();
-            CartsTabPage = new TabPage();
-            cartsTab1 = new View.Tabs.CartsTab();
-            OrdersTabPage = new TabPage();
-            ordersTab1 = new View.Tabs.OrdersTab();
-            tabPage1 = new TabPage();
-            discountsTab1 = new View.Tabs.DiscountsTab();
+            OrdersTabPage.SuspendLayout();
+            CartsTabPage.SuspendLayout();
             CustomersTabPage.SuspendLayout();
             ItemsTabPage.SuspendLayout();
             TabControl.SuspendLayout();
-            CartsTabPage.SuspendLayout();
-            OrdersTabPage.SuspendLayout();
-            tabPage1.SuspendLayout();
             SuspendLayout();
+            // 
+            // OrdersTabPage
+            // 
+            OrdersTabPage.Controls.Add(ordersTab1);
+            OrdersTabPage.Location = new Point(4, 29);
+            OrdersTabPage.Name = "OrdersTabPage";
+            OrdersTabPage.Padding = new Padding(3);
+            OrdersTabPage.Size = new Size(1169, 672);
+            OrdersTabPage.TabIndex = 3;
+            OrdersTabPage.Text = "Orders";
+            OrdersTabPage.UseVisualStyleBackColor = true;
+            // 
+            // ordersTab1
+            // 
+            ordersTab1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            ordersTab1.Customers = null;
+            ordersTab1.Location = new Point(-4, 3);
+            ordersTab1.Name = "ordersTab1";
+            ordersTab1.Size = new Size(1170, 666);
+            ordersTab1.TabIndex = 0;
+            // 
+            // CartsTabPage
+            // 
+            CartsTabPage.Controls.Add(cartsTab1);
+            CartsTabPage.Location = new Point(4, 29);
+            CartsTabPage.Name = "CartsTabPage";
+            CartsTabPage.Padding = new Padding(3);
+            CartsTabPage.Size = new Size(1169, 672);
+            CartsTabPage.TabIndex = 2;
+            CartsTabPage.Text = "Carts";
+            CartsTabPage.UseVisualStyleBackColor = true;
+            // 
+            // cartsTab1
+            // 
+            cartsTab1.Customers = null;
+            cartsTab1.Dock = DockStyle.Fill;
+            cartsTab1.Items = null;
+            cartsTab1.Location = new Point(3, 3);
+            cartsTab1.Name = "cartsTab1";
+            cartsTab1.Size = new Size(1163, 666);
+            cartsTab1.TabIndex = 0;
             // 
             // CustomersTabPage
             // 
@@ -94,7 +132,6 @@
             TabControl.Controls.Add(CustomersTabPage);
             TabControl.Controls.Add(CartsTabPage);
             TabControl.Controls.Add(OrdersTabPage);
-            TabControl.Controls.Add(tabPage1);
             TabControl.Dock = DockStyle.Fill;
             TabControl.Location = new Point(0, 0);
             TabControl.Multiline = true;
@@ -103,65 +140,6 @@
             TabControl.Size = new Size(1177, 705);
             TabControl.TabIndex = 0;
             TabControl.SelectedIndexChanged += tabControl1_SelectedIndexChanged;
-            // 
-            // CartsTabPage
-            // 
-            CartsTabPage.Controls.Add(cartsTab1);
-            CartsTabPage.Location = new Point(4, 29);
-            CartsTabPage.Name = "CartsTabPage";
-            CartsTabPage.Padding = new Padding(3);
-            CartsTabPage.Size = new Size(1169, 672);
-            CartsTabPage.TabIndex = 2;
-            CartsTabPage.Text = "Carts";
-            CartsTabPage.UseVisualStyleBackColor = true;
-            // 
-            // cartsTab1
-            // 
-            cartsTab1.Customers = null;
-            cartsTab1.Dock = DockStyle.Fill;
-            cartsTab1.Items = null;
-            cartsTab1.Location = new Point(3, 3);
-            cartsTab1.Name = "cartsTab1";
-            cartsTab1.Size = new Size(1163, 666);
-            cartsTab1.TabIndex = 0;
-            // 
-            // OrdersTabPage
-            // 
-            OrdersTabPage.Controls.Add(ordersTab1);
-            OrdersTabPage.Location = new Point(4, 29);
-            OrdersTabPage.Name = "OrdersTabPage";
-            OrdersTabPage.Padding = new Padding(3);
-            OrdersTabPage.Size = new Size(1169, 672);
-            OrdersTabPage.TabIndex = 3;
-            OrdersTabPage.Text = "Orders";
-            OrdersTabPage.UseVisualStyleBackColor = true;
-            // 
-            // ordersTab1
-            // 
-            ordersTab1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            ordersTab1.Customers = null;
-            ordersTab1.Location = new Point(-4, 3);
-            ordersTab1.Name = "ordersTab1";
-            ordersTab1.Size = new Size(1170, 666);
-            ordersTab1.TabIndex = 0;
-            // 
-            // tabPage1
-            // 
-            tabPage1.Controls.Add(discountsTab1);
-            tabPage1.Location = new Point(4, 29);
-            tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(1169, 672);
-            tabPage1.TabIndex = 4;
-            tabPage1.Text = "tabPage1";
-            tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // discountsTab1
-            // 
-            discountsTab1.Location = new Point(0, 0);
-            discountsTab1.Name = "discountsTab1";
-            discountsTab1.Size = new Size(684, 375);
-            discountsTab1.TabIndex = 0;
             // 
             // MainFormOOP
             // 
@@ -174,27 +152,24 @@
             Name = "MainFormOOP";
             Text = "Object Oriented Practics";
             Load += Form1_Load;
+            OrdersTabPage.ResumeLayout(false);
+            CartsTabPage.ResumeLayout(false);
             CustomersTabPage.ResumeLayout(false);
             ItemsTabPage.ResumeLayout(false);
             TabControl.ResumeLayout(false);
-            CartsTabPage.ResumeLayout(false);
-            OrdersTabPage.ResumeLayout(false);
-            tabPage1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
-
-        private TabPage CustomersTabPage;
-        private TabPage ItemsTabPage;
-        private TabControl TabControl;
-        private View.Tabs.СustomersTab сustomersTab;
-        private View.Tabs.ItemsTab itemsTab1;
-        private TabPage CartsTabPage;
-        private View.Tabs.CartsTab cartsTab1;
+        private View.Tabs.DiscountsTab discountsTab1;
         private TabPage OrdersTabPage;
         private View.Tabs.OrdersTab ordersTab1;
-        private TabPage tabPage1;
-        private View.Tabs.DiscountsTab discountsTab1;
+        private TabPage CartsTabPage;
+        private View.Tabs.CartsTab cartsTab1;
+        private TabPage CustomersTabPage;
+        private View.Tabs.СustomersTab сustomersTab;
+        private TabPage ItemsTabPage;
+        private View.Tabs.ItemsTab itemsTab1;
+        private TabControl TabControl;
     }
 }
