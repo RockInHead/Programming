@@ -8,9 +8,9 @@ namespace OOP.Services
 {
     static class DataTools
     {
-        public delegate bool SortingCriteria(Item item);
+        /*public delegate bool SortingCriteria(Item item);*/
 
-        public static List<Item> Filter(List<Item> items,SortingCriteria sortingCriteria)
+        public static List<Item> Filter(List<Item> items,Func<Item,bool> sortingCriteria)
         {
             List<Item> newItems = new List<Item>();
             foreach (Item item in items)

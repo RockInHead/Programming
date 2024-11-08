@@ -256,9 +256,9 @@ namespace OOP.View.Tabs
         }
         private void FindSubstringTextBox_TextChanged(object sender, EventArgs e)
         {
-            SortingCriteria substringCriteria;
-            substringCriteria = FindSubstringInString;
-            List<Item> filteredItems=DataTools.Filter(Items, substringCriteria);
+            /*SortingCriteria substringCriteria;*/
+            /*substringCriteria = FindSubstringInString;*/
+            List<Item> filteredItems=DataTools.Filter(Items, FindSubstringInString);
 /*            _displayedItems.Clear();*/
             _displayedItems= filteredItems;
             ItemsListBoxItems.Clear();
