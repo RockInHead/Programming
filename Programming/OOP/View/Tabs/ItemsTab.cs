@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OOP.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static OOP.Services.DataTools;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace OOP.View.Tabs
@@ -17,6 +19,7 @@ namespace OOP.View.Tabs
         //Поля
         private List<Item> _items;
         private Item _currentItem;
+        List<Item> _displayedItems;
         private List<string> ItemsListBoxItems = new List<string>();
 
         public List<Item> Items
@@ -26,8 +29,6 @@ namespace OOP.View.Tabs
         }
         public ItemsTab()
         {
-
-
             InitializeComponent();
             CategoryComboBox.Items.AddRange(Enum.GetValues(typeof(Category)).Cast<object>().ToArray());
 
@@ -52,6 +53,7 @@ namespace OOP.View.Tabs
                 Items.Add(NewItem);
                 ItemsListBoxItems.Add($"{NewItem.Id.ToString()}){NewItem.Name.ToString()}");
                 ItemsListBox.Items.Add(ItemsListBoxItems[ItemsListBoxItems.Count - 1]);
+                _displayedItems = Items;
 
 
 
@@ -97,8 +99,8 @@ namespace OOP.View.Tabs
                 AddButton.Enabled = false;
 
                 int selectedIndex = ItemsListBox.SelectedIndex;
-
-                _currentItem = Items[selectedIndex];
+  /*              _displayedItems = Items;*/
+                _currentItem = _displayedItems[selectedIndex];
                 IdTextBox.Text = _currentItem.Id.ToString();
                 CostTextBox.Text = _currentItem.Cost.ToString();
                 NameRichTextBox.Text = _currentItem.Name;
@@ -117,6 +119,7 @@ namespace OOP.View.Tabs
             Items.RemoveAt(selectedIndex);
             ItemsListBoxItems.RemoveAt(selectedIndex);
             ItemsListBox.Items.RemoveAt(selectedIndex);
+            _displayedItems = Items;
 
 
 
@@ -194,8 +197,8 @@ namespace OOP.View.Tabs
 
             if (ItemsListBox.SelectedIndex != -1)
             {
-                int selectedIndex = ItemsListBox.SelectedIndex;
-                _currentItem = Items[selectedIndex];
+                /*int selectedIndex = ItemsListBox.SelectedIndex;
+                _currentItem = Items[selectedIndex];*/
                 _currentItem.Info = DescriptionRichTextBox.Text;
             }
         }
@@ -242,6 +245,29 @@ namespace OOP.View.Tabs
         private void SelectedItemGroupBox_Enter(object sender, EventArgs e)
         {
 
+        }
+        private bool FindSubstringInString(Item item)
+        {
+            if (item.Name.IndexOf(FindSubstringTextBox.Text)!=-1)
+            {
+                return true;
+            }
+            return false;
+        }
+        private void FindSubstringTextBox_TextChanged(object sender, EventArgs e)
+        {
+            SortingCriteria substringCriteria;
+            substringCriteria = FindSubstringInString;
+            List<Item> filteredItems=DataTools.Filter(Items, substringCriteria);
+/*            _displayedItems.Clear();*/
+            _displayedItems= filteredItems;
+            ItemsListBoxItems.Clear();
+            foreach (Item item in filteredItems)
+            {
+                ItemsListBoxItems.Add($"{item.Id.ToString()}){item.Name}");
+            }
+            ItemsListBox.Items.Clear();
+            ItemsListBox.Items.AddRange(ItemsListBoxItems.ToArray());
         }
     }
 }

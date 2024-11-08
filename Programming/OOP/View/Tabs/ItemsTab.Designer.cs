@@ -31,6 +31,8 @@
             components = new System.ComponentModel.Container();
             tableLayoutPanel1 = new TableLayoutPanel();
             ItemsGroupBox = new GroupBox();
+            FindSubstringTextBox = new TextBox();
+            label13 = new Label();
             tableLayoutPanel2 = new TableLayoutPanel();
             AddButton = new Button();
             RemoveButton = new Button();
@@ -73,6 +75,8 @@
             // ItemsGroupBox
             // 
             ItemsGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            ItemsGroupBox.Controls.Add(FindSubstringTextBox);
+            ItemsGroupBox.Controls.Add(label13);
             ItemsGroupBox.Controls.Add(tableLayoutPanel2);
             ItemsGroupBox.Controls.Add(ItemsListBox);
             ItemsGroupBox.Location = new Point(3, 3);
@@ -81,6 +85,26 @@
             ItemsGroupBox.TabIndex = 0;
             ItemsGroupBox.TabStop = false;
             ItemsGroupBox.Text = "Items";
+            // 
+            // FindSubstringTextBox
+            // 
+            FindSubstringTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            FindSubstringTextBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            FindSubstringTextBox.Location = new Point(73, 23);
+            FindSubstringTextBox.Name = "FindSubstringTextBox";
+            FindSubstringTextBox.Size = new Size(275, 34);
+            FindSubstringTextBox.TabIndex = 15;
+            FindSubstringTextBox.TextChanged += FindSubstringTextBox_TextChanged;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            label13.Location = new Point(9, 23);
+            label13.Name = "label13";
+            label13.Size = new Size(57, 28);
+            label13.TabIndex = 15;
+            label13.Text = "Find:";
             // 
             // tableLayoutPanel2
             // 
@@ -123,9 +147,9 @@
             // 
             ItemsListBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             ItemsListBox.FormattingEnabled = true;
-            ItemsListBox.Location = new Point(6, 26);
+            ItemsListBox.Location = new Point(6, 66);
             ItemsListBox.Name = "ItemsListBox";
-            ItemsListBox.Size = new Size(342, 564);
+            ItemsListBox.Size = new Size(342, 524);
             ItemsListBox.TabIndex = 0;
             ItemsListBox.MouseClick += ItemsListBox_MouseClick;
             ItemsListBox.SelectedIndexChanged += ItemsListBox_SelectedIndexChanged;
@@ -279,6 +303,7 @@
             Size = new Size(945, 678);
             tableLayoutPanel1.ResumeLayout(false);
             ItemsGroupBox.ResumeLayout(false);
+            ItemsGroupBox.PerformLayout();
             tableLayoutPanel2.ResumeLayout(false);
             SelectedItemGroupBox.ResumeLayout(false);
             SelectedItemGroupBox.PerformLayout();
@@ -307,5 +332,7 @@
         private Label label4;
         private ComboBox CategoryComboBox;
         private Label label6;
+        private TextBox FindSubstringTextBox;
+        private Label label13;
     }
 }
