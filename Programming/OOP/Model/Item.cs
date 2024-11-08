@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 /// <summary>
 /// Хранит данные о товаре:Уникальный айди,Имя товара,Имя товара,Описание товара, Стоимость товара, Категорию товара.
 /// </summary>
-public class Item : ICloneable ,IComparable<Item>
+public class Item : ICloneable ,IComparable<Item>/*, IEquatable<Item>*/
 {
     //Поля
     /// <summary>
