@@ -160,7 +160,7 @@ public class Item : ICloneable ,IComparable<Item>/*, IEquatable<Item>*/
     /// <returns></returns>
     public object Clone()
     {
-        return new Item(this.Name, this.Info,this.Cost,this.Category);
+        return new Item(this.Name, this.Info, this.Cost, this.Category);
     }
     /// <summary>
     /// Объекты равны тогда, когда у них равны все поля кроме ID.

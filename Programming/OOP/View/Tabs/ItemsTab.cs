@@ -99,7 +99,7 @@ namespace OOP.View.Tabs
                 AddButton.Enabled = false;
 
                 int selectedIndex = ItemsListBox.SelectedIndex;
-  /*              _displayedItems = Items;*/
+                /*              _displayedItems = Items;*/
                 _currentItem = _displayedItems[selectedIndex];
                 IdTextBox.Text = _currentItem.Id.ToString();
                 CostTextBox.Text = _currentItem.Cost.ToString();
@@ -248,7 +248,7 @@ namespace OOP.View.Tabs
         }
         private bool FindSubstringInString(Item item)
         {
-            if (item.Name.IndexOf(FindSubstringTextBox.Text)!=-1)
+            if (item.Name.IndexOf(FindSubstringTextBox.Text) != -1)
             {
                 return true;
             }
@@ -258,9 +258,9 @@ namespace OOP.View.Tabs
         {
             /*SortingCriteria substringCriteria;*/
             /*substringCriteria = FindSubstringInString;*/
-            List<Item> filteredItems=DataTools.Filter(Items, FindSubstringInString);
-/*            _displayedItems.Clear();*/
-            _displayedItems= filteredItems;
+            List<Item> filteredItems = DataTools.Filter(Items, FindSubstringInString);
+            /*            _displayedItems.Clear();*/
+            _displayedItems = filteredItems;
             ItemsListBoxItems.Clear();
             foreach (Item item in filteredItems)
             {
@@ -268,6 +268,35 @@ namespace OOP.View.Tabs
             }
             ItemsListBox.Items.Clear();
             ItemsListBox.Items.AddRange(ItemsListBoxItems.ToArray());
+        }
+        private bool CostAscending(Item item1,Item item2)
+        {
+            return item1.Cost > item2.Cost;
+        }
+        private void SortByComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SortingCriteria sortingCriteria;
+            switch (SortByComboBox.SelectedIndex)
+            {
+                case 0:
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    sortingCriteria = CostAscending;
+                    List<Item> sortedItems= DataTools.SortBy(Items, sortingCriteria);
+                    _displayedItems = sortedItems;
+                    ItemsListBoxItems.Clear();
+                    foreach (Item item in sortedItems)
+                    {
+                        ItemsListBoxItems.Add($"{item.Id.ToString()}){item.Name}");
+                    }
+                    ItemsListBox.Items.Clear();
+                    ItemsListBox.Items.AddRange(ItemsListBoxItems.ToArray());
+                    break;
+                case 3:
+                    break;
+            }
         }
     }
 }

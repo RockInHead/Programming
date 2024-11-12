@@ -31,6 +31,8 @@
             components = new System.ComponentModel.Container();
             tableLayoutPanel1 = new TableLayoutPanel();
             ItemsGroupBox = new GroupBox();
+            SortByComboBox = new ComboBox();
+            label7 = new Label();
             FindSubstringTextBox = new TextBox();
             label13 = new Label();
             tableLayoutPanel2 = new TableLayoutPanel();
@@ -75,6 +77,8 @@
             // ItemsGroupBox
             // 
             ItemsGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            ItemsGroupBox.Controls.Add(SortByComboBox);
+            ItemsGroupBox.Controls.Add(label7);
             ItemsGroupBox.Controls.Add(FindSubstringTextBox);
             ItemsGroupBox.Controls.Add(label13);
             ItemsGroupBox.Controls.Add(tableLayoutPanel2);
@@ -85,6 +89,30 @@
             ItemsGroupBox.TabIndex = 0;
             ItemsGroupBox.TabStop = false;
             ItemsGroupBox.Text = "Items";
+            // 
+            // SortByComboBox
+            // 
+            SortByComboBox.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            SortByComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            SortByComboBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            SortByComboBox.FormattingEnabled = true;
+            SortByComboBox.Items.AddRange(new object[] { "Name (A-Z/A-Я)", "Name (Z-A/Я-А)", "Cost (Ascending)", "Cost (Descending)" });
+            SortByComboBox.Location = new Point(107, 541);
+            SortByComboBox.Name = "SortByComboBox";
+            SortByComboBox.Size = new Size(241, 36);
+            SortByComboBox.TabIndex = 15;
+            SortByComboBox.SelectedIndexChanged += SortByComboBox_SelectedIndexChanged;
+            // 
+            // label7
+            // 
+            label7.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            label7.Location = new Point(6, 544);
+            label7.Name = "label7";
+            label7.Size = new Size(95, 28);
+            label7.TabIndex = 15;
+            label7.Text = "OrderBy:";
             // 
             // FindSubstringTextBox
             // 
@@ -149,7 +177,7 @@
             ItemsListBox.FormattingEnabled = true;
             ItemsListBox.Location = new Point(6, 66);
             ItemsListBox.Name = "ItemsListBox";
-            ItemsListBox.Size = new Size(342, 524);
+            ItemsListBox.Size = new Size(342, 464);
             ItemsListBox.TabIndex = 0;
             ItemsListBox.MouseClick += ItemsListBox_MouseClick;
             ItemsListBox.SelectedIndexChanged += ItemsListBox_SelectedIndexChanged;
@@ -334,5 +362,7 @@
         private Label label6;
         private TextBox FindSubstringTextBox;
         private Label label13;
+        private ComboBox SortByComboBox;
+        private Label label7;
     }
 }
