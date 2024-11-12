@@ -277,6 +277,43 @@ namespace OOP.View.Tabs
         {
             return item1.Cost < item2.Cost;
         }
+        private bool AlphabetAZ(Item item1,Item item2)
+        {
+            if ((string.Compare(item1.Name, item2.Name)) < 0)
+             {
+                return false;
+
+            }
+            else { 
+                return true; 
+            }
+        }
+        private bool AlphabetZA(Item item1, Item item2)
+        {
+            if ((string.Compare(item1.Name, item2.Name)) < 0)
+            {
+                return true;
+
+            }
+            else
+            {
+                return false;
+            }
+        }
+        private void SortItemsListBox(SortingCriteria sortingCriteria)
+        {
+            List<Item> sortedItems;
+            sortedItems = DataTools.SortBy(Items, sortingCriteria);
+            _displayedItems = sortedItems;
+            ItemsListBoxItems.Clear();
+            foreach (Item item in sortedItems)
+            {
+                ItemsListBoxItems.Add($"{item.Id.ToString()}){item.Name}");
+            }
+            ItemsListBox.Items.Clear();
+            ItemsListBox.Items.AddRange(ItemsListBoxItems.ToArray());
+      
+        }
         private void SortByComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             SortingCriteria sortingCriteria;
@@ -285,8 +322,28 @@ namespace OOP.View.Tabs
             switch (SortByComboBox.SelectedIndex)
             {
                 case 0:
+                    sortingCriteria = AlphabetAZ;
+                    sortedItems = DataTools.SortBy(Items, sortingCriteria);
+                    _displayedItems = sortedItems;
+                    ItemsListBoxItems.Clear();
+                    foreach (Item item in sortedItems)
+                    {
+                        ItemsListBoxItems.Add($"{item.Id.ToString()}){item.Name}");
+                    }
+                    ItemsListBox.Items.Clear();
+                    ItemsListBox.Items.AddRange(ItemsListBoxItems.ToArray());
                     break;
                 case 1:
+                    sortingCriteria = AlphabetZA;
+                    sortedItems = DataTools.SortBy(Items, sortingCriteria);
+                    _displayedItems = sortedItems;
+                    ItemsListBoxItems.Clear();
+                    foreach (Item item in sortedItems)
+                    {
+                        ItemsListBoxItems.Add($"{item.Id.ToString()}){item.Name}");
+                    }
+                    ItemsListBox.Items.Clear();
+                    ItemsListBox.Items.AddRange(ItemsListBoxItems.ToArray());
                     break;
                 case 2:
                     sortingCriteria = CostAscending;
