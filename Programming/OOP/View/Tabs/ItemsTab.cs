@@ -273,9 +273,15 @@ namespace OOP.View.Tabs
         {
             return item1.Cost > item2.Cost;
         }
+        private bool CostDescending(Item item1, Item item2)
+        {
+            return item1.Cost < item2.Cost;
+        }
         private void SortByComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             SortingCriteria sortingCriteria;
+            List<Item> sortedItems ;
+
             switch (SortByComboBox.SelectedIndex)
             {
                 case 0:
@@ -284,7 +290,7 @@ namespace OOP.View.Tabs
                     break;
                 case 2:
                     sortingCriteria = CostAscending;
-                    List<Item> sortedItems= DataTools.SortBy(Items, sortingCriteria);
+                    sortedItems = DataTools.SortBy(Items, sortingCriteria);
                     _displayedItems = sortedItems;
                     ItemsListBoxItems.Clear();
                     foreach (Item item in sortedItems)
@@ -295,6 +301,17 @@ namespace OOP.View.Tabs
                     ItemsListBox.Items.AddRange(ItemsListBoxItems.ToArray());
                     break;
                 case 3:
+                    sortingCriteria = CostDescending;
+                    sortedItems = DataTools.SortBy(Items, sortingCriteria);
+                    _displayedItems = sortedItems;
+                    ItemsListBoxItems.Clear();
+                    foreach (Item item in sortedItems)
+                    {
+                        ItemsListBoxItems.Add($"{item.Id.ToString()}){item.Name}");
+                    }
+                    ItemsListBox.Items.Clear();
+                    ItemsListBox.Items.AddRange(ItemsListBoxItems.ToArray());
+                   
                     break;
             }
         }
