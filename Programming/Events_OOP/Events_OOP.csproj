@@ -55,11 +55,11 @@
     <Compile Include="Model\Contact.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="View\Tabs\ContactTab.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="SecondForm.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Tabs\ContactTab.Designer.cs">
-      <DependentUpon>ContactTab.cs</DependentUpon>
+    <Compile Include="SecondForm.Designer.cs">
+      <DependentUpon>SecondForm.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -73,8 +73,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="View\Tabs\ContactTab.resx">
-      <DependentUpon>ContactTab.cs</DependentUpon>
+    <EmbeddedResource Include="SecondForm.resx">
+      <DependentUpon>SecondForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -88,6 +88,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="View\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -8,18 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Events_OOP.View.Tabs
+namespace EventsPractics.View
 {
-    public partial class ContactTab : UserControl
+    public partial class SecondaryForm : Form
     {
-        public ContactTab()
+        public SecondaryForm()
         {
             InitializeComponent();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
