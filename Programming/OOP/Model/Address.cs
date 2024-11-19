@@ -15,6 +15,10 @@ namespace OOP.Model
         private string _street;
         private string _building;
         private string _apartment;
+        /// <summary>
+        /// Событие изменения адреса.
+        /// </summary>
+        public event EventHandler<EventArgs> AddressChanged;
 
         /// <summary>
         /// Почтовый индекс.
@@ -31,7 +35,7 @@ namespace OOP.Model
                 }
                 
                 _index = value;
-                
+                AddressChanged?.Invoke(this, EventArgs.Empty);
             }
         }
         /// <summary>
@@ -44,6 +48,7 @@ namespace OOP.Model
             {
                 ValueValidator.AssertStringOnLength(value, 50, "Country");
                 _country = value;
+                AddressChanged?.Invoke(this, EventArgs.Empty);
             }
         }
         /// <summary>
@@ -56,6 +61,7 @@ namespace OOP.Model
             {
                 ValueValidator.AssertStringOnLength(value, 50, "City");
                 _city = value;
+                AddressChanged?.Invoke(this, EventArgs.Empty);
             }
         }
         /// <summary>
@@ -69,6 +75,7 @@ namespace OOP.Model
                 ValueValidator.AssertStringOnLength(value, 100, "Street");
 
                 _street = value;
+                AddressChanged?.Invoke(this, EventArgs.Empty);
             }
         }
         /// <summary>
@@ -84,7 +91,9 @@ namespace OOP.Model
                     ValueValidator.AssertStringOnLength(value, 10, "Building");
 
                     _building = value;
-                }catch (Exception ex)
+                    AddressChanged?.Invoke(this, EventArgs.Empty);
+                }
+                catch (Exception ex)
                 {
                     throw new Exception();
                 }
@@ -101,6 +110,7 @@ namespace OOP.Model
             {
                 ValueValidator.AssertStringOnLength(value, 10, "Apartment");
                 _apartment = value;
+                AddressChanged?.Invoke(this, EventArgs.Empty);
             }
         }
         /// <summary>

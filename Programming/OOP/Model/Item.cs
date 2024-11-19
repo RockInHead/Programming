@@ -61,6 +61,19 @@ public class Item : ICloneable ,IComparable<Item>/*, IEquatable<Item>*/
     }
 
     /// <summary>
+    /// Событие изменения названия товара.
+    /// </summary>
+    public event EventHandler<EventArgs> NameChanged;
+    /// <summary>
+    /// Событие изменения описания товара.
+    /// </summary>
+    public event EventHandler<EventArgs> InfoChanged;
+    /// <summary>
+    /// Событие изменения стоимости товара.
+    /// </summary>
+    public event EventHandler<EventArgs> CostChanged;
+
+    /// <summary>
     /// Возвращает и задает имя товара.
     /// </summary>
     public string Name
@@ -73,6 +86,7 @@ public class Item : ICloneable ,IComparable<Item>/*, IEquatable<Item>*/
         {
             ValueValidator.AssertStringOnLength(value, 200, Name);
             _name = value;
+            NameChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 
@@ -89,6 +103,7 @@ public class Item : ICloneable ,IComparable<Item>/*, IEquatable<Item>*/
         {
             ValueValidator.AssertStringOnLength(value, 1000, Info);
             _info = value;
+            InfoChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 
@@ -106,6 +121,7 @@ public class Item : ICloneable ,IComparable<Item>/*, IEquatable<Item>*/
             if(value<100000 && value >= 0)
             {
                 _cost = value;
+                CostChanged?.Invoke(this, EventArgs.Empty);
 
             }
             else

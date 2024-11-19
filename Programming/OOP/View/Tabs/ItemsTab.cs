@@ -16,6 +16,11 @@ namespace OOP.View.Tabs
 {
     public partial class ItemsTab : UserControl
     {
+        /// <summary>
+        /// Событие изменения товаров.
+        /// </summary>
+        public event EventHandler<EventArgs> ItemsChanged;
+
         //Поля
         private List<Item> _items;
         private Item _currentItem;
@@ -61,6 +66,7 @@ namespace OOP.View.Tabs
                 NameRichTextBox.Text = "";
                 DescriptionRichTextBox.Text = "";
                 CategoryComboBox.SelectedIndex = -1;
+                ItemsChanged?.Invoke(this, EventArgs.Empty);
 
             }
 
@@ -132,6 +138,7 @@ namespace OOP.View.Tabs
             DescriptionRichTextBox.Text = "";
 
             CategoryComboBox.SelectedIndex = -1;
+            ItemsChanged?.Invoke(this, EventArgs.Empty);
 
         }
 
@@ -148,7 +155,7 @@ namespace OOP.View.Tabs
                     {
                         CostTextBox.BackColor = System.Drawing.Color.White;
                         double cost = double.Parse(CostTextBox.Text);
-
+                        ItemsChanged?.Invoke(this, EventArgs.Empty);
                     }
                 }
                 catch (Exception)
@@ -169,7 +176,7 @@ namespace OOP.View.Tabs
                         CostTextBox.BackColor = System.Drawing.Color.White;
                         double cost = double.Parse(CostTextBox.Text);
                         _currentItem.Cost = cost;
-
+                        ItemsChanged?.Invoke(this, EventArgs.Empty);
                     }
                 }
 
@@ -188,6 +195,7 @@ namespace OOP.View.Tabs
             if ((ItemsListBox.SelectedIndex != -1))
             {
                 _currentItem.Name = NameRichTextBox.Text;
+                ItemsChanged?.Invoke(this, EventArgs.Empty);
             }
 
         }
@@ -200,6 +208,7 @@ namespace OOP.View.Tabs
                 /*int selectedIndex = ItemsListBox.SelectedIndex;
                 _currentItem = Items[selectedIndex];*/
                 _currentItem.Info = DescriptionRichTextBox.Text;
+                ItemsChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -239,6 +248,7 @@ namespace OOP.View.Tabs
             {
                 Category category = (Category)CategoryComboBox.SelectedItem;
                 _currentItem.Category = category;
+                ItemsChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 

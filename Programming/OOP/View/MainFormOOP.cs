@@ -5,6 +5,11 @@ namespace OOP
 {
     public partial class MainFormOOP : Form
     {
+        /*/// <summary>
+        /// Событие изменения товаров.
+        /// </summary>
+        public event EventHandler<EventArgs> ItemsChanged;*/
+
 
         public MainFormOOP()
         {
@@ -17,9 +22,14 @@ namespace OOP
             cartsTab1.Customers = _store.Customers;
 
             ordersTab1.Customers= _store.Customers;
-
+            itemsTab1.ItemsChanged += ItemsChanged;
         }
-
+        private void ItemsChanged(object? sender, EventArgs e)
+        {
+            //MessageBox.Show("????????!");
+            cartsTab1.RefreshData();
+            cartsTab1.RefreshData();
+        }
         private void Form1_Load(object sender, EventArgs e)
         {
 
