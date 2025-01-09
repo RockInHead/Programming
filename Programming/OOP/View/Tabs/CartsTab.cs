@@ -15,12 +15,23 @@ namespace OOP.View.Tabs
 {
     public partial class CartsTab : UserControl
     {
-
         private Item _items;
         private Customer _customer;
         private Customer _currentCustomer;
+
+        /// <summary>
+        /// Получает или устанавливает список товаров.
+        /// </summary>
         public List<Item> Items { get; set; }
+
+        /// <summary>
+        /// Получает или устанавливает список клиентов.
+        /// </summary>
         public List<Customer> Customers { get; set; }
+
+        /// <summary>
+        /// Обновляет данные в элементах управления списка товаров и клиентов.
+        /// </summary>
         public void RefreshData()
         {
             if (Items != null)
@@ -36,6 +47,7 @@ namespace OOP.View.Tabs
 
             }
         }
+
         /// <summary>
         /// Очищает все товары в корзине текущего клиента и CartItemsListBox.
         /// </summary>
@@ -47,6 +59,7 @@ namespace OOP.View.Tabs
                 CartListBox.Items.Clear();
             }
         }
+
         /// <summary>
         /// Обновляет информацию о сумме товаров в корзине и отображает ее в AmountLabel.
         /// </summary>
@@ -60,6 +73,11 @@ namespace OOP.View.Tabs
             };
             AmountLabel.Text = _currentCustomer.Cart.Amount.ToString();
         }
+
+        /// <summary>
+        /// Конструктор класса CartsTab,
+        /// инициализирует компоненты и отключает кнопку добавления в корзину.
+        /// </summary>
         public CartsTab()
         {
             InitializeComponent();
@@ -67,7 +85,11 @@ namespace OOP.View.Tabs
 
         }
 
-
+        /// <summary>
+        /// Обработчик изменения выбранного клиента в комбобоксе.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void CustomersComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (CustomersComboBox.SelectedIndex != -1 && CustomersComboBox.SelectedIndex != null)
@@ -76,15 +98,15 @@ namespace OOP.View.Tabs
                 CartListBox.Items.Clear();
                 DiscountCheckedListBox.Items.Clear();
                 _currentCustomer = Customers[CustomersComboBox.SelectedIndex];
-                /*                if (_currentCustomer.Cart.Items != null)
-                                {*/
+
                 CartListBox.Items.AddRange(_currentCustomer.Cart.Items.ToArray());
-                /*                }*/
+
                 for (int i = 0; i < _currentCustomer.Discounts.Count; i++)
                 {
                     DiscountCheckedListBox.Items.Add(_currentCustomer.Discounts[i].Info);
                     DiscountCheckedListBox.SetItemChecked(i, true);
                 }
+
                 UpdateAmount();
                 UpdateDiscountAndTotalAmount();
             }
@@ -94,6 +116,12 @@ namespace OOP.View.Tabs
                 DiscountCheckedListBox.Items.Clear();
             }
         }
+
+        /// <summary>
+        /// Обработчик нажатия кнопки "Добавить в корзину".
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void AddToCartButton_Click(object sender, EventArgs e)
         {
             if (ItemsListBox.SelectedIndex != -1)
@@ -106,6 +134,12 @@ namespace OOP.View.Tabs
                 UpdateDiscountAndTotalAmount();
             }
         }
+
+        /// <summary>
+        /// Обработчик нажатия кнопки "Удалить элемент".
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void RemoveItemButton_Click(object sender, EventArgs e)
         {
             if (CartListBox.SelectedIndex != -1)
@@ -116,14 +150,24 @@ namespace OOP.View.Tabs
                 UpdateDiscountAndTotalAmount();
             }
         }
+
+        /// <summary>
+        /// Обработчик нажатия кнопки "Очистить корзину".
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void ClearCartButton_Click(object sender, EventArgs e)
         {
-
             ClearCart();
             UpdateAmount();
             UpdateDiscountAndTotalAmount();
         }
 
+        /// <summary>
+        /// Обработчик нажатия кнопки "Создать заказ".
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void CreateOrderButton_Click(object sender, EventArgs e)
         {
             if (CartListBox.Items.Count != 0)
@@ -137,14 +181,25 @@ namespace OOP.View.Tabs
                 List<Item> items = _currentCustomer.Cart.Items;
                 Order newOrder;
 
-
                 if (_currentCustomer.IsPriority == true)
                 {
-                    newOrder = new PriorityOrder(OrderStatus.New, Date, items, _currentCustomer.Address, Convert.ToDouble(DiscountAmountLabel.Text), DateTime.Now, DeliveryTimeRange.Range9To11);
+                    newOrder = new PriorityOrder(
+                        OrderStatus.New, 
+                        Date,
+                        items, 
+                        _currentCustomer.Address,
+                        Convert.ToDouble(DiscountAmountLabel.Text),
+                        DateTime.Now,
+                        DeliveryTimeRange.Range9To11);
                 }
                 else
                 {
-                    newOrder = new Order(OrderStatus.New, Date, items, _currentCustomer.Address,Convert.ToDouble(DiscountAmountLabel.Text));
+                    newOrder = new Order(
+                        OrderStatus.New,
+                        Date,
+                        items,
+                        _currentCustomer.Address,
+                        Convert.ToDouble(DiscountAmountLabel.Text));
                 }
 
                 _currentCustomer.Orders.Add(newOrder);
@@ -157,15 +212,26 @@ namespace OOP.View.Tabs
                 UpdateAmount();
             }
         }
+
+        /// <summary>
+        /// Очищает метки суммы скидки и общей суммы.
+        /// </summary>
         private void ClearDiscountAndTotalLabels()
         {
             DiscountAmountLabel.Text = "0";
             TotalLabel.Text = "0";
         }
+
+        /// <summary>
+        /// Обработчик изменения выбранных скидок.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void DiscountCheckedListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateDiscountAndTotalAmount();
         }
+
         /// <summary>
         /// Обновляет сумму скидки и итоговую сумму заказа.
         /// </summary>
@@ -181,6 +247,7 @@ namespace OOP.View.Tabs
             DiscountAmountLabel.Text = discountAmount.ToString();
             TotalLabel.Text = ((_currentCustomer.Cart.Amount - discountAmount).ToString());
         }
+
         /// <summary>
         /// Устанавливает флажки для всех элементов в списке скидок.
         /// </summary>
@@ -191,6 +258,11 @@ namespace OOP.View.Tabs
                 DiscountCheckedListBox.SetItemChecked(i, true);
             }
         }
+
+        /// <summary>
+        /// Создает новый заказ и применяет скидки к текущему клиенту.
+        /// </summary>
+        /// <returns>Сумма скидки.</returns>
         public int CreateOrder()
         {
             int discountAmount = 0;
@@ -201,8 +273,6 @@ namespace OOP.View.Tabs
                 discountAmount += (int)_currentCustomer.Discounts[indexOfDiscount].Apply(_currentCustomer.Cart.Items);
             }
 
-            /*foreach (int indexOfDiscount in DiscountCheckedListBox.CheckedIndices)
-            {*/
             for (int indexOfDiscount = 0; indexOfDiscount < DiscountCheckedListBox.Items.Count; indexOfDiscount++)
             {
                 _currentCustomer.Discounts[indexOfDiscount].Update(_currentCustomer.Cart.Items);
@@ -210,6 +280,7 @@ namespace OOP.View.Tabs
             UpdateDiscountsCheckedListBox();
             return discountAmount;
         }
+
         /// <summary>
         /// Обновляет список доступных скидок в CheckedListBox.
         /// Устанавливает флажки для всех скидок.
@@ -226,6 +297,11 @@ namespace OOP.View.Tabs
             UpdateDiscountAndTotalAmount();
         }
 
+        /// <summary>
+        /// Обработчик изменения выбранного значения в списке скидок.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void DiscountCheckedListBox_SelectedValueChanged(object sender, EventArgs e)
         {
             UpdateDiscountAndTotalAmount();

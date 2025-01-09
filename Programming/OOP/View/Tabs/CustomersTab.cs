@@ -18,20 +18,31 @@ namespace OOP.View.Tabs
         private Customer _currentCustomer;
         private List<string> CustomersListBoxItems = new List<string>();
 
+        /// <summary>
+        /// Получает или устанавливает список клиентов.
+        /// </summary>
         public List<Customer> Customers
         {
             get { return _customers; }
             set { _customers = value; }
         }
+
+        /// <summary>
+        /// Конструктор класса CustomersTab, инициализирует компоненты.
+        /// </summary>
         public СustomersTab()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Обработчик нажатия кнопки "Удалить клиента".
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void RemoveCustomerButton_Click(object sender, EventArgs e)
         {
             int selectedIndex = CustomersListBox.SelectedIndex;
-
 
             if (selectedIndex == -1) return;
 
@@ -40,26 +51,17 @@ namespace OOP.View.Tabs
             CustomersListBox.Items.RemoveAt(selectedIndex);
 
             FullNameTextBox.Text = "";
-            /*AddressRichTextBox.Text = "";*/
-
-        }
-
-        private void AddressRichTextBox_TextChanged(object sender, EventArgs e)
-        {
-            /* if ((CustomersListBox.SelectedIndex != -1))
-             {
-                 _currentCustomer.Address = AddressRichTextBox.Text;
-             }*/
-        }
-        private int ListBoxState()
-        {
-            return CustomersListBox.SelectedIndex;
         }
 
 
+
+        /// <summary>
+        /// Обработчик изменения выбранного клиента в списке.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void CustomersListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            /*addressControl1.ListBoxfromCustomersTabState(CustomersListBox.SelectedIndex);*/
             if (CustomersListBox.Items.Count == 0 || CustomersListBox.SelectedIndex == -1)
             {
                 addressControl1.ListBoxNull = true;
@@ -70,8 +72,6 @@ namespace OOP.View.Tabs
                 IsPriorityCheckBox.Checked = false;
                 addressControl1.ClearForm();
                 DiscountsListBox.Items.Clear();
-                /*AddressRichTextBox.Text = "";*/
-
             }
             else
             {
@@ -91,46 +91,41 @@ namespace OOP.View.Tabs
                 FullNameTextBox.Text = _currentCustomer.FullName;
                 IsPriorityCheckBox.Checked = _currentCustomer.IsPriority;
 
-                /*                AddressControl.Get(_currentCustomer.Address);
-                                addressControl1.ShowValues();*/
                 addressControl1.ShowValues(_currentCustomer.Address);
 
                 foreach (IDiscount discount in _currentCustomer.Discounts)
                 {
                     DiscountsListBox.Items.Add(discount.Info);
                 }
-                /*AddressRichTextBox.Text = _currentCustomer.Address;*/
             }
         }
 
+        /// <summary>
+        /// Обработчик нажатия кнопки "Добавить клиента".
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void AddCustomerButton_Click(object sender, EventArgs e)
         {
-
             Customer NewCustomer = new Customer();
             NewCustomer.FullName = FullNameTextBox.Text;
             NewCustomer.IsPriority = IsPriorityCheckBox.Checked;
             NewCustomer.Address = addressControl1.GiveValues();
-            /*NewCustomer.Address = addressControl1.Address;*/
-            /* NewCustomer.Address = AddressRichTextBox.Text;*/
-
 
             Customers.Add(NewCustomer);
             CustomersListBoxItems.Add($"{NewCustomer.Id.ToString()})");
             CustomersListBox.Items.Add(CustomersListBoxItems[CustomersListBoxItems.Count - 1]);
-            /*CanvaRectanglesListBox.SelectedIndex = CanvaRectanglesListBox.Items.Count - 1;*/
 
             FullNameTextBox.Text = "";
             IsPriorityCheckBox.Checked = false;
             addressControl1.ClearForm();
-            /*addressControl1.ListBoxfromCustomersTabState(CustomersListBox.SelectedIndex);*/
-
-            /*AddressRichTextBox.Text = "";*/
-
-
-
-
         }
 
+        /// <summary>
+        /// Обработчик изменения текста в текстовом поле полного имени клиента.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void FullNameTextBox_TextChanged(object sender, EventArgs e)
         {
             if ((CustomersListBox.SelectedIndex != -1))
@@ -139,6 +134,12 @@ namespace OOP.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Обработчик события нажатия мыши на CustomersListBox.
+        /// Сбрасывает выбор, если кликнули на пустое место.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void CustomersListBox_MouseClick(object sender, MouseEventArgs e)
         {
             if (CustomersListBox.IndexFromPoint(e.Location) == -1)
@@ -151,16 +152,11 @@ namespace OOP.View.Tabs
             }
         }
 
-        private void SelectedCustomerGroupBox_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void addressControl1_Load(object sender, EventArgs e)
-        {
-
-        }
-
+        /// <summary>
+        /// Обработчик изменения состояния чекбокса "Приоритет".
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void IsPriorityCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             if ((CustomersListBox.SelectedIndex != -1))
@@ -169,10 +165,14 @@ namespace OOP.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Обработчик нажатия кнопки "Добавить скидку".
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void AddPercentDiscountButton_Click(object sender, EventArgs e)
         {
-            /*using (DiscountCategoryForm discountCategoryForm = new DiscountCategoryForm())
-            {*/
+
             if ((CustomersListBox.SelectedIndex != -1))
             {
                 DiscountCategoryForm discountCategoryForm = new DiscountCategoryForm();
@@ -185,6 +185,11 @@ namespace OOP.View.Tabs
 
         }
 
+        /// <summary>
+        /// Обработчик нажатия кнопки "Удалить процентную скидку".
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void RemovePercentDiscountButton_Click(object sender, EventArgs e)
         {
             if((CustomersListBox.SelectedIndex != -1)) 

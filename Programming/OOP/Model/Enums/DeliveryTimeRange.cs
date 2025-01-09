@@ -1,4 +1,7 @@
-﻿public enum DeliveryTimeRange
+﻿/// <summary>
+/// Перечисление, содержащее время для доставки товаров.
+/// </summary>
+public enum DeliveryTimeRange
 {
     /// <summary>
     /// Диапазон времени с 9:00 до 11:00.

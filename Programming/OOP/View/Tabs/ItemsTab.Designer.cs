@@ -83,6 +83,7 @@
             ItemsGroupBox.Controls.Add(label13);
             ItemsGroupBox.Controls.Add(tableLayoutPanel2);
             ItemsGroupBox.Controls.Add(ItemsListBox);
+            ItemsGroupBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
             ItemsGroupBox.Location = new Point(3, 3);
             ItemsGroupBox.Name = "ItemsGroupBox";
             ItemsGroupBox.Size = new Size(371, 672);
@@ -175,9 +176,10 @@
             // 
             ItemsListBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             ItemsListBox.FormattingEnabled = true;
+            ItemsListBox.ItemHeight = 28;
             ItemsListBox.Location = new Point(6, 66);
             ItemsListBox.Name = "ItemsListBox";
-            ItemsListBox.Size = new Size(342, 464);
+            ItemsListBox.Size = new Size(342, 452);
             ItemsListBox.TabIndex = 0;
             ItemsListBox.MouseClick += ItemsListBox_MouseClick;
             ItemsListBox.SelectedIndexChanged += ItemsListBox_SelectedIndexChanged;
@@ -196,24 +198,24 @@
             SelectedItemGroupBox.Controls.Add(NameRichTextBox);
             SelectedItemGroupBox.Controls.Add(CostTextBox);
             SelectedItemGroupBox.Controls.Add(IdTextBox);
+            SelectedItemGroupBox.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 204);
             SelectedItemGroupBox.Location = new Point(380, 3);
             SelectedItemGroupBox.Name = "SelectedItemGroupBox";
             SelectedItemGroupBox.Size = new Size(562, 672);
             SelectedItemGroupBox.TabIndex = 1;
             SelectedItemGroupBox.TabStop = false;
             SelectedItemGroupBox.Text = "Selected Item";
-            SelectedItemGroupBox.Enter += SelectedItemGroupBox_Enter;
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label6.ForeColor = Color.Firebrick;
+            label6.ForeColor = Color.Red;
             label6.Location = new Point(267, 152);
             label6.Name = "label6";
-            label6.Size = new Size(210, 28);
+            label6.Size = new Size(168, 28);
             label6.TabIndex = 14;
-            label6.Text = "Выберите категорию!";
+            label6.Text = "Сhoose Category!";
             label6.Visible = false;
             // 
             // CategoryComboBox
@@ -236,7 +238,7 @@
             label4.Size = new Size(103, 28);
             label4.TabIndex = 12;
             label4.Text = "Category:";
-            label4.Click += label4_Click;
+
             // 
             // label3
             // 
@@ -316,7 +318,7 @@
             // IdTextBox
             // 
             IdTextBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            IdTextBox.Location = new Point(70, 47);
+            IdTextBox.Location = new Point(70, 48);
             IdTextBox.Name = "IdTextBox";
             IdTextBox.ReadOnly = true;
             IdTextBox.Size = new Size(191, 34);

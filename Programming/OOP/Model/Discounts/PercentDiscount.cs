@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace OOP.Model.Discounts
 {
+    /// <summary>
+    /// Хранит данные о процентной скидке: текущий процент,
+    /// категории для скидок и сумму стоимости всех товаров конкретной категории товаров.
+    /// </summary>
     public class PercentDiscount : IDiscount,IComparable<PercentDiscount>
     {
 
@@ -21,6 +25,10 @@ namespace OOP.Model.Discounts
         /// Сумма стоимости всех товаров конкретной категории.
         /// </summary>
         private double _accumulatedAmount;
+
+        /// <summary>
+        /// Свойство, представляющее текущий процент скидки.
+        /// </summary>
         public int CurrentDiscountPercent 
         {
             get {
@@ -31,14 +39,25 @@ namespace OOP.Model.Discounts
                 {
                     _currentDiscountPercent = value;
                 }
-            } }
+            
+            } 
+        }
+
+        /// <summary>
+        /// Свойство, представляющее категорию скидки.
+        /// </summary>
         public Category DiscountCategory {
             get {
             return _discountCategory;
             }
              set{
                 _discountCategory = value;
-            }}
+            }
+        }
+
+        /// <summary>
+        /// Свойство, представляющее накопленную сумму.
+        /// </summary>
         public double AccumulatedAmount
         {
             get
@@ -51,6 +70,11 @@ namespace OOP.Model.Discounts
                 _accumulatedAmount = value;
             }
         }
+
+        /// <summary>
+        /// Свойство, представляющее информацию о скидке в строковом формате.
+        /// </summary>
+        /// <returns>Строка с информацией о категории скидки и проценте.</returns>
         public string Info
         {
             get
@@ -58,6 +82,7 @@ namespace OOP.Model.Discounts
                 return $"Процентная {DiscountCategory.ToString()} - {CurrentDiscountPercent}%";
             }
         }
+
         /// <summary>
         /// Считает и возвращает общую стоимость товаров конретной категории. 
         /// </summary>
@@ -65,7 +90,6 @@ namespace OOP.Model.Discounts
         /// <returns></returns>
         private double GetAmount(List<Item> items)
         {
-
             double sum = 0;
             foreach (Item item in items)
             {
@@ -75,48 +99,39 @@ namespace OOP.Model.Discounts
                 }
             }
             return Math.Round(sum, 2);
-            /*double sum = 0;
-            foreach (Item item in items)
-            {
-                sum += item.Cost;
-            }
-            return Math.Round(sum, 2);*/
+
         }
 
+        /// <summary>
+        /// Вычисляет сумму скидки на основе предоставленного списка товаров.
+        /// </summary>
+        /// <param name="items">Список товаров, для которых нужно рассчитать скидку.</param>
+        /// <returns>Вычисленная сумма скидки.</returns>
         public double Calculate(List<Item> items)
         {
             double amount = GetAmount(items);
-/*            if (CurrentDiscountPercent < 10)
-            {*/
+
             double res= amount * (CurrentDiscountPercent / 100.0);
             return res;
-/*            }
-            else
-            {
-                return 10;
-            }
-*/
-            /*if (AccumulatedPoints > amount * 0.3)
-            {
-                return Math.Floor(amount * 0.3);
-            }
-            else
-            {
-                return AccumulatedPoints;
-            }*/
+
         }
 
+        /// <summary>
+        /// Применяет скидку и возвращает общую сумму товаров.
+        /// </summary>
+        /// <param name="items">Список товаров, к которым применяется скидка.</param>
+        /// <returns>Общая сумма товаров.</returns>
         public double Apply(List<Item> items)
         {
             double discountAmount = GetAmount(items);
-
-/*            int discountPercent = (int)Calculate(items);
-            double discountAmount = AccumulatedAmount * discountPercent;
-            CurrentDiscountPercent -= discountPercent;*/
-            /*AccumulatedPoints -= (int)discountAmount;*/
             return discountAmount;
         }
 
+        /// <summary>
+        /// Обновляет текущий процент скидки на основе общей суммы товаров.
+        /// Скидка увеличивается на 1% за каждые 1000 единиц общей суммы.
+        /// </summary>
+        /// <param name="items">Список товаров, для которых обновляется скидка.</param>
         public void Update(List<Item> items)
         {
             int updateRes= (int)(GetAmount(items) / 1000);
@@ -124,17 +139,25 @@ namespace OOP.Model.Discounts
             { 
                 CurrentDiscountPercent += 1;
             }
-            /*CurrentDiscountPercent += (int)Math.Floor(GetAmount(items) / 1000);*/
-            /*double amount = GetAmount(items);
-            AccumulatedPoints += (int)Math.Ceiling(amount * 0.1)*/
 
         }
+        /// <summary>
+        /// Инициализирует новый экземпляр класса PercentDiscount с начальным процентом скидки.
+        /// </summary>
         public PercentDiscount()
         {
-/*            DiscountCategory = category;*/
             CurrentDiscountPercent = 1;
         }
-        /// <inheritdoc/>
+
+        /// <summary>
+        /// Сравнивает текущую скидку с другой скидкой по проценту.
+        /// </summary>
+        /// <param name="discount2">Скидка, с которой производится сравнение.</param>
+        /// <returns>
+        /// Возвращает 0, если текущая скидка равна discount2; 
+        /// 1, если текущая скидка больше discount2; 
+        /// -1, если текущая скидка меньше discount2.
+        /// </returns>
         public int CompareTo(PercentDiscount? discount2)
         {
             if (object.ReferenceEquals(this, discount2))

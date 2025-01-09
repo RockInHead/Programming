@@ -19,22 +19,24 @@ namespace OOP.View.Tabs
         private PriorityOrder _currentPriorityOrder;
         private List<Order> _orders = new List<Order>();
         private List<Order> _ordersCurrentCustomer = new List<Order>();
+
+        /// <summary>
+        /// Получает или задает список клиентов.
+        /// </summary>
         public List<Customer> Customers { get; set; }
+
         DataTable dataTable = new DataTable();
 
+        /// <summary>
+        /// Обновляет список заказов в интерфейсе.
+        /// </summary>
         public void UpdateOrders()
         {
-            /*                if (dataTable.Rows.Count <= 0)
-                            {
-
-                            }*/
-            /*            dataTable.Rows.Clear();*/
             dataTable.Clear();
             foreach (DataGridViewColumn column in OrdersDataGridView.Columns)
             {
                 column.SortMode = DataGridViewColumnSortMode.NotSortable;
             }
-            /*            _orders.Clear();*/
             _ordersCurrentCustomer.Clear();
             for (int i = 0; i < Customers.Count; i++)
             {
@@ -45,12 +47,11 @@ namespace OOP.View.Tabs
                     _ordersCurrentCustomer.Add(_currentCustomer.Orders[j]);
                     dataTable.Rows.Add(_currentCustomer.Orders[j].Id.ToString(), _currentCustomer.Orders[j].DateOfCreation, _currentCustomer.Orders[j].Status, _currentCustomer.FullName, _currentCustomer.Address.AddressToString(), _currentCustomer.Orders[j].Amount.ToString(), _currentCustomer.Orders[j].Total.ToString());
                 }
-/*                _orders.AddRange(_ordersCurrentCustomer);*/
-/*                _ordersCurrentCustomer.Clear()*/;
             }
             OrdersDataGridView.DataSource = dataTable;
             OrdersDataGridView.Columns[0].Width = 30;
         }
+
         /// <summary>
         /// Получить выбранный диапазон в удобном формате.
         /// </summary>
@@ -76,9 +77,12 @@ namespace OOP.View.Tabs
                     return string.Empty;
             }
         }
+
+        /// <summary>
+        /// Конструктор класса OrdersTab. Инициализирует компоненты интерфейса.
+        /// </summary>
         public OrdersTab()
         {
-
             InitializeComponent();
             OrderStatusComboBox.Items.AddRange(Enum.GetValues(typeof(OrderStatus)).Cast<object>().ToArray());
             dataTable.Columns.Add("Id", typeof(string));
@@ -93,54 +97,22 @@ namespace OOP.View.Tabs
             DeliveryTimeRangeComboBox.DisplayMember = "Display";
             DeliveryTimeRangeComboBox.ValueMember = "Value";
 
-
             PriorityOrdersPanel.Enabled = false;
             PriorityOrdersPanel.Visible = false;
-
-            /*            addressControl1 = new AddressControl();*/
-
-            /*DataTable dataTable = new DataTable();
-            dataTable.Columns.Add("Id", typeof(string));
-            dataTable.Columns.Add("Created", typeof(string));
-            dataTable.Columns.Add("Status", typeof(string));
-            dataTable.Columns.Add("Full Name", typeof(string));
-            dataTable.Columns.Add("Address", typeof(string));
-            dataTable.Columns.Add("Amount", typeof(string));
-
-            OrdersDataGridView.DataSource = dataTable;*/
-
-            /*            for (int i = 1; i <= 10; i++)
-                        {
-                            dataTable.Columns.Add($"A{i}");
-
-
-                        }
-
-                        for (int i = 1; i <= 5; i++)
-                        {
-                            dataTable.Rows.Add($"Эксперт{i}");
-                        }
-                        dataTable.Rows.Add("Сумма рангов");
-                        dataTable.Rows.Add($"Обобщенный ранг");
-                        dataTable.Rows[1][1] = "1234";
-                        *//*dataTable.Rows.InsertAt(dataTable.Rows[2], 3);*//*
-
-                        ExpertsDataGridView.DataSource = dataTable;
-                        ExpertsDataGridView.Columns[0].Width = 160;
-                        for (int i = 1; i <= 10; i++)
-                        {
-                            ExpertsDataGridView.Columns[i].Width = 36;
-                        }*/
         }
 
+        /// <summary>
+        /// Обработчик изменения текущей ячейки в OrdersDataGridView.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void OrdersDataGridView_CurrentCellChanged(object sender, EventArgs e)
         {
             if (OrdersDataGridView.CurrentCell != null && OrdersDataGridView.CurrentCell.RowIndex != -1 && dataTable.Rows.Count != 0)
             {
                 OrderItemsListBox.Items.Clear();
-                /*                _currentOrder = _orders[OrdersDataGridView.CurrentCell.RowIndex];*/
+
                 _currentOrder = _ordersCurrentCustomer[OrdersDataGridView.CurrentCell.RowIndex];
-                /*                PriorityOrder _currentPriorityOrder = (PriorityOrder)_currentOrder;*/
                 OrderIdTextBox.Text = _currentOrder.Id.ToString();
                 OrderCreatedTextBox.Text = _currentOrder.DateOfCreation.ToString();
                 OrderStatusComboBox.Text = _currentOrder.Status.ToString();
@@ -149,14 +121,13 @@ namespace OOP.View.Tabs
                 OrderItemsListBox.Items.AddRange(_currentOrder.Items.ToArray());
                 AmountLabel.Text = _currentOrder.Amount.ToString();
                 TotalLabel.Text = _currentOrder.Total.ToString();
+
                 if (_currentOrder.GetType() == typeof(PriorityOrder))
                 {
                     PriorityOrdersPanel.Enabled = true;
                     PriorityOrdersPanel.Visible = true;
                     _currentPriorityOrder = (PriorityOrder)_currentOrder;
                     DeliveryTimeRangeComboBox.Text = GetDisplayName(_currentPriorityOrder.DeliveryTimeRange);
-
-
                 }
                 else
                 {
@@ -166,6 +137,11 @@ namespace OOP.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Обработчик изменения выбранного статуса заказа из комбобокса.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void OrderStatusComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (OrdersDataGridView.CurrentCell.RowIndex != -1 && OrdersDataGridView.CurrentCell.RowIndex != null && OrdersDataGridView.Rows.Count != 0)
@@ -174,27 +150,18 @@ namespace OOP.View.Tabs
                 _currentOrder.Status = (OrderStatus)OrderStatusComboBox.SelectedItem;
 
                 dataTable.Rows[OrdersDataGridView.CurrentCell.RowIndex][2] = _currentOrder.Status.ToString();
-                /*UpdateOrders();*/
-                /*OrdersDataGridView.Rows[1].Cells[1].Value = "12";*/
-                /*             CartListBox.Items.Clear();
-                             _currentCustomer = Customers[CustomersComboBox.SelectedIndex];
-                             *//*                if (_currentCustomer.Cart.Items != null)
-                                             {*//*
-                             CartListBox.Items.AddRange(_currentCustomer.Cart.Items.ToArray());
-                             *//*                }*//*
-                             UpdateAmount();*/
             }
         }
 
+        /// <summary>
+        /// Обработчик изменения выбранного диапазона доставки из комбобокса.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void DeliveryTimeRangeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (_currentPriorityOrder == null) return;
             _currentPriorityOrder.DeliveryTimeRange = (DeliveryTimeRange)DeliveryTimeRangeComboBox.SelectedValue;
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
         }
     }
 }

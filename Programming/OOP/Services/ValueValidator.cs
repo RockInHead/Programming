@@ -19,6 +19,14 @@ class ValueValidator
         }
 
     }
+
+    /// <summary>
+    /// Проверяет, что длина строки, представленной числом, не превышает максимальную длину.
+    /// </summary>
+    /// <param name="value">Значение, длина которого будет проверяться.</param>
+    /// <param name="MaxLength">Максимально допустимая длина.</param>
+    /// <param name="propertyName">Имя свойства для вывода в сообщении об исключении.</param>
+    /// <exception cref="ArgumentException">Генерируется, если длина значения превышает максимальную длину.</exception>
     public static void AssertStringOnLength(int value, int MaxLength, string propertyName)
     {
         if (value.ToString().Length > MaxLength)
@@ -28,6 +36,11 @@ class ValueValidator
 
     }
 
+    /// <summary>
+    /// Проверяет, что значение является положительным.
+    /// </summary>
+    /// <param name="value">Значение для проверки.</param>
+    /// <exception cref="ArgumentException">Генерируется, если значение меньше нуля.</exception>
     public static void AssertOnPositiveValue(int value)
     {
         if (value < 0)
@@ -35,6 +48,12 @@ class ValueValidator
             throw new ArgumentException($"Значение должно быть положительным!");
         }
     }
+
+    /// <summary>
+    /// Проверяет, что значение является положительным.
+    /// </summary>
+    /// <param name="value">Значение для проверки.</param>
+    /// <exception cref="ArgumentException">Генерируется, если значение меньше нуля.</exception>
     public static void AssertOnPositiveValue(double value)
     {
         if (value < 0)

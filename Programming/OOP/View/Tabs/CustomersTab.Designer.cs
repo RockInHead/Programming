@@ -157,6 +157,7 @@
             SelectedCustomerGroupBox.Controls.Add(IdTextBox);
             SelectedCustomerGroupBox.Controls.Add(label2);
             SelectedCustomerGroupBox.Controls.Add(label1);
+            SelectedCustomerGroupBox.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 204);
             SelectedCustomerGroupBox.Location = new Point(427, 3);
             SelectedCustomerGroupBox.MinimumSize = new Size(855, 649);
             SelectedCustomerGroupBox.Name = "SelectedCustomerGroupBox";
@@ -164,7 +165,7 @@
             SelectedCustomerGroupBox.TabIndex = 4;
             SelectedCustomerGroupBox.TabStop = false;
             SelectedCustomerGroupBox.Text = "Selected Customer";
-            SelectedCustomerGroupBox.Enter += SelectedCustomerGroupBox_Enter;
+
             // 
             // RemovePercentDiscountButton
             // 
@@ -209,7 +210,7 @@
             // 
             IsPriorityCheckBox.AutoSize = true;
             IsPriorityCheckBox.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            IsPriorityCheckBox.Location = new Point(133, 129);
+            IsPriorityCheckBox.Location = new Point(218, 121);
             IsPriorityCheckBox.Name = "IsPriorityCheckBox";
             IsPriorityCheckBox.Size = new Size(126, 32);
             IsPriorityCheckBox.TabIndex = 8;
@@ -227,12 +228,13 @@
             address1.Street = "";
             addressControl1.Address = address1;
             addressControl1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            addressControl1.Location = new Point(0, 167);
+            addressControl1.Location = new Point(1, 120);
+            addressControl1.Margin = new Padding(3, 4, 3, 4);
             addressControl1.MinimumSize = new Size(813, 282);
             addressControl1.Name = "addressControl1";
             addressControl1.Size = new Size(813, 282);
             addressControl1.TabIndex = 6;
-            addressControl1.Load += addressControl1_Load;
+
             // 
             // FullNameTextBox
             // 

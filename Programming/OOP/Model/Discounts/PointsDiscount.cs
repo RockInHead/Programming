@@ -6,9 +6,17 @@ using System.Threading.Tasks;
 
 namespace OOP.Model.Discounts
 {
+    /// <summary>
+    /// Хранит данные о накопительной скидке: накопленные баллы.
+    /// </summary>
     public class PointsDiscount : IDiscount,IComparable<PointsDiscount>
     {
         private int _accumulatedPoints;
+
+        // <summary>
+        /// Получает накопленные баллы.
+        /// </summary>
+        /// <value>Текущее число накопленных баллов.</value>
         public int AccumulatedPoints
         {
             get
@@ -21,6 +29,11 @@ namespace OOP.Model.Discounts
                 _accumulatedPoints = value;
             }
         }
+
+        /// <summary>
+        /// Получает информацию о накопленных баллах в формате строки.
+        /// </summary>
+        /// <value>Строка, содержащая информацию о накопительных баллах.</value>
         public string Info
         {
             get
@@ -28,6 +41,7 @@ namespace OOP.Model.Discounts
                 return $"Накопительная - {AccumulatedPoints} баллов";
             }
         }
+
         /// <summary>
         /// Считает и возвращает общую стоимость товаров. 
         /// </summary>
@@ -42,6 +56,7 @@ namespace OOP.Model.Discounts
             }
             return Math.Round(sum, 2);
         }
+
         /// <summary>
         /// Считает доступную скидку. Если кол-во баллов больше 30% от общей стоимости товаров, 
         /// то возвращает скидку в 30% от стоимости товаров. Иначе возвращает все доступыне баллы.
@@ -60,6 +75,7 @@ namespace OOP.Model.Discounts
                 return AccumulatedPoints;
             }
         }
+
         /// <summary>
         /// Возврщает доступную скидку для данных товаров, при этом списывая баллы с общего кол-ва.
         /// </summary>
@@ -71,6 +87,7 @@ namespace OOP.Model.Discounts
             AccumulatedPoints -= (int)discountAmount;
             return discountAmount;
         }
+
         /// <summary>
         /// Добавляет 10% от стоимости всех товаров в общее количество скидочных баллов. 
         /// </summary>
@@ -80,7 +97,16 @@ namespace OOP.Model.Discounts
             double amount = GetAmount(items);
             AccumulatedPoints += (int)Math.Ceiling(amount * 0.1);
         }
-        /// <inheritdoc/>
+
+        /// <summary>
+        /// Сравнивает текущую скидку на основе накопленных баллов с другой скидкой.
+        /// </summary>
+        /// <param name="discount2">Скидка, с которой производится сравнение.</param>
+        /// <returns>
+        /// Возвращает 0, если накопленные баллы равны; 
+        /// 1, если текущие накопленные баллы больше;
+        /// -1, если текущие накопленные баллы меньше.
+        /// </returns>
         public int CompareTo(PointsDiscount? discount2)
         {
 

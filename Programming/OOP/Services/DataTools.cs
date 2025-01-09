@@ -6,10 +6,25 @@ using System.Threading.Tasks;
 
 namespace OOP.Services
 {
+    /// <summary>
+    /// Статический класс для сортировки и фильтрации товаров.
+    /// </summary>
     static class DataTools
     {
+        /// <summary>
+        /// Делегат для определения критерия сортировки.
+        /// </summary>
+        /// <param name="item1">Первый элемент для сравнения.</param>
+        /// <param name="item2">Второй элемент для сравнения.</param>
+        /// <returns>Возвращает <c>true</c>, если первый элемент должен быть перед вторым; в противном случае - <c>false</c>.</returns>
         public delegate bool SortingCriteria(Item item1,Item item2);
 
+        /// <summary>
+        /// Фильтрует список элементов по заданному критерию.
+        /// </summary>
+        /// <param name="items">Список элементов для фильтрации.</param>
+        /// <param name="sortingCriteria">Функция, определяющая критерий фильтрации.</param>
+        /// <returns>Новый список элементов, соответствующих критериям фильтрации.</returns>
         public static List<Item> Filter(List<Item> items,Func<Item,bool> sortingCriteria)
         {
             List<Item> newItems = new List<Item>();
@@ -22,6 +37,13 @@ namespace OOP.Services
             }
             return newItems;
         }
+
+        /// <summary>
+        /// Сортирует список элементов по заданному критерию сортировки.
+        /// </summary>
+        /// <param name="items">Список элементов для сортировки.</param>
+        /// <param name="sortingCriteria">Делегат, определяющий критерий сортировки.</param>
+        /// <returns>Отсортированный список элементов.</returns>        
         public static List<Item> SortBy(List<Item> items,SortingCriteria sortingCriteria )
         {
             List<Item> sortedList = new List<Item>(items.Count);
@@ -37,29 +59,6 @@ namespace OOP.Services
             }
             return items;
         }
-        /*public List<Item> SortOver5000(List<Item> items)
-        {
-            List<Item> newItems = new List<Item>();
-            foreach (Item item in items)
-            {
-                if(item.Cost > 5000)
-                {
-                    newItems.Add(item);
-                }
-            }
-            return newItems;
-        }
-        public List<Item> SortSmartphones(List<Item> items)
-        {
-            List<Item> newItems = new List<Item>();
-            foreach (Item item in items)
-            {
-                if (item.Category ==Category.Смартфоны)
-                {
-                    newItems.Add(item);
-                }
-            }
-            return newItems;
-        }*/
+        
     }
 }

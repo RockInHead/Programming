@@ -115,7 +115,6 @@ public class Customer
 
         _allCustomersCount += 1;
         _id = _allCustomersCount;
-
     }
 
     /// <summary>

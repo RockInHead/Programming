@@ -11,11 +11,23 @@ using System.Windows.Forms;
 
 namespace OOP.View
 {
+
     public partial class AddressControl : UserControl
     {
-
+        /// <summary>
+        /// Поле текущего адресса.
+        /// </summary>
         private Address _address;
+
+        /// <summary>
+        /// Состояние списка адрессов.
+        /// Если пустой - то true.
+        /// </summary>
         public bool ListBoxNull=false;
+
+        /// <summary>
+        /// Получает или устанавливает адрес.
+        /// </summary>
         public Address Address
         {
             get
@@ -28,12 +40,19 @@ namespace OOP.View
             }
         }
 
-
+        /// <summary>
+        /// Конструктор класса AddressControl, инициализирует новый экземпляр с заданным адресом.
+        /// </summary>
+        /// <param name="address">Адрес для инициализации.</param>
         public AddressControl(Address address)
         {
             Address = address;
 
         }
+
+        /// <summary>
+        /// Очищает все поля формы.
+        /// </summary>
         public void ClearForm()
         {
             PostIndexTextBox.Text = "111111";
@@ -43,52 +62,52 @@ namespace OOP.View
             BuildingTextBox.Text = "";
             ApartmentTextBox.Text = "";
         }
-        /* public static AddressControl NewAddress;*/
+
+        /// <summary>
+        /// Возвращает новый экземпляр AddressControl.
+        /// </summary>
         public AddressControl NewAddress;
- /*       NewAddress = new AddressControl();*/
+
+        /// <summary>
+        /// Создает экземпляр класса Address с данными из текстовых полей.
+        /// </summary>
+        /// <returns>Созданный объект Address.</returns>
         public Address GiveValues()
         {
-            /*NewAddress.Address = SomeAddress;*/
-
-            /*PostIndexTextBox.Text = NewAddress.Address.Index.ToString();
-            CountryTextBox.Text = NewAddress.Address.Country.ToString();
-            CityTextBox.Text = NewAddress.Address.City.ToString();
-            StreetTextBox.Text = NewAddress.Address.Street.ToString();
-            BuildingTextBox.Text = NewAddress.Address.Building.ToString();
-            ApartmentTextBox.Text = NewAddress.Address.Apartment.ToString();*/
-
-            return new Address(Convert.ToInt32(PostIndexTextBox.Text), CountryTextBox.Text, CityTextBox.Text, StreetTextBox.Text, BuildingTextBox.Text, ApartmentTextBox.Text);
-
-
-
+            return new Address(
+                Convert.ToInt32(PostIndexTextBox.Text),
+                CountryTextBox.Text, 
+                CityTextBox.Text, 
+                StreetTextBox.Text, 
+                BuildingTextBox.Text, 
+                ApartmentTextBox.Text);
         }
-        /* static Address SomeAddress = new Address(123456, "Россия", "Томск", "Репина", "12", "36");*/
-        /*Address(NewAddress);
-*/
+
+        /// <summary>
+        /// Конструктор класса AddressControl, инициализирует новый экземпляр.
+        /// </summary>
         public AddressControl()
         {
             InitializeComponent();
-
             Address = new Address();
-            /*          NewAddress = new AddressControl();*/
-
         }
 
-
-
+        /// <summary>
+        /// Обработчик события загрузки элемента управления AddressControl.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void AddressControl_Load(object sender, EventArgs e)
         {
-
             NewAddress = new AddressControl();
-            /*NewAddress.Address = new Address(123456, "Россия", "Томск", "Репина", "12", "36");*/
             PostIndexTextBox.Text = NewAddress.Address.Index.ToString();
-            /*CountryTextBox.Text = NewAddress.Address.Country.ToString();
-            CityTextBox.Text = NewAddress.Address.City.ToString();
-            StreetTextBox.Text = NewAddress.Address.Street.ToString();
-            BuildingTextBox.Text = NewAddress.Address.Building.ToString();
-            ApartmentTextBox.Text = NewAddress.Address.Apartment.ToString();*/
 
         }
+
+        /// <summary>
+        /// Отображает значения заданного адреса в полях формы.
+        /// </summary>
+        /// <param name="SomeAddress">Адрес, который будет отображен.</param>
         public void ShowValues(Address SomeAddress)
         {
             NewAddress.Address = SomeAddress;
@@ -100,40 +119,24 @@ namespace OOP.View
             BuildingTextBox.Text = NewAddress.Address.Building.ToString();
             ApartmentTextBox.Text = NewAddress.Address.Apartment.ToString();
         }
-/*        public void ShowValues()
-        {
-            PostIndexTextBox.Text = NewAddress.Address.Index.ToString();
-            CountryTextBox.Text = NewAddress.Address.Country.ToString();
-            CityTextBox.Text = NewAddress.Address.City.ToString();
-            StreetTextBox.Text = NewAddress.Address.Street.ToString();
-            BuildingTextBox.Text = NewAddress.Address.Building.ToString();
-            ApartmentTextBox.Text = NewAddress.Address.Apartment.ToString();
-        }
-        public static void Get(Address SomeAddress)
-        {
-*//*          NewAddress = new AddressControl();*//*
 
-            NewAddress.Address = SomeAddress;
-        }*/
-
-        /*        private void AddButton_Click(object sender, EventArgs e)
-                {
-
-                    label8.Text = $"{NewAddress.Address.Index.ToString()} - {NewAddress.Address.Country.ToString()} - {NewAddress.Address.City.ToString()} - {NewAddress.Address.Street.ToString()} - {NewAddress.Address.Building.ToString()} - {NewAddress.Address.Apartment.ToString()}";
-
-                }*/
-        int value;
+        /*int value;*/
         public void ListBoxfromCustomersTabState(int SelectedIndex)
         {
             int value = SelectedIndex;
         }
+
+        /// <summary>
+        /// Обработчик изменения текста в поле индекса.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void PostIndexTextBox_TextChanged(object sender, EventArgs e)
         {
             if (ListBoxNull == false)
             {
                 try
             {
-                
                     PostIndexTextBox.BackColor = Color.White;
 
                     NewAddress.Address.Index = int.Parse(PostIndexTextBox.Text);
@@ -147,6 +150,11 @@ namespace OOP.View
             }
         }
 
+        /// <summary>
+        /// Обработчик изменения текста в поле страны.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void CountryTextBox_TextChanged(object sender, EventArgs e)
         {
             if (ListBoxNull == false)
@@ -165,6 +173,11 @@ namespace OOP.View
             }
 }
 
+        /// <summary>
+        /// Обработчик изменения текста в поле города.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void CityTextBox_TextChanged(object sender, EventArgs e)
         {
             if (ListBoxNull == false)
@@ -183,6 +196,11 @@ namespace OOP.View
             }
         }
 
+        /// <summary>
+        /// Обработчик изменения текста в поле улицы.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void StreetTextBox_TextChanged(object sender, EventArgs e)
         {
             if (ListBoxNull == false)
@@ -201,6 +219,11 @@ namespace OOP.View
             }
         }
 
+        /// <summary>
+        /// Обработчик изменения текста в поле здания.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void BuildingTextBox_TextChanged(object sender, EventArgs e)
         {
             if (ListBoxNull == false)
@@ -223,6 +246,11 @@ namespace OOP.View
             }
         }
 
+        /// <summary>
+        /// Обработчик изменения текста в поле квартиры.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void ApartmentTextBox_TextChanged(object sender, EventArgs e)
         {
             if (ListBoxNull == false)

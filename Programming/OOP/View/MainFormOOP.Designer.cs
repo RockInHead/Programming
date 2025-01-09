@@ -151,7 +151,7 @@
             MinimumSize = new Size(975, 635);
             Name = "MainFormOOP";
             Text = "Object Oriented Practics";
-            Load += Form1_Load;
+            /*Load += Form1_Load;*/
             OrdersTabPage.ResumeLayout(false);
             CartsTabPage.ResumeLayout(false);
             CustomersTabPage.ResumeLayout(false);
@@ -161,7 +161,7 @@
         }
 
         #endregion
-        private View.Tabs.DiscountsTab discountsTab1;
+        /*private View.Tabs.DiscountsTab discountsTab1;*/
         private TabPage OrdersTabPage;
         private View.Tabs.OrdersTab ordersTab1;
         private TabPage CartsTabPage;

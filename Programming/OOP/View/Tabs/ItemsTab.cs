@@ -27,11 +27,19 @@ namespace OOP.View.Tabs
         List<Item> _displayedItems;
         private List<string> ItemsListBoxItems = new List<string>();
 
+        /// <summary>
+        /// Получает или устанавливает список товаров.
+        /// </summary>
         public List<Item> Items
         {
             get { return _items; }
             set { _items = value; }
         }
+
+        /// <summary>
+        /// Конструктор класса ItemsTab. 
+        /// Инициализирует компоненты и заполняет комбобокс категориями.
+        /// </summary>
         public ItemsTab()
         {
             InitializeComponent();
@@ -39,6 +47,11 @@ namespace OOP.View.Tabs
             SortByComboBox.SelectedIndex = 0;
         }
 
+        /// <summary>
+        /// Обработчик нажатия кнопки "Добавить".
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void AddButton_Click(object sender, EventArgs e)
         {
 
@@ -82,22 +95,20 @@ namespace OOP.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Обработчик изменения выбранного элемента в списке товаров.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             if (ItemsListBox.SelectedIndex == -1)
             {
                 AddButton.Enabled = true;
-
                 IdTextBox.Text = "";
-
                 CostTextBox.Text = "";
-
-
                 NameRichTextBox.Text = "";
-
                 DescriptionRichTextBox.Text = "";
-
                 CategoryComboBox.SelectedIndex = -1;
             }
             else
@@ -105,7 +116,6 @@ namespace OOP.View.Tabs
                 AddButton.Enabled = false;
 
                 int selectedIndex = ItemsListBox.SelectedIndex;
-                /*              _displayedItems = Items;*/
                 _currentItem = _displayedItems[selectedIndex];
                 IdTextBox.Text = _currentItem.Id.ToString();
                 CostTextBox.Text = _currentItem.Cost.ToString();
@@ -115,35 +125,36 @@ namespace OOP.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Обработчик нажатия кнопки "Удалить".
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void RemoveButton_Click(object sender, EventArgs e)
         {
             int selectedIndex = ItemsListBox.SelectedIndex;
-
 
             if (selectedIndex == -1) return;
 
             Items.RemoveAt(selectedIndex);
             ItemsListBoxItems.RemoveAt(selectedIndex);
             ItemsListBox.Items.RemoveAt(selectedIndex);
-            /*_displayedItems = Items;*/
             TypeOfSorting();
 
-
             IdTextBox.Text = "";
-
             CostTextBox.Text = "";
-
             NameRichTextBox.Text = "";
-
             DescriptionRichTextBox.Text = "";
-
             CategoryComboBox.SelectedIndex = -1;
-            ItemsChanged?.Invoke(this, EventArgs.Empty);
 
+            ItemsChanged?.Invoke(this, EventArgs.Empty);
         }
 
-
-
+        /// <summary>
+        /// Обработчик изменения текста в текстовом поле стоимости.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void CostTextBox_TextChanged(object sender, EventArgs e)
         {
             int selectedIndex = ItemsListBox.SelectedIndex;
@@ -163,8 +174,6 @@ namespace OOP.View.Tabs
                     CostTextBox.BackColor = System.Drawing.Color.LightPink;
                 }
             }
-
-
 
             if (ItemsListBox.SelectedIndex != -1)
             {
@@ -188,10 +197,13 @@ namespace OOP.View.Tabs
 
         }
 
+        /// <summary>
+        /// Обработчик изменения текста в текстовом поле имени товара.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void NameRichTextBox_TextChanged(object sender, EventArgs e)
         {
-
-
             if ((ItemsListBox.SelectedIndex != -1))
             {
                 _currentItem.Name = NameRichTextBox.Text;
@@ -200,22 +212,26 @@ namespace OOP.View.Tabs
 
         }
 
+        /// <summary>
+        /// Обработчик изменения текста в текстовом поле описания товара.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void DescriptionRichTextBox_TextChanged(object sender, EventArgs e)
         {
-
             if (ItemsListBox.SelectedIndex != -1)
             {
-                /*int selectedIndex = ItemsListBox.SelectedIndex;
-                _currentItem = Items[selectedIndex];*/
                 _currentItem.Info = DescriptionRichTextBox.Text;
                 ItemsChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 
-
-
-
-
+        /// <summary>
+        /// Обработчик события нажатия мыши на ItemsListBox.
+        /// Сбрасывает выделение, если кликнули на пустое место.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void ItemsListBox_MouseClick(object sender, MouseEventArgs e)
         {
             if (ItemsListBox.IndexFromPoint(e.Location) == -1)
@@ -226,22 +242,32 @@ namespace OOP.View.Tabs
             }
         }
 
+        /// <summary>
+        /// Обработчик события перемещения мыши над текстовым полем имени.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void NameRichTextBox_MouseMove(object sender, MouseEventArgs e)
         {
             NameToolTip.SetToolTip(NameRichTextBox, "Не более 200 символов");
         }
 
+        /// <summary>
+        /// Обработчик события перемещения мыши над текстовым полем описания.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void DescriptionRichTextBox_MouseMove(object sender, MouseEventArgs e)
         {
             DesriptionToolTip.SetToolTip(DescriptionRichTextBox, "Не более 1000 символов");
 
         }
 
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        /// <summary>
+        /// Обработчик изменения выбранной категории товара из комбобокса.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ItemsListBox.SelectedIndex != -1)
@@ -252,10 +278,11 @@ namespace OOP.View.Tabs
             }
         }
 
-        private void SelectedItemGroupBox_Enter(object sender, EventArgs e)
-        {
-
-        }
+        /// <summary>
+        /// Проверяет, содержится ли подстрока в названии товара.
+        /// </summary>
+        /// <param name="item">Товар для проверки.</param>
+        /// <returns>True, если подстрока найдена; иначе False.</returns>
         private bool FindSubstringInString(Item item)
         {
             if (item.Name.IndexOf(FindSubstringTextBox.Text) != -1)
@@ -264,12 +291,13 @@ namespace OOP.View.Tabs
             }
             return false;
         }
+
+        /// <summary>
+        /// Фильтрует список товаров с учетом введенной подстроки.
+        /// </summary>
         private void FilterListBox()
         {
-            /*SortingCriteria substringCriteria;*/
-            /*substringCriteria = FindSubstringInString;*/
             List<Item> filteredItems = DataTools.Filter(Items, FindSubstringInString);
-            /*            _displayedItems.Clear();*/
             _displayedItems = filteredItems;
             ItemsListBoxItems.Clear();
             foreach (Item item in filteredItems)
@@ -279,53 +307,78 @@ namespace OOP.View.Tabs
             ItemsListBox.Items.Clear();
             ItemsListBox.Items.AddRange(ItemsListBoxItems.ToArray());
         }
+
+        /// <summary>
+        /// Обработчик изменения текста в текстовом поле для поиска.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void FindSubstringTextBox_TextChanged(object sender, EventArgs e)
         {
             FilterListBox();
-            /*SortingCriteria substringCriteria;*/
-            /*substringCriteria = FindSubstringInString;*//*
-            List<Item> filteredItems = DataTools.Filter(Items, FindSubstringInString);
-            *//*            _displayedItems.Clear();*//*
-            _displayedItems = filteredItems;
-            ItemsListBoxItems.Clear();
-            foreach (Item item in filteredItems)
-            {
-                ItemsListBoxItems.Add($"{item.Id.ToString()}){item.Name}");
-            }
-            ItemsListBox.Items.Clear();
-            ItemsListBox.Items.AddRange(ItemsListBoxItems.ToArray());*/
         }
+
+        /// <summary>
+        /// Сортирует товары в порядке возрастания стоимости.
+        /// </summary>
+        /// <param name="item1">Первый товар для сравнения.</param>
+        /// <param name="item2">Второй товар для сравнения.</param>
+        /// <returns>True, если первый товар дороже второго.</returns>
         private bool CostAscending(Item item1,Item item2)
         {
             return item1.Cost > item2.Cost;
         }
+
+        /// <summary>
+        /// Сортирует товары в порядке убывания стоимости.
+        /// </summary>
+        /// <param name="item1">Первый товар для сравнения.</param>
+        /// <param name="item2">Второй товар для сравнения.</param>
+        /// <returns>True, если первый товар дешевле второго.</returns>
         private bool CostDescending(Item item1, Item item2)
         {
             return item1.Cost < item2.Cost;
         }
+
+        /// <summary>
+        /// Сравнивает два товара по алфавиту (от A до Z).
+        /// </summary>
+        /// <param name="item1">Первый товар для сравнения.</param>
+        /// <param name="item2">Второй товар для сравнения.</param>
+        /// <returns>True, если первый товар идет перед вторым в алфавитном порядке.</returns>
         private bool AlphabetAZ(Item item1,Item item2)
         {
             if ((string.Compare(item1.Name, item2.Name)) < 0)
-             {
+            {
                 return false;
-
             }
             else { 
                 return true; 
             }
         }
+
+        /// <summary>
+        /// Сравнивает два товара по алфавиту (от Z до A).
+        /// </summary>
+        /// <param name="item1">Первый товар для сравнения.</param>
+        /// <param name="item2">Второй товар для сравнения.</param>
+        /// <returns>True, если первый товар идет после второго в алфавитном порядке.</returns>
         private bool AlphabetZA(Item item1, Item item2)
         {
             if ((string.Compare(item1.Name, item2.Name)) < 0)
             {
                 return true;
-
             }
             else
             {
                 return false;
             }
         }
+
+        /// <summary>
+        /// Сортирует список товаров в зависимости от выбранного критерия сортировки.
+        /// </summary>
+        /// <param name="sortingCriteria">Критерий сортировки.</param>
         private void SortItemsListBox(SortingCriteria sortingCriteria)
         {
             List<Item> sortedItems;
@@ -340,6 +393,10 @@ namespace OOP.View.Tabs
             ItemsListBox.Items.AddRange(ItemsListBoxItems.ToArray());
       
         }
+
+        /// <summary>
+        /// Определяет тип сортировки на основе выбранного критерия.
+        /// </summary>
         private void TypeOfSorting()
         {
             SortingCriteria sortingCriteria;
@@ -351,63 +408,30 @@ namespace OOP.View.Tabs
                     sortingCriteria = AlphabetAZ;
                     SortItemsListBox(sortingCriteria);
 
-                    /*sortedItems = DataTools.SortBy(Items, sortingCriteria);
-                    _displayedItems = sortedItems;
-                    ItemsListBoxItems.Clear();
-                    foreach (Item item in sortedItems)
-                    {
-                        ItemsListBoxItems.Add($"{item.Id.ToString()}){item.Name}");
-                    }
-                    ItemsListBox.Items.Clear();
-                    ItemsListBox.Items.AddRange(ItemsListBoxItems.ToArray());*/
                     break;
                 case 1:
                     sortingCriteria = AlphabetZA;
                     SortItemsListBox(sortingCriteria);
-                    /*sortedItems = DataTools.SortBy(Items, sortingCriteria);
-                    _displayedItems = sortedItems;
-                    ItemsListBoxItems.Clear();
-                    foreach (Item item in sortedItems)
-                    {
-                        ItemsListBoxItems.Add($"{item.Id.ToString()}){item.Name}");
-                    }
-                    ItemsListBox.Items.Clear();
-                    ItemsListBox.Items.AddRange(ItemsListBoxItems.ToArray());*/
                     break;
                 case 2:
                     sortingCriteria = CostAscending;
                     SortItemsListBox(sortingCriteria);
 
-                    /*sortedItems = DataTools.SortBy(Items, sortingCriteria);
-                    _displayedItems = sortedItems;
-                    ItemsListBoxItems.Clear();
-                    foreach (Item item in sortedItems)
-                    {
-                        ItemsListBoxItems.Add($"{item.Id.ToString()}){item.Name}");
-                    }
-                    ItemsListBox.Items.Clear();
-                    ItemsListBox.Items.AddRange(ItemsListBoxItems.ToArray());*/
                     break;
                 case 3:
                     sortingCriteria = CostDescending;
                     SortItemsListBox(sortingCriteria);
-
-                    /*sortedItems = DataTools.SortBy(Items, sortingCriteria);
-                    _displayedItems = sortedItems;
-                    ItemsListBoxItems.Clear();
-                    foreach (Item item in sortedItems)
-                    {
-                        ItemsListBoxItems.Add($"{item.Id.ToString()}){item.Name}");
-                    }
-                    ItemsListBox.Items.Clear();
-                    ItemsListBox.Items.AddRange(ItemsListBoxItems.ToArray());*/
-
                     break;
-
             }
             FilterListBox();
 
         }
+
+        /// <summary>
+        /// Обработчик изменения выбранного критерия сортировки.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
         private void SortByComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ItemsListBox.Items.Count!=0)

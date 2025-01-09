@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace OOP.Model
 {
+    /// <summary>
+    /// Интерфейс для скидок. 
+    /// Имеет функции расчета, применения и обновления скидки.
+    /// </summary>
     public interface IDiscount
     {
         string Info { get; }

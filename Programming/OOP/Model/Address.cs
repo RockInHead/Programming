@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace OOP.Model
 {
+    /// <summary>
+    /// Хранит данные о адресе: почтовый индекс, старну, город, улицу, дом и квартиру.
+    /// </summary>
     public class Address:ICloneable
     {
         
@@ -15,6 +18,7 @@ namespace OOP.Model
         private string _street;
         private string _building;
         private string _apartment;
+
         /// <summary>
         /// Событие изменения адреса.
         /// </summary>
@@ -125,6 +129,7 @@ namespace OOP.Model
             Building = "";
             Apartment = "";
         }
+
         /// <summary>
         /// Создает новый экземпляр класса.
         /// </summary>
