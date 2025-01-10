@@ -14,9 +14,14 @@ namespace OOP.View.Tabs
 {
     public partial class СustomersTab : UserControl
     {
+        /// <summary>
+        /// Событие изменения заказчиков.
+        /// </summary>
+        public event EventHandler<EventArgs> CustomersChanged;
+
         private List<Customer> _customers;
         private Customer _currentCustomer;
-        private List<string> CustomersListBoxItems = new List<string>();
+        public List<string> CustomersListBoxItems = new List<string>();
 
         /// <summary>
         /// Получает или устанавливает список клиентов.
@@ -51,6 +56,8 @@ namespace OOP.View.Tabs
             CustomersListBox.Items.RemoveAt(selectedIndex);
 
             FullNameTextBox.Text = "";
+
+            CustomersChanged?.Invoke(this, EventArgs.Empty);
         }
 
 
@@ -72,6 +79,8 @@ namespace OOP.View.Tabs
                 IsPriorityCheckBox.Checked = false;
                 addressControl1.ClearForm();
                 DiscountsListBox.Items.Clear();
+
+                CustomersChanged?.Invoke(this, EventArgs.Empty);
             }
             else
             {
@@ -83,12 +92,10 @@ namespace OOP.View.Tabs
 
 
                 int selectedIndex = CustomersListBox.SelectedIndex;
-                if (selectedIndex == -1) return;
 
                 _currentCustomer = Customers[selectedIndex];
 
                 IdTextBox.Text = _currentCustomer.Id.ToString();
-                FullNameTextBox.Text = _currentCustomer.FullName;
                 IsPriorityCheckBox.Checked = _currentCustomer.IsPriority;
 
                 addressControl1.ShowValues(_currentCustomer.Address);
@@ -97,6 +104,11 @@ namespace OOP.View.Tabs
                 {
                     DiscountsListBox.Items.Add(discount.Info);
                 }
+
+                FullNameTextBox.Text = _currentCustomer.FullName;
+
+                CustomersChanged?.Invoke(this, EventArgs.Empty);
+
             }
         }
 
@@ -113,12 +125,14 @@ namespace OOP.View.Tabs
             NewCustomer.Address = addressControl1.GiveValues();
 
             Customers.Add(NewCustomer);
-            CustomersListBoxItems.Add($"{NewCustomer.Id.ToString()})");
+            CustomersListBoxItems.Add($"{NewCustomer.Id.ToString()}){NewCustomer.FullName}");
             CustomersListBox.Items.Add(CustomersListBoxItems[CustomersListBoxItems.Count - 1]);
 
             FullNameTextBox.Text = "";
             IsPriorityCheckBox.Checked = false;
             addressControl1.ClearForm();
+
+            CustomersChanged?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -131,6 +145,12 @@ namespace OOP.View.Tabs
             if ((CustomersListBox.SelectedIndex != -1))
             {
                 _currentCustomer.FullName = FullNameTextBox.Text;
+                CustomersListBoxItems[CustomersListBox.SelectedIndex] = $"{_currentCustomer.Id.ToString()}){_currentCustomer.FullName}";
+                CustomersListBox.Items[CustomersListBox.SelectedIndex] = CustomersListBoxItems[CustomersListBox.SelectedIndex];
+
+                FullNameTextBox.Select(FullNameTextBox.Text.Length, 0);
+
+                CustomersChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -162,6 +182,7 @@ namespace OOP.View.Tabs
             if ((CustomersListBox.SelectedIndex != -1))
             {
                 _currentCustomer.IsPriority = IsPriorityCheckBox.Checked;
+                CustomersChanged?.Invoke(this, EventArgs.Empty);
             }
         }
 
@@ -178,11 +199,14 @@ namespace OOP.View.Tabs
                 DiscountCategoryForm discountCategoryForm = new DiscountCategoryForm();
                 if (discountCategoryForm.ShowDialog() == DialogResult.OK)
                 {
-                    _currentCustomer.Discounts.Add(discountCategoryForm.Discount);
-                    DiscountsListBox.Items.Add(discountCategoryForm.Discount.Info);
+                    if (!_currentCustomer.Discounts.Any(d => d.Info == discountCategoryForm.Discount.Info))
+                    {
+                        _currentCustomer.Discounts.Add(discountCategoryForm.Discount);
+                        DiscountsListBox.Items.Add(discountCategoryForm.Discount.Info);
+                    }
                 }
             }
-
+            CustomersChanged?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -203,6 +227,8 @@ namespace OOP.View.Tabs
                     }
                 }
             }
+            CustomersChanged?.Invoke(this, EventArgs.Empty);
+
         }
     }
 }

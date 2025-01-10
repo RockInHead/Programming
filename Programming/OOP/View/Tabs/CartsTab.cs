@@ -42,8 +42,10 @@ namespace OOP.View.Tabs
             }
             if (Customers != null)
             {
+                int selectedIndex=CustomersComboBox.SelectedIndex;
                 CustomersComboBox.Items.Clear();
                 CustomersComboBox.Items.AddRange(Customers.ToArray());
+                CustomersComboBox.SelectedIndex=selectedIndex;
 
             }
         }
@@ -92,6 +94,7 @@ namespace OOP.View.Tabs
         /// <param name="e">Аргументы события.</param>
         private void CustomersComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
             if (CustomersComboBox.SelectedIndex != -1 && CustomersComboBox.SelectedIndex != null)
             {
                 AddToCartButton.Enabled = true;

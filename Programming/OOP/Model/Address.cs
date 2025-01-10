@@ -162,6 +162,7 @@ namespace OOP.Model
         {
             return new Address(this.Index, this.Country, this.City, this.Street,this.Building,this.Apartment);
         }
+
         /// <summary>
         /// Объекты равны тогда, когда у них равны все поля.
         /// </summary>

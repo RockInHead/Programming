@@ -25,7 +25,7 @@ namespace OOP.View.Tabs
         private List<Item> _items;
         private Item _currentItem;
         List<Item> _displayedItems;
-        private List<string> ItemsListBoxItems = new List<string>();
+        public List<string> ItemsListBoxItems = new List<string>();
 
         /// <summary>
         /// Получает или устанавливает список товаров.
@@ -71,7 +71,7 @@ namespace OOP.View.Tabs
                 Items.Add(NewItem);
                 ItemsListBoxItems.Add($"{NewItem.Id.ToString()}){NewItem.Name.ToString()}");
                 ItemsListBox.Items.Add(ItemsListBoxItems[ItemsListBoxItems.Count - 1]);
-                /*_displayedItems = Items;*/
+                
                 TypeOfSorting();
 
 
@@ -207,6 +207,11 @@ namespace OOP.View.Tabs
             if ((ItemsListBox.SelectedIndex != -1))
             {
                 _currentItem.Name = NameRichTextBox.Text;
+
+                /*_displayedItems[ItemsListBox.SelectedIndex]*/ /*= $"{_currentItem.Id.ToString()}){_currentItem.Name.ToString()}";*/
+                ItemsListBox.Items[ItemsListBox.SelectedIndex] = $"{_currentItem.Id.ToString()}){_currentItem.Name.ToString()}";
+
+                NameRichTextBox.Select(NameRichTextBox.Text.Length, 0);
                 ItemsChanged?.Invoke(this, EventArgs.Empty);
             }
 

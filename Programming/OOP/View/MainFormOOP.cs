@@ -21,6 +21,8 @@ namespace OOP
 
             ordersTab1.Customers= _store.Customers;
             itemsTab1.ItemsChanged += ItemsChanged;
+
+            сustomersTab.CustomersChanged += CustomersChanged;
         }
 
         /// <summary>
@@ -31,7 +33,17 @@ namespace OOP
         private void ItemsChanged(object? sender, EventArgs e)
         {
             cartsTab1.RefreshData();
-            cartsTab1.RefreshData();
+          
+        }
+
+        /// <summary>
+        /// Обработчик события изменения заказчиков. Обновляет данные в корзине.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
+        private void CustomersChanged(object? sender, EventArgs e)
+        {
+            cartsTab1.RefreshData(); 
         }
 
         /// <summary>
@@ -46,7 +58,6 @@ namespace OOP
             {
                 ordersTab1.UpdateOrders();
             }
-            cartsTab1.RefreshData();
         }
 
     }

@@ -64,6 +64,7 @@ namespace OOP.Model
         {
             Items = items;
         }
+
         /// <summary>
         /// Возвращает копию по всем полям,кроме Amount.
         /// </summary>
