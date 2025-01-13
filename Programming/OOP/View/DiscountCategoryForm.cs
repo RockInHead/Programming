@@ -11,31 +11,50 @@ using System.Windows.Forms;
 
 namespace OOP.View
 {
+    /// <summary>
+    /// Формa для управления категориями скидок.
+    /// </summary>
     public partial class DiscountCategoryForm : Form
     {
+        // <summary>
+        /// Получает или устанавливает объект PercentDiscount, который содержит информацию о скидке.
+        /// </summary>
         public PercentDiscount Discount { get; set; } = new PercentDiscount();
+
+        /// <summary>
+        /// Конструктор формы DiscountCategoryForm. 
+        /// Инициализирует компоненты и заполняет ComboBox категориями из перечисления Category.
+        /// </summary>
         public DiscountCategoryForm()
         {
             InitializeComponent();
             DiscountCategoryComboBox.Items.AddRange(Enum.GetValues(typeof(Category)).Cast<object>().ToArray());
         }
 
-        private void DiscountCategoryForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
+        /// <summary>
+        /// Обработчик события клика по кнопке "ОК". 
+        /// Устанавливает выбранную категорию скидки и закрывает форму с результатом OK.
+        /// </summary>
+        /// <param name="sender">Объект, вызвавший событие.</param>
+        /// <param name="e">Объект события.</param>
         private void OkButton_Click(object sender, EventArgs e)
         {
-            if (DiscountCategoryComboBox.SelectedItem != null)
+            if (DiscountCategoryComboBox.SelectedItem == null)
             {
-                /*Discount = new PercentDiscount();*/
-                Discount.DiscountCategory = (Category)DiscountCategoryComboBox.SelectedItem;
-                DialogResult = DialogResult.OK;
-                Close();
+                return; 
             }
+
+            Discount.DiscountCategory = (Category)DiscountCategoryComboBox.SelectedItem;
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
+        /// <summary>
+        /// Обработчик события клика по кнопке "Отмена". 
+        /// Закрывает форму с результатом Cancel.
+        /// </summary>
+        /// <param name="sender">Объект, вызвавший событие.</param>
+        /// <param name="e">Объект события.</param>
         private void CancelButton_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;

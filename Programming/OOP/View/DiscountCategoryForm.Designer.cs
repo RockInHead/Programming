@@ -99,7 +99,6 @@
             Name = "DiscountCategoryForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "DiscountCategory";
-            Load += DiscountCategoryForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }
