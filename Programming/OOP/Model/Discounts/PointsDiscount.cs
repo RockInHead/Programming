@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace OOP.Model.Discounts
+﻿namespace OOP.Model.Discounts
 {
     /// <summary>
     /// Хранит данные о накопительной скидке: накопленные баллы.
     /// </summary>
     public class PointsDiscount : IDiscount,IComparable<PointsDiscount>
     {
+        /// <summary>
+        /// Содержит количество накопленных баллов пользователя.
+        /// </summary>
         private int _accumulatedPoints;
 
-        // <summary>
+        /// <summary>
         /// Получает накопленные баллы.
         /// </summary>
         /// <value>Текущее число накопленных баллов.</value>
@@ -54,6 +51,7 @@ namespace OOP.Model.Discounts
             {
                 sum += item.Cost;
             }
+
             return Math.Round(sum, 2);
         }
 
@@ -77,13 +75,15 @@ namespace OOP.Model.Discounts
         }
 
         /// <summary>
-        /// Возврщает доступную скидку для данных товаров, при этом списывая баллы с общего кол-ва.
+        /// Возврщает доступную скидку для данных товаров,
+        /// при этом списывая баллы с общего количества.
         /// </summary>
         /// <param name="items"></param>
         /// <returns></returns>
         public double Apply(List<Item> items)
         {
             double discountAmount = Calculate(items);
+
             AccumulatedPoints -= (int)discountAmount;
             return discountAmount;
         }
@@ -101,30 +101,21 @@ namespace OOP.Model.Discounts
         /// <summary>
         /// Сравнивает текущую скидку на основе накопленных баллов с другой скидкой.
         /// </summary>
-        /// <param name="discount2">Скидка, с которой производится сравнение.</param>
+        /// <param name="other">Скидка, с которой производится сравнение.</param>
         /// <returns>
         /// Возвращает 0, если накопленные баллы равны; 
         /// 1, если текущие накопленные баллы больше;
         /// -1, если текущие накопленные баллы меньше.
         /// </returns>
-        public int CompareTo(PointsDiscount? discount2)
+        public int CompareTo(PointsDiscount? other)
         {
 
-            if (object.ReferenceEquals(this, discount2))
-                return 0;
-            if (AccumulatedPoints > discount2.AccumulatedPoints)
-            {
-                return 1;
-            }
-            if (AccumulatedPoints < discount2.AccumulatedPoints)
-            {
-                return -1;
-            }
-            else if (AccumulatedPoints == discount2.AccumulatedPoints)
+            if (object.ReferenceEquals(this, other)) 
             {
                 return 0;
             }
-            return 1;
+
+            return AccumulatedPoints.CompareTo(other.AccumulatedPoints);
         }
     }
 }
