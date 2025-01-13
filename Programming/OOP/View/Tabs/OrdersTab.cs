@@ -57,21 +57,21 @@ namespace OOP.View.Tabs
         /// </summary>
         /// <param name="range">Выбранный диапазон.</param>
         /// <returns>Строка в которой написаны диапазоны в удобном формате.</returns>
-        private string GetDisplayName(DeliveryTimeRange range)
+        private string GetDisplayName(DeliveryTime range)
         {
             switch (range)
             {
-                case DeliveryTimeRange.Range9To11:
+                case DeliveryTime.Range9To11:
                     return "9:00 – 11:00";
-                case DeliveryTimeRange.Range11To13:
+                case DeliveryTime.Range11To13:
                     return "11:00 – 13:00";
-                case DeliveryTimeRange.Range13To15:
+                case DeliveryTime.Range13To15:
                     return "13:00 – 15:00";
-                case DeliveryTimeRange.Range15To17:
+                case DeliveryTime.Range15To17:
                     return "15:00 – 17:00";
-                case DeliveryTimeRange.Range17To19:
+                case DeliveryTime.Range17To19:
                     return "17:00 – 19:00";
-                case DeliveryTimeRange.Range19To21:
+                case DeliveryTime.Range19To21:
                     return "19:00 – 21:00";
                 default:
                     return string.Empty;
@@ -93,7 +93,7 @@ namespace OOP.View.Tabs
             dataTable.Columns.Add("Amount", typeof(string));
             dataTable.Columns.Add("Total", typeof(string));
             OrderStatusComboBox.Enabled = false;
-            DeliveryTimeRangeComboBox.DataSource = Enum.GetValues(typeof(DeliveryTimeRange)).Cast<DeliveryTimeRange>().Select(range => new { Value = range, Display = GetDisplayName(range) }).ToList();
+            DeliveryTimeRangeComboBox.DataSource = Enum.GetValues(typeof(DeliveryTime)).Cast<DeliveryTime>().Select(range => new { Value = range, Display = GetDisplayName(range) }).ToList();
             DeliveryTimeRangeComboBox.DisplayMember = "Display";
             DeliveryTimeRangeComboBox.ValueMember = "Value";
 
@@ -161,7 +161,7 @@ namespace OOP.View.Tabs
         private void DeliveryTimeRangeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (_currentPriorityOrder == null) return;
-            _currentPriorityOrder.DeliveryTimeRange = (DeliveryTimeRange)DeliveryTimeRangeComboBox.SelectedValue;
+            _currentPriorityOrder.DeliveryTimeRange = (DeliveryTime)DeliveryTimeRangeComboBox.SelectedValue;
         }
     }
 }

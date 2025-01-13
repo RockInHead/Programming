@@ -193,7 +193,7 @@ namespace OOP.View.Tabs
                         _currentCustomer.Address,
                         Convert.ToDouble(DiscountAmountLabel.Text),
                         DateTime.Now,
-                        DeliveryTimeRange.Range9To11);
+                        DeliveryTime.Range9To11);
                 }
                 else
                 {

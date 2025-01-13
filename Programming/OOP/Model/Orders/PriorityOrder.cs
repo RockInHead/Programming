@@ -19,7 +19,7 @@ namespace OOP.Model.Orders
         /// <summary>
         /// Время доставки заказа.
         /// </summary>
-        public DeliveryTimeRange DeliveryTimeRange { get; set;}
+        public DeliveryTime DeliveryTimeRange { get; set;}
 
         /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="PriorityOrder"/>.
@@ -35,7 +35,7 @@ namespace OOP.Model.Orders
             string dateOfCreation, List<Item> items,
             Address address,
             double discountAmount,DateTime deliveryDateTime,
-            DeliveryTimeRange deliveryTimeRange)
+            DeliveryTime deliveryTimeRange)
             :base(status,dateOfCreation,items, address,discountAmount)
         {
             DeliveryDateTime = deliveryDateTime;
