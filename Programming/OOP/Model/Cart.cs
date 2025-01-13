@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace OOP.Model
+﻿namespace OOP.Model
 {
     /// <summary>
-    /// Хранит данные о корзине покупок:Список товаров,Суммарная стоимость всех товаров.
+    /// Хранит данные о корзине покупок:Список товаров, Суммарная стоимость всех товаров.
     /// </summary>
     public class Cart:ICloneable
     {
@@ -15,14 +9,17 @@ namespace OOP.Model
         /// Список товаров.
         /// </summary>
         private List<Item> _items;
+
         /// <summary>
         /// Суммарная стоимость всех товаров.
         /// </summary>
         private double _amount;
+
         /// <summary>
         /// Задает и возвращает список всех товаров.
         /// </summary>
         public List<Item> Items { get; set; }
+
         /// <summary>
         /// Возвращает суммарную стоимость всех товаров.
         /// </summary>
@@ -46,27 +43,24 @@ namespace OOP.Model
             }
         }
         /// <summary>
-        /// Создает пустой/начальный экземпляр класса.Всем полям присваивается значение по умолчанию.
+        /// Создает пустой/начальный экземпляр класса. Всем полям присваивается значение по умолчанию.
         /// </summary>
         public Cart()
         {
-            //тут было Items = [];
             Items = new List<Item>();
         }
-        //
+
         /// <summary>
         /// Создает экземпляр класса.
         /// </summary>
         /// <param name="items">Список товаров.</param>
-        /// //
-        //ТУТ БЫЛО Cart()
         public Cart(List<Item> items)
         {
             Items = items;
         }
 
         /// <summary>
-        /// Возвращает копию по всем полям,кроме Amount.
+        /// Возвращает копию по всем полям, кроме Amount.
         /// </summary>
         /// <returns></returns>
         public object Clone()
