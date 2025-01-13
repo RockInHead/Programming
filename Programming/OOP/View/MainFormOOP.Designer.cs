@@ -151,7 +151,6 @@
             MinimumSize = new Size(975, 635);
             Name = "MainFormOOP";
             Text = "Object Oriented Practics";
-            /*Load += Form1_Load;*/
             OrdersTabPage.ResumeLayout(false);
             CartsTabPage.ResumeLayout(false);
             CustomersTabPage.ResumeLayout(false);
