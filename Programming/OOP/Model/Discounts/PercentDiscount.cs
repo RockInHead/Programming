@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace OOP.Model.Discounts
+﻿namespace OOP.Model.Discounts
 {
     /// <summary>
     /// Хранит данные о процентной скидке: текущий процент,
@@ -12,15 +6,16 @@ namespace OOP.Model.Discounts
     /// </summary>
     public class PercentDiscount : IDiscount,IComparable<PercentDiscount>
     {
-
         /// <summary>
         /// Текущая скидка в процентах
         /// </summary>
         private int _currentDiscountPercent;
+
         /// <summary>
         /// Категория товаров, на которую предоставляется скидка.
         /// </summary>
         private Category _discountCategory;
+
         /// <summary>
         /// Сумма стоимости всех товаров конкретной категории.
         /// </summary>
@@ -31,26 +26,30 @@ namespace OOP.Model.Discounts
         /// </summary>
         public int CurrentDiscountPercent 
         {
-            get {
+            get 
+            {
                 return _currentDiscountPercent;
-                    }
-            set {
+            }
+            set 
+            {
                 if (value <= 10)
                 {
                     _currentDiscountPercent = value;
                 }
-            
             } 
         }
 
         /// <summary>
         /// Свойство, представляющее категорию скидки.
         /// </summary>
-        public Category DiscountCategory {
-            get {
-            return _discountCategory;
+        public Category DiscountCategory 
+        {
+            get 
+            {
+                return _discountCategory;
             }
-             set{
+            set
+            {
                 _discountCategory = value;
             }
         }
@@ -98,8 +97,8 @@ namespace OOP.Model.Discounts
                     sum += item.Cost;
                 }
             }
-            return Math.Round(sum, 2);
 
+            return Math.Round(sum, 2);
         }
 
         /// <summary>
@@ -111,9 +110,8 @@ namespace OOP.Model.Discounts
         {
             double amount = GetAmount(items);
 
-            double res= amount * (CurrentDiscountPercent / 100.0);
-            return res;
-
+            double resultAmount = amount * (CurrentDiscountPercent / 100.0);
+            return resultAmount;
         }
 
         /// <summary>
@@ -134,15 +132,16 @@ namespace OOP.Model.Discounts
         /// <param name="items">Список товаров, для которых обновляется скидка.</param>
         public void Update(List<Item> items)
         {
-            int updateRes= (int)(GetAmount(items) / 1000);
-            for(int percent=0;percent<updateRes;percent++)
+            int updateResult = (int)(GetAmount(items) / 1000);
+            for(int percent = 0; percent < updateResult; percent++)
             { 
                 CurrentDiscountPercent += 1;
             }
-
         }
+
         /// <summary>
-        /// Инициализирует новый экземпляр класса PercentDiscount с начальным процентом скидки.
+        /// Инициализирует новый экземпляр класса <see cref="PercentDiscount"/> 
+        /// с начальным значением текущего процента скидки, установленным на 1%. 
         /// </summary>
         public PercentDiscount()
         {
@@ -152,29 +151,20 @@ namespace OOP.Model.Discounts
         /// <summary>
         /// Сравнивает текущую скидку с другой скидкой по проценту.
         /// </summary>
-        /// <param name="discount2">Скидка, с которой производится сравнение.</param>
+        /// <param name="other">Скидка, с которой производится сравнение.</param>
         /// <returns>
-        /// Возвращает 0, если текущая скидка равна discount2; 
-        /// 1, если текущая скидка больше discount2; 
-        /// -1, если текущая скидка меньше discount2.
+        /// Возвращает 0, если текущая скидка равна other; 
+        /// 1, если текущая скидка больше other; 
+        /// -1, если текущая скидка меньше other.
         /// </returns>
-        public int CompareTo(PercentDiscount? discount2)
+        public int CompareTo(PercentDiscount? other)
         {
-            if (object.ReferenceEquals(this, discount2))
-                return 0;
-            if (CurrentDiscountPercent > discount2.CurrentDiscountPercent)
-            {
-                return 1;
-            }
-            if (CurrentDiscountPercent < discount2.CurrentDiscountPercent)
-            {
-                return -1;
-            }
-            else if (CurrentDiscountPercent == discount2.CurrentDiscountPercent)
+            if (object.ReferenceEquals(this, other))
             {
                 return 0;
             }
-            return 1;
+
+            return CurrentDiscountPercent.CompareTo(other.CurrentDiscountPercent);
         }
     }
 }
