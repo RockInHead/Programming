@@ -37,6 +37,8 @@
             panel1 = new Panel();
             tableLayoutPanel1 = new TableLayoutPanel();
             SelectedCustomerGroupBox = new GroupBox();
+            CancelButton = new Button();
+            OkButton = new Button();
             RemovePercentDiscountButton = new Button();
             AddPercentDiscountButton = new Button();
             DiscountsListBox = new ListBox();
@@ -147,6 +149,8 @@
             // SelectedCustomerGroupBox
             // 
             SelectedCustomerGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            SelectedCustomerGroupBox.Controls.Add(CancelButton);
+            SelectedCustomerGroupBox.Controls.Add(OkButton);
             SelectedCustomerGroupBox.Controls.Add(RemovePercentDiscountButton);
             SelectedCustomerGroupBox.Controls.Add(AddPercentDiscountButton);
             SelectedCustomerGroupBox.Controls.Add(DiscountsListBox);
@@ -165,6 +169,26 @@
             SelectedCustomerGroupBox.TabIndex = 4;
             SelectedCustomerGroupBox.TabStop = false;
             SelectedCustomerGroupBox.Text = "Selected Customer";
+            // 
+            // CancelButton
+            // 
+            CancelButton.Location = new Point(152, 406);
+            CancelButton.Name = "CancelButton";
+            CancelButton.Size = new Size(140, 39);
+            CancelButton.TabIndex = 13;
+            CancelButton.Text = "Cancel";
+            CancelButton.UseVisualStyleBackColor = true;
+            CancelButton.Click += CancelButton_Click;
+            // 
+            // OkButton
+            // 
+            OkButton.Location = new Point(6, 406);
+            OkButton.Name = "OkButton";
+            OkButton.Size = new Size(140, 39);
+            OkButton.TabIndex = 12;
+            OkButton.Text = "Ok";
+            OkButton.UseVisualStyleBackColor = true;
+            OkButton.Click += OkButton_Click;
             // 
             // RemovePercentDiscountButton
             // 
@@ -309,5 +333,7 @@
         private Button AddPercentDiscountButton;
         private ListBox DiscountsListBox;
         private Label label3;
+        private Button CancelButton;
+        private Button OkButton;
     }
 }
