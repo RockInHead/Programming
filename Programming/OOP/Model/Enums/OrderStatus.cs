@@ -1,13 +1,15 @@
-﻿/// <summary>
-/// Перечисление, содержащее статусы заказа.
-/// </summary>
-public enum OrderStatus
+﻿namespace OOP
 {
-    New,
-    Processing,
-    Assembly, 
-    ent,
-    Delivered,
-    Returned,
-    Abandoned
+    /// <summary>
+    /// Перечисление, содержащее статусы заказа.
+    /// </summary>
+    public enum OrderStatus
+    {
+        New,
+        Processing,
+        Assembly,
+        Delivered,
+        Returned,
+        Abandoned
+    }
 }
