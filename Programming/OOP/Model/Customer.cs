@@ -1,143 +1,173 @@
 ﻿using OOP.Model;
 using OOP.Model.Discounts;
 using OOP.Model.Orders;
-using System.ComponentModel.DataAnnotations;
-using System.Diagnostics;
 
-using System.Text.RegularExpressions;
-using System.Xml.Linq;
-
-/// <summary>
-/// Хранит данные о покупателе:Уникальный айди,Полное ФИО,Адрес.
-/// </summary>
-public class Customer
+namespace OOP
 {
-    //Поля
     /// <summary>
-    /// Уникальный айди покупателя .
+    /// Хранит данные о покупателе:Уникальный ID, Полное ФИО, Адрес.
     /// </summary>
-    private int _id;
-    /// <summary>
-    /// Статическое значение количества всех экзепляров покупателей.
-    /// </summary>
-    private static int _allCustomersCount;
-    /// <summary>
-    /// Полное ФИО покупателя.
-    /// </summary>
-    private string _fullname;
-    /// <summary>
-    /// Адрес покупателя.
-    /// </summary>
-    private Address _address;
-
-    private Cart _cart;
-
-    private List<Order> _orders;
-
-    private List<IDiscount> _discounts;
-    //Свойства  автосвойства
-
-    /// <summary>
-    /// Возвращает значение о кол-ве всех экземплярах класса.
-    /// </summary>
-    public int AllCustomersCount
+    public class Customer
     {
-        get
+        /// <summary>
+        /// Уникальный ID покупателя.
+        /// </summary>
+        private int _id;
+
+        /// <summary>
+        /// Статическое значение количества всех экзепляров покупателей.
+        /// </summary>
+        private static int _allCustomersCount;
+
+        /// <summary>
+        /// Полное ФИО покупателя.
+        /// </summary>
+        private string _fullname;
+
+        /// <summary>
+        /// Адрес покупателя.
+        /// </summary>
+        private Address _address;
+
+        /// <summary>
+        /// Представляет корзину покупок для покупателя.
+        /// </summary>
+        private Cart _cart;
+
+        /// <summary>
+        /// Содержит список заказов, сделанных покупателем.
+        /// </summary>
+        private List<Order> _orders;
+
+        /// <summary>
+        /// Список доступных скидок, которые могут быть применены к заказам.
+        /// </summary>
+        private List<IDiscount> _discounts;
+
+        /// <summary>
+        /// Возвращает значение о количестве всех экземплярах класса.
+        /// </summary>
+        public int AllCustomersCount
         {
-            return _allCustomersCount;
+            get
+            {
+                return _allCustomersCount;
+            }
         }
-    }
-    /// <summary>
-    /// Возвращает уникальный айди товара.
-    /// </summary>
-    public int Id
-    {
-        get
+
+        /// <summary>
+        /// Возвращает уникальный ID товара.
+        /// </summary>
+        public int Id
         {
-            return _id;
+            get
+            {
+                return _id;
+            }
         }
-    }
 
-    /// <summary>
-    /// Возвращает и задает полное ФИО покупателя.
-    /// </summary>
-    public string FullName
-    {
-        get
+        /// <summary>
+        /// Возвращает и задает полное ФИО покупателя.
+        /// </summary>
+        public string FullName
         {
-            return _fullname;
+            get
+            {
+                return _fullname;
+            }
+            set
+            {
+                ValueValidator.AssertStringOnLength(value, 200, nameof(FullName));
+                _fullname = value;
+            }
         }
-        set
+
+        /// <summary>
+        /// Возвращает и задает адрес покупателя.
+        /// </summary>
+        public Address Address
         {
-            ValueValidator.AssertStringOnLength(value, 200, FullName);
-            _fullname = value;
+            get
+            {
+                return _address;
+            }
+            set
+            {
+                _address = value;
+            }
         }
-    }
 
-    /// <summary>
-    /// Возвращает и задает адресс покупателя.
-    /// </summary>
-    public Address Address
-    {
-        get
+        /// <summary>
+        /// Возвращает и задает текущую корзину покупателя.
+        /// </summary>
+        public Cart Cart { get; set; }
+
+        /// <summary>
+        /// Возвращает и задает список заказов покупателя.
+        /// </summary>
+        public List<Order> Orders { get; set; }
+
+        /// <summary>
+        /// Возвращает или меняет приоритет клиента.
+        /// </summary>
+        public bool IsPriority { get; set; }
+
+        /// <summary>
+        /// Возвращает и задает список доступных скидок.
+        /// </summary>
+        public List<IDiscount> Discounts { get; set; }
+
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="Customer"/>.
+        /// </summary>
+        /// <remarks>
+        /// Устанавливает значения по умолчанию для покупателя:имя, адрес.
+        /// Cоздает новую корзину, 
+        /// инициализирует пустые списки заказов и скидок, 
+        /// а также присваивает уникальный идентификатор покупателю.
+        /// </remarks>
+        public Customer()
         {
-            return _address;
+            FullName = "None";
+            Address = new Address();
+            Cart = new Cart();
+            Orders = new List<Order>();
+            Discounts = new List<IDiscount>();
+            Discounts.Add(new PointsDiscount());
+            _allCustomersCount += 1;
+            _id = _allCustomersCount;
         }
-        set
+
+        /// <summary>
+        /// Инициализирует новый экземпляр класса <see cref="Customer"/> с заданным полным именем.
+        /// </summary>
+        /// <param name="fullname">Полное имя клиента.</param>
+        /// <remarks>
+        /// Устанавливает полное имя клиента переданным значением.
+        /// Инициализирует адрес, корзину, 
+        /// пустые списки заказов и скидок,
+        /// а также присваивает уникальный идентификатор клиенту.
+        /// </remarks>
+        public Customer(string fullname)
         {
-            /*ValueValidator.AssertStringOnLength(value, 500, Address);*/
-            _address = value;
+            FullName = fullname;
+            Address = new Address();
+            Cart = new Cart();
+            Orders = new List<Order>();
+            Discounts = new List<IDiscount>();
+            Discounts.Add(new PointsDiscount());
+            _allCustomersCount += 1;
+            _id = _allCustomersCount;
         }
-    }
 
-    public Cart Cart { get; set; }
-    public List<Order> Orders { get; set; }
-
-    /// <summary>
-    /// Возвращает или меняет приоритет клиента.
-    /// </summary>
-    public bool IsPriority { get; set; }
-
-    public List<IDiscount> Discounts{get;set;}
-
-    //Конструктор
-    /// <summary>
-    /// Создает пустой/начальный экземпляр класса.Всем полям присваивается значение по умолчанию.
-    /// </summary>
-    public Customer()
-    {
-        FullName = "None";
-        Address = new Address();
-        Cart = new Cart();
-        Orders= new List<Order>();
-        Discounts = new List<IDiscount>();
-        Discounts.Add(new PointsDiscount());
-
-        _allCustomersCount += 1;
-        _id = _allCustomersCount;
-    }
-
-    /// <summary>
-    /// Создает экземпляр класса.
-    /// </summary>
-    /// <param name="fullname">Полное ФИО покупателя. Не более 200 символов</param>
-    /// <param name="address">Адрес покупателя. Не более 500 символов</param>
-    public Customer(string fullname)
-    {
-        FullName = fullname;
-        Address = new Address();
-        Cart = new Cart();
-        Orders = new List<Order>();
-        Discounts= new List<IDiscount>();
-        Discounts.Add(new PointsDiscount());
-
-        _allCustomersCount += 1;
-        _id = _allCustomersCount;
-
-    }
-    public override string ToString()
-    {
-        return FullName;
+        /// <summary>
+        /// Возвращает строковое представление экземпляра покупателя.
+        /// </summary>
+        /// <returns>Полное имя клиента.</returns>
+        public override string ToString()
+        {
+            return FullName;
+        }
     }
 }
 
