@@ -64,7 +64,6 @@
             CustomersListBox.Name = "CustomersListBox";
             CustomersListBox.Size = new Size(412, 504);
             CustomersListBox.TabIndex = 0;
-            CustomersListBox.MouseClick += CustomersListBox_MouseClick;
             CustomersListBox.SelectedIndexChanged += CustomersListBox_SelectedIndexChanged;
             // 
             // AddCustomerButton

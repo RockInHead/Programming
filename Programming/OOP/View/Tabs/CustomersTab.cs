@@ -3,14 +3,8 @@ using OOP.Model.Discounts;
 
 namespace OOP.View.Tabs
 {
-
     public partial class СustomersTab : UserControl
     {
-        /// <summary>
-        /// Событие изменения заказчиков.
-        /// </summary>
-        public event EventHandler<EventArgs> CustomersChanged;
-
         /// <summary>
         /// Список покупателей.
         /// </summary>
@@ -20,9 +14,6 @@ namespace OOP.View.Tabs
         /// Текущий выбранный покупатель.
         /// </summary>
         private Customer _currentCustomer;
-
-        //ВОТ ЭТО НУЖНО УБРАТЬ
-        public List<string> CustomersListBoxItems = new List<string>();
 
         /// <summary>
         /// Получает или устанавливает список клиентов.
@@ -34,6 +25,11 @@ namespace OOP.View.Tabs
         }
 
         /// <summary>
+        /// Событие изменения заказчиков.
+        /// </summary>
+        public event EventHandler<EventArgs> CustomersChanged;
+
+        /// <summary>
         /// Конструктор класса CustomersTab, инициализирует компоненты.
         /// </summary>
         public СustomersTab()
@@ -42,20 +38,17 @@ namespace OOP.View.Tabs
         }
 
         /// <summary>
-        /// Обработчик нажатия кнопки "Удалить клиента".
+        /// Обработчик нажатия кнопки "Удалить покупателя".
         /// </summary>
         /// <param name="sender">Источник события.</param>
         /// <param name="e">Аргументы события.</param>
         private void RemoveCustomerButton_Click(object sender, EventArgs e)
         {
             int selectedIndex = CustomersListBox.SelectedIndex;
-
             if (selectedIndex == -1) return;
 
             Customers.RemoveAt(selectedIndex);
-            /*CustomersListBoxItems.RemoveAt(selectedIndex);*/
             CustomersListBox.Items.RemoveAt(selectedIndex);
-
             FullNameTextBox.Text = "";
 
             CustomersChanged?.Invoke(this, EventArgs.Empty);
@@ -71,7 +64,6 @@ namespace OOP.View.Tabs
         {
             if (CustomersListBox.Items.Count == 0 || CustomersListBox.SelectedIndex == -1)
             {
-               
                 AddCustomerButton.Enabled = true;
                 IdTextBox.Text = "";
 
@@ -85,30 +77,23 @@ namespace OOP.View.Tabs
             else
             {
                 DiscountsListBox.Items.Clear();
-
-              
-                /*AddCustomerButton.Enabled = false;*/
-
                 int selectedIndex = CustomersListBox.SelectedIndex;
                 _currentCustomer = Customers[selectedIndex];
 
                 IdTextBox.Text = _currentCustomer.Id.ToString();
                 IsPriorityCheckBox.Checked = _currentCustomer.IsPriority;
 
-                /*AddressControl.ShowValues(_currentCustomer.Address);*/
                 AddressControl.Address = new Address(_currentCustomer.Address.Index,
                                                    _currentCustomer.Address.Country,
                                                    _currentCustomer.Address.City,
                                                    _currentCustomer.Address.Street,
                                                    _currentCustomer.Address.Building,
                                                    _currentCustomer.Address.Apartment);
-                /*AddressControl.Address = _currentCustomer.Address;*/
 
                 foreach (IDiscount discount in _currentCustomer.Discounts)
                 {
                     DiscountsListBox.Items.Add(discount.Info);
                 }
-
                 FullNameTextBox.Text = _currentCustomer.FullName;
 
                 CustomersChanged?.Invoke(this, EventArgs.Empty);
@@ -116,7 +101,7 @@ namespace OOP.View.Tabs
         }
 
         /// <summary>
-        /// Обработчик нажатия кнопки "Добавить клиента".
+        /// Обработчик нажатия кнопки "Добавить покупателя".
         /// </summary>
         /// <param name="sender">Источник события.</param>
         /// <param name="e">Аргументы события.</param>
@@ -147,29 +132,11 @@ namespace OOP.View.Tabs
             {
                 _currentCustomer.FullName = FullNameTextBox.Text;
                 CustomersListBox.Items[selectedIndex] = $"{_currentCustomer.Id.ToString()}){_currentCustomer.FullName}";
-                /*  CustomersListBox.Items[selectedIndex] = CustomersListBoxItems[selectedIndex];*/
 
                 FullNameTextBox.Select(FullNameTextBox.Text.Length, 0);
 
                 CustomersChanged?.Invoke(this, EventArgs.Empty);
             }
-        }
-
-        /// <summary>
-        /// Обработчик события нажатия мыши на CustomersListBox.
-        /// Сбрасывает выбор, если кликнули на пустое место.
-        /// </summary>
-        /// <param name="sender">Источник события.</param>
-        /// <param name="e">Аргументы события.</param>
-        private void CustomersListBox_MouseClick(object sender, MouseEventArgs e)
-        {
-           /* if (CustomersListBox.IndexFromPoint(e.Location) == -1)
-            {
-                // Если кликнули на пустое место, сбрасываем выбор
-                AddressControl.ListBoxNull = true;
-                *//*CustomersListBox.ClearSelected();*//*
-                CustomersListBox.SelectedIndex = -1;
-            }*/
         }
 
         /// <summary>
@@ -235,36 +202,43 @@ namespace OOP.View.Tabs
             CustomersChanged?.Invoke(this, EventArgs.Empty);
         }
 
+        /// <summary>
+        /// Обработчик нажатия кнопки "OK"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OkButton_Click(object sender, EventArgs e)
         {
             Customer customer = new Customer();
             customer.FullName = FullNameTextBox.Text;
             customer.IsPriority = IsPriorityCheckBox.Checked;
-            /*customer.Address = AddressControl.GiveValues();*/
             
-                customer.Address = new Address(AddressControl.Address.Index,
-                                              AddressControl.Address.Country,
-                                              AddressControl.Address.City,
-                                              AddressControl.Address.Street,
-                                              AddressControl.Address.Building,
-                                              AddressControl.Address.Apartment);
-                Customers.Add(customer);
-                CustomersListBox.Items.Add($"{customer.Id.ToString()}){customer.FullName}");
+            customer.Address = new Address(AddressControl.Address.Index,
+                                           AddressControl.Address.Country,
+                                           AddressControl.Address.City,
+                                           AddressControl.Address.Street,
+                                           AddressControl.Address.Building,
+                                           AddressControl.Address.Apartment);
+            Customers.Add(customer);
+            CustomersListBox.Items.Add($"{customer.Id.ToString()}){customer.FullName}");
 
-                FullNameTextBox.Text = "";
-                IsPriorityCheckBox.Checked = false;
-                AddressControl.ClearForm();
+            FullNameTextBox.Text = "";
+            IsPriorityCheckBox.Checked = false;
+            AddressControl.ClearForm();
 
-                AddCustomerButton.Enabled = true;
-                RemoveCustomerButton.Enabled = true;
+            AddCustomerButton.Enabled = true;
+            RemoveCustomerButton.Enabled = true;
+            OkButton.Enabled = false;
+            CancelButton.Enabled = false;
 
-                OkButton.Enabled = false;
-                CancelButton.Enabled = false;
-
-                CustomersChanged?.Invoke(this, EventArgs.Empty);
-            
+            CustomersChanged?.Invoke(this, EventArgs.Empty);
         }
 
+        /// <summary>
+        /// Обработчик нажатия кнопки "Cancel"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CancelButton_Click(object sender, EventArgs e)
         {
             CustomersListBox.SelectedIndex = -1;
@@ -278,7 +252,6 @@ namespace OOP.View.Tabs
 
             OkButton.Enabled = false;
             CancelButton.Enabled = false;
-
         }
     }
 }
