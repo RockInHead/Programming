@@ -1,13 +1,16 @@
-﻿/// <summary>
-/// Перечисление,содержащее 7 категорий товаров.
-/// </summary>
-public enum Category
+﻿namespace OOP
 {
-    Ноутбуки,
-    Смартфоны,
-    Колонки,
-    Мониторы,
-    Телевизоры,
-    Клавиатуры,
-    Мышки
+    /// <summary>
+    /// Перечисление,содержащее 7 категорий товаров.
+    /// </summary>
+    public enum Category
+    {
+        Laptops,
+        Smartphones,
+        Speakers,
+        Monitors,
+        TVs,
+        Keyboards,
+        Mice
+    }
 }
