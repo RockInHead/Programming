@@ -1,17 +1,6 @@
 ﻿using OOP.Model;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
 namespace OOP.View
 {
-
     public partial class AddressControl : UserControl
     {
         /// <summary>
@@ -23,6 +12,8 @@ namespace OOP.View
         /// Состояние списка адрессов.
         /// Если пустой - то true.
         /// </summary>
+        /// 
+        //НУЖНО УБРАТЬ!
         public bool ListBoxNull=false;
 
         /// <summary>
@@ -37,42 +28,63 @@ namespace OOP.View
             set
             {
                 _address = value;
+                UpdateData();
             }
+        }
+
+        /// <summary>
+        /// Обновляет данные в пользовательском элементе управления на основе текущих значений свойства <see cref="Address"/>.
+        /// </summary>
+        private void UpdateData()
+        {
+            PostIndexTextBox.Text = Address.Index.ToString();
+            CountryTextBox.Text = Address.Country;
+            CityTextBox.Text = Address.City;
+            StreetTextBox.Text = Address.Street;
+            BuildingTextBox.Text = Address.Building;
+            ApartmentTextBox.Text = Address.Apartment;
         }
 
         /// <summary>
         /// Конструктор класса AddressControl, инициализирует новый экземпляр с заданным адресом.
         /// </summary>
         /// <param name="address">Адрес для инициализации.</param>
-        public AddressControl(Address address)
+        /*public AddressControl(Address address)
         {
             Address = address;
 
-        }
-
+        }*/
+    
         /// <summary>
         /// Очищает все поля формы.
         /// </summary>
         public void ClearForm()
         {
-            PostIndexTextBox.Text = "111111";
+            PostIndexTextBox.Clear();
+            CountryTextBox.Clear();
+            CityTextBox.Clear();
+            StreetTextBox.Clear();
+            BuildingTextBox.Clear();
+            ApartmentTextBox.Clear();
+
+            /*PostIndexTextBox.Text = "111111";
             CountryTextBox.Text = "";
             CityTextBox.Text = "";
             StreetTextBox.Text = "";
             BuildingTextBox.Text = "";
-            ApartmentTextBox.Text = "";
+            ApartmentTextBox.Text = "";*/
         }
 
         /// <summary>
         /// Возвращает новый экземпляр AddressControl.
         /// </summary>
-        public AddressControl NewAddress;
+        /*public AddressControl NewAddress;*/
 
         /// <summary>
         /// Создает экземпляр класса Address с данными из текстовых полей.
         /// </summary>
         /// <returns>Созданный объект Address.</returns>
-        public Address GiveValues()
+        /*public Address GiveValues()
         {
             return new Address(
                 Convert.ToInt32(PostIndexTextBox.Text),
@@ -81,7 +93,7 @@ namespace OOP.View
                 StreetTextBox.Text, 
                 BuildingTextBox.Text, 
                 ApartmentTextBox.Text);
-        }
+        }*/
 
         /// <summary>
         /// Конструктор класса AddressControl, инициализирует новый экземпляр.
@@ -99,8 +111,8 @@ namespace OOP.View
         /// <param name="e">Аргументы события.</param>
         private void AddressControl_Load(object sender, EventArgs e)
         {
-            NewAddress = new AddressControl();
-            PostIndexTextBox.Text = NewAddress.Address.Index.ToString();
+            /*_address = new AddressControl();
+            PostIndexTextBox.Text = _address.Address.Index.ToString();*/
 
         }
 
@@ -108,7 +120,7 @@ namespace OOP.View
         /// Отображает значения заданного адреса в полях формы.
         /// </summary>
         /// <param name="SomeAddress">Адрес, который будет отображен.</param>
-        public void ShowValues(Address SomeAddress)
+        /*public void ShowValues(Address SomeAddress)
         {
             NewAddress.Address = SomeAddress;
 
@@ -118,9 +130,8 @@ namespace OOP.View
             StreetTextBox.Text = NewAddress.Address.Street.ToString();
             BuildingTextBox.Text = NewAddress.Address.Building.ToString();
             ApartmentTextBox.Text = NewAddress.Address.Apartment.ToString();
-        }
+        }*/
 
-        /*int value;*/
         public void ListBoxfromCustomersTabState(int SelectedIndex)
         {
             int value = SelectedIndex;
@@ -133,13 +144,13 @@ namespace OOP.View
         /// <param name="e">Аргументы события.</param>
         private void PostIndexTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (ListBoxNull == false)
+            /*if (ListBoxNull == false)
+            {*/
+            try
             {
-                try
-            {
-                    PostIndexTextBox.BackColor = Color.White;
+                PostIndexTextBox.BackColor = Color.White;
 
-                    NewAddress.Address.Index = int.Parse(PostIndexTextBox.Text);
+                Address.Index = int.Parse(PostIndexTextBox.Text);
                 
             }
             catch (Exception)
@@ -147,8 +158,8 @@ namespace OOP.View
                 PostIndexToolTip.SetToolTip(PostIndexTextBox, "Индекс должен состоять из 6 цифр");
                 PostIndexTextBox.BackColor = Color.LightPink;
             }
-            }
         }
+        /*}*/
 
         /// <summary>
         /// Обработчик изменения текста в поле страны.
@@ -157,21 +168,21 @@ namespace OOP.View
         /// <param name="e">Аргументы события.</param>
         private void CountryTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (ListBoxNull == false)
-            {
+            /*if (ListBoxNull == false)
+            {*/
                 try
                 {
                     CountryTextBox.BackColor = Color.White;
                     CountryToolTip.SetToolTip(CountryTextBox, "Не более 50 символов");
 
-                    NewAddress.Address.Country = CountryTextBox.Text;
+                    Address.Country = CountryTextBox.Text;
                 }
                 catch (Exception)
                 {
                     CountryTextBox.BackColor = Color.LightPink;
                 }
-            }
-}
+            /*}*/
+        }
 
         /// <summary>
         /// Обработчик изменения текста в поле города.
@@ -180,7 +191,7 @@ namespace OOP.View
         /// <param name="e">Аргументы события.</param>
         private void CityTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (ListBoxNull == false)
+            /*if (ListBoxNull == false)
             {
                 try
                 {
@@ -193,7 +204,7 @@ namespace OOP.View
                 {
                     CityTextBox.BackColor = Color.LightPink;
                 }
-            }
+            }*/
         }
 
         /// <summary>
@@ -203,7 +214,7 @@ namespace OOP.View
         /// <param name="e">Аргументы события.</param>
         private void StreetTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (ListBoxNull == false)
+            /*if (ListBoxNull == false)
             {
                 try
                 {
@@ -216,7 +227,7 @@ namespace OOP.View
                 {
                     StreetTextBox.BackColor = Color.LightPink;
                 }
-            }
+            }*/
         }
 
         /// <summary>
@@ -226,7 +237,7 @@ namespace OOP.View
         /// <param name="e">Аргументы события.</param>
         private void BuildingTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (ListBoxNull == false)
+            /*if (ListBoxNull == false)
             {
                 try
                 {
@@ -243,7 +254,7 @@ namespace OOP.View
                     BuildingTextBox.BackColor = Color.LightPink;
 
                 }
-            }
+            }*/
         }
 
         /// <summary>
@@ -253,7 +264,7 @@ namespace OOP.View
         /// <param name="e">Аргументы события.</param>
         private void ApartmentTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (ListBoxNull == false)
+            /*if (ListBoxNull == false)
             {
                 try
                 {
@@ -266,7 +277,7 @@ namespace OOP.View
                 {
                     ApartmentTextBox.BackColor = Color.LightPink;
                 }
-            }
+            }*/
         }
     }
 }

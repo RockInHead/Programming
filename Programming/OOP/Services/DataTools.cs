@@ -11,7 +11,7 @@
         /// <param name="item1">Первый элемент для сравнения.</param>
         /// <param name="item2">Второй элемент для сравнения.</param>
         /// <returns>Возвращает <c>true</c>, если первый элемент должен быть перед вторым; в противном случае - <c>false</c>.</returns>
-        public delegate bool SortingCriteria(Item item1, Item item2);
+        public delegate bool SortingCriteria(Item item1,Item item2);
 
         /// <summary>
         /// Фильтрует список элементов по заданному критерию.

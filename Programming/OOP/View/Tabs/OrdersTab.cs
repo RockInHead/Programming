@@ -116,7 +116,9 @@ namespace OOP.View.Tabs
                 OrderIdTextBox.Text = _currentOrder.Id.ToString();
                 OrderCreatedTextBox.Text = _currentOrder.DateOfCreation.ToString();
                 OrderStatusComboBox.Text = _currentOrder.Status.ToString();
-                addressControl1.ShowValues(_currentOrder.DeliveryAddress);
+
+                //Закоментил это, когда правил AddressControl и CustomersTab. Поправить!
+                /*addressControl1.ShowValues(_currentOrder.DeliveryAddress);*/
 
                 OrderItemsListBox.Items.AddRange(_currentOrder.Items.ToArray());
                 AmountLabel.Text = _currentOrder.Amount.ToString();

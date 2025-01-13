@@ -1,17 +1,9 @@
 ﻿using OOP.Model;
 using OOP.Model.Discounts;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace OOP.View.Tabs
 {
+    
     public partial class СustomersTab : UserControl
     {
         /// <summary>
@@ -19,8 +11,17 @@ namespace OOP.View.Tabs
         /// </summary>
         public event EventHandler<EventArgs> CustomersChanged;
 
+        /// <summary>
+        /// Список покупателей.
+        /// </summary>
         private List<Customer> _customers;
+
+        /// <summary>
+        /// Текущий выбранный покупатель.
+        /// </summary>
         private Customer _currentCustomer;
+
+        //ВОТ ЭТО НУЖНО УБРАТЬ
         public List<string> CustomersListBoxItems = new List<string>();
 
         /// <summary>
@@ -52,7 +53,7 @@ namespace OOP.View.Tabs
             if (selectedIndex == -1) return;
 
             Customers.RemoveAt(selectedIndex);
-            CustomersListBoxItems.RemoveAt(selectedIndex);
+            /*CustomersListBoxItems.RemoveAt(selectedIndex);*/
             CustomersListBox.Items.RemoveAt(selectedIndex);
 
             FullNameTextBox.Text = "";
@@ -71,13 +72,13 @@ namespace OOP.View.Tabs
         {
             if (CustomersListBox.Items.Count == 0 || CustomersListBox.SelectedIndex == -1)
             {
-                addressControl1.ListBoxNull = true;
+                AddressControl.ListBoxNull = true;
                 AddCustomerButton.Enabled = true;
                 IdTextBox.Text = "";
 
                 FullNameTextBox.Text = "";
                 IsPriorityCheckBox.Checked = false;
-                addressControl1.ClearForm();
+                AddressControl.ClearForm();
                 DiscountsListBox.Items.Clear();
 
                 CustomersChanged?.Invoke(this, EventArgs.Empty);
@@ -86,19 +87,23 @@ namespace OOP.View.Tabs
             {
                 DiscountsListBox.Items.Clear();
 
-                addressControl1.ListBoxNull = false;
-
+                AddressControl.ListBoxNull = false;
                 AddCustomerButton.Enabled = false;
 
-
                 int selectedIndex = CustomersListBox.SelectedIndex;
-
                 _currentCustomer = Customers[selectedIndex];
 
                 IdTextBox.Text = _currentCustomer.Id.ToString();
                 IsPriorityCheckBox.Checked = _currentCustomer.IsPriority;
 
-                addressControl1.ShowValues(_currentCustomer.Address);
+                /*AddressControl.ShowValues(_currentCustomer.Address);*/
+                /*AddressControl.Address = new Address(_currentCustomer.Address.Index,
+                                                   _currentCustomer.Address.Country,
+                                                   _currentCustomer.Address.City,
+                                                   _currentCustomer.Address.Street,
+                                                   _currentCustomer.Address.Building,
+                                                   _currentCustomer.Address.Apartment);*/
+                AddressControl.Address= _currentCustomer.Address;
 
                 foreach (IDiscount discount in _currentCustomer.Discounts)
                 {
@@ -108,7 +113,6 @@ namespace OOP.View.Tabs
                 FullNameTextBox.Text = _currentCustomer.FullName;
 
                 CustomersChanged?.Invoke(this, EventArgs.Empty);
-
             }
         }
 
@@ -119,18 +123,26 @@ namespace OOP.View.Tabs
         /// <param name="e">Аргументы события.</param>
         private void AddCustomerButton_Click(object sender, EventArgs e)
         {
-            Customer NewCustomer = new Customer();
-            NewCustomer.FullName = FullNameTextBox.Text;
-            NewCustomer.IsPriority = IsPriorityCheckBox.Checked;
-            NewCustomer.Address = addressControl1.GiveValues();
+            Customer customer = new Customer();
+            customer.FullName = FullNameTextBox.Text;
+            customer.IsPriority = IsPriorityCheckBox.Checked;
+            /*customer.Address = AddressControl.GiveValues();*/
 
-            Customers.Add(NewCustomer);
-            CustomersListBoxItems.Add($"{NewCustomer.Id.ToString()}){NewCustomer.FullName}");
-            CustomersListBox.Items.Add(CustomersListBoxItems[CustomersListBoxItems.Count - 1]);
+            customer.Address = new Address(AddressControl.Address.Index, 
+                                          AddressControl.Address.Country, 
+                                          AddressControl.Address.City, 
+                                          AddressControl.Address.Street,
+                                          AddressControl.Address.Building,
+                                          AddressControl.Address.Apartment);
+
+
+            Customers.Add(customer);
+            CustomersListBox.Items.Add($"{customer.Id.ToString()}){customer.FullName}");
+            /*CustomersListBox.Items.Add(CustomersListBoxItems[CustomersListBoxItems.Count - 1]);*/
 
             FullNameTextBox.Text = "";
             IsPriorityCheckBox.Checked = false;
-            addressControl1.ClearForm();
+            AddressControl.ClearForm();
 
             CustomersChanged?.Invoke(this, EventArgs.Empty);
         }
@@ -142,11 +154,12 @@ namespace OOP.View.Tabs
         /// <param name="e">Аргументы события.</param>
         private void FullNameTextBox_TextChanged(object sender, EventArgs e)
         {
-            if ((CustomersListBox.SelectedIndex != -1))
+            int selectedIndex = CustomersListBox.SelectedIndex;
+            if (selectedIndex != -1)
             {
                 _currentCustomer.FullName = FullNameTextBox.Text;
-                CustomersListBoxItems[CustomersListBox.SelectedIndex] = $"{_currentCustomer.Id.ToString()}){_currentCustomer.FullName}";
-                CustomersListBox.Items[CustomersListBox.SelectedIndex] = CustomersListBoxItems[CustomersListBox.SelectedIndex];
+                CustomersListBox.Items[selectedIndex] = $"{_currentCustomer.Id.ToString()}){_currentCustomer.FullName}";
+              /*  CustomersListBox.Items[selectedIndex] = CustomersListBoxItems[selectedIndex];*/
 
                 FullNameTextBox.Select(FullNameTextBox.Text.Length, 0);
 
@@ -165,10 +178,9 @@ namespace OOP.View.Tabs
             if (CustomersListBox.IndexFromPoint(e.Location) == -1)
             {
                 // Если кликнули на пустое место, сбрасываем выбор
-                addressControl1.ListBoxNull = true;
-                CustomersListBox.ClearSelected();
+                AddressControl.ListBoxNull = true;
+                /*CustomersListBox.ClearSelected();*/
                 CustomersListBox.SelectedIndex = -1;
-
             }
         }
 
@@ -179,7 +191,7 @@ namespace OOP.View.Tabs
         /// <param name="e">Аргументы события.</param>
         private void IsPriorityCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            if ((CustomersListBox.SelectedIndex != -1))
+            if (CustomersListBox.SelectedIndex != -1)
             {
                 _currentCustomer.IsPriority = IsPriorityCheckBox.Checked;
                 CustomersChanged?.Invoke(this, EventArgs.Empty);
@@ -193,8 +205,7 @@ namespace OOP.View.Tabs
         /// <param name="e">Аргументы события.</param>
         private void AddPercentDiscountButton_Click(object sender, EventArgs e)
         {
-
-            if ((CustomersListBox.SelectedIndex != -1))
+            if (CustomersListBox.SelectedIndex != -1)
             {
                 DiscountCategoryForm discountCategoryForm = new DiscountCategoryForm();
                 if (discountCategoryForm.ShowDialog() == DialogResult.OK)
@@ -206,6 +217,7 @@ namespace OOP.View.Tabs
                     }
                 }
             }
+
             CustomersChanged?.Invoke(this, EventArgs.Empty);
         }
 
@@ -216,19 +228,23 @@ namespace OOP.View.Tabs
         /// <param name="e">Аргументы события.</param>
         private void RemovePercentDiscountButton_Click(object sender, EventArgs e)
         {
-            if((CustomersListBox.SelectedIndex != -1)) 
+            int customersSelectedIndex = CustomersListBox.SelectedIndex;
+            int discountSelectedIndex = DiscountsListBox.SelectedIndex;
+
+            if (customersSelectedIndex != -1) 
             { 
-            if(DiscountsListBox.SelectedIndex != -1)
+                if(discountSelectedIndex != -1)
                 {
-                    if (_currentCustomer.Discounts[DiscountsListBox.SelectedIndex] is not PointsDiscount)
+
+                    if (_currentCustomer.Discounts[discountSelectedIndex] is not PointsDiscount)
                     {
-                        _currentCustomer.Discounts.RemoveAt(DiscountsListBox.SelectedIndex);
-                        DiscountsListBox.Items.RemoveAt(DiscountsListBox.SelectedIndex);
+                        _currentCustomer.Discounts.RemoveAt(discountSelectedIndex);
+                        DiscountsListBox.Items.RemoveAt(discountSelectedIndex);
                     }
                 }
             }
-            CustomersChanged?.Invoke(this, EventArgs.Empty);
 
+            CustomersChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }

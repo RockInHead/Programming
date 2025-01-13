@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Model.Address address1 = new Model.Address();
+            Model.Address address2 = new Model.Address();
             CustomersListBox = new ListBox();
             AddCustomerButton = new Button();
             RemoveCustomerButton = new Button();
@@ -42,7 +42,7 @@
             DiscountsListBox = new ListBox();
             label3 = new Label();
             IsPriorityCheckBox = new CheckBox();
-            addressControl1 = new AddressControl();
+            AddressControl = new AddressControl();
             FullNameTextBox = new TextBox();
             IdTextBox = new TextBox();
             label2 = new Label();
@@ -152,7 +152,7 @@
             SelectedCustomerGroupBox.Controls.Add(DiscountsListBox);
             SelectedCustomerGroupBox.Controls.Add(label3);
             SelectedCustomerGroupBox.Controls.Add(IsPriorityCheckBox);
-            SelectedCustomerGroupBox.Controls.Add(addressControl1);
+            SelectedCustomerGroupBox.Controls.Add(AddressControl);
             SelectedCustomerGroupBox.Controls.Add(FullNameTextBox);
             SelectedCustomerGroupBox.Controls.Add(IdTextBox);
             SelectedCustomerGroupBox.Controls.Add(label2);
@@ -165,7 +165,6 @@
             SelectedCustomerGroupBox.TabIndex = 4;
             SelectedCustomerGroupBox.TabStop = false;
             SelectedCustomerGroupBox.Text = "Selected Customer";
-
             // 
             // RemovePercentDiscountButton
             // 
@@ -218,23 +217,22 @@
             IsPriorityCheckBox.UseVisualStyleBackColor = true;
             IsPriorityCheckBox.CheckedChanged += IsPriorityCheckBox_CheckedChanged;
             // 
-            // addressControl1
+            // AddressControl
             // 
-            address1.Apartment = "";
-            address1.Building = "";
-            address1.City = "";
-            address1.Country = "";
-            address1.Index = 111111;
-            address1.Street = "";
-            addressControl1.Address = address1;
-            addressControl1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            addressControl1.Location = new Point(1, 120);
-            addressControl1.Margin = new Padding(3, 4, 3, 4);
-            addressControl1.MinimumSize = new Size(813, 282);
-            addressControl1.Name = "addressControl1";
-            addressControl1.Size = new Size(813, 282);
-            addressControl1.TabIndex = 6;
-
+            address2.Apartment = "";
+            address2.Building = "";
+            address2.City = "";
+            address2.Country = "";
+            address2.Index = 111111;
+            address2.Street = "";
+            AddressControl.Address = address2;
+            AddressControl.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            AddressControl.Location = new Point(1, 120);
+            AddressControl.Margin = new Padding(3, 4, 3, 4);
+            AddressControl.MinimumSize = new Size(813, 282);
+            AddressControl.Name = "AddressControl";
+            AddressControl.Size = new Size(813, 282);
+            AddressControl.TabIndex = 6;
             // 
             // FullNameTextBox
             // 
@@ -305,7 +303,7 @@
         private Panel panel1;
         private TableLayoutPanel tableLayoutPanel1;
         private TableLayoutPanel tableLayoutPanel2;
-        private AddressControl addressControl1;
+        private AddressControl AddressControl;
         private CheckBox IsPriorityCheckBox;
         private Button RemovePercentDiscountButton;
         private Button AddPercentDiscountButton;
