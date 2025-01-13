@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "8 laba", "8 laba\8 laba.csp
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "AirTravels", "AirTravels\AirTravels.vdproj", "{241DDAD9-12F8-46B4-9C6A-EAFDC3909C8A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OOP", "OOP\OOP.csproj", "{B9D570F6-7DB7-40F4-B03B-A55D96B89B81}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ObjectOrientedPractics", "OOP\ObjectOrientedPractics.csproj", "{B9D570F6-7DB7-40F4-B03B-A55D96B89B81}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -13,16 +13,16 @@ namespace OOP
         {
             InitializeComponent();
             Store _store = new Store();
-            itemsTab1.Items = _store.Items;
-            ñustomersTab.Customers = _store.Customers;
+            ItemsTab.Items = _store.Items;
+            CustomersTab.Customers = _store.Customers;
 
-            cartsTab1.Items = _store.Items;
-            cartsTab1.Customers = _store.Customers;
+            ÑartsTab.Items = _store.Items;
+            ÑartsTab.Customers = _store.Customers;
 
-            ordersTab1.Customers= _store.Customers;
-            itemsTab1.ItemsChanged += ItemsChanged;
+            OrdersTab.Customers= _store.Customers;
+            ItemsTab.ItemsChanged += ItemsChanged;
 
-            ñustomersTab.CustomersChanged += CustomersChanged;
+            CustomersTab.CustomersChanged += CustomersChanged;
         }
 
         /// <summary>
@@ -32,8 +32,7 @@ namespace OOP
         /// <param name="e">Àğãóìåíòû ñîáûòèÿ.</param>
         private void ItemsChanged(object? sender, EventArgs e)
         {
-            cartsTab1.RefreshData();
-          
+            ÑartsTab.RefreshData();
         }
 
         /// <summary>
@@ -43,7 +42,7 @@ namespace OOP
         /// <param name="e">Àğãóìåíòû ñîáûòèÿ.</param>
         private void CustomersChanged(object? sender, EventArgs e)
         {
-            cartsTab1.RefreshData(); 
+            ÑartsTab.RefreshData(); 
         }
 
         /// <summary>
@@ -56,7 +55,7 @@ namespace OOP
         {
             if (TabControl.SelectedIndex == 3)
             {
-                ordersTab1.UpdateOrders();
+                OrdersTab.UpdateOrders();
             }
         }
 

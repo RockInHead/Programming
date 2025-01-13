@@ -191,41 +191,21 @@ namespace OOP.View.Tabs
         /// <param name="e">Аргументы события.</param>
         private void AddButton_Click(object sender, EventArgs e)
         {
-            try
-            {
-                CostTextBox.BackColor = ColorsTool.GetWhite();
-                ErrorLabel.Visible = false;
-                Category NewCategory = (Category)Enum.Parse(typeof(Category), CategoryComboBox.Text);
-                Item NewItem = new Item();
+            ItemsListBox.SelectedIndex = -1;
+            AddButton.Enabled = false;
+            IdTextBox.Text = "";
+            CostTextBox.Text = "";
+            NameRichTextBox.Text = "";
+            DescriptionRichTextBox.Text = "";
+            CategoryComboBox.ResetText();
 
-                NewItem.Cost = Convert.ToDouble((CostTextBox.Text));
-                NewItem.Name = NameRichTextBox.Text;
-                NewItem.Info = DescriptionRichTextBox.Text;
+            OkButton.Enabled = true;
+            CancelButton.Enabled = true;
 
-                NewItem.Category = NewCategory;
-
-                Items.Add(NewItem);
-
-                ItemsListBox.Items.Add($"{NewItem.Id.ToString()}){NewItem.Name.ToString()}");
-                
-                TypeOfSorting();
-
-
-                CostTextBox.Text = "";
-                NameRichTextBox.Text = "";
-                DescriptionRichTextBox.Text = "";
-                CategoryComboBox.SelectedIndex = -1;
-                ItemsChanged?.Invoke(this, EventArgs.Empty);
-            }
-
-            catch (ArgumentException)
-            {
-                ErrorLabel.Visible = true;
-            }
-            catch (Exception)
-            {
-                CostTextBox.BackColor = ColorsTool.GetRed();
-            }
+            CostTextBox.ReadOnly = false;
+            NameRichTextBox.ReadOnly = false;
+            DescriptionRichTextBox.ReadOnly = false;
+            CategoryComboBox.Enabled = true;
         }
 
         /// <summary>
@@ -246,7 +226,10 @@ namespace OOP.View.Tabs
             }
             else
             {
-                AddButton.Enabled = false;
+                CostTextBox.ReadOnly = false;
+                NameRichTextBox.ReadOnly = false;
+                DescriptionRichTextBox.ReadOnly = false;
+                CategoryComboBox.Enabled = true;
 
                 int selectedIndex = ItemsListBox.SelectedIndex;
                 _currentItem = _displayedItems[selectedIndex];
@@ -295,7 +278,7 @@ namespace OOP.View.Tabs
             {
                 try
                 {
-                    if (!(CostTextBox.Text.Any(Char.IsWhiteSpace)) && 
+                    if (!(CostTextBox.Text.Any(Char.IsWhiteSpace)) &&
                         !(String.IsNullOrEmpty(CostTextBox.Text)))
                     {
                         CostTextBox.BackColor = ColorsTool.GetWhite();
@@ -364,22 +347,6 @@ namespace OOP.View.Tabs
         }
 
         /// <summary>
-        /// Обработчик события нажатия мыши на ItemsListBox.
-        /// Сбрасывает выделение, если кликнули на пустое место.
-        /// </summary>
-        /// <param name="sender">Источник события.</param>
-        /// <param name="e">Аргументы события.</param>
-        private void ItemsListBox_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (ItemsListBox.IndexFromPoint(e.Location) == -1)
-            {
-                // Если кликнули на пустое место, сбрасываем выбор
-                ItemsListBox.ClearSelected();
-                ItemsListBox.SelectedIndex = -1;
-            }
-        }
-
-        /// <summary>
         /// Обработчик события перемещения мыши над текстовым полем имени.
         /// </summary>
         /// <param name="sender">Источник события.</param>
@@ -432,11 +399,106 @@ namespace OOP.View.Tabs
         /// <param name="e">Аргументы события.</param>
         private void SortByComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ItemsListBox.Items.Count!=0)
+            if (ItemsListBox.Items.Count != 0)
             {
                 ItemsListBox.SelectedIndex = -1;
                 TypeOfSorting();
             }
+        }
+
+        /// <summary>
+        /// Обработчик события клика по кнопке "OK".
+        /// Проверяет введенные данные и добавляет новый элемент в список.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
+        private void OkButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                CostTextBox.BackColor = ColorsTool.GetWhite();
+                ErrorLabel.Visible = false;
+                Category NewCategory = (Category)Enum.Parse(typeof(Category), CategoryComboBox.Text);
+                Item NewItem = new Item();
+
+                NewItem.Cost = Convert.ToDouble((CostTextBox.Text));
+                NewItem.Name = NameRichTextBox.Text;
+                NewItem.Info = DescriptionRichTextBox.Text;
+
+                NewItem.Category = NewCategory;
+
+                Items.Add(NewItem);
+
+                ItemsListBox.Items.Add($"{NewItem.Id.ToString()}){NewItem.Name.ToString()}");
+
+                TypeOfSorting();
+
+
+                CostTextBox.Text = "";
+                NameRichTextBox.Text = "";
+                DescriptionRichTextBox.Text = "";
+                CategoryComboBox.SelectedIndex = -1;
+                ItemsChanged?.Invoke(this, EventArgs.Empty);
+
+                AddButton.Enabled = true;
+                OkButton.Enabled = false;
+                CancelButton.Enabled = false;
+
+                CostTextBox.ReadOnly = true;
+                NameRichTextBox.ReadOnly = true;
+                DescriptionRichTextBox.ReadOnly = true;
+                CategoryComboBox.Enabled = false;
+            }
+
+            catch (ArgumentException)
+            {
+                ErrorLabel.Visible = true;
+            }
+            catch (Exception)
+            {
+                CostTextBox.BackColor = ColorsTool.GetRed();
+            }
+
+        }
+
+        /// <summary>
+        /// Обработчик события клика по кнопке "Отмена".
+        /// Очищает все поля ввода и сбрасывает состояние кнопок.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
+        private void CancelButton_Click(object sender, EventArgs e)
+        {
+            CostTextBox.Text = "";
+            NameRichTextBox.Text = "";
+            DescriptionRichTextBox.Text = "";
+            CategoryComboBox.SelectedIndex = -1;
+
+            AddButton.Enabled = true;
+            OkButton.Enabled = false;
+            CancelButton.Enabled = false;
+
+            CostTextBox.ReadOnly = true;
+            NameRichTextBox.ReadOnly = true;
+            DescriptionRichTextBox.ReadOnly = true;
+            CategoryComboBox.Enabled = false;
+        }
+
+        /// <summary>
+        /// Обработчик события загрузки вкладки элементов.
+        /// Инициализирует состояние кнопок при загрузке.
+        /// </summary>
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события.</param>
+        private void ItemsTab_Load(object sender, EventArgs e)
+        {
+            CostTextBox.ReadOnly = true;
+            NameRichTextBox.ReadOnly = true;
+            DescriptionRichTextBox.ReadOnly = true;
+            CategoryComboBox.Enabled = false;
+
+            OkButton.Enabled = false;
+            CancelButton.Enabled = false;
         }
     }
 }

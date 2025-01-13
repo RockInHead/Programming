@@ -40,6 +40,9 @@
             RemoveButton = new Button();
             ItemsListBox = new ListBox();
             SelectedItemGroupBox = new GroupBox();
+            tableLayoutPanel5 = new TableLayoutPanel();
+            CancelButton = new Button();
+            OkButton = new Button();
             ErrorLabel = new Label();
             CategoryComboBox = new ComboBox();
             label4 = new Label();
@@ -53,10 +56,19 @@
             IdTextBox = new TextBox();
             NameToolTip = new ToolTip(components);
             DesriptionToolTip = new ToolTip(components);
+            tableLayoutPanel3 = new TableLayoutPanel();
+            button1 = new Button();
+            button2 = new Button();
+            tableLayoutPanel4 = new TableLayoutPanel();
+            button3 = new Button();
+            button4 = new Button();
             tableLayoutPanel1.SuspendLayout();
             ItemsGroupBox.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             SelectedItemGroupBox.SuspendLayout();
+            tableLayoutPanel5.SuspendLayout();
+            tableLayoutPanel3.SuspendLayout();
+            tableLayoutPanel4.SuspendLayout();
             SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -147,6 +159,7 @@
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 1;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel2.Size = new Size(342, 47);
             tableLayoutPanel2.TabIndex = 3;
             // 
@@ -181,12 +194,12 @@
             ItemsListBox.Name = "ItemsListBox";
             ItemsListBox.Size = new Size(342, 452);
             ItemsListBox.TabIndex = 0;
-            ItemsListBox.MouseClick += ItemsListBox_MouseClick;
             ItemsListBox.SelectedIndexChanged += ItemsListBox_SelectedIndexChanged;
             // 
             // SelectedItemGroupBox
             // 
             SelectedItemGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            SelectedItemGroupBox.Controls.Add(tableLayoutPanel5);
             SelectedItemGroupBox.Controls.Add(ErrorLabel);
             SelectedItemGroupBox.Controls.Add(CategoryComboBox);
             SelectedItemGroupBox.Controls.Add(label4);
@@ -205,6 +218,44 @@
             SelectedItemGroupBox.TabIndex = 1;
             SelectedItemGroupBox.TabStop = false;
             SelectedItemGroupBox.Text = "Selected Item";
+            // 
+            // tableLayoutPanel5
+            // 
+            tableLayoutPanel5.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            tableLayoutPanel5.ColumnCount = 2;
+            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel5.Controls.Add(CancelButton, 1, 0);
+            tableLayoutPanel5.Controls.Add(OkButton, 0, 0);
+            tableLayoutPanel5.Location = new Point(6, 605);
+            tableLayoutPanel5.Name = "tableLayoutPanel5";
+            tableLayoutPanel5.RowCount = 1;
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel5.Size = new Size(342, 47);
+            tableLayoutPanel5.TabIndex = 15;
+            // 
+            // CancelButton
+            // 
+            CancelButton.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            CancelButton.Location = new Point(174, 3);
+            CancelButton.Name = "CancelButton";
+            CancelButton.Size = new Size(165, 41);
+            CancelButton.TabIndex = 2;
+            CancelButton.Text = "Cancel";
+            CancelButton.UseVisualStyleBackColor = true;
+            CancelButton.Click += CancelButton_Click;
+            // 
+            // OkButton
+            // 
+            OkButton.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            OkButton.Location = new Point(3, 3);
+            OkButton.Name = "OkButton";
+            OkButton.Size = new Size(165, 41);
+            OkButton.TabIndex = 1;
+            OkButton.Text = "Ok";
+            OkButton.UseVisualStyleBackColor = true;
+            OkButton.Click += OkButton_Click;
             // 
             // ErrorLabel
             // 
@@ -286,7 +337,7 @@
             DescriptionRichTextBox.MaxLength = 1000;
             DescriptionRichTextBox.MinimumSize = new Size(525, 133);
             DescriptionRichTextBox.Name = "DescriptionRichTextBox";
-            DescriptionRichTextBox.Size = new Size(525, 234);
+            DescriptionRichTextBox.Size = new Size(525, 174);
             DescriptionRichTextBox.TabIndex = 3;
             DescriptionRichTextBox.Text = "";
             DescriptionRichTextBox.TextChanged += DescriptionRichTextBox_TextChanged;
@@ -323,6 +374,72 @@
             IdTextBox.Size = new Size(191, 34);
             IdTextBox.TabIndex = 0;
             // 
+            // tableLayoutPanel3
+            // 
+            tableLayoutPanel3.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            tableLayoutPanel3.ColumnCount = 2;
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel3.Controls.Add(button1, 0, 0);
+            tableLayoutPanel3.Location = new Point(0, 0);
+            tableLayoutPanel3.Name = "tableLayoutPanel3";
+            tableLayoutPanel3.RowCount = 1;
+            tableLayoutPanel3.Size = new Size(200, 100);
+            tableLayoutPanel3.TabIndex = 0;
+            // 
+            // button1
+            // 
+            button1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            button1.Location = new Point(3, 3);
+            button1.Name = "button1";
+            button1.Size = new Size(94, 94);
+            button1.TabIndex = 1;
+            button1.Text = "Add";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            button2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            button2.Location = new Point(103, 3);
+            button2.Name = "button2";
+            button2.Size = new Size(94, 94);
+            button2.TabIndex = 2;
+            button2.Text = "Remove";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel4
+            // 
+            tableLayoutPanel4.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            tableLayoutPanel4.ColumnCount = 2;
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel4.Controls.Add(button3, 0, 0);
+            tableLayoutPanel4.Location = new Point(0, 0);
+            tableLayoutPanel4.Name = "tableLayoutPanel4";
+            tableLayoutPanel4.RowCount = 1;
+            tableLayoutPanel4.Size = new Size(200, 100);
+            tableLayoutPanel4.TabIndex = 0;
+            // 
+            // button3
+            // 
+            button3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            button3.Location = new Point(3, 3);
+            button3.Name = "button3";
+            button3.Size = new Size(94, 94);
+            button3.TabIndex = 1;
+            button3.Text = "Add";
+            button3.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            button4.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            button4.Location = new Point(103, 3);
+            button4.Name = "button4";
+            button4.Size = new Size(94, 94);
+            button4.TabIndex = 2;
+            button4.Text = "Remove";
+            button4.UseVisualStyleBackColor = true;
+            // 
             // ItemsTab
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -330,12 +447,16 @@
             Controls.Add(tableLayoutPanel1);
             Name = "ItemsTab";
             Size = new Size(945, 678);
+            Load += ItemsTab_Load;
             tableLayoutPanel1.ResumeLayout(false);
             ItemsGroupBox.ResumeLayout(false);
             ItemsGroupBox.PerformLayout();
             tableLayoutPanel2.ResumeLayout(false);
             SelectedItemGroupBox.ResumeLayout(false);
             SelectedItemGroupBox.PerformLayout();
+            tableLayoutPanel5.ResumeLayout(false);
+            tableLayoutPanel3.ResumeLayout(false);
+            tableLayoutPanel4.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -365,5 +486,14 @@
         private Label label13;
         private ComboBox SortByComboBox;
         private Label label7;
+        private TableLayoutPanel tableLayoutPanel5;
+        private Button CancelButton;
+        private Button OkButton;
+        private TableLayoutPanel tableLayoutPanel3;
+        private Button button1;
+        private Button button2;
+        private TableLayoutPanel tableLayoutPanel4;
+        private Button button3;
+        private Button button4;
     }
 }
