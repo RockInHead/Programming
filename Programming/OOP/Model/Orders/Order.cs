@@ -1,21 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace OOP.Model.Orders
+﻿namespace OOP.Model.Orders
 {
     /// <summary>
-    /// Хранит данные о заказе: айди заказа, количество всех заказов,
+    /// Хранит данные о заказе: ID заказа, количество всех заказов,
     /// статус заказа, дата заказа,
-    /// адресс доставки, товары,
+    /// адрес доставки, товары,
     /// сумма стоимости всех товаров, скидка на заказ.
     /// </summary>
     public class Order
     {
         /// <summary>
-        /// Уникальный айди заказа.
+        /// Уникальный ID заказа.
         /// </summary>
         private int _id;
 
@@ -35,7 +29,7 @@ namespace OOP.Model.Orders
         private string _dateOfCreation;
 
         /// <summary>
-        /// Адресс доставки.
+        /// Адрес доставки.
         /// </summary>
         private Address _deliveryAddress;
 
@@ -54,14 +48,28 @@ namespace OOP.Model.Orders
         /// </summary>
         private double _discountAmount;
 
-
+        /// <summary>
+        /// Получает уникальный идентификатор заказа.
+        /// </summary>
         public int Id { get; }
+
+        /// <summary>
+        /// Получает или устанавливает статус заказа.
+        /// </summary>
         public OrderStatus Status { get; set; }
+
+        /// <summary>
+        /// Получает дату создания заказа в строковом формате.
+        /// </summary>
         public string DateOfCreation { get; }
+
+        /// <summary>
+        /// Получает или устанавливает адрес доставки заказа.
+        /// </summary>
         public Address DeliveryAddress { get; set; }
 
         /// <summary>
-        /// Размер примененной скидки
+        /// Размер примененной скидки.
         /// </summary>
         public double DiscountAmount
         {
@@ -87,6 +95,9 @@ namespace OOP.Model.Orders
             }
         }
 
+        /// <summary>
+        /// Получает или устанавливает список предметов, входящих в заказ.
+        /// </summary>
         public List<Item> Items { get; set; }
 
         /// <summary>
@@ -111,16 +122,23 @@ namespace OOP.Model.Orders
                 }
             }
         }
+
         /// <summary>
-        /// Констуктор по умолчанию.
+        /// Инициализирует новый экземпляр класса <see cref="Order"/> с заданными значениями по умолчанию.
         /// </summary>
+        /// <remarks>
+        /// Устанавливает статус заказа на <see cref="OrderStatus.New"/>, 
+        /// задает дату создания на "01.01.2000", 
+        /// инициализирует адрес доставки новым экземпляром <see cref="Address"/>, 
+        /// создает пустой список предметов, 
+        /// увеличивает общий счетчик заказов и назначает уникальный идентификатор.
+        /// </remarks>
         public Order()
         {
             Status = OrderStatus.New;
             DateOfCreation = "01.01.2000";
             DeliveryAddress = new Address();
             Items = [];
-
             _allOrdersCount += 1;
             Id = _allOrdersCount;
         }
@@ -133,14 +151,13 @@ namespace OOP.Model.Orders
         /// <param name="items">Список предметов заказа.</param>
         /// <param name="address">Адрес доставки.</param>
         /// <param name="discountAmount">Сумма скидки.</param>
-        public Order(OrderStatus status, string dateOfCreation, List<Item> items, Address address,double discountAmount)
+        public Order(OrderStatus status, string dateOfCreation, List<Item> items, Address address, double discountAmount)
         {
             Status = status;
             DateOfCreation = dateOfCreation;
             Items = new List<Item>(items);
             DeliveryAddress = address;
             DiscountAmount= discountAmount;
-
             _allOrdersCount += 1;
             Id = _allOrdersCount;
         }
@@ -152,14 +169,27 @@ namespace OOP.Model.Orders
         /// <returns></returns>
         public override bool Equals(object other)
         {
-            if (other == null)
+            if (other == null) 
+            { 
                 return false;
+            }
+
             if (other is not Order)
+            {
                 return false;
+            }
+
             if (object.ReferenceEquals(this, other))
+            {
                 return true;
+            }
+
             Order order = (Order)other;
-            return (this.Status == order.Status && this.DateOfCreation == order.DateOfCreation && this.Items == order.Items && this.DeliveryAddress == order.DeliveryAddress && this.DiscountAmount==order.DiscountAmount);
+            return (this.Status == order.Status &&
+            this.DateOfCreation == order.DateOfCreation &&
+            this.Items == order.Items &&
+            this.DeliveryAddress == order.DeliveryAddress &&
+            this.DiscountAmount==order.DiscountAmount);
         }
     }
 }
