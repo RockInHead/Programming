@@ -1,32 +1,30 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.Diagnostics;
-using System.Text.RegularExpressions;
-
-namespace OOP
+﻿namespace OOP
 {
     /// <summary>
-    /// Хранит данные о товаре:Уникальный айди,Имя товара,Имя товара,Описание товара, Стоимость товара, Категорию товара.
+    /// Хранит данные о товаре:Уникальный ID, имя товара, описание товара, стоимость товара, категорию товара.
     /// </summary>
     public class Item : ICloneable, IComparable<Item>
     {
-        //Поля
         /// <summary>
-        /// Уникальный айди товара.
+        /// Уникальный ID товара.
         /// </summary>
         private int _id;
+
         /// <summary>
         /// Статическое значение количества всех экзепляров товаров.
         /// </summary>
         private static int _allItemsCount;
+
         /// <summary>
         /// Имя товара.
         /// </summary>
         private string _name;
+
         /// <summary>
         /// Описание товара.
         /// </summary>
         private string _info;
+
         /// <summary>
         /// Стоимость товара.
         /// </summary>
@@ -37,11 +35,8 @@ namespace OOP
         /// </summary>
         private Category _category;
 
-
-        //Свойства  автосвойства
-
         /// <summary>
-        /// Возвращает значение о кол-ве всех экземплярах класса.
+        /// Возвращает значение о количестве всех экземпляров класса.
         /// </summary>
         public int AllItemsCount
         {
@@ -50,8 +45,9 @@ namespace OOP
                 return _allItemsCount;
             }
         }
+
         /// <summary>
-        /// Возвращает уникальный айди товара.
+        /// Возвращает уникальный ID товара.
         /// </summary>
         public int Id
         {
@@ -65,10 +61,12 @@ namespace OOP
         /// Событие изменения названия товара.
         /// </summary>
         public event EventHandler<EventArgs> NameChanged;
+
         /// <summary>
         /// Событие изменения описания товара.
         /// </summary>
         public event EventHandler<EventArgs> InfoChanged;
+
         /// <summary>
         /// Событие изменения стоимости товара.
         /// </summary>
@@ -85,7 +83,7 @@ namespace OOP
             }
             set
             {
-                ValueValidator.AssertStringOnLength(value, 200, Name);
+                ValueValidator.AssertStringOnLength(value, 200, nameof(Name));
                 _name = value;
                 NameChanged?.Invoke(this, EventArgs.Empty);
             }
@@ -102,7 +100,7 @@ namespace OOP
             }
             set
             {
-                ValueValidator.AssertStringOnLength(value, 1000, Info);
+                ValueValidator.AssertStringOnLength(value, 1000, nameof(Info));
                 _info = value;
                 InfoChanged?.Invoke(this, EventArgs.Empty);
             }
@@ -123,7 +121,6 @@ namespace OOP
                 {
                     _cost = value;
                     CostChanged?.Invoke(this, EventArgs.Empty);
-
                 }
                 else
                 {
@@ -132,11 +129,14 @@ namespace OOP
             }
         }
 
+        /// <summary>
+        /// Возвращает и задает категорию товара.
+        /// </summary>
         public Category Category { get; set; }
 
-        //Конструктор
         /// <summary>
-        /// Создает пустой/начальный экземпляр класса.Всем полям присваивается значение по умолчанию.
+        /// Инициализирует новый экземпляр класса <see cref="Item"/>.
+        /// Устанавливает значения по умолчанию для свойств.
         /// </summary>
         public Item()
         {
@@ -149,13 +149,12 @@ namespace OOP
         }
 
         /// <summary>
-        /// Создает экземпляр класса.
+        /// Инициализирует новый экземпляр класса <see cref="Item"/> с заданными значениями.
         /// </summary>
-        /// <param name="name">Имя товара. Не более 200 символов</param>
-        /// <param name="info">Описание товара. Не более 1000 символов</param>
-        /// <param name="cost">Стоимость товара. От 0 до 100000</param>
-        /// <param name="category">Категория товара. Одна из 7</param>
-        /// 
+        /// <param name="name">Имя предмета.</param>
+        /// <param name="info">Информация о предмете.</param>
+        /// <param name="cost">Стоимость предмета.</param>
+        /// <param name="category">Категория предмета.</param>
         public Item(string name, string info, double cost, Category category)
         {
             Name = name;
@@ -167,18 +166,24 @@ namespace OOP
             _id = _allItemsCount;
         }
 
+        /// <summary>
+        /// Возвращает строковое представление данного экземпляра, представляя его наименование.
+        /// </summary>
+        /// <returns>Наименование товара.</returns>
         public override string ToString()
         {
             return Name;
         }
+
         /// <summary>
-        /// Делает копию объекта по всем полям, кроме Id.
+        /// Делает копию объекта по всем полям, кроме ID.
         /// </summary>
         /// <returns></returns>
         public object Clone()
         {
             return new Item(this.Name, this.Info, this.Cost, this.Category);
         }
+
         /// <summary>
         /// Объекты равны тогда, когда у них равны все поля кроме ID.
         /// </summary>
@@ -186,34 +191,45 @@ namespace OOP
         /// <returns></returns>
         public override bool Equals(object other)
         {
-            if (other == null)
+            if (other == null) 
+            { 
                 return false;
-            if (other is not Item)
-                return false;
-            if (object.ReferenceEquals(this, other))
-                return true;
-            Item item = (Item)other;
-            return (this.Name == item.Name && this.Info == item.Info && this.Cost == item.Cost && this.Category == item.Category);
-        }
-        /// <inheritdoc/>
-        public int CompareTo(Item? item2)
-        {
+            }
 
-            if (object.ReferenceEquals(this, item2))
+            if (other is not Item)
+            {
+                return false;
+            }
+
+            if (object.ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            Item item = (Item)other;
+            return (this.Name == item.Name &&
+                this.Info == item.Info &&
+                this.Cost == item.Cost &&
+                this.Category == item.Category);
+        }
+
+        /// <summary>
+        /// Сравнивает стоимость текущего товара с другим.
+        /// </summary>
+        /// <param name="other">Товар, с которым производится сравнение.</param>
+        /// <returns>
+        /// Возвращает 0, если стоимость текущего товара равна other; 
+        /// 1, если стоимость текущего товара больше other; 
+        /// -1, если стоимость текущего товара меньше other.
+        /// </returns>
+        public int CompareTo(Item? other)
+        {
+            if (object.ReferenceEquals(this, other))
+            {
                 return 0;
-            if (Cost > item2.Cost)
-            {
-                return 1;
             }
-            if (Cost < item2.Cost)
-            {
-                return -1;
-            }
-            else if (Cost == item2.Cost)
-            {
-                return 0;
-            }
-            return 1;
+
+            return Cost.CompareTo(other.Cost);
         }
     }
 }
