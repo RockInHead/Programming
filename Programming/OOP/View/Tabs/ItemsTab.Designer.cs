@@ -40,7 +40,7 @@
             RemoveButton = new Button();
             ItemsListBox = new ListBox();
             SelectedItemGroupBox = new GroupBox();
-            label6 = new Label();
+            ErrorLabel = new Label();
             CategoryComboBox = new ComboBox();
             label4 = new Label();
             label3 = new Label();
@@ -187,7 +187,7 @@
             // SelectedItemGroupBox
             // 
             SelectedItemGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            SelectedItemGroupBox.Controls.Add(label6);
+            SelectedItemGroupBox.Controls.Add(ErrorLabel);
             SelectedItemGroupBox.Controls.Add(CategoryComboBox);
             SelectedItemGroupBox.Controls.Add(label4);
             SelectedItemGroupBox.Controls.Add(label3);
@@ -206,17 +206,17 @@
             SelectedItemGroupBox.TabStop = false;
             SelectedItemGroupBox.Text = "Selected Item";
             // 
-            // label6
+            // ErrorLabel
             // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label6.ForeColor = Color.Red;
-            label6.Location = new Point(267, 152);
-            label6.Name = "label6";
-            label6.Size = new Size(168, 28);
-            label6.TabIndex = 14;
-            label6.Text = "Сhoose Category!";
-            label6.Visible = false;
+            ErrorLabel.AutoSize = true;
+            ErrorLabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            ErrorLabel.ForeColor = Color.Red;
+            ErrorLabel.Location = new Point(267, 152);
+            ErrorLabel.Name = "ErrorLabel";
+            ErrorLabel.Size = new Size(168, 28);
+            ErrorLabel.TabIndex = 14;
+            ErrorLabel.Text = "Сhoose Category!";
+            ErrorLabel.Visible = false;
             // 
             // CategoryComboBox
             // 
@@ -238,7 +238,6 @@
             label4.Size = new Size(103, 28);
             label4.TabIndex = 12;
             label4.Text = "Category:";
-
             // 
             // label3
             // 
@@ -361,7 +360,7 @@
         private ToolTip DesriptionToolTip;
         private Label label4;
         private ComboBox CategoryComboBox;
-        private Label label6;
+        private Label ErrorLabel;
         private TextBox FindSubstringTextBox;
         private Label label13;
         private ComboBox SortByComboBox;
