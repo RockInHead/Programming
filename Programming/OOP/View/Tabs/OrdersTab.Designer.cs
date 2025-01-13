@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Model.Address address1 = new Model.Address();
+            Model.Address address2 = new Model.Address();
             tableLayoutPanel1 = new TableLayoutPanel();
             groupBox1 = new GroupBox();
             tableLayoutPanel2 = new TableLayoutPanel();
@@ -42,7 +42,7 @@
             label6 = new Label();
             label5 = new Label();
             OrderItemsListBox = new ListBox();
-            addressControl1 = new AddressControl();
+            OrdersAddressControl = new AddressControl();
             OrderStatusComboBox = new ComboBox();
             label3 = new Label();
             OrderCreatedTextBox = new TextBox();
@@ -79,7 +79,7 @@
             groupBox1.Controls.Add(PriorityOrdersPanel);
             groupBox1.Controls.Add(label5);
             groupBox1.Controls.Add(OrderItemsListBox);
-            groupBox1.Controls.Add(addressControl1);
+            groupBox1.Controls.Add(OrdersAddressControl);
             groupBox1.Controls.Add(OrderStatusComboBox);
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(OrderCreatedTextBox);
@@ -221,22 +221,22 @@
             OrderItemsListBox.Size = new Size(519, 116);
             OrderItemsListBox.TabIndex = 7;
             // 
-            // addressControl1
+            // OrdersAddressControl
             // 
-            address1.Apartment = "";
-            address1.Building = "";
-            address1.City = "";
-            address1.Country = "";
-            address1.Index = 111111;
-            address1.Street = "";
-            addressControl1.Address = address1;
-            addressControl1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            addressControl1.Enabled = false;
-            addressControl1.Location = new Point(0, 174);
-            addressControl1.Margin = new Padding(4);
-            addressControl1.Name = "addressControl1";
-            addressControl1.Size = new Size(634, 303);
-            addressControl1.TabIndex = 6;
+            address2.Apartment = "";
+            address2.Building = "";
+            address2.City = "";
+            address2.Country = "";
+            address2.Index = 111111;
+            address2.Street = "";
+            OrdersAddressControl.Address = address2;
+            OrdersAddressControl.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            OrdersAddressControl.Enabled = false;
+            OrdersAddressControl.Location = new Point(0, 174);
+            OrdersAddressControl.Margin = new Padding(4);
+            OrdersAddressControl.Name = "OrdersAddressControl";
+            OrdersAddressControl.Size = new Size(634, 303);
+            OrdersAddressControl.TabIndex = 6;
             // 
             // OrderStatusComboBox
             // 
@@ -343,7 +343,7 @@
         private GroupBox groupBox1;
         private TextBox OrderIdTextBox;
         private Label label1;
-        private AddressControl addressControl1;
+        private AddressControl OrdersAddressControl;
         private ComboBox OrderStatusComboBox;
         private Label label3;
         private TextBox OrderCreatedTextBox;
