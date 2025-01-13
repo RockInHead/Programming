@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace OOP.Model.Orders
+﻿namespace OOP.Model.Orders
 {
     /// <summary>
     /// Хранит данные о приоритетном заказе: Дата доставки заказа, время доставки заказа.
