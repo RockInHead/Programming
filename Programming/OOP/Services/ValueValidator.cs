@@ -1,11 +1,8 @@
-﻿using System.Diagnostics;
-using System.Text.RegularExpressions;
-/// <summary>
+﻿/// <summary>
 /// Осуществляет проверку/валидацию определенных данных.
 /// </summary>
-class ValueValidator
+public class ValueValidator
 {
-    //Проверка положительности числа
     /// <summary>
     /// Проверяет, что значение типа int положительное.
     /// </summary>
