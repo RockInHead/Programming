@@ -91,7 +91,7 @@ namespace OOP.View
             {
                 CountryTextBox.BackColor = ColorsTool.GetWhite();
                 CountryToolTip.SetToolTip(CountryTextBox, "Не более 50 символов");
-                    
+
                 Address.Country = CountryTextBox.Text;
             }
             catch (Exception)

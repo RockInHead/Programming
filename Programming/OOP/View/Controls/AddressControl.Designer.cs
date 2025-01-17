@@ -64,7 +64,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label2.Location = new Point(0, 54);
+            label2.Location = new Point(0, 60);
             label2.Name = "label2";
             label2.Size = new Size(105, 28);
             label2.TabIndex = 1;
@@ -94,7 +94,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label3.Location = new Point(0, 115);
+            label3.Location = new Point(0, 121);
             label3.Name = "label3";
             label3.Size = new Size(86, 28);
             label3.TabIndex = 3;
@@ -107,7 +107,7 @@
             CityTextBox.Location = new Point(445, 115);
             CityTextBox.MaxLength = 50;
             CityTextBox.Name = "CityTextBox";
-            CityTextBox.Size = new Size(189, 34);
+            CityTextBox.Size = new Size(73, 34);
             CityTextBox.TabIndex = 6;
             CityTextBox.TextChanged += CityTextBox_TextChanged;
             // 
@@ -115,7 +115,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label4.Location = new Point(398, 115);
+            label4.Location = new Point(398, 121);
             label4.Name = "label4";
             label4.Size = new Size(50, 28);
             label4.TabIndex = 5;
@@ -128,7 +128,7 @@
             StreetTextBox.Location = new Point(114, 173);
             StreetTextBox.MaxLength = 100;
             StreetTextBox.Name = "StreetTextBox";
-            StreetTextBox.Size = new Size(520, 34);
+            StreetTextBox.Size = new Size(404, 34);
             StreetTextBox.TabIndex = 8;
             StreetTextBox.TextChanged += StreetTextBox_TextChanged;
             // 
@@ -211,7 +211,6 @@
             Controls.Add(label1);
             Name = "AddressControl";
             Size = new Size(637, 283);
-          
             ResumeLayout(false);
             PerformLayout();
         }
