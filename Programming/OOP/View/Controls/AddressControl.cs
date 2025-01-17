@@ -6,7 +6,7 @@ namespace OOP.View
         /// <summary>
         /// Поле текущего адресса.
         /// </summary>
-        private Address _address;
+        private Address _address = new Address();
 
         /// <summary>
         /// Получает или устанавливает адрес.
@@ -30,7 +30,20 @@ namespace OOP.View
         public AddressControl()
         {
             InitializeComponent();
+        }
+
+        /// <summary>
+        /// Очищает форму от всех значений.
+        /// </summary>
+        public void ClearForm()
+        {
             Address = new Address();
+            PostIndexTextBox.Text = "111111";
+            CountryTextBox.Text = "";
+            CityTextBox.Clear();
+            StreetTextBox.Clear();
+            BuildingTextBox.Clear();
+            ApartmentTextBox.Clear();
         }
 
         /// <summary>
@@ -45,19 +58,6 @@ namespace OOP.View
             StreetTextBox.Text = Address.Street;
             BuildingTextBox.Text = Address.Building;
             ApartmentTextBox.Text = Address.Apartment;
-        }
-
-        /// <summary>
-        /// Очищает форму от всех значений.
-        /// </summary>
-        public void ClearForm()
-        {
-            PostIndexTextBox.Text = "111111";
-            CountryTextBox.Clear();
-            CityTextBox.Clear();
-            StreetTextBox.Clear();
-            BuildingTextBox.Clear();
-            ApartmentTextBox.Clear();
         }
 
         /// <summary>

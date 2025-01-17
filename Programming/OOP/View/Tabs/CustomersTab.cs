@@ -35,6 +35,9 @@ namespace OOP.View.Tabs
         public СustomersTab()
         {
             InitializeComponent();
+            FullNameTextBox.ReadOnly = true;
+            AddressControl.Enabled = false;
+            IsPriorityCheckBox.Enabled = false;
         }
 
         /// <summary>
@@ -62,11 +65,10 @@ namespace OOP.View.Tabs
         /// <param name="e">Аргументы события.</param>
         private void CustomersListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (CustomersListBox.Items.Count == 0 || CustomersListBox.SelectedIndex == -1)
+            if (CustomersListBox.SelectedIndex == -1)
             {
                 AddCustomerButton.Enabled = true;
                 IdTextBox.Text = "";
-
                 FullNameTextBox.Text = "";
                 IsPriorityCheckBox.Checked = false;
                 AddressControl.ClearForm();
@@ -82,13 +84,7 @@ namespace OOP.View.Tabs
 
                 IdTextBox.Text = _currentCustomer.Id.ToString();
                 IsPriorityCheckBox.Checked = _currentCustomer.IsPriority;
-
-                AddressControl.Address = new Address(_currentCustomer.Address.Index,
-                                                   _currentCustomer.Address.Country,
-                                                   _currentCustomer.Address.City,
-                                                   _currentCustomer.Address.Street,
-                                                   _currentCustomer.Address.Building,
-                                                   _currentCustomer.Address.Apartment);
+                AddressControl.Address = _currentCustomer.Address;
 
                 foreach (IDiscount discount in _currentCustomer.Discounts)
                 {
@@ -108,6 +104,7 @@ namespace OOP.View.Tabs
         private void AddCustomerButton_Click(object sender, EventArgs e)
         {
             CustomersListBox.ClearSelected();
+            CustomersListBox.SelectedIndex = -1;
 
             IdTextBox.Text = "";
             FullNameTextBox.Text = "";
@@ -118,6 +115,10 @@ namespace OOP.View.Tabs
 
             OkButton.Enabled = true;
             CancelButton.Enabled = true;
+
+            FullNameTextBox.ReadOnly = false;
+            AddressControl.Enabled = true;
+            IsPriorityCheckBox.Enabled = true;
         }
 
         /// <summary>
@@ -209,29 +210,29 @@ namespace OOP.View.Tabs
         /// <param name="e"></param>
         private void OkButton_Click(object sender, EventArgs e)
         {
-            Customer customer = new Customer();
-            customer.FullName = FullNameTextBox.Text;
-            customer.IsPriority = IsPriorityCheckBox.Checked;
+                Customer customer = new Customer();
+                customer.FullName = FullNameTextBox.Text;
+                customer.IsPriority = IsPriorityCheckBox.Checked;
 
-            customer.Address = new Address(AddressControl.Address.Index,
+                customer.Address = new Address(AddressControl.Address.Index,
                                            AddressControl.Address.Country,
                                            AddressControl.Address.City,
                                            AddressControl.Address.Street,
                                            AddressControl.Address.Building,
                                            AddressControl.Address.Apartment);
-            Customers.Add(customer);
-            CustomersListBox.Items.Add($"{customer.Id.ToString()}){customer.FullName}");
 
-            FullNameTextBox.Text = "";
-            IsPriorityCheckBox.Checked = false;
-            AddressControl.ClearForm();
+                Customers.Add(customer);
+                CustomersListBox.Items.Add($"{customer.Id.ToString()}){customer.FullName}");
 
-            AddCustomerButton.Enabled = true;
-            RemoveCustomerButton.Enabled = true;
-            OkButton.Enabled = false;
-            CancelButton.Enabled = false;
+                FullNameTextBox.Text = "";
+                IsPriorityCheckBox.Checked = false;
+                AddressControl.ClearForm();
+                AddCustomerButton.Enabled = true;
+                RemoveCustomerButton.Enabled = true;
+                OkButton.Enabled = false;
+                CancelButton.Enabled = false;
 
-            CustomersChanged?.Invoke(this, EventArgs.Empty);
+                CustomersChanged?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -242,14 +243,12 @@ namespace OOP.View.Tabs
         private void CancelButton_Click(object sender, EventArgs e)
         {
             CustomersListBox.SelectedIndex = -1;
-
             IdTextBox.Text = "";
             FullNameTextBox.Text = "";
             AddressControl.ClearForm();
 
             AddCustomerButton.Enabled = true;
             RemoveCustomerButton.Enabled = true;
-
             OkButton.Enabled = false;
             CancelButton.Enabled = false;
         }
