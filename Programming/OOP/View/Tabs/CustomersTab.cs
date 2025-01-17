@@ -107,7 +107,7 @@ namespace OOP.View.Tabs
         /// <param name="e">Аргументы события.</param>
         private void AddCustomerButton_Click(object sender, EventArgs e)
         {
-            CustomersListBox.ClearSelected(); ;
+            CustomersListBox.ClearSelected();
 
             IdTextBox.Text = "";
             FullNameTextBox.Text = "";
@@ -212,7 +212,7 @@ namespace OOP.View.Tabs
             Customer customer = new Customer();
             customer.FullName = FullNameTextBox.Text;
             customer.IsPriority = IsPriorityCheckBox.Checked;
-            
+
             customer.Address = new Address(AddressControl.Address.Index,
                                            AddressControl.Address.Country,
                                            AddressControl.Address.City,

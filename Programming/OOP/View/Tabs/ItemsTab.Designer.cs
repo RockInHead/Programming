@@ -121,7 +121,7 @@
             label7.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label7.Location = new Point(6, 544);
+            label7.Location = new Point(6, 549);
             label7.Name = "label7";
             label7.Size = new Size(95, 28);
             label7.TabIndex = 15;
@@ -141,7 +141,7 @@
             // 
             label13.AutoSize = true;
             label13.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label13.Location = new Point(9, 23);
+            label13.Location = new Point(9, 30);
             label13.Name = "label13";
             label13.Size = new Size(57, 28);
             label13.TabIndex = 15;
@@ -211,7 +211,7 @@
             SelectedItemGroupBox.Controls.Add(NameRichTextBox);
             SelectedItemGroupBox.Controls.Add(CostTextBox);
             SelectedItemGroupBox.Controls.Add(IdTextBox);
-            SelectedItemGroupBox.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            SelectedItemGroupBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
             SelectedItemGroupBox.Location = new Point(380, 3);
             SelectedItemGroupBox.Name = "SelectedItemGroupBox";
             SelectedItemGroupBox.Size = new Size(562, 672);
@@ -227,20 +227,20 @@
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel5.Controls.Add(CancelButton, 1, 0);
             tableLayoutPanel5.Controls.Add(OkButton, 0, 0);
-            tableLayoutPanel5.Location = new Point(6, 605);
+            tableLayoutPanel5.Location = new Point(6, 608);
             tableLayoutPanel5.Name = "tableLayoutPanel5";
             tableLayoutPanel5.RowCount = 1;
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel5.Size = new Size(342, 47);
+            tableLayoutPanel5.Size = new Size(329, 47);
             tableLayoutPanel5.TabIndex = 15;
             // 
             // CancelButton
             // 
             CancelButton.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            CancelButton.Location = new Point(174, 3);
+            CancelButton.Location = new Point(167, 3);
             CancelButton.Name = "CancelButton";
-            CancelButton.Size = new Size(165, 41);
+            CancelButton.Size = new Size(159, 41);
             CancelButton.TabIndex = 2;
             CancelButton.Text = "Cancel";
             CancelButton.UseVisualStyleBackColor = true;
@@ -251,7 +251,7 @@
             OkButton.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             OkButton.Location = new Point(3, 3);
             OkButton.Name = "OkButton";
-            OkButton.Size = new Size(165, 41);
+            OkButton.Size = new Size(158, 41);
             OkButton.TabIndex = 1;
             OkButton.Text = "Ok";
             OkButton.UseVisualStyleBackColor = true;
@@ -262,7 +262,7 @@
             ErrorLabel.AutoSize = true;
             ErrorLabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
             ErrorLabel.ForeColor = Color.Red;
-            ErrorLabel.Location = new Point(267, 152);
+            ErrorLabel.Location = new Point(310, 152);
             ErrorLabel.Name = "ErrorLabel";
             ErrorLabel.Size = new Size(168, 28);
             ErrorLabel.TabIndex = 14;
@@ -274,7 +274,7 @@
             CategoryComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             CategoryComboBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
             CategoryComboBox.FormattingEnabled = true;
-            CategoryComboBox.Location = new Point(110, 149);
+            CategoryComboBox.Location = new Point(118, 144);
             CategoryComboBox.Name = "CategoryComboBox";
             CategoryComboBox.Size = new Size(151, 36);
             CategoryComboBox.TabIndex = 13;
@@ -284,7 +284,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label4.Location = new Point(6, 145);
+            label4.Location = new Point(6, 152);
             label4.Name = "label4";
             label4.Size = new Size(103, 28);
             label4.TabIndex = 12;
@@ -314,7 +314,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label5.Location = new Point(6, 88);
+            label5.Location = new Point(9, 94);
             label5.Name = "label5";
             label5.Size = new Size(58, 28);
             label5.TabIndex = 8;
@@ -324,7 +324,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label1.Location = new Point(6, 43);
+            label1.Location = new Point(6, 54);
             label1.Name = "label1";
             label1.Size = new Size(38, 28);
             label1.TabIndex = 4;
@@ -335,9 +335,8 @@
             DescriptionRichTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             DescriptionRichTextBox.Location = new Point(6, 381);
             DescriptionRichTextBox.MaxLength = 1000;
-            DescriptionRichTextBox.MinimumSize = new Size(525, 133);
             DescriptionRichTextBox.Name = "DescriptionRichTextBox";
-            DescriptionRichTextBox.Size = new Size(525, 174);
+            DescriptionRichTextBox.Size = new Size(525, 221);
             DescriptionRichTextBox.TabIndex = 3;
             DescriptionRichTextBox.Text = "";
             DescriptionRichTextBox.TextChanged += DescriptionRichTextBox_TextChanged;
@@ -359,7 +358,7 @@
             // CostTextBox
             // 
             CostTextBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            CostTextBox.Location = new Point(70, 88);
+            CostTextBox.Location = new Point(73, 88);
             CostTextBox.Name = "CostTextBox";
             CostTextBox.Size = new Size(191, 34);
             CostTextBox.TabIndex = 1;
@@ -368,7 +367,7 @@
             // IdTextBox
             // 
             IdTextBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            IdTextBox.Location = new Point(70, 48);
+            IdTextBox.Location = new Point(73, 48);
             IdTextBox.Name = "IdTextBox";
             IdTextBox.ReadOnly = true;
             IdTextBox.Size = new Size(191, 34);

@@ -20,7 +20,6 @@ namespace OOP.View.Tabs
         /// </summary>
         List<Item> _displayedItems;
 
-
         /// <summary>
         /// Получает или устанавливает список товаров.
         /// </summary>
@@ -364,7 +363,6 @@ namespace OOP.View.Tabs
         private void DescriptionRichTextBox_MouseMove(object sender, MouseEventArgs e)
         {
             DesriptionToolTip.SetToolTip(DescriptionRichTextBox, "Не более 1000 символов");
-
         }
 
         /// <summary>

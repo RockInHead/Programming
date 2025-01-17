@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Model.Address address2 = new Model.Address();
+            Model.Address address1 = new Model.Address();
             CustomersListBox = new ListBox();
             AddCustomerButton = new Button();
             RemoveCustomerButton = new Button();
@@ -242,13 +242,13 @@
             // 
             // AddressControl
             // 
-            address2.Apartment = "";
-            address2.Building = "";
-            address2.City = "";
-            address2.Country = "";
-            address2.Index = 111111;
-            address2.Street = "";
-            AddressControl.Address = address2;
+            address1.Apartment = "";
+            address1.Building = "";
+            address1.City = "";
+            address1.Country = "";
+            address1.Index = 111111;
+            address1.Street = "";
+            AddressControl.Address = address1;
             AddressControl.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             AddressControl.Location = new Point(1, 120);
             AddressControl.Margin = new Padding(3, 4, 3, 4);
