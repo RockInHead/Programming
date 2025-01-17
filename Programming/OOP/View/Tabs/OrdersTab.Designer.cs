@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Model.Address address2 = new Model.Address();
+            Model.Address address1 = new Model.Address();
             tableLayoutPanel1 = new TableLayoutPanel();
             groupBox1 = new GroupBox();
             tableLayoutPanel2 = new TableLayoutPanel();
             TotalLabel = new Label();
             label8 = new Label();
-            label4 = new Label();
             AmountLabel = new Label();
+            label4 = new Label();
             PriorityOrdersPanel = new Panel();
             label7 = new Label();
             DeliveryTimeRangeComboBox = new ComboBox();
@@ -69,7 +69,7 @@
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.Size = new Size(1170, 688);
+            tableLayoutPanel1.Size = new Size(1170, 685);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // groupBox1
@@ -90,7 +90,7 @@
             groupBox1.Location = new Point(487, 3);
             groupBox1.MinimumSize = new Size(680, 680);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(680, 682);
+            groupBox1.Size = new Size(680, 680);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Selected Order";
@@ -103,9 +103,9 @@
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel2.Controls.Add(TotalLabel, 1, 1);
             tableLayoutPanel2.Controls.Add(label8, 1, 0);
-            tableLayoutPanel2.Controls.Add(label4, 0, 0);
             tableLayoutPanel2.Controls.Add(AmountLabel, 0, 1);
-            tableLayoutPanel2.Location = new Point(0, 606);
+            tableLayoutPanel2.Controls.Add(label4, 0, 0);
+            tableLayoutPanel2.Location = new Point(0, 604);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 2;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
@@ -135,17 +135,6 @@
             label8.TabIndex = 10;
             label8.Text = "Total:";
             // 
-            // label4
-            // 
-            label4.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label4.Location = new Point(3, 0);
-            label4.Name = "label4";
-            label4.Size = new Size(133, 35);
-            label4.TabIndex = 8;
-            label4.Text = "Amount:";
-            // 
             // AmountLabel
             // 
             AmountLabel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
@@ -156,6 +145,17 @@
             AmountLabel.Size = new Size(46, 31);
             AmountLabel.TabIndex = 9;
             AmountLabel.Text = "0,0";
+            // 
+            // label4
+            // 
+            label4.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            label4.Location = new Point(3, 0);
+            label4.Name = "label4";
+            label4.Size = new Size(133, 35);
+            label4.TabIndex = 8;
+            label4.Text = "Amount:";
             // 
             // PriorityOrdersPanel
             // 
@@ -218,24 +218,24 @@
             OrderItemsListBox.ItemHeight = 28;
             OrderItemsListBox.Location = new Point(0, 484);
             OrderItemsListBox.Name = "OrderItemsListBox";
-            OrderItemsListBox.Size = new Size(519, 116);
+            OrderItemsListBox.Size = new Size(339, 116);
             OrderItemsListBox.TabIndex = 7;
             // 
             // OrdersAddressControl
             // 
-            address2.Apartment = "";
-            address2.Building = "";
-            address2.City = "";
-            address2.Country = "";
-            address2.Index = 111111;
-            address2.Street = "";
-            OrdersAddressControl.Address = address2;
+            address1.Apartment = "";
+            address1.Building = "";
+            address1.City = "";
+            address1.Country = "";
+            address1.Index = 111111;
+            address1.Street = "";
+            OrdersAddressControl.Address = address1;
             OrdersAddressControl.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             OrdersAddressControl.Enabled = false;
-            OrdersAddressControl.Location = new Point(0, 174);
+            OrdersAddressControl.Location = new Point(0, 171);
             OrdersAddressControl.Margin = new Padding(4);
             OrdersAddressControl.Name = "OrdersAddressControl";
-            OrdersAddressControl.Size = new Size(634, 303);
+            OrdersAddressControl.Size = new Size(637, 303);
             OrdersAddressControl.TabIndex = 6;
             // 
             // OrderStatusComboBox
@@ -315,7 +315,7 @@
             OrdersDataGridView.ReadOnly = true;
             OrdersDataGridView.RowHeadersVisible = false;
             OrdersDataGridView.RowHeadersWidth = 51;
-            OrdersDataGridView.Size = new Size(478, 682);
+            OrdersDataGridView.Size = new Size(478, 679);
             OrdersDataGridView.TabIndex = 1;
             OrdersDataGridView.CurrentCellChanged += OrdersDataGridView_CurrentCellChanged;
             // 
@@ -324,8 +324,9 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(tableLayoutPanel1);
+            MinimumSize = new Size(0, 685);
             Name = "OrdersTab";
-            Size = new Size(1170, 688);
+            Size = new Size(1170, 685);
             tableLayoutPanel1.ResumeLayout(false);
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
