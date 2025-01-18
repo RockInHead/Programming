@@ -3,7 +3,7 @@
     /// <summary>
     /// Хранит данные о накопительной скидке: накопленные баллы.
     /// </summary>
-    public class PointsDiscount : IDiscount,IComparable<PointsDiscount>
+    public class PointsDiscount : IDiscount, IComparable<PointsDiscount>
     {
         /// <summary>
         /// Содержит количество накопленных баллов пользователя.

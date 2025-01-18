@@ -298,7 +298,7 @@ namespace OOP.View.Tabs
                     if (ItemsListBox.Items.Count != 0)
                     {
 
-                        CostTextBox.BackColor = System.Drawing.Color.White;
+                        CostTextBox.BackColor = ColorsTool.GetWhite();
                         double cost = double.Parse(CostTextBox.Text);
                         _currentItem.Cost = cost;
                         ItemsChanged?.Invoke(this, EventArgs.Empty);
@@ -307,7 +307,7 @@ namespace OOP.View.Tabs
 
                 catch (Exception)
                 {
-                    CostTextBox.BackColor = System.Drawing.Color.LightPink;
+                    CostTextBox.BackColor = ColorsTool.GetRed();
                 }
             }
 

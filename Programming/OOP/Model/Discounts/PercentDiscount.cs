@@ -4,7 +4,7 @@
     /// Хранит данные о процентной скидке: текущий процент,
     /// категории для скидок и сумму стоимости всех товаров конкретной категории товаров.
     /// </summary>
-    public class PercentDiscount : IDiscount,IComparable<PercentDiscount>
+    public class PercentDiscount : IDiscount, IComparable<PercentDiscount>
     {
         /// <summary>
         /// Текущая скидка в процентах

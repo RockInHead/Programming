@@ -58,21 +58,6 @@
         }
 
         /// <summary>
-        /// Событие изменения названия товара.
-        /// </summary>
-        public event EventHandler<EventArgs> NameChanged;
-
-        /// <summary>
-        /// Событие изменения описания товара.
-        /// </summary>
-        public event EventHandler<EventArgs> InfoChanged;
-
-        /// <summary>
-        /// Событие изменения стоимости товара.
-        /// </summary>
-        public event EventHandler<EventArgs> CostChanged;
-
-        /// <summary>
         /// Возвращает и задает имя товара.
         /// </summary>
         public string Name
@@ -133,6 +118,21 @@
         /// Возвращает и задает категорию товара.
         /// </summary>
         public Category Category { get; set; }
+
+        /// <summary>
+        /// Событие изменения названия товара.
+        /// </summary>
+        public event EventHandler<EventArgs> NameChanged;
+
+        /// <summary>
+        /// Событие изменения описания товара.
+        /// </summary>
+        public event EventHandler<EventArgs> InfoChanged;
+
+        /// <summary>
+        /// Событие изменения стоимости товара.
+        /// </summary>
+        public event EventHandler<EventArgs> CostChanged;
 
         /// <summary>
         /// Инициализирует новый экземпляр класса <see cref="Item"/>.
