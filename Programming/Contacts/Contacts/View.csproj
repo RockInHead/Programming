@@ -9,6 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="contacts_96x96.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="contacts_96x96.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="ViewModel\" />
   </ItemGroup>
 

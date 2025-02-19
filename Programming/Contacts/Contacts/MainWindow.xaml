@@ -5,25 +5,70 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Contacts"
         mc:Ignorable="d"
-        Title="Contacts" Height="450" Width="800">
-    <Grid Margin="10,10,10,-6">
-        <Button Content="Save" HorizontalAlignment="Left" Margin="563,159,0,0" VerticalAlignment="Top" Height="26" Width="74"/>
-        <Button Content="Load" HorizontalAlignment="Left" Margin="549,75,0,0" VerticalAlignment="Top" Height="25" Width="75"/>
-        <GroupBox Header="Edict Contact" Margin="42,10,544,102"/>
-        <GroupBox Header="Read Contact" Margin="244,10,342,102"/>
-        <Label Content="Name:" HorizontalAlignment="Left" Margin="49,34,0,0" VerticalAlignment="Top"/>
-        <Label Content="Phone Number:" HorizontalAlignment="Left" Margin="49,92,0,0" VerticalAlignment="Top"/>
-        <Label Content="Email:" HorizontalAlignment="Left" Margin="49,151,0,0" VerticalAlignment="Top"/>
-        <Label Content="Name:" HorizontalAlignment="Left" Margin="254,34,0,0" VerticalAlignment="Top"/>
-        <Label Content="Phone Number:" HorizontalAlignment="Left" Margin="251,92,0,0" VerticalAlignment="Top"/>
-        <Label Content="Email:" HorizontalAlignment="Left" Margin="251,151,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Margin="52,60,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="52,123,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Margin="52,182,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Имя" HorizontalAlignment="Left" Margin="256,61,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label Content="Номер телефона" HorizontalAlignment="Left" Margin="254,119,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label Content="Почта" HorizontalAlignment="Left" Margin="251,177,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <DockPanel LastChildFill="False" Margin="529,0,109,173"/>
+        Icon="contacts_96x96.ico"
+        Title="Contacts" Height="375" Width="500" MinWidth="500" MinHeight="300" Padding="15">
+        
+    <Grid Margin="15,15,15,15">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
+        <!-- Edit Contact Section -->
+        <GroupBox Header="Edit Contact" Grid.Column="0" Margin="0,0,3,0">
+            <Grid Margin="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Name:" Grid.Row="0"/>
+                <TextBox Grid.Row="1" Margin="0,0,0,5" HorizontalAlignment="Stretch"/>
+
+                <TextBlock Text="Phone Number:" Grid.Row="2"/>
+                <TextBox Grid.Row="3" Margin="0,0,0,5" HorizontalAlignment="Stretch"/>
+
+                <TextBlock Text="Email:" Grid.Row="4"/>
+                <TextBox Grid.Row="5" Margin="0,0,0,5" VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="18"/>
+            </Grid>
+        </GroupBox>
+
+        <!-- Read Contact Section -->
+        <GroupBox Header="Read Contact" Grid.Column="1" Margin="3,0,0,0">
+            <Grid Margin="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Name:"  Grid.Row="0"/>
+                <TextBlock Text="Смирнов Юрий" FontWeight="Bold" Margin="0,0,0,5" Grid.Row="1"/>
+
+                <TextBlock Text="Phone Number:" Grid.Row="2"/>
+                <TextBlock Text="+7-913-111-22-33"  FontWeight="Bold" Margin="0,0,0,5" Grid.Row="3"/>
+
+                <TextBlock Text="Email:" Grid.Row="4"/>
+                <TextBlock Text="yuri.smirnov@no.mail" FontWeight="Bold" Margin="0,0,0,5" Grid.Row="5"/>
+            </Grid>
+        </GroupBox>
+
+        <!-- Buttons -->
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" 
+                    HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,10,0,0">
+            <Button Content="Save" Width="75" Height="25" Margin="0,0,5,0"/>
+            <Button Content="Load" Width="75" Height="25"/>
+        </StackPanel>
     </Grid>
 </Window>
