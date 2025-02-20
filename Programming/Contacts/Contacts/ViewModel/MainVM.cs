@@ -1,48 +1,121 @@
 ﻿using System.ComponentModel;
 
+/// <summary>
+/// Основная ViewModel для управления контактами и их сохранением/загрузкой.
+/// </summary>
 public class MainVM : INotifyPropertyChanged
 {
-    private Contact _contact = new Contact();
+    /// <summary>
+    /// Объект текущего контакта.
+    /// </summary>
+    private Contact _contact;
 
-    public Contact Contact {get;set;}
+    /// <summary>
+    /// Объект для сериализации и десериализации контактов.
+    /// </summary>
+    private readonly ContactSerializer _serializer;
+
+    /// <summary>
+    /// Текущий контакт.
+    /// </summary>
+    public Contact Contact
+    {
+        get => _contact;
+        set
+        {
+            _contact = value;
+            OnPropertyChanged(nameof(Contact));
+        }
+    }
+
+    /// <summary>
+    /// Свойство для имени контакта с уведомлением об изменении.
+    /// </summary>
     public string Name
     {
-        get
-        {
-            return _contact.Name;
-        }
+        get => _contact.Name;
         set
         {
             _contact.Name = value;
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Name)));
+            OnPropertyChanged(nameof(Name));
         }
     }
 
+    /// <summary>
+    /// Свойство для номера телефона контакта с уведомлением об изменении.
+    /// </summary>
     public string PhoneNumber
     {
-        get
-        {
-            return _contact.PhoneNumber;
-        }
+        get => _contact.PhoneNumber;
         set
         {
             _contact.PhoneNumber = value;
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PhoneNumber)));
+            OnPropertyChanged(nameof(PhoneNumber));
         }
     }
 
+    /// <summary>
+    /// Свойство для email контакта с уведомлением об изменении.
+    /// </summary>
     public string Email
     {
-        get
-        {
-            return _contact.Email;
-        }
+        get => _contact.Email;
         set
         {
             _contact.Email = value;
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Email)));
+            OnPropertyChanged(nameof(Email));
         }
     }
+
+    /// <summary>
+    /// Команда для сохранения контакта.
+    /// </summary>
+    public SaveCommand SaveCommand { get; }
+
+    /// <summary>
+    /// Команда для загрузки контакта.
+    /// </summary>
+    public LoadCommand LoadCommand { get; }
+
+    /// <summary>
+    /// Инициализирует новый экземпляр <see cref="MainVM"/>.
+    /// </summary>
+    public MainVM()
+    {
+        _serializer = new ContactSerializer();
+        _contact = new Contact();
+
+        SaveCommand = new SaveCommand(_serializer, () => Contact);
+        LoadCommand = new LoadCommand(_serializer, loadedContact => UpdateContact(loadedContact));
+    }
+
+    /// <summary>
+    /// Обновляет текущий контакт новыми данными и уведомляет интерфейс об изменениях.
+    /// </summary>
+    /// <param name="contact">Загруженный контакт.</param>
+    private void UpdateContact(Contact contact)
+    {
+        if (contact != null)
+        {
+            Contact = contact;
+            OnPropertyChanged(nameof(Name));
+            OnPropertyChanged(nameof(PhoneNumber));
+            OnPropertyChanged(nameof(Email));
+        }
+    }
+
+    /// <summary>
+    /// Событие, уведомляющее об изменениях в свойствах.
+    /// </summary>
     public event PropertyChangedEventHandler PropertyChanged;
+
+    /// <summary>
+    /// Вызывает событие <see cref="PropertyChanged"/> для обновления интерфейса.
+    /// </summary>
+    /// <param name="propertyName">Имя измененного свойства.</param>
+    protected void OnPropertyChanged(string propertyName)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
 }
 
