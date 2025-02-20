@@ -31,13 +31,13 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock Text="Name:" Grid.Row="0"/>
-                <TextBox Grid.Row="1" Margin="0,0,0,5" HorizontalAlignment="Stretch"/>
+                <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Margin="0,0,0,5" HorizontalAlignment="Stretch"/>
 
                 <TextBlock Text="Phone Number:" Grid.Row="2"/>
-                <TextBox Grid.Row="3" Margin="0,0,0,5" HorizontalAlignment="Stretch"/>
+                <TextBox Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" Margin="0,0,0,5" HorizontalAlignment="Stretch"/>
 
                 <TextBlock Text="Email:" Grid.Row="4"/>
-                <TextBox Grid.Row="5" Margin="0,0,0,5" VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="18"/>
+                <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" Grid.Row="5" Margin="0,0,0,5" VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="18"/>
             </Grid>
         </GroupBox>
 
@@ -54,13 +54,13 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock Text="Name:"  Grid.Row="0"/>
-                <TextBlock Text="Смирнов Юрий" FontWeight="Bold" Margin="0,0,0,5" Grid.Row="1"/>
+                <TextBlock Text="{Binding Name}" FontWeight="Bold" Margin="0,0,0,5" Grid.Row="1"/>
 
                 <TextBlock Text="Phone Number:" Grid.Row="2"/>
-                <TextBlock Text="+7-913-111-22-33"  FontWeight="Bold" Margin="0,0,0,5" Grid.Row="3"/>
+                <TextBlock Text="{Binding PhoneNumber}"  FontWeight="Bold" Margin="0,0,0,5" Grid.Row="3"/>
 
                 <TextBlock Text="Email:" Grid.Row="4"/>
-                <TextBlock Text="yuri.smirnov@no.mail" FontWeight="Bold" Margin="0,0,0,5" Grid.Row="5"/>
+                <TextBlock Text="{Binding Email}" FontWeight="Bold" Margin="0,0,0,5" Grid.Row="5"/>
             </Grid>
         </GroupBox>
 
