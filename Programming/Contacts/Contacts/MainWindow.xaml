@@ -3,12 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Contacts"
         mc:Ignorable="d"
         Icon="contacts_96x96.ico"
         Title="Contacts" Height="375" Width="500" MinWidth="500" MinHeight="300" Padding="15">
         
-    <Grid Margin="15,15,15,15">
+    <Grid Margin="15">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="1*" />
