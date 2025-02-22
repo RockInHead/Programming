@@ -11,11 +11,6 @@ public class MainVM : INotifyPropertyChanged
     private Contact _contact;
 
     /// <summary>
-    /// Объект для сериализации и десериализации контактов.
-    /// </summary>
-    private readonly ContactSerializer _serializer;
-
-    /// <summary>
     /// Текущий контакт.
     /// </summary>
     public Contact Contact
@@ -82,11 +77,10 @@ public class MainVM : INotifyPropertyChanged
     /// </summary>
     public MainVM()
     {
-        _serializer = new ContactSerializer();
         _contact = new Contact();
 
-        SaveCommand = new SaveCommand(_serializer, () => Contact);
-        LoadCommand = new LoadCommand(_serializer, loadedContact => UpdateContact(loadedContact));
+        SaveCommand = new SaveCommand(() => Contact);
+        LoadCommand = new LoadCommand(loadedContact => UpdateContact(loadedContact));
     }
 
     /// <summary>

@@ -5,12 +5,6 @@
 /// </summary>
 public class SaveCommand : ICommand
 {
-
-    /// <summary>
-    /// Объект для сериализации и сохранения контакта в файл.
-    /// </summary>
-    private readonly ContactSerializer _serializer;
-
     /// <summary>
     /// Делегат, возвращающий текущий контакт для сохранения.
     /// Используется для получения актуального состояния объекта Contact из ViewModel.
@@ -20,12 +14,11 @@ public class SaveCommand : ICommand
     /// <summary>
     /// Инициализирует новый экземпляр команды <see cref="SaveCommand"/>.
     /// </summary>
-    /// <param name="serializer">Объект для сериализации контакта.</param>
     /// <param name="getContact">Функция, возвращающая текущий контакт.</param>
     /// <exception cref="ArgumentNullException">Выбрасывается, если передан null.</exception>
-    public SaveCommand(ContactSerializer serializer, Func<Contact> getContact)
+    public SaveCommand(Func<Contact> getContact)
     {
-        _serializer = serializer ?? throw new ArgumentNullException(nameof(serializer));
+        ContactSerializer.CreateDirectory();
         _getContact = getContact ?? throw new ArgumentNullException(nameof(getContact));
     }
 
@@ -45,7 +38,7 @@ public class SaveCommand : ICommand
         var contact = _getContact();
         if (contact != null)
         {
-            _serializer.SaveContact(contact);
+            ContactSerializer.SaveContact(contact);
         }
     }
 
@@ -53,6 +46,5 @@ public class SaveCommand : ICommand
     /// Событие, вызываемое при изменении состояния выполнения команды.
     /// </summary>
     public event EventHandler CanExecuteChanged;
-
 }
 

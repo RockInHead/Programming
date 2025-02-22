@@ -2,20 +2,19 @@
 using Newtonsoft.Json;
 
 /// <summary>
-/// Класс для сериализации и десериализации контактов в JSON-файл.
+/// Статическтй класс для сериализации и десериализации контактов в JSON-файл.
 /// </summary>
-public class ContactSerializer
+static public class ContactSerializer
 {
     /// <summary>
     /// Полный путь к файлу, в котором хранятся контакты.
     /// </summary>
-    private readonly string _filePath;
+    static private string _filePath;
 
     /// <summary>
-    /// Инициализирует новый экземпляр <see cref="ContactSerializer"/>.
     /// Устанавливает путь к файлу по умолчанию и создаёт каталог, если он отсутствует.
     /// </summary>
-    public ContactSerializer()
+    static public void CreateDirectory()
     {
         _filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Contacts", "contacts.json");
         string directory = Path.GetDirectoryName(_filePath);
@@ -30,7 +29,7 @@ public class ContactSerializer
     /// Сериализует контакт и сохраняет его в файл.
     /// </summary>
     /// <param name="contact">Объект контакта для сохранения.</param>
-    public void SaveContact(Contact contact)
+    static public void SaveContact(Contact contact)
     {
         if (contact == null)
         {
@@ -45,7 +44,7 @@ public class ContactSerializer
     /// Загружает контакт из файла.
     /// </summary>
     /// <returns>Объект <see cref="Contact"/>, если файл существует, иначе null.</returns>
-    public Contact LoadContact()
+    static public Contact LoadContact()
     {
         if (!File.Exists(_filePath))
         {
