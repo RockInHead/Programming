@@ -1,63 +1,86 @@
 ﻿using System.ComponentModel;
+using System.Diagnostics.Contracts;
 
 /// <summary>
-/// Основная ViewModel для управления контактами и их сохранением/загрузкой.
+/// Основная модель представления для управления контактами и их сохранением/загрузкой.
 /// </summary>
 public class MainVM : INotifyPropertyChanged
 {
     /// <summary>
     /// Объект текущего контакта.
     /// </summary>
-    private Contact _contact;
+    private Contact _currentContact;
 
     /// <summary>
-    /// Текущий контакт.
+    /// Возвращает и задает текущий контакт.
     /// </summary>
     public Contact Contact
     {
-        get => _contact;
+        get => _currentContact;
         set
         {
-            _contact = value;
-            OnPropertyChanged(nameof(Contact));
+            if (_currentContact == value)
+            {
+                return;
+            }
+
+            _currentContact = value;
+            OnPropertyChanged(nameof(Name));
+            OnPropertyChanged(nameof(PhoneNumber));
+            OnPropertyChanged(nameof(Email));
         }
     }
 
     /// <summary>
-    /// Свойство для имени контакта с уведомлением об изменении.
+    /// Возвращает и задает текущее имя контакта.
     /// </summary>
     public string Name
     {
-        get => _contact.Name;
+        get => _currentContact.Name;
         set
         {
-            _contact.Name = value;
+            if (_currentContact.Name == value)
+            {
+                return;
+            }
+
+            _currentContact.Name = value;
             OnPropertyChanged(nameof(Name));
         }
     }
 
     /// <summary>
-    /// Свойство для номера телефона контакта с уведомлением об изменении.
+    /// Возвращает и задает текущий номер телефона контакта.
     /// </summary>
     public string PhoneNumber
     {
-        get => _contact.PhoneNumber;
+        get => _currentContact.PhoneNumber;
         set
         {
-            _contact.PhoneNumber = value;
+            if (_currentContact.PhoneNumber == value)
+            {
+                return;
+            }
+
+            _currentContact.PhoneNumber = value;
             OnPropertyChanged(nameof(PhoneNumber));
         }
     }
 
     /// <summary>
-    /// Свойство для email контакта с уведомлением об изменении.
+    /// Возвращает и задает текущцю почту контакта.
     /// </summary>
     public string Email
     {
-        get => _contact.Email;
+        get => _currentContact.Email;
         set
         {
-            _contact.Email = value;
+            if (_currentContact.Email == value)
+            {
+                return;
+            }
+
+            _currentContact.Email = value;
             OnPropertyChanged(nameof(Email));
         }
     }
@@ -77,25 +100,24 @@ public class MainVM : INotifyPropertyChanged
     /// </summary>
     public MainVM()
     {
-        _contact = new Contact();
+        _currentContact = new Contact();
 
         SaveCommand = new SaveCommand(() => Contact);
         LoadCommand = new LoadCommand(loadedContact => UpdateContact(loadedContact));
     }
 
     /// <summary>
-    /// Обновляет текущий контакт новыми данными и уведомляет интерфейс об изменениях.
+    /// Обновляет текущий контакт новыми данными.
     /// </summary>
     /// <param name="contact">Загруженный контакт.</param>
     private void UpdateContact(Contact contact)
     {
-        if (contact != null)
+        if (contact == null)
         {
-            Contact = contact;
-            OnPropertyChanged(nameof(Name));
-            OnPropertyChanged(nameof(PhoneNumber));
-            OnPropertyChanged(nameof(Email));
+            return;
         }
+
+        Contact = contact;
     }
 
     /// <summary>

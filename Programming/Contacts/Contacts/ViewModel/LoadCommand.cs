@@ -6,7 +6,7 @@
 public class LoadCommand : ICommand
 {
     /// <summary>
-    /// Делегат, который устанавливает загруженный контакт в ViewModel.
+    /// Делегат, который устанавливает загруженный контакт в модели представления.
     /// Используется для обновления состояния объекта Contact.
     /// </summary>
     private readonly Action<Contact> _setContact;

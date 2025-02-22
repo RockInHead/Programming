@@ -7,7 +7,7 @@ public class SaveCommand : ICommand
 {
     /// <summary>
     /// Делегат, возвращающий текущий контакт для сохранения.
-    /// Используется для получения актуального состояния объекта Contact из ViewModel.
+    /// Используется для получения актуального состояния объекта Contact из модели представления.
     /// </summary>
     private readonly Func<Contact> _getContact;
 
