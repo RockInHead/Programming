@@ -23,6 +23,11 @@ public class SaveCommand : ICommand
     }
 
     /// <summary>
+    /// Событие, вызываемое при изменении состояния выполнения команды.
+    /// </summary>
+    public event EventHandler CanExecuteChanged;
+
+    /// <summary>
     /// Определяет, можно ли выполнить команду.
     /// </summary>
     /// <param name="parameter">Не используется.</param>
@@ -41,10 +46,5 @@ public class SaveCommand : ICommand
             ContactSerializer.SaveContact(contact);
         }
     }
-
-    /// <summary>
-    /// Событие, вызываемое при изменении состояния выполнения команды.
-    /// </summary>
-    public event EventHandler CanExecuteChanged;
 }
 

@@ -22,6 +22,11 @@ public class LoadCommand : ICommand
     }
 
     /// <summary>
+    /// Событие, вызываемое при изменении состояния выполнения команды.
+    /// </summary>
+    public event EventHandler CanExecuteChanged;
+
+    /// <summary>
     /// Определяет, можно ли выполнить команду загрузки.
     /// </summary>
     /// <param name="parameter">Не используется.</param>
@@ -40,11 +45,6 @@ public class LoadCommand : ICommand
             _setContact(contact);
         }
     }
-
-    /// <summary>
-    /// Событие, вызываемое при изменении состояния выполнения команды.
-    /// </summary>
-    public event EventHandler CanExecuteChanged;
 }
 
 
