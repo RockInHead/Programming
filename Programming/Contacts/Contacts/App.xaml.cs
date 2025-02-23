@@ -8,5 +8,4 @@ namespace Contacts
     public partial class App : Application
     {
     }
-
 }

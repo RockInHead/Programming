@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 
 /// <summary>
-/// Статическтй класс для сериализации и десериализации контактов в JSON-файл.
+/// Статический класс для сериализации и десериализации контактов в JSON-файл.
 /// </summary>
 static public class ContactSerializer
 {

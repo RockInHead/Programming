@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using System.Diagnostics.Contracts;
 
 /// <summary>
 /// Основная модель представления для управления контактами и их сохранением/загрузкой.

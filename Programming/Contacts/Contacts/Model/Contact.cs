@@ -4,7 +4,7 @@
 public class Contact
 {
     /// <summary>
-    /// Задает и возвращет имя контакта.
+    /// Задает и возвращает имя контакта.
     /// </summary>
     public string Name { get; set; }
 
