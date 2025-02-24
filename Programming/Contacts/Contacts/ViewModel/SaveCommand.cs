@@ -18,7 +18,6 @@ public class SaveCommand : ICommand
     /// <exception cref="ArgumentNullException">Выбрасывается, если передан null.</exception>
     public SaveCommand(Func<Contact> getContact)
     {
-        ContactSerializer.CreateDirectory();
         _getContact = getContact ?? throw new ArgumentNullException(nameof(getContact));
     }
 
