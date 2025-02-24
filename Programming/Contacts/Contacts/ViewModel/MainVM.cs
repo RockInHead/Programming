@@ -13,7 +13,7 @@ public class MainVM : INotifyPropertyChanged
     /// <summary>
     /// Возвращает и задает текущий контакт.
     /// </summary>
-    public Contact Contact
+    public Contact CurrentContact
     {
         get => _currentContact;
         set
@@ -67,7 +67,7 @@ public class MainVM : INotifyPropertyChanged
     }
 
     /// <summary>
-    /// Возвращает и задает текущцю почту контакта.
+    /// Возвращает и задает текущую почту контакта.
     /// </summary>
     public string Email
     {
@@ -101,7 +101,7 @@ public class MainVM : INotifyPropertyChanged
     {
         _currentContact = new Contact();
 
-        SaveCommand = new SaveCommand(() => Contact);
+        SaveCommand = new SaveCommand(() => CurrentContact);
         LoadCommand = new LoadCommand(loadedContact => UpdateContact(loadedContact));
     }
 
@@ -116,7 +116,7 @@ public class MainVM : INotifyPropertyChanged
             return;
         }
 
-        Contact = contact;
+        CurrentContact = contact;
     }
 
     /// <summary>
