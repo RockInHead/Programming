@@ -14,10 +14,10 @@ static public class ContactSerializer
     /// <summary>
     /// Устанавливает путь к файлу по умолчанию и создаёт каталог, если он отсутствует.
     /// </summary>
-    static public void CreateDirectory()
+    public static void CreateDirectory()
     {
         _filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Contacts", "contacts.json");
-        string directory = Path.GetDirectoryName(_filePath);
+        var directory = Path.GetDirectoryName(_filePath);
 
         if (!Directory.Exists(directory))
         {
@@ -29,14 +29,14 @@ static public class ContactSerializer
     /// Сериализует контакт и сохраняет его в файл.
     /// </summary>
     /// <param name="contact">Объект контакта для сохранения.</param>
-    static public void SaveContact(Contact contact)
+    public static void SaveContact(Contact contact)
     {
         if (contact == null)
         {
             throw new ArgumentNullException(nameof(contact), "Контакт не может быть null.");
         }
 
-        string json = JsonConvert.SerializeObject(contact, Formatting.Indented);
+        var json = JsonConvert.SerializeObject(contact, Formatting.Indented);
         File.WriteAllText(_filePath, json);
     }
 
@@ -44,14 +44,14 @@ static public class ContactSerializer
     /// Загружает контакт из файла.
     /// </summary>
     /// <returns>Объект <see cref="Contact"/>, если файл существует, иначе null.</returns>
-    static public Contact LoadContact()
+    public static Contact LoadContact()
     {
         if (!File.Exists(_filePath))
         {
             return null;
         }
 
-        string json = File.ReadAllText(_filePath);
+        var json = File.ReadAllText(_filePath);
         return JsonConvert.DeserializeObject<Contact>(json);
     }
 }
