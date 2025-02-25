@@ -4,21 +4,6 @@
 public class Contact
 {
     /// <summary>
-    /// Задает и возвращает имя контакта.
-    /// </summary>
-    public string Name { get; set; }
-
-    /// <summary>
-    /// Задает и возвращает номер телефона контакта.
-    /// </summary>
-    public string PhoneNumber { get; set; }
-
-    /// <summary>
-    /// Задает и возвращает почту контакта.
-    /// </summary>
-    public string Email { get; set; }
-
-    /// <summary>
     /// Конструктор класса Contact. 
     /// Инициализирует поля значениями по умолчанию.
     /// </summary>
@@ -42,5 +27,20 @@ public class Contact
         PhoneNumber = phoneNumber;
         Email = email;
     }
+
+    /// <summary>
+    /// Задает и возвращает имя контакта.
+    /// </summary>
+    public string Name { get; set; }
+
+    /// <summary>
+    /// Задает и возвращает номер телефона контакта.
+    /// </summary>
+    public string PhoneNumber { get; set; }
+
+    /// <summary>
+    /// Задает и возвращает почту контакта.
+    /// </summary>
+    public string Email { get; set; }
 }
 

@@ -11,6 +11,22 @@ public class MainVM : INotifyPropertyChanged
     private Contact _currentContact;
 
     /// <summary>
+    /// Инициализирует новый экземпляр <see cref="MainVM"/>.
+    /// </summary>
+    public MainVM()
+    {
+        _currentContact = new Contact();
+
+        SaveCommand = new SaveCommand(() => CurrentContact);
+        LoadCommand = new LoadCommand(loadedContact => UpdateContact(loadedContact));
+    }
+
+    /// <summary>
+    /// Событие, уведомляющее об изменениях в свойствах.
+    /// </summary>
+    public event PropertyChangedEventHandler PropertyChanged;
+
+    /// <summary>
     /// Возвращает и задает текущий контакт.
     /// </summary>
     public Contact CurrentContact
@@ -95,14 +111,12 @@ public class MainVM : INotifyPropertyChanged
     public LoadCommand LoadCommand { get; }
 
     /// <summary>
-    /// Инициализирует новый экземпляр <see cref="MainVM"/>.
+    /// Вызывает событие <see cref="PropertyChanged"/> для обновления интерфейса.
     /// </summary>
-    public MainVM()
+    /// <param name="propertyName">Имя измененного свойства.</param>
+    protected void OnPropertyChanged(string propertyName)
     {
-        _currentContact = new Contact();
-
-        SaveCommand = new SaveCommand(() => CurrentContact);
-        LoadCommand = new LoadCommand(loadedContact => UpdateContact(loadedContact));
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 
     /// <summary>
@@ -117,20 +131,6 @@ public class MainVM : INotifyPropertyChanged
         }
 
         CurrentContact = contact;
-    }
-
-    /// <summary>
-    /// Событие, уведомляющее об изменениях в свойствах.
-    /// </summary>
-    public event PropertyChangedEventHandler PropertyChanged;
-
-    /// <summary>
-    /// Вызывает событие <see cref="PropertyChanged"/> для обновления интерфейса.
-    /// </summary>
-    /// <param name="propertyName">Имя измененного свойства.</param>
-    protected void OnPropertyChanged(string propertyName)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }
 
