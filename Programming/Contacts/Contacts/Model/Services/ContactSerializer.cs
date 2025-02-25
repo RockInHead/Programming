@@ -16,9 +16,11 @@ public static class ContactSerializer
     /// </summary>
     public static void CreateDirectory()
     {
-        _filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Contacts", "contacts.json");
+        _filePath = Path.Combine(Environment.GetFolderPath
+                                (Environment.SpecialFolder.MyDocuments),
+                                "Contacts",
+                                "contacts.json");
         var directory = Path.GetDirectoryName(_filePath);
-
         if (!Directory.Exists(directory))
         {
             Directory.CreateDirectory(directory);
@@ -35,6 +37,7 @@ public static class ContactSerializer
         {
             throw new ArgumentNullException(nameof(contact), "Контакт не может быть null.");
         }
+
         CreateDirectory();
         var json = JsonConvert.SerializeObject(contact, Formatting.Indented);
         File.WriteAllText(_filePath, json);
