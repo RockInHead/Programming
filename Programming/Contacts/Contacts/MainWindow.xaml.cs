@@ -14,7 +14,7 @@ namespace Contacts
         {
             InitializeComponent();
 
-            // Устанавливает ммодель представления как DataContext для привязки данных
+            // Устанавливает модель представления как DataContext для привязки данных
             DataContext = new MainVM();
         }
     }
