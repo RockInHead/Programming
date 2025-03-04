@@ -43,13 +43,13 @@
                     </Grid>
 
                     <!--  Таблица контактов  -->
-                    <DataGrid
-                        x:Name="ContactsGrid"
+                    <ListBox
+                        x:Name="ContactsList"
                         Grid.Row="1"
                         Margin="3 7 3 3"
-                        AutoGenerateColumns="False"
-                        IsReadOnly="True"/>
-
+                        ItemsSource="{Binding Contacts}"
+                        DisplayMemberPath="Name"
+                        SelectedItem="{Binding SelectedContact, Mode=TwoWay}"/>
                     <!--  Кнопки управления  -->
                     <Grid Grid.Row="2" Margin="3 3 3 3">
                         <Grid.ColumnDefinitions>
@@ -61,17 +61,21 @@
                             Grid.Column="0"
                             Height="25"
                             Margin="3"
-                            Content="Add"/>
+                            Content="Add"
+                            
+                            Command="{Binding AddCommand}"/>
                         <Button
                             Grid.Column="1"
                             Height="25"
                             Margin="3"
-                            Content="Edit"/>
+                            Content="Edit"
+                            Command="{Binding EditCommand}"/>
                         <Button
                             Grid.Column="2"
                             Height="25"
                             Margin="3"
-                            Content="Remove"/>
+                            Content="Remove"
+                            Command="{Binding RemoveCommand}"/>
                     </Grid>
                 </Grid>
             </Border>
@@ -122,8 +126,9 @@
                         <TextBlock Text="Name:"/>
                         <TextBox
                             Margin="0 3 0 0"
-                            IsReadOnly="True"
-                            Text="{Binding SelectedContact.Name}"/>
+                            
+                            IsReadOnly="{Binding IsReadOnlyMode}"
+                            Text="{Binding SelectedContact.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     </StackPanel>
 
                     <StackPanel
@@ -134,8 +139,8 @@
                         <TextBlock Text="Phone Number:"/>
                         <TextBox
                             Margin="0 3 0 0"
-                            IsReadOnly="True"
-                            Text="{Binding SelectedContact.PhoneNumber}"/>
+                            IsReadOnly="{Binding IsReadOnlyMode}"
+                            Text="{Binding SelectedContact.PhoneNumber, Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
 
                     <StackPanel
@@ -146,8 +151,8 @@
                         <TextBlock Text="Email:"/>
                         <TextBox
                             Margin="0 3 0 0"
-                            IsReadOnly="True"
-                            Text="{Binding SelectedContact.Email}"/>
+                            IsReadOnly="{Binding IsReadOnlyMode}"
+                            Text="{Binding SelectedContact.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
 
                     <!--  Кнопка "Apply"  -->
@@ -158,7 +163,10 @@
                         Height="25"
                         Margin="0 50 0 0"
                         HorizontalAlignment="Left"
-                        Content="Apply"/>
+                        Content="Apply"
+                        
+                        Command="{Binding ApplyCommand}"/>
+                        
                 </Grid>
             </Border>
         </Grid>

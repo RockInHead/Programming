@@ -1,4 +1,7 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Windows;
+using System.Windows.Input;
 
 /// <summary>
 /// Основная модель представления для управления контактами и их сохранением/загрузкой.
@@ -10,6 +13,25 @@ public class MainVM : INotifyPropertyChanged
     /// </summary>
     private Contact _currentContact;
 
+    private ContactVM _selectedContact;
+
+    private bool _isEditing;
+
+    /// <summary>
+    /// Значение, указывающее, редактируется ли контакт.
+    /// </summary>
+    private bool _isEditingContact;
+
+    /// <summary>
+    /// Значение, указывающее, находится ли приложение в режиме редактирования.
+    /// </summary>
+    private bool _isReadOnlyMode = true;
+
+    public ICommand AddCommand { get; }
+    public ICommand EditCommand { get; }
+    public ICommand RemoveCommand { get; }
+    public ICommand ApplyCommand { get; }
+
     /// <summary>
     /// Инициализирует новый экземпляр <see cref="MainVM"/>.
     /// </summary>
@@ -17,14 +39,174 @@ public class MainVM : INotifyPropertyChanged
     {
         _currentContact = new Contact();
 
-        SaveCommand = new SaveCommand(() => CurrentContact);
-        LoadCommand = new LoadCommand(loadedContact => UpdateContact(loadedContact));
+        /*SaveCommand = new SaveCommand(() => CurrentContact);
+        LoadCommand = new LoadCommand(loadedContact => UpdateContact(loadedContact));*/
+
+        Contacts = new ObservableCollection<ContactVM>
+        {
+            /*new ContactVM(new Contact("Илья Шутов", "8-800-555-35-35", "tusurthechampion36.gmail")),*/
+            new ContactVM(new Contact("Алексей Иванов", "8-999-123-45-67", "alex@example.com")),
+        };
+
+        AddCommand = new RelayCommand(AddContact, CanAddContact);
+        EditCommand = new RelayCommand(EditContact, CanEditContact);
+        RemoveCommand = new RelayCommand(RemoveContact, CanRemoveContact);
+        ApplyCommand = new RelayCommand(ApplyContact, CanApplyContact);
     }
+
+    /// <summary>
+    /// Получает или задает значение, указывающее, редактируется ли контакт.
+    /// </summary>
+    public bool IsEditingContact
+    {
+        get => _isEditingContact;
+        set
+        {
+            _isEditingContact = value;
+            OnPropertyChanged(nameof(IsEditingContact));
+        }
+    }
+
+    /// <summary>
+    /// Редактирует выбранный контакт.
+    /// </summary>
+    /// <param name="parameter">Параметр команды.</param>
+    public void EditContact(object parameter)
+    {
+        IsApplyButtonVisible = true;
+        IsReadOnlyMode = false;
+        IsEditingContact = true;
+    }
+
+    /// <summary>
+    /// Удаляет выбранный контакт.
+    /// </summary>
+    /// <param name="parameter">Параметр команды.</param>
+    public void RemoveContact(object parameter)
+    {
+        if (SelectedContact != null)
+        {
+            int index = Contacts.IndexOf(SelectedContact);
+            Contacts.Remove(SelectedContact);
+
+            if (Contacts.Any())
+            {
+                SelectedContact = index < Contacts.Count ? Contacts[index] : Contacts.Last();
+            }
+            else
+            {
+                SelectedContact = null;
+            }
+            /*ContactSerializer.SaveContacts(Contacts);*/
+        }
+    }
+
+    public void AddContact(object parameter)
+    {
+        SelectedContact = new ContactVM();
+        IsApplyButtonVisible = true;
+        
+        IsReadOnlyMode = false;
+        /*IsAddingNewContact = true;*/
+    }
+
+    /// <summary>
+    /// Получает или задает значение, указывающее, находится ли приложение в режиме редактирования.
+    /// </summary>
+    public bool IsReadOnlyMode
+    {
+        get => _isReadOnlyMode;
+        set
+        {
+            _isReadOnlyMode = value;
+            OnPropertyChanged(nameof(IsReadOnlyMode));
+        }
+    }
+    public void ApplyContact(object parameter)
+    {
+        if (SelectedContact != null)
+        {
+            if (!Contacts.Contains(SelectedContact))
+            {
+                Contacts.Add(SelectedContact);
+            }
+            IsApplyButtonVisible = false;
+            /*ContactSerializer.SaveContacts(Contacts);*/
+            IsApplyButtonVisible = false;
+            IsReadOnlyMode = true;
+            /*IsAddingNewContact = false;*/
+            IsEditingContact = false;
+        }
+    }
+    public bool IsContactSelected => _selectedContact != null;
+    private bool CanAddContact(object parameter) => !IsApplyButtonVisible;
+
+    private bool CanEditContact(object parameter) => IsContactSelected && !IsApplyButtonVisible;
+
+    private bool CanRemoveContact(object parameter) => IsContactSelected && !IsApplyButtonVisible;
+    private bool CanApplyContact(object parameter) => IsApplyButtonVisible;
+    /*public bool IsReadOnly => !_isEditing;
+    public bool CanEdit => SelectedContact != null && !_isEditing;
+    public bool CanRemove => SelectedContact != null && !_isEditing;
+    public Visibility IsApplyVisible => _isEditing ? Visibility.Visible : Visibility.Collapsed;*/
+
+    private bool _isApplyButtonVisible;
+    public bool IsApplyButtonVisible
+    {
+        get => _isApplyButtonVisible;
+        set
+        {
+            _isApplyButtonVisible = value;
+            OnPropertyChanged(nameof(IsApplyButtonVisible));
+        }
+    }
+    public ContactVM SelectedContact
+    {
+        get => _selectedContact;
+        set
+        {
+            if (_isEditing) CancelEdit();
+            _selectedContact = value;
+            OnPropertyChanged(nameof(SelectedContact));
+            OnPropertyChanged(nameof(IsContactSelected));
+            OnPropertyChanged(nameof(IsApplyButtonVisible));
+        }
+    }
+    private void CancelEdit()
+    {
+        _isEditing = false;
+        /*OnPropertyChanged(nameof(IsReadOnly));
+        OnPropertyChanged(nameof(IsApplyVisible));*/
+    }
+
+/*    private void ApplyChanges()
+    {
+        if (!Contacts.Contains(SelectedContact))
+        {
+            Contacts.Add(SelectedContact);
+        }
+        _isEditing = false;
+        *//*SaveContacts();*//*
+        OnPropertyChanged(nameof(IsReadOnly));
+        OnPropertyChanged(nameof(IsApplyVisible));
+        UpdateCommands();
+    }*/
+
+   /* // Новый метод для обновления состояния команд
+    private void UpdateCommands()
+    {
+        (AddCommand as RelayCommand)?.RaiseCanExecuteChanged();
+        (EditCommand as RelayCommand)?.RaiseCanExecuteChanged();
+        (RemoveCommand as RelayCommand)?.RaiseCanExecuteChanged();
+        (ApplyCommand as RelayCommand)?.RaiseCanExecuteChanged();
+    }*/
 
     /// <summary>
     /// Событие, уведомляющее об изменениях в свойствах.
     /// </summary>
     public event PropertyChangedEventHandler PropertyChanged;
+
+    public ObservableCollection<ContactVM> Contacts { get; set; }
 
     /// <summary>
     /// Возвращает и задает текущий контакт.
