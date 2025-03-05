@@ -5,12 +5,14 @@
     Title="Contacts"
     Width="613"
     Height="400"
+    MinWidth="550"
+    MinHeight="300"
     Icon="Resources/contacts_96x96.ico">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*" MinWidth="200"/>
             <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="2*" MinWidth="300"/>
         </Grid.ColumnDefinitions>
 
         <!--  Левая колонка  -->
