@@ -1,4 +1,4 @@
-﻿using System.Windows.Input;
+﻿/*using System.Windows.Input;
 
 /// <summary>
 /// Команда для сохранения контакта в файл.
@@ -47,3 +47,4 @@ public class SaveCommand : ICommand
     }
 }
 
+*/

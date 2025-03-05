@@ -1,4 +1,4 @@
-﻿using System.Windows.Input;
+﻿/*using System.Windows.Input;
 
 /// <summary>
 /// Команда для загрузки контакта из файла.
@@ -37,14 +37,15 @@ public class LoadCommand : ICommand
     /// Выполняет команду загрузки контакта из файла.
     /// </summary>
     /// <param name="parameter">Не используется.</param>
-    public void Execute(object parameter)
+   *//* public void Execute(object parameter)
     {
         var contact = ContactSerializer.LoadContact();
         if (contact != null)
         {
             _setContact(contact);
         }
-    }
+    }*//*
 }
 
 
+*/

@@ -42,11 +42,7 @@ public class MainVM : INotifyPropertyChanged
         /*SaveCommand = new SaveCommand(() => CurrentContact);
         LoadCommand = new LoadCommand(loadedContact => UpdateContact(loadedContact));*/
 
-        Contacts = new ObservableCollection<ContactVM>
-        {
-            /*new ContactVM(new Contact("Илья Шутов", "8-800-555-35-35", "tusurthechampion36.gmail")),*/
-            new ContactVM(new Contact("Алексей Иванов", "8-999-123-45-67", "alex@example.com")),
-        };
+        Contacts = new ObservableCollection<ContactVM>(ContactSerializer.LoadContacts());
 
         AddCommand = new RelayCommand(AddContact, CanAddContact);
         EditCommand = new RelayCommand(EditContact, CanEditContact);
@@ -97,7 +93,7 @@ public class MainVM : INotifyPropertyChanged
             {
                 SelectedContact = null;
             }
-            /*ContactSerializer.SaveContacts(Contacts);*/
+            ContactSerializer.SaveContacts(Contacts);
         }
     }
 
@@ -108,6 +104,7 @@ public class MainVM : INotifyPropertyChanged
         
         IsReadOnlyMode = false;
         /*IsAddingNewContact = true;*/
+        
     }
 
     /// <summary>
@@ -136,6 +133,7 @@ public class MainVM : INotifyPropertyChanged
             IsReadOnlyMode = true;
             /*IsAddingNewContact = false;*/
             IsEditingContact = false;
+            ContactSerializer.SaveContacts(Contacts);
         }
     }
     public bool IsContactSelected => _selectedContact != null;
@@ -174,9 +172,12 @@ public class MainVM : INotifyPropertyChanged
     }
     private void CancelEdit()
     {
-        _isEditing = false;
-        /*OnPropertyChanged(nameof(IsReadOnly));
-        OnPropertyChanged(nameof(IsApplyVisible));*/
+        /*_isEditing = false;*/
+        IsApplyButtonVisible = false;
+        IsReadOnlyMode = true;
+        IsEditingContact = false;
+        OnPropertyChanged(nameof(IsReadOnlyMode));
+        OnPropertyChanged(nameof(IsApplyButtonVisible));
     }
 
 /*    private void ApplyChanges()
@@ -282,7 +283,7 @@ public class MainVM : INotifyPropertyChanged
         }
     }
 
-    /// <summary>
+    /*/// <summary>
     /// Команда для сохранения контакта.
     /// </summary>
     public SaveCommand SaveCommand { get; }
@@ -290,7 +291,7 @@ public class MainVM : INotifyPropertyChanged
     /// <summary>
     /// Команда для загрузки контакта.
     /// </summary>
-    public LoadCommand LoadCommand { get; }
+    public LoadCommand LoadCommand { get; }*/
 
     /// <summary>
     /// Вызывает событие <see cref="PropertyChanged"/> для обновления интерфейса.
