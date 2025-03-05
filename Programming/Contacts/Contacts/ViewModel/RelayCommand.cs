@@ -1,11 +1,11 @@
-﻿using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 
+/// <summary>
+/// Реализует интерфейс <see cref="ICommand"/> для привязки команд в WPF, позволяя определить действия для выполнения 
+/// и условия, при которых команда может быть выполнена.
+/// </summary>
 public class RelayCommand : ICommand
 {
-    private readonly Action<object> _execute; // Делегат для выполнения команды
-    private readonly Predicate<object> _canExecute; // Делегат для проверки возможности выполнения команды
-
     /// <summary>
     /// Конструктор команды.
     /// </summary>
@@ -15,6 +15,25 @@ public class RelayCommand : ICommand
     {
         _execute = execute ?? throw new ArgumentNullException(nameof(execute)); // Проверка на null
         _canExecute = canExecute;
+    }
+
+    /// <summary>
+    /// Делегат, который представляет метод, выполняющийся при вызове команды.
+    /// </summary>
+    private readonly Action<object> _execute;
+
+    /// <summary>
+    /// Делегат, который представляет метод, проверяющий, может ли команда быть выполнена.
+    /// </summary>
+    private readonly Predicate<object> _canExecute;
+
+    /// <summary>
+    /// Событие, которое вызывается при изменении возможности выполнения команды.
+    /// </summary>
+    public event EventHandler CanExecuteChanged
+    {
+        add { CommandManager.RequerySuggested += value; }
+        remove { CommandManager.RequerySuggested -= value; }
     }
 
     /// <summary>
@@ -34,14 +53,5 @@ public class RelayCommand : ICommand
     public void Execute(object parameter)
     {
         _execute(parameter);
-    }
-
-    /// <summary>
-    /// Событие, которое вызывается при изменении возможности выполнения команды.
-    /// </summary>
-    public event EventHandler CanExecuteChanged
-    {
-        add { CommandManager.RequerySuggested += value; }
-        remove { CommandManager.RequerySuggested -= value; }
     }
 }
