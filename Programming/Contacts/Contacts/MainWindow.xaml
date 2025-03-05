@@ -47,8 +47,8 @@
                         x:Name="ContactsList"
                         Grid.Row="1"
                         Margin="3 7 3 3"
-                        ItemsSource="{Binding Contacts}"
                         DisplayMemberPath="Name"
+                        ItemsSource="{Binding Contacts}"
                         SelectedItem="{Binding SelectedContact, Mode=TwoWay}"/>
                     <!--  Кнопки управления  -->
                     <Grid Grid.Row="2" Margin="3 3 3 3">
@@ -61,21 +61,20 @@
                             Grid.Column="0"
                             Height="25"
                             Margin="3"
-                            Content="Add"
-                            
-                            Command="{Binding AddCommand}"/>
+                            Command="{Binding AddCommand}"
+                            Content="Add"/>
                         <Button
                             Grid.Column="1"
                             Height="25"
                             Margin="3"
-                            Content="Edit"
-                            Command="{Binding EditCommand}"/>
+                            Command="{Binding EditCommand}"
+                            Content="Edit"/>
                         <Button
                             Grid.Column="2"
                             Height="25"
                             Margin="3"
-                            Content="Remove"
-                            Command="{Binding RemoveCommand}"/>
+                            Command="{Binding RemoveCommand}"
+                            Content="Remove"/>
                     </Grid>
                 </Grid>
             </Border>
@@ -95,6 +94,9 @@
         <Grid Grid.Column="2" Background="White">
             <Border Margin="8" Background="{x:Null}">
                 <Grid>
+                    <Grid.BindingGroup>
+                        <BindingGroup x:Name="ContactBindingGroup"/>
+                    </Grid.BindingGroup>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
@@ -126,9 +128,8 @@
                         <TextBlock Text="Name:"/>
                         <TextBox
                             Margin="0 3 0 0"
-                            
                             IsReadOnly="{Binding IsReadOnlyMode}"
-                            Text="{Binding SelectedContact.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            Text="{Binding SelectedContact.Name, Mode=TwoWay, UpdateSourceTrigger=Explicit}"/>
                     </StackPanel>
 
                     <StackPanel
@@ -140,7 +141,7 @@
                         <TextBox
                             Margin="0 3 0 0"
                             IsReadOnly="{Binding IsReadOnlyMode}"
-                            Text="{Binding SelectedContact.PhoneNumber, Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}"/>
+                            Text="{Binding SelectedContact.PhoneNumber, Mode=TwoWay, UpdateSourceTrigger=Explicit}"/>
                     </StackPanel>
 
                     <StackPanel
@@ -152,7 +153,7 @@
                         <TextBox
                             Margin="0 3 0 0"
                             IsReadOnly="{Binding IsReadOnlyMode}"
-                            Text="{Binding SelectedContact.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            Text="{Binding SelectedContact.Email, Mode=TwoWay, UpdateSourceTrigger=Explicit}"/>
                     </StackPanel>
 
                     <!--  Кнопка "Apply"  -->
@@ -163,10 +164,10 @@
                         Height="25"
                         Margin="0 50 0 0"
                         HorizontalAlignment="Left"
-                        Content="Apply"
-                        
-                        Command="{Binding ApplyCommand}"/>
-                        
+                        Command="{Binding ApplyCommand}"
+                        CommandParameter="{Binding ElementName=ContactBindingGroup}"
+                        Content="Apply"/>
+
                 </Grid>
             </Border>
         </Grid>

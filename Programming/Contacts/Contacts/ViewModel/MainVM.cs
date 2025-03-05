@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Input;
 
 /// <summary>
@@ -38,10 +39,6 @@ public class MainVM : INotifyPropertyChanged
     public MainVM()
     {
         _currentContact = new Contact();
-
-        /*SaveCommand = new SaveCommand(() => CurrentContact);
-        LoadCommand = new LoadCommand(loadedContact => UpdateContact(loadedContact));*/
-
         Contacts = new ObservableCollection<ContactVM>(ContactSerializer.LoadContacts());
 
         AddCommand = new RelayCommand(AddContact, CanAddContact);
@@ -99,12 +96,12 @@ public class MainVM : INotifyPropertyChanged
 
     public void AddContact(object parameter)
     {
+        SelectedContact = null;
         SelectedContact = new ContactVM();
         IsApplyButtonVisible = true;
         
         IsReadOnlyMode = false;
         /*IsAddingNewContact = true;*/
-        
     }
 
     /// <summary>
@@ -121,6 +118,13 @@ public class MainVM : INotifyPropertyChanged
     }
     public void ApplyContact(object parameter)
     {
+        if (parameter is not BindingGroup bindingGroup)
+        {
+            return;
+        }
+
+        bindingGroup.CommitEdit();
+
         if (SelectedContact != null)
         {
             if (!Contacts.Contains(SelectedContact))
@@ -128,7 +132,6 @@ public class MainVM : INotifyPropertyChanged
                 Contacts.Add(SelectedContact);
             }
             IsApplyButtonVisible = false;
-            /*ContactSerializer.SaveContacts(Contacts);*/
             IsApplyButtonVisible = false;
             IsReadOnlyMode = true;
             /*IsAddingNewContact = false;*/
@@ -143,10 +146,7 @@ public class MainVM : INotifyPropertyChanged
 
     private bool CanRemoveContact(object parameter) => IsContactSelected && !IsApplyButtonVisible;
     private bool CanApplyContact(object parameter) => IsApplyButtonVisible;
-    /*public bool IsReadOnly => !_isEditing;
-    public bool CanEdit => SelectedContact != null && !_isEditing;
-    public bool CanRemove => SelectedContact != null && !_isEditing;
-    public Visibility IsApplyVisible => _isEditing ? Visibility.Visible : Visibility.Collapsed;*/
+
 
     private bool _isApplyButtonVisible;
     public bool IsApplyButtonVisible
@@ -163,8 +163,9 @@ public class MainVM : INotifyPropertyChanged
         get => _selectedContact;
         set
         {
-            if (_isEditing) CancelEdit();
+            if (!_isEditing) CancelEdit();
             _selectedContact = value;
+            OnPropertyChanged(nameof(IsEditingContact));
             OnPropertyChanged(nameof(SelectedContact));
             OnPropertyChanged(nameof(IsContactSelected));
             OnPropertyChanged(nameof(IsApplyButtonVisible));
@@ -172,35 +173,13 @@ public class MainVM : INotifyPropertyChanged
     }
     private void CancelEdit()
     {
-        /*_isEditing = false;*/
+        _isEditing = false;
         IsApplyButtonVisible = false;
         IsReadOnlyMode = true;
         IsEditingContact = false;
         OnPropertyChanged(nameof(IsReadOnlyMode));
         OnPropertyChanged(nameof(IsApplyButtonVisible));
     }
-
-/*    private void ApplyChanges()
-    {
-        if (!Contacts.Contains(SelectedContact))
-        {
-            Contacts.Add(SelectedContact);
-        }
-        _isEditing = false;
-        *//*SaveContacts();*//*
-        OnPropertyChanged(nameof(IsReadOnly));
-        OnPropertyChanged(nameof(IsApplyVisible));
-        UpdateCommands();
-    }*/
-
-   /* // Новый метод для обновления состояния команд
-    private void UpdateCommands()
-    {
-        (AddCommand as RelayCommand)?.RaiseCanExecuteChanged();
-        (EditCommand as RelayCommand)?.RaiseCanExecuteChanged();
-        (RemoveCommand as RelayCommand)?.RaiseCanExecuteChanged();
-        (ApplyCommand as RelayCommand)?.RaiseCanExecuteChanged();
-    }*/
 
     /// <summary>
     /// Событие, уведомляющее об изменениях в свойствах.
