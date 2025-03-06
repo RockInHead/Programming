@@ -40,7 +40,6 @@ public class MainVM : INotifyPropertyChanged
     {
         _currentContact = new Contact();
         Contacts = new ObservableCollection<ContactVM>(ContactSerializer.LoadContacts());
-
         AddCommand = new RelayCommand(AddContact, CanAddContact);
         EditCommand = new RelayCommand(EditContact, CanEditContact);
         RemoveCommand = new RelayCommand(RemoveContact, CanRemoveContact);
@@ -57,18 +56,15 @@ public class MainVM : INotifyPropertyChanged
     /// </summary>
     public ICommand AddCommand { get; }
 
-
     /// <summary>
     /// Команда для редактирования выбранного контакта.
     /// </summary>
     public ICommand EditCommand { get; }
 
-
     /// <summary>
     /// Команда для удаления выбранного контакта.
     /// </summary>
     public ICommand RemoveCommand { get; }
-
 
     /// <summary>
     /// Команда для применения изменений в выбранном контакте.
@@ -248,6 +244,7 @@ public class MainVM : INotifyPropertyChanged
         {
             SelectedContact = null;
         }
+
         ContactSerializer.SaveContacts(Contacts);
     }
 
@@ -257,7 +254,6 @@ public class MainVM : INotifyPropertyChanged
     /// <param name="parameter">Параметр команды.</param>
     public void AddContact(object parameter)
     {
-        SelectedContact = null;
         SelectedContact = new ContactVM();
         IsApplyButtonVisible = true;
         IsReadOnlyMode = false;
@@ -292,10 +288,7 @@ public class MainVM : INotifyPropertyChanged
         ContactSerializer.SaveContacts(Contacts);
     }
 
-    /// <summary>
-    /// Вызывает событие <see cref="PropertyChanged"/> для обновления интерфейса.
-    /// </summary>
-    /// <param name="propertyName">Имя измененного свойства.</param>
+    /// <inheritdoc cref="INotifyPropertyChanged.PropertyChanged"/>
     protected void OnPropertyChanged(string propertyName)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -327,14 +320,12 @@ public class MainVM : INotifyPropertyChanged
     /// <returns>Возвращает <c>true</c>, если контакт можно редактировать; иначе <c>false</c>.</returns>
     private bool CanEditContact(object parameter) => IsContactSelected && !IsApplyButtonVisible;
 
-
     /// <summary>
     /// Проверяет, можно ли удалить выбранный контакт.
     /// </summary>
     /// <param name="parameter">Параметр команды.</param>
     /// <returns>Возвращает <c>true</c>, если контакт можно удалить; иначе <c>false</c>.</returns>
     private bool CanRemoveContact(object parameter) => IsContactSelected && !IsApplyButtonVisible;
-
 
     /// <summary>
     /// Проверяет, можно ли применить изменения для выбранного контакта.

@@ -9,9 +9,9 @@ public class Contact
     /// </summary>
     public Contact()
     {
-        Name = "Илья Шутов";
-        PhoneNumber = "8-800-555-35-35";
-        Email = "tusurthechampion36.gmail";
+        Name = "";
+        PhoneNumber = "";
+        Email = "";
     }
 
     /// <summary>

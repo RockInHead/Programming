@@ -82,9 +82,7 @@ public class ContactVM : INotifyPropertyChanged
         }
     }
 
-    /// <summary>
-    /// Событие, уведомляющее об изменениях в свойствах.
-    /// </summary>
+    /// <inheritdoc cref="INotifyPropertyChanged.PropertyChanged"/>
     public event PropertyChangedEventHandler PropertyChanged;
 
     /// <summary>

@@ -1,7 +1,8 @@
 ﻿using System.Windows.Input;
 
 /// <summary>
-/// Реализует интерфейс <see cref="ICommand"/> для привязки команд в WPF, позволяя определить действия для выполнения 
+/// Реализует интерфейс <see cref="ICommand"/> для привязки команд в WPF,
+/// позволяя определить действия для выполнения 
 /// и условия, при которых команда может быть выполнена.
 /// </summary>
 public class RelayCommand : ICommand
@@ -32,8 +33,15 @@ public class RelayCommand : ICommand
     /// </summary>
     public event EventHandler CanExecuteChanged
     {
-        add { CommandManager.RequerySuggested += value; }
-        remove { CommandManager.RequerySuggested -= value; }
+        add 
+        { 
+            CommandManager.RequerySuggested += value; 
+        }
+
+        remove 
+        { 
+            CommandManager.RequerySuggested -= value; 
+        }
     }
 
     /// <summary>
