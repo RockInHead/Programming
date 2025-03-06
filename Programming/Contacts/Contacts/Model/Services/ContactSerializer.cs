@@ -50,5 +50,3 @@ public static class ContactSerializer
         return new List<Contact>();
     }
 }
-
-
