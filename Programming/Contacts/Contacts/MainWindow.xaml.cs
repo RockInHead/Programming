@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.Windows;
+﻿using System.Windows;
 
 namespace Contacts
 {
@@ -17,9 +16,6 @@ namespace Contacts
 
             // Устанавливает модель представления как DataContext для привязки данных
             DataContext = new MainVM();
-            /*DataContext = ObservableCollection<ContactVM>();*/
-
         }
-
     }
 }
