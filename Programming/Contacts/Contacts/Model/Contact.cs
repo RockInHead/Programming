@@ -1,7 +1,9 @@
-﻿/// <summary>
+﻿using System.ComponentModel;
+
+/// <summary>
 /// Класс контакта пользователя, хранящий имя, номер телефон и почту контакта.
 /// </summary>
-public class Contact
+public class Contact : INotifyPropertyChanged
 {
     /// <summary>
     /// Конструктор класса Contact. 
@@ -42,5 +44,17 @@ public class Contact
     /// Задает и возвращает почту контакта.
     /// </summary>
     public string Email { get; set; }
+
+    /// <inheritdoc cref="INotifyPropertyChanged.PropertyChanged"/>
+    public event PropertyChangedEventHandler PropertyChanged;
+
+    /// <summary>
+    /// Вызывает событие <see cref="PropertyChanged"/> для обновления интерфейса.
+    /// </summary>
+    /// <param name="propertyName">Имя измененного свойства.</param>
+    protected void OnPropertyChanged(string propertyName)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
 }
 

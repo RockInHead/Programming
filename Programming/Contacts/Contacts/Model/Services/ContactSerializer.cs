@@ -26,7 +26,7 @@ public static class ContactSerializer
     /// Сохраняет список контактов в файл в формате JSON.
     /// </summary>
     /// <param name="contacts">Список контактов для сохранения.</param>
-    public static void SaveContacts(IEnumerable<ContactVM> contacts)
+    public static void SaveContacts(IEnumerable<Contact> contacts)
     {
         var json = JsonConvert.SerializeObject(contacts, Formatting.Indented);
         File.WriteAllText(_filePath, json);
@@ -39,15 +39,15 @@ public static class ContactSerializer
     /// Возвращает список контактов, если файл существует и успешно десериализован.
     /// В противном случае возвращает пустой список.
     /// </returns>
-    public static List<ContactVM> LoadContacts()
+    public static List<Contact> LoadContacts()
     {
         if (File.Exists(_filePath))
         {
             var json = File.ReadAllText(_filePath);
-            return JsonConvert.DeserializeObject<List<ContactVM>>(json);
+            return JsonConvert.DeserializeObject<List<Contact>>(json);
         }
 
-        return new List<ContactVM>();
+        return new List<Contact>();
     }
 }
 

@@ -9,14 +9,9 @@ using System.Windows.Input;
 public class MainVM : INotifyPropertyChanged
 {
     /// <summary>
-    /// Объект текущего контакта.
-    /// </summary>
-    private Contact _currentContact;
-
-    /// <summary>
     /// Выбранный контакт для редактирования.
     /// </summary>
-    private ContactVM _selectedContact;
+    private Contact _selectedContact;
 
     /// <summary>
     /// Значение, указывающее, редактируется ли контакт.
@@ -38,8 +33,7 @@ public class MainVM : INotifyPropertyChanged
     /// </summary>
     public MainVM()
     {
-        _currentContact = new Contact();
-        Contacts = new ObservableCollection<ContactVM>(ContactSerializer.LoadContacts());
+        Contacts = new ObservableCollection<Contact>(ContactSerializer.LoadContacts());
         AddCommand = new RelayCommand(AddContact, CanAddContact);
         EditCommand = new RelayCommand(EditContact, CanEditContact);
         RemoveCommand = new RelayCommand(RemoveContact, CanRemoveContact);
@@ -74,7 +68,7 @@ public class MainVM : INotifyPropertyChanged
     /// <summary>
     /// Список контактов.
     /// </summary>
-    public ObservableCollection<ContactVM> Contacts { get; set; }
+    public ObservableCollection<Contact> Contacts { get; set; }
 
     /// <summary>
     /// Получает или задает значение, указывающее, редактируется ли контакт.
@@ -118,7 +112,7 @@ public class MainVM : INotifyPropertyChanged
     /// <summary>
     /// Возвращает или задает выбранный контакт.
     /// </summary>
-    public ContactVM SelectedContact
+    public Contact SelectedContact
     {
         get => _selectedContact;
         set
@@ -136,80 +130,6 @@ public class MainVM : INotifyPropertyChanged
     /// Проверяет, выбран ли контакт.
     /// </summary>
     public bool IsContactSelected => _selectedContact != null;
-
-    /// <summary>
-    /// Возвращает и задает текущий контакт.
-    /// </summary>
-    public Contact CurrentContact
-    {
-        get => _currentContact;
-        set
-        {
-            if (_currentContact == value)
-            {
-                return;
-            }
-
-            _currentContact = value;
-            OnPropertyChanged(nameof(Name));
-            OnPropertyChanged(nameof(PhoneNumber));
-            OnPropertyChanged(nameof(Email));
-        }
-    }
-
-    /// <summary>
-    /// Возвращает и задает текущее имя контакта.
-    /// </summary>
-    public string Name
-    {
-        get => _currentContact.Name;
-        set
-        {
-            if (_currentContact.Name == value)
-            {
-                return;
-            }
-
-            _currentContact.Name = value;
-            OnPropertyChanged(nameof(Name));
-        }
-    }
-
-    /// <summary>
-    /// Возвращает и задает текущий номер телефона контакта.
-    /// </summary>
-    public string PhoneNumber
-    {
-        get => _currentContact.PhoneNumber;
-        set
-        {
-            if (_currentContact.PhoneNumber == value)
-            {
-                return;
-            }
-
-            _currentContact.PhoneNumber = value;
-            OnPropertyChanged(nameof(PhoneNumber));
-        }
-    }
-
-    /// <summary>
-    /// Возвращает и задает текущую почту контакта.
-    /// </summary>
-    public string Email
-    {
-        get => _currentContact.Email;
-        set
-        {
-            if (_currentContact.Email == value)
-            {
-                return;
-            }
-
-            _currentContact.Email = value;
-            OnPropertyChanged(nameof(Email));
-        }
-    }
 
     /// <summary>
     /// Редактирует выбранный контакт.
@@ -254,7 +174,7 @@ public class MainVM : INotifyPropertyChanged
     /// <param name="parameter">Параметр команды.</param>
     public void AddContact(object parameter)
     {
-        SelectedContact = new ContactVM();
+        SelectedContact = new Contact();
         IsApplyButtonVisible = true;
         IsReadOnlyMode = false;
     }
