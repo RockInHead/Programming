@@ -33,6 +33,7 @@ public class MainVM : INotifyPropertyChanged
     /// </summary>
     public MainVM()
     {
+        ContactSerializer.CreateDirectory();
         Contacts = new ObservableCollection<Contact>(ContactSerializer.LoadContacts());
         AddCommand = new RelayCommand(AddContact, CanAddContact);
         EditCommand = new RelayCommand(EditContact, CanEditContact);
