@@ -165,6 +165,7 @@ public class MainVM : INotifyPropertyChanged
         SelectedContact = new Contact();
         IsApplyButtonVisible = true;
         IsReadOnlyMode = false;
+        IsAddOrEditMode = true;
     }
 
     /// <summary>
@@ -219,26 +220,26 @@ public class MainVM : INotifyPropertyChanged
     /// </summary>
     /// <param name="parameter">Параметр команды.</param>
     /// <returns>Возвращает <c>true</c>, если контакт можно добавить; иначе <c>false</c>.</returns>
-    private bool CanAddContact(object parameter) => !IsApplyButtonVisible;
+    private bool CanAddContact(object parameter) => !IsAddOrEditMode;
 
     /// <summary>
     /// Проверяет, можно ли редактировать выбранный контакт.
     /// </summary>
     /// <param name="parameter">Параметр команды.</param>
     /// <returns>Возвращает <c>true</c>, если контакт можно редактировать; иначе <c>false</c>.</returns>
-    private bool CanEditContact(object parameter) => IsContactSelected && !IsApplyButtonVisible;
+    private bool CanEditContact(object parameter) => IsContactSelected && !IsAddOrEditMode;
 
     /// <summary>
     /// Проверяет, можно ли удалить выбранный контакт.
     /// </summary>
     /// <param name="parameter">Параметр команды.</param>
     /// <returns>Возвращает <c>true</c>, если контакт можно удалить; иначе <c>false</c>.</returns>
-    private bool CanRemoveContact(object parameter) => IsContactSelected && !IsApplyButtonVisible;
+    private bool CanRemoveContact(object parameter) => IsContactSelected && !IsAddOrEditMode;
 
     /// <summary>
     /// Проверяет, можно ли применить изменения для выбранного контакта.
     /// </summary>
     /// <param name="parameter">Параметр команды.</param>
     /// <returns>Возвращает <c>true</c>, если изменения можно применить; иначе <c>false</c>.</returns>
-    private bool CanApplyContact(object parameter) => IsApplyButtonVisible;
+    private bool CanApplyContact(object parameter) => IsAddOrEditMode;
 }
