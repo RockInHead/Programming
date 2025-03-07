@@ -19,11 +19,6 @@ public class MainVM : INotifyPropertyChanged
     private bool _isReadOnlyMode = true;
 
     /// <summary>
-    /// Значение, отображающее доступность кнопки "Применить".
-    /// </summary>
-    private bool _isApplyButtonVisible;
-
-    /// <summary>
     /// Инициализирует новый экземпляр <see cref="MainVM"/>.
     /// </summary>
     public MainVM()
@@ -85,19 +80,6 @@ public class MainVM : INotifyPropertyChanged
     }
 
     /// <summary>
-    /// Возвращает или задает флаг видимости кнопки "Применить".
-    /// </summary>
-    public bool IsApplyButtonVisible
-    {
-        get => _isApplyButtonVisible;
-        set
-        {
-            _isApplyButtonVisible = value;
-            OnPropertyChanged(nameof(IsApplyButtonVisible));
-        }
-    }
-
-    /// <summary>
     /// Возвращает или задает выбранный контакт.
     /// </summary>
     public Contact SelectedContact
@@ -110,7 +92,6 @@ public class MainVM : INotifyPropertyChanged
             OnPropertyChanged(nameof(IsAddOrEditMode));
             OnPropertyChanged(nameof(SelectedContact));
             OnPropertyChanged(nameof(IsContactSelected));
-            OnPropertyChanged(nameof(IsApplyButtonVisible));
         }
     }
 
@@ -125,7 +106,6 @@ public class MainVM : INotifyPropertyChanged
     /// <param name="parameter">Параметр команды.</param>
     public void EditContact(object parameter)
     {
-        IsApplyButtonVisible = true;
         IsReadOnlyMode = false;
         IsAddOrEditMode = true;
     }
@@ -163,7 +143,6 @@ public class MainVM : INotifyPropertyChanged
     public void AddContact(object parameter)
     {
         SelectedContact = new Contact();
-        IsApplyButtonVisible = true;
         IsReadOnlyMode = false;
         IsAddOrEditMode = true;
     }
@@ -191,7 +170,6 @@ public class MainVM : INotifyPropertyChanged
             Contacts.Add(SelectedContact);
         }
 
-        IsApplyButtonVisible = false;
         IsReadOnlyMode = true;
         IsAddOrEditMode = false;
         ContactSerializer.SaveContacts(Contacts);
@@ -208,11 +186,10 @@ public class MainVM : INotifyPropertyChanged
     /// </summary>
     private void CancelEdit()
     {
-        IsApplyButtonVisible = false;
         IsReadOnlyMode = true;
         IsAddOrEditMode = false;
         OnPropertyChanged(nameof(IsReadOnlyMode));
-        OnPropertyChanged(nameof(IsApplyButtonVisible));
+        OnPropertyChanged(nameof(IsAddOrEditMode));
     }
 
     /// <summary>
