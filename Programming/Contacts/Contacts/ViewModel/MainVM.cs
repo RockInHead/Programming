@@ -14,11 +14,6 @@ public class MainVM : INotifyPropertyChanged
     private Contact _selectedContact;
 
     /// <summary>
-    /// Значение, указывающее, редактируется ли контакт.
-    /// </summary>
-    private bool _isEditingContact;
-
-    /// <summary>
     /// Значение, указывающее, находятся ли поля доступными только для чтения.
     /// </summary>
     private bool _isReadOnlyMode = true;
@@ -74,15 +69,7 @@ public class MainVM : INotifyPropertyChanged
     /// <summary>
     /// Получает или задает значение, указывающее, редактируется ли контакт.
     /// </summary>
-    public bool IsEditingContact
-    {
-        get => _isEditingContact;
-        set
-        {
-            _isEditingContact = value;
-            OnPropertyChanged(nameof(IsEditingContact));
-        }
-    }
+    public bool IsEditingContact{ get; set; }
 
     /// <summary>
     /// Получает или задает значение, указывающее, находится ли приложение в режиме редактирования.
