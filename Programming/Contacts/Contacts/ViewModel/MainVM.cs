@@ -148,9 +148,9 @@ public class MainVM : INotifyPropertyChanged
     /// <param name="parameter">Параметр команды.</param>
     public void AddContact(object parameter)
     {
+        SelectedContact = null;
         SelectedContact = new Contact();
         IsReadOnlyMode = false;
-        /*IsAddOrEditMode = true;*/
     }
 
     /// <summary>
