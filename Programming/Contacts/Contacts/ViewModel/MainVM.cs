@@ -64,7 +64,13 @@ public class MainVM : INotifyPropertyChanged
     /// <summary>
     /// Получает или задает значение, указывающее, редактируется ли контакт.
     /// </summary>
-    public bool IsAddOrEditMode{ get; set; }
+    public bool IsAddOrEditMode
+    {
+        get
+        {
+            return !IsReadOnlyMode;
+        } 
+    }
 
     /// <summary>
     /// Получает или задает значение, указывающее, находится ли приложение в режиме редактирования.
@@ -76,6 +82,7 @@ public class MainVM : INotifyPropertyChanged
         {
             _isReadOnlyMode = value;
             OnPropertyChanged(nameof(IsReadOnlyMode));
+            OnPropertyChanged(nameof(IsAddOrEditMode));
         }
     }
 
@@ -107,7 +114,6 @@ public class MainVM : INotifyPropertyChanged
     public void EditContact(object parameter)
     {
         IsReadOnlyMode = false;
-        IsAddOrEditMode = true;
     }
 
     /// <summary>
@@ -144,7 +150,7 @@ public class MainVM : INotifyPropertyChanged
     {
         SelectedContact = new Contact();
         IsReadOnlyMode = false;
-        IsAddOrEditMode = true;
+        /*IsAddOrEditMode = true;*/
     }
 
     /// <summary>
@@ -171,7 +177,6 @@ public class MainVM : INotifyPropertyChanged
         }
 
         IsReadOnlyMode = true;
-        IsAddOrEditMode = false;
         ContactSerializer.SaveContacts(Contacts);
     }
 
@@ -187,7 +192,6 @@ public class MainVM : INotifyPropertyChanged
     private void CancelEdit()
     {
         IsReadOnlyMode = true;
-        IsAddOrEditMode = false;
         OnPropertyChanged(nameof(IsReadOnlyMode));
         OnPropertyChanged(nameof(IsAddOrEditMode));
     }
