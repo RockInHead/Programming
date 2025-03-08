@@ -31,9 +31,7 @@ public class MainVM : INotifyPropertyChanged
         ApplyCommand = new RelayCommand(ApplyContact, CanApplyContact);
     }
 
-    /// <summary>
-    /// Событие, уведомляющее об изменениях в свойствах.
-    /// </summary>
+    /// <inheritdoc cref="INotifyPropertyChanged.PropertyChanged"/>
     public event PropertyChangedEventHandler PropertyChanged;
 
     /// <summary>
@@ -62,15 +60,9 @@ public class MainVM : INotifyPropertyChanged
     public ObservableCollection<Contact> Contacts { get; set; }
 
     /// <summary>
-    /// Получает или задает значение, указывающее, редактируется ли контакт.
+    /// Возвращает значение, указывающее, редактируется ли контакт.
     /// </summary>
-    public bool IsAddOrEditMode
-    {
-        get
-        {
-            return !IsReadOnlyMode;
-        } 
-    }
+    public bool IsAddOrEditMode => !IsReadOnlyMode;
 
     /// <summary>
     /// Получает или задает значение, указывающее, находится ли приложение в режиме редактирования.
@@ -163,7 +155,6 @@ public class MainVM : INotifyPropertyChanged
         {
             return;
         }
-
         bindingGroup.CommitEdit();
 
         if (SelectedContact == null)
@@ -180,7 +171,10 @@ public class MainVM : INotifyPropertyChanged
         ContactSerializer.SaveContacts(Contacts);
     }
 
-    /// <inheritdoc cref="INotifyPropertyChanged.PropertyChanged"/>
+    /// <summary>
+    /// Вызывает событие PropertyChanged для уведомления об изменении свойства.
+    /// </summary>
+    /// <param name="propertyName">Имя измененного свойства.</param>
     protected void OnPropertyChanged(string propertyName)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

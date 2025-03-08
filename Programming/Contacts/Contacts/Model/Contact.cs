@@ -11,24 +11,22 @@ public class Contact : INotifyPropertyChanged
     private string _name;
 
     /// <summary>
-    /// Поле, хранящее почту контакта. 
-    /// </summary>
+    /// Поле, хранящее почту контакта.
+    /// /// </summary>
     private string _email;
 
     /// <summary>
     /// Поле, хранящее телефонный номер контакта.
-    /// </summary>
+    /// /// </summary>
     private string _phoneNumber;
 
     /// <summary>
-    /// Конструктор класса Contact. 
+    /// Конструктор класса Contact.
     /// Инициализирует поля значениями по умолчанию.
     /// </summary>
     public Contact()
     {
-        Name = "";
-        PhoneNumber = "";
-        Email = "";
+
     }
 
     /// <summary>
