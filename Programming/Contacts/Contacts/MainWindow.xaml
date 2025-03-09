@@ -6,9 +6,40 @@
     xmlns:local="clr-namespace:View.Converters"
     Title="Contacts"
     Width="613"
-    Height="400">
+    Height="400"
+    MinWidth="550"
+    MinHeight="300"
+    Icon="Resources/contacts_96x96.ico">
+
     <Window.Resources>
         <local:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+
+        <!--  DataTemplate для списка контактов  -->
+        <DataTemplate x:Key="ContactTemplate">
+            <StackPanel
+                Margin="3"
+                VerticalAlignment="Center"
+                Orientation="Horizontal">
+                <!--  Фото контакта  -->
+                <Ellipse
+                    Width="30"
+                    Height="30"
+                    Margin="0 0 8 0">
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="/Resources/photo_placeholder_100x100.png" Stretch="UniformToFill"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+
+                <!--  Данные контакта  -->
+                <StackPanel>
+                    <TextBlock
+                        FontSize="12"
+                        FontWeight="SemiBold"
+                        Text="{Binding Name}"/>
+                    <TextBlock FontSize="10" Text="{Binding PhoneNumber}"/>
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -51,7 +82,7 @@
                         x:Name="ContactsList"
                         Grid.Row="1"
                         Margin="3"
-                        DisplayMemberPath="Name"
+                        ItemTemplate="{StaticResource ContactTemplate}"
                         ItemsSource="{Binding Contacts}"
                         SelectedItem="{Binding SelectedContact, Mode=TwoWay}"/>
                     <!--  Кнопки управления  -->
