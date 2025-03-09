@@ -36,8 +36,8 @@ public static class ContactSerializer
         if (contacts == null)
         {
             throw new ArgumentNullException(nameof(contacts), "Контакт не может быть null.");
-
         }
+
         CreateDirectory();
         var json = JsonConvert.SerializeObject(contacts, Formatting.Indented);
         File.WriteAllText(_filePath, json);

@@ -155,8 +155,8 @@ public class MainVM : INotifyPropertyChanged
         {
             return;
         }
-        bindingGroup.CommitEdit();
 
+        bindingGroup.CommitEdit();
         if (SelectedContact == null)
         {
             return;
