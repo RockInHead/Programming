@@ -2,12 +2,12 @@
 using Newtonsoft.Json;
 
 /// <summary>
-/// Статический класс для сериализации и десериализации контактов в JSON-файл.
+/// Предоставляет методы для сериализации и десериализации списка контактов в формате JSON.
 /// </summary>
 public static class ContactSerializer
 {
     /// <summary>
-    /// Полный путь к файлу, в котором хранятся контакты.
+    /// Путь к файлу, в который сохраняются контакты.
     /// </summary>
     private static string _filePath;
 
@@ -28,35 +28,36 @@ public static class ContactSerializer
     }
 
     /// <summary>
-    /// Сериализует контакт и сохраняет его в файл.
+    /// Сохраняет список контактов в файл в формате JSON.
     /// </summary>
-    /// <param name="contact">Объект контакта для сохранения.</param>
-    public static void SaveContact(Contact contact)
+    /// <param name="contacts">Список контактов для сохранения.</param>
+    public static void SaveContacts(IEnumerable<Contact> contacts)
     {
-        if (contact == null)
+        if (contacts == null)
         {
-            throw new ArgumentNullException(nameof(contact), "Контакт не может быть null.");
+            throw new ArgumentNullException(nameof(contacts), "Контакт не может быть null.");
         }
 
         CreateDirectory();
-        var json = JsonConvert.SerializeObject(contact, Formatting.Indented);
+        var json = JsonConvert.SerializeObject(contacts, Formatting.Indented);
         File.WriteAllText(_filePath, json);
     }
 
     /// <summary>
-    /// Загружает контакт из файла.
+    /// Загружает список контактов из файла JSON.
     /// </summary>
-    /// <returns>Объект <see cref="Contact"/>, если файл существует, иначе null.</returns>
-    public static Contact LoadContact()
+    /// <returns>
+    /// Возвращает список контактов, если файл существует и успешно десериализован.
+    /// В противном случае возвращает пустой список.
+    /// </returns>
+    public static List<Contact> LoadContacts()
     {
         if (!File.Exists(_filePath))
         {
-            return null;
+            return new List<Contact>();
         }
 
         var json = File.ReadAllText(_filePath);
-        return JsonConvert.DeserializeObject<Contact>(json);
+        return JsonConvert.DeserializeObject<List<Contact>>(json);
     }
 }
-
-

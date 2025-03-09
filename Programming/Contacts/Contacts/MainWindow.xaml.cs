@@ -13,7 +13,6 @@ namespace Contacts
         public MainWindow()
         {
             InitializeComponent();
-
             // Устанавливает модель представления как DataContext для привязки данных
             DataContext = new MainVM();
         }
