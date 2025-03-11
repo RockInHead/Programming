@@ -18,6 +18,8 @@ public class MainVM : INotifyPropertyChanged
     /// </summary>
     private bool _isReadOnlyMode = true;
 
+    private Contact _originalContact;
+
     /// <summary>
     /// Инициализирует новый экземпляр <see cref="MainVM"/>.
     /// </summary>
@@ -86,7 +88,11 @@ public class MainVM : INotifyPropertyChanged
         get => _selectedContact;
         set
         {
-            CancelEdit();
+            if (_selectedContact != null && !IsReadOnlyMode)
+            {
+                CancelEdit();
+            }
+
             _selectedContact = value;
             OnPropertyChanged(nameof(IsAddOrEditMode));
             OnPropertyChanged(nameof(SelectedContact));
@@ -105,6 +111,8 @@ public class MainVM : INotifyPropertyChanged
     /// <param name="parameter">Параметр команды.</param>
     public void EditContact(object parameter)
     {
+        /*IsReadOnlyMode = false;*/
+        _originalContact = (Contact)SelectedContact.Clone();
         IsReadOnlyMode = false;
     }
 
@@ -185,6 +193,13 @@ public class MainVM : INotifyPropertyChanged
     /// </summary>
     private void CancelEdit()
     {
+        if (_originalContact != null)
+        {
+            SelectedContact.Name = _originalContact.Name;
+            SelectedContact.PhoneNumber = _originalContact.PhoneNumber;
+            SelectedContact.Email = _originalContact.Email;
+        }
+
         IsReadOnlyMode = true;
         OnPropertyChanged(nameof(IsReadOnlyMode));
         OnPropertyChanged(nameof(IsAddOrEditMode));
@@ -216,5 +231,13 @@ public class MainVM : INotifyPropertyChanged
     /// </summary>
     /// <param name="parameter">Параметр команды.</param>
     /// <returns>Возвращает <c>true</c>, если изменения можно применить; иначе <c>false</c>.</returns>
-    private bool CanApplyContact(object parameter) => IsAddOrEditMode;
+    private bool CanApplyContact(object parameter) => IsAddOrEditMode && !HasValidationErrors;
+
+    /// <summary>
+    /// Свойство, указывающее, есть ли ошибки валидации.
+    /// </summary>
+    public bool HasValidationErrors => SelectedContact != null &&
+                                       (!string.IsNullOrEmpty(SelectedContact["Name"]) ||
+                                        !string.IsNullOrEmpty(SelectedContact["PhoneNumber"]) ||
+                                        !string.IsNullOrEmpty(SelectedContact["Email"]));
 }

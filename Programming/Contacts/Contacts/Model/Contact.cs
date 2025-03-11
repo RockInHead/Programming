@@ -1,9 +1,10 @@
 ﻿using System.ComponentModel;
+using System.Text.RegularExpressions;
 
 /// <summary>
 /// Класс контакта пользователя, хранящий имя, номер телефон и почту контакта.
 /// </summary>
-public class Contact : INotifyPropertyChanged
+public class Contact : INotifyPropertyChanged, IDataErrorInfo, ICloneable
 {
     /// <summary>
     /// Поле, задающее имя контакта.
@@ -107,6 +108,47 @@ public class Contact : INotifyPropertyChanged
     protected void OnPropertyChanged(string propertyName)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+
+    
+
+    public string this[string columnName]
+    {
+        get
+        {
+            switch (columnName)
+            {
+                case "Name":
+                    if (string.IsNullOrWhiteSpace(Name) || Name.Length > 100)
+                        return "Имя должно содержать хотя бы 2 символа и не более 100";
+                    break;
+
+                case "PhoneNumber":
+                    if (string.IsNullOrWhiteSpace(PhoneNumber) || PhoneNumber.Length > 100 || !Regex.IsMatch(PhoneNumber, @"^[\d+\-()\s]+$"))
+                        return "Номер телефона может содержать только цифры и символы '+()-'.";
+                    break;
+
+                case "Email":
+                    if (string.IsNullOrWhiteSpace(Email) || Email.Length > 100 || !Email.Contains("@"))
+                    {
+                        return "Почта должна содержать символ '@'.";
+                    }
+                    break;
+            }
+            return null;
+        }
+    }
+
+    public string Error => null;
+
+    public object Clone()
+    {
+        return new Contact
+        {
+            Name = this.Name,
+            PhoneNumber = this.PhoneNumber,
+            Email = this.Email
+        };
     }
 }
 
