@@ -98,7 +98,11 @@
             <TextBox Margin="0 3 0 0"
                      IsReadOnly="{Binding DataContext.IsReadOnlyMode, RelativeSource={RelativeSource AncestorType=Window}}"
                      Style="{StaticResource ErrorTextBoxStyle}"
-                     Text="{Binding PhoneNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                     Text="{Binding PhoneNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                     PreviewTextInput="TextBox_PreviewTextInput"
+                     PreviewKeyDown="TextBox_PreviewKeyDown"
+                     CommandManager.PreviewExecuted="TextBox_PreviewExecuted"
+                     />
         </StackPanel>
 
         <StackPanel Grid.Row="2"

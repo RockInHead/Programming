@@ -240,4 +240,5 @@ public class MainVM : INotifyPropertyChanged
                                        (!string.IsNullOrEmpty(SelectedContact["Name"]) ||
                                         !string.IsNullOrEmpty(SelectedContact["PhoneNumber"]) ||
                                         !string.IsNullOrEmpty(SelectedContact["Email"]));
+
 }

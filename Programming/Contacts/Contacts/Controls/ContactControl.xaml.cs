@@ -24,5 +24,31 @@ namespace View.Controls
         {
             InitializeComponent();
         }
+
+        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            string pattern = @"^[\d\+\-\(\)]*$";
+
+            if (!System.Text.RegularExpressions.Regex.IsMatch(e.Text, pattern))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void TextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void TextBox_PreviewExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (e.Command == ApplicationCommands.Paste)
+            {
+                e.Handled = true;
+            }
+        }
     }
 }
