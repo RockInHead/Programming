@@ -18,8 +18,6 @@ public class MainVM : INotifyPropertyChanged
     /// </summary>
     private bool _isReadOnlyMode = true;
 
-    private Contact _originalContact;
-
     /// <summary>
     /// Инициализирует новый экземпляр <see cref="MainVM"/>.
     /// </summary>
@@ -81,6 +79,11 @@ public class MainVM : INotifyPropertyChanged
     }
 
     /// <summary>
+    /// Возвращает или задает контакт до редактирования.
+    /// </summary>
+    private Contact OriginalContact { get; set; }
+
+    /// <summary>
     /// Возвращает или задает выбранный контакт.
     /// </summary>
     public Contact SelectedContact
@@ -111,8 +114,7 @@ public class MainVM : INotifyPropertyChanged
     /// <param name="parameter">Параметр команды.</param>
     public void EditContact(object parameter)
     {
-        /*IsReadOnlyMode = false;*/
-        _originalContact = (Contact)SelectedContact.Clone();
+        OriginalContact = (Contact)SelectedContact.Clone();
         IsReadOnlyMode = false;
     }
 
@@ -193,11 +195,11 @@ public class MainVM : INotifyPropertyChanged
     /// </summary>
     private void CancelEdit()
     {
-        if (_originalContact != null)
+        if (OriginalContact != null)
         {
-            SelectedContact.Name = _originalContact.Name;
-            SelectedContact.PhoneNumber = _originalContact.PhoneNumber;
-            SelectedContact.Email = _originalContact.Email;
+            SelectedContact.Name = OriginalContact.Name;
+            SelectedContact.PhoneNumber = OriginalContact.PhoneNumber;
+            SelectedContact.Email = OriginalContact.Email;
         }
 
         IsReadOnlyMode = true;
@@ -234,11 +236,14 @@ public class MainVM : INotifyPropertyChanged
     private bool CanApplyContact(object parameter) => IsAddOrEditMode && !HasValidationErrors;
 
     /// <summary>
-    /// Свойство, указывающее, есть ли ошибки валидации.
+    /// Определяет, есть ли ошибки валидации у выбранного контакта.
     /// </summary>
-    public bool HasValidationErrors => SelectedContact != null &&
+    /// <returns>
+    /// Возвращает <c>true</c>, если у выбранного контакта есть ошибки валидации
+    /// в полях "Name", "PhoneNumber" или "Email"; иначе <c>false</c>.
+    /// </returns>
+    private bool HasValidationErrors => SelectedContact != null &&
                                        (!string.IsNullOrEmpty(SelectedContact["Name"]) ||
                                         !string.IsNullOrEmpty(SelectedContact["PhoneNumber"]) ||
                                         !string.IsNullOrEmpty(SelectedContact["Email"]));
-
 }

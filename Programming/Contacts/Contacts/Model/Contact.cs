@@ -44,6 +44,9 @@ public class Contact : INotifyPropertyChanged, IDataErrorInfo, ICloneable
         Email = email;
     }
 
+    /// <inheritdoc cref="INotifyPropertyChanged.PropertyChanged"/>
+    public event PropertyChangedEventHandler PropertyChanged;
+
     /// <summary>
     /// Задает и возвращает имя контакта.
     /// </summary>
@@ -98,8 +101,25 @@ public class Contact : INotifyPropertyChanged, IDataErrorInfo, ICloneable
         }
     }
 
-    /// <inheritdoc cref="INotifyPropertyChanged.PropertyChanged"/>
-    public event PropertyChangedEventHandler PropertyChanged;
+    /// <summary>
+    /// Возвращает общую ошибку валидации объекта. 
+    /// В данном случае всегда null.
+    /// </summary>
+    public string Error => null;
+
+    /// <summary>
+    /// Создает копию текущего объекта Contact.
+    /// </summary>
+    /// <returns>Новый объект Contact с такими же значениями свойств.</returns>
+    public object Clone()
+    {
+        return new Contact
+        {
+            Name = this.Name,
+            PhoneNumber = this.PhoneNumber,
+            Email = this.Email
+        };
+    }
 
     /// <summary>
     /// Вызывает событие <see cref="PropertyChanged"/> для обновления интерфейса.
@@ -110,8 +130,12 @@ public class Contact : INotifyPropertyChanged, IDataErrorInfo, ICloneable
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 
-    
-
+    /// <summary>
+    /// Индексатор для валидации свойств контакта.
+    /// Возвращает сообщение об ошибке, если данные некорректны.
+    /// </summary>
+    /// <param name="columnName">Имя свойства, для которого требуется валидация.</param>
+    /// <returns>Сообщение об ошибке или null, если ошибок нет.</returns>
     public string this[string columnName]
     {
         get
@@ -119,36 +143,35 @@ public class Contact : INotifyPropertyChanged, IDataErrorInfo, ICloneable
             switch (columnName)
             {
                 case "Name":
-                    if (string.IsNullOrWhiteSpace(Name) || Name.Length > 100)
-                        return "Имя должно содержать хотя бы 2 символа и не более 100";
-                    break;
+                    {
+                        if (string.IsNullOrWhiteSpace(Name) || Name.Length > 100)
+                        {
+                            return "Имя должно содержать хотя бы 2 символа и не более 100";
+                        }
+                        break;
+                    }
 
                 case "PhoneNumber":
-                    if (string.IsNullOrWhiteSpace(PhoneNumber) || PhoneNumber.Length > 100 || !Regex.IsMatch(PhoneNumber, @"^[\d+\-()\s]+$"))
-                        return "Номер телефона может содержать только цифры и символы '+()-'.";
-                    break;
-
-                case "Email":
-                    if (string.IsNullOrWhiteSpace(Email) || Email.Length > 100 || !Email.Contains("@"))
                     {
-                        return "Почта должна содержать символ '@'.";
+                        if (string.IsNullOrWhiteSpace(PhoneNumber) 
+                                       || PhoneNumber.Length > 100 
+                                       || !Regex.IsMatch(PhoneNumber, @"^[\d+\-()\s]+$"))
+                        {
+                            return "Номер телефона может содержать только цифры и символы '+()-'.";
+                        }
+                        break;
                     }
-                    break;
+                case "Email":
+                    {
+                        if (string.IsNullOrWhiteSpace(Email) || Email.Length > 100 || !Email.Contains("@"))
+                        {
+                            return "Почта должна содержать символ '@'.";
+                        }
+                        break;
+                    }
             }
             return null;
         }
-    }
-
-    public string Error => null;
-
-    public object Clone()
-    {
-        return new Contact
-        {
-            Name = this.Name,
-            PhoneNumber = this.PhoneNumber,
-            Email = this.Email
-        };
     }
 }
 
