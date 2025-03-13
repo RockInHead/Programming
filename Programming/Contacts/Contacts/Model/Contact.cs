@@ -7,6 +7,11 @@ using System.Text.RegularExpressions;
 public class Contact : INotifyPropertyChanged, IDataErrorInfo, ICloneable
 {
     /// <summary>
+    /// Максимальное количество символов для текстового блока.
+    /// </summary>
+    private const int MaxTextBoxSymbols = 100;
+
+    /// <summary>
     /// Поле, хранящее имя контакта.
     /// </summary>
     private string _name;
@@ -132,33 +137,33 @@ public class Contact : INotifyPropertyChanged, IDataErrorInfo, ICloneable
             switch (columnName)
             {
                 case "Name":
-                    {
-                    if (string.IsNullOrWhiteSpace(Name) || Name.Length > 100)
+                {
+                    if (string.IsNullOrWhiteSpace(Name) || Name.Length > MaxTextBoxSymbols)
                     {
                         return "Имя должно содержать хотя бы 2 символа и не более 100";
                     }
                     break;
-                    }
+                }
 
                 case "PhoneNumber":
-                    {
+                {
                     if (string.IsNullOrWhiteSpace(PhoneNumber) 
-                                    || PhoneNumber.Length > 100 
+                                    || PhoneNumber.Length > MaxTextBoxSymbols
                                     || !Regex.IsMatch(PhoneNumber, @"^[\d+\-()\s]+$"))
                     {
                         return "Номер телефона может содержать только цифры и символы '+()-'.";
                     }
                     break;
-                    }
+                }
 
                 case "Email":
-                    {
-                    if (string.IsNullOrWhiteSpace(Email) || Email.Length > 100 || !Email.Contains("@"))
+                {
+                    if (string.IsNullOrWhiteSpace(Email) || Email.Length > MaxTextBoxSymbols || !Email.Contains("@"))
                     {
                         return "Почта должна содержать символ '@'.";
                     }
                     break;
-                    }
+                }
             }
 
             return null;

@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace View.Controls
@@ -47,16 +48,23 @@ namespace View.Controls
         }
 
         /// <summary>
-        /// Обработчик команды выполнения (Executed) в TextBox.
-        /// Запрещает вставку данных из буфера обмена.
+        /// Обрабатывает вставку текста в поле номера телефона.
+        /// Запрещает вставку текста, если он содержит недопустимые символы.
         /// </summary>
-        /// <param name="sender">Элемент, вызвавший событие.</param>
-        /// <param name="e">Аргументы события, содержащие информацию о команде.</param>
-        private void TextBox_PreviewExecuted(object sender, ExecutedRoutedEventArgs e)
+        /// <param name="sender">Источник события.</param>
+        /// <param name="e">Аргументы события, содержащие вставляемый текст.</param>
+        private void PhoneNumber_Pasting(object sender, DataObjectPastingEventArgs e)
         {
-            if (e.Command == ApplicationCommands.Paste)
+            if (!e.DataObject.GetDataPresent(typeof(string)))
             {
-                e.Handled = true;
+                e.CancelCommand();
+                return;
+            }
+
+            var text = (string)e.DataObject.GetData(typeof(string));
+            if (!System.Text.RegularExpressions.Regex.IsMatch(text, @"^[\d\+\-\(\)]*$"))
+            {
+                e.CancelCommand();
             }
         }
     }

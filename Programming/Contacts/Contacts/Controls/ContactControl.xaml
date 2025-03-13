@@ -100,10 +100,11 @@
             <TextBlock Text="Phone Number:"/>
             <TextBox
                 Margin="0 3 0 0"
-                CommandManager.PreviewExecuted="TextBox_PreviewExecuted"
+                PreviewTextInput="TextBox_PreviewTextInput"
                 IsReadOnly="{Binding DataContext.IsReadOnlyMode, RelativeSource={RelativeSource AncestorType=Window}}"
                 PreviewKeyDown="TextBox_PreviewKeyDown"
-                PreviewTextInput="TextBox_PreviewTextInput"
+                DataObject.Pasting="PhoneNumber_Pasting"
+               
                 Style="{StaticResource ErrorTextBoxStyle}"
                 Text="{Binding PhoneNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
         </StackPanel>
