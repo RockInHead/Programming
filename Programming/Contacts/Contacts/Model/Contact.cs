@@ -1,12 +1,23 @@
 ﻿using System.ComponentModel;
+using System.Text.RegularExpressions;
 
 /// <summary>
 /// Класс контакта пользователя, хранящий имя, номер телефон и почту контакта.
 /// </summary>
-public class Contact : INotifyPropertyChanged
+public class Contact : INotifyPropertyChanged, IDataErrorInfo, ICloneable
 {
     /// <summary>
-    /// Поле, задающее имя контакта.
+    /// Максимальное количество символов для текстового блока.
+    /// </summary>
+    private const int MaxTextBoxSymbols = 100;
+
+    /// <summary>
+    /// Максимальное количество символов для номера телефона.
+    /// </summary>
+    private const int MaxPhoneNumberTextBoxSymbols = 11;
+
+    /// <summary>
+    /// Поле, хранящее имя контакта.
     /// </summary>
     private string _name;
 
@@ -42,6 +53,9 @@ public class Contact : INotifyPropertyChanged
         PhoneNumber = phoneNumber;
         Email = email;
     }
+
+    /// <inheritdoc cref="INotifyPropertyChanged.PropertyChanged"/>
+    public event PropertyChangedEventHandler PropertyChanged;
 
     /// <summary>
     /// Задает и возвращает имя контакта.
@@ -97,8 +111,14 @@ public class Contact : INotifyPropertyChanged
         }
     }
 
-    /// <inheritdoc cref="INotifyPropertyChanged.PropertyChanged"/>
-    public event PropertyChangedEventHandler PropertyChanged;
+    /// <inheritdoc cref="IDataErrorInfo.Error"/>
+    public string Error => null;
+
+    /// <summary>
+    /// Создает копию текущего объекта Contact.
+    /// </summary>
+    /// <returns>Новый объект Contact с такими же значениями свойств.</returns>
+    public object Clone() => new Contact(this.Name, this.PhoneNumber, this.Email);
 
     /// <summary>
     /// Вызывает событие <see cref="PropertyChanged"/> для обновления интерфейса.
@@ -107,6 +127,55 @@ public class Contact : INotifyPropertyChanged
     protected void OnPropertyChanged(string propertyName)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+
+    /// <summary>
+    /// Индексатор для валидации свойств контакта.
+    /// Возвращает сообщение об ошибке, если данные некорректны.
+    /// </summary>
+    /// <param name="columnName">Имя свойства, для которого требуется валидация.</param>
+    /// <returns>Сообщение об ошибке или null, если ошибок нет.</returns>
+    public string this[string columnName]
+    {
+        get
+        {
+            switch (columnName)
+            {
+                case "Name":
+                {
+                    if (string.IsNullOrWhiteSpace(Name) || Name.Length > MaxTextBoxSymbols)
+                    {
+                        return "Имя должно содержать хотя бы 2 символа и не более 100";
+                    }
+
+                    break;
+                }
+
+                case "PhoneNumber":
+                {
+                    if (string.IsNullOrWhiteSpace(PhoneNumber) 
+                                    || PhoneNumber.Length > MaxPhoneNumberTextBoxSymbols
+                                    || !Regex.IsMatch(PhoneNumber, @"^[\d+\-()\s]+$"))
+                    {
+                        return "Номер телефона может содержать только цифры и символы '+()-'.";
+                    }
+
+                    break;
+                }
+
+                case "Email":
+                {
+                    if (string.IsNullOrWhiteSpace(Email) || Email.Length > MaxTextBoxSymbols || !Email.Contains("@"))
+                    {
+                        return "Почта должна содержать символ '@'.";
+                    }
+
+                    break;
+                }
+            }
+
+            return null;
+        }
     }
 }
 
