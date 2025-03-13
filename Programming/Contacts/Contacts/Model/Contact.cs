@@ -12,6 +12,11 @@ public class Contact : INotifyPropertyChanged, IDataErrorInfo, ICloneable
     private const int MaxTextBoxSymbols = 100;
 
     /// <summary>
+    /// Максимальное количество символов для номера телефона.
+    /// </summary>
+    private const int MaxPhoneNumberTextBoxSymbols = 11;
+
+    /// <summary>
     /// Поле, хранящее имя контакта.
     /// </summary>
     private string _name;
@@ -149,7 +154,7 @@ public class Contact : INotifyPropertyChanged, IDataErrorInfo, ICloneable
                 case "PhoneNumber":
                 {
                     if (string.IsNullOrWhiteSpace(PhoneNumber) 
-                                    || PhoneNumber.Length > MaxTextBoxSymbols
+                                    || PhoneNumber.Length > MaxPhoneNumberTextBoxSymbols
                                     || !Regex.IsMatch(PhoneNumber, @"^[\d+\-()\s]+$"))
                     {
                         return "Номер телефона может содержать только цифры и символы '+()-'.";
