@@ -142,6 +142,7 @@ public class Contact : INotifyPropertyChanged, IDataErrorInfo, ICloneable
                     {
                         return "Имя должно содержать хотя бы 2 символа и не более 100";
                     }
+
                     break;
                 }
 
@@ -153,6 +154,7 @@ public class Contact : INotifyPropertyChanged, IDataErrorInfo, ICloneable
                     {
                         return "Номер телефона может содержать только цифры и символы '+()-'.";
                     }
+
                     break;
                 }
 
@@ -162,6 +164,7 @@ public class Contact : INotifyPropertyChanged, IDataErrorInfo, ICloneable
                     {
                         return "Почта должна содержать символ '@'.";
                     }
+
                     break;
                 }
             }
