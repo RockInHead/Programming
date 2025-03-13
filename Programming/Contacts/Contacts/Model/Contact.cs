@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 public class Contact : INotifyPropertyChanged, IDataErrorInfo, ICloneable
 {
     /// <summary>
-    /// Поле, задающее имя контакта.
+    /// Поле, хранящее имя контакта.
     /// </summary>
     private string _name;
 
@@ -101,25 +101,14 @@ public class Contact : INotifyPropertyChanged, IDataErrorInfo, ICloneable
         }
     }
 
-    /// <summary>
-    /// Возвращает общую ошибку валидации объекта. 
-    /// В данном случае всегда null.
-    /// </summary>
+    /// <inheritdoc cref="IDataErrorInfo.Error"/>
     public string Error => null;
 
     /// <summary>
     /// Создает копию текущего объекта Contact.
     /// </summary>
     /// <returns>Новый объект Contact с такими же значениями свойств.</returns>
-    public object Clone()
-    {
-        return new Contact
-        {
-            Name = this.Name,
-            PhoneNumber = this.PhoneNumber,
-            Email = this.Email
-        };
-    }
+    public object Clone() => new Contact(this.Name, this.PhoneNumber, this.Email);
 
     /// <summary>
     /// Вызывает событие <see cref="PropertyChanged"/> для обновления интерфейса.
@@ -144,32 +133,34 @@ public class Contact : INotifyPropertyChanged, IDataErrorInfo, ICloneable
             {
                 case "Name":
                     {
-                        if (string.IsNullOrWhiteSpace(Name) || Name.Length > 100)
-                        {
-                            return "Имя должно содержать хотя бы 2 символа и не более 100";
-                        }
-                        break;
+                    if (string.IsNullOrWhiteSpace(Name) || Name.Length > 100)
+                    {
+                        return "Имя должно содержать хотя бы 2 символа и не более 100";
+                    }
+                    break;
                     }
 
                 case "PhoneNumber":
                     {
-                        if (string.IsNullOrWhiteSpace(PhoneNumber) 
-                                       || PhoneNumber.Length > 100 
-                                       || !Regex.IsMatch(PhoneNumber, @"^[\d+\-()\s]+$"))
-                        {
-                            return "Номер телефона может содержать только цифры и символы '+()-'.";
-                        }
-                        break;
+                    if (string.IsNullOrWhiteSpace(PhoneNumber) 
+                                    || PhoneNumber.Length > 100 
+                                    || !Regex.IsMatch(PhoneNumber, @"^[\d+\-()\s]+$"))
+                    {
+                        return "Номер телефона может содержать только цифры и символы '+()-'.";
                     }
+                    break;
+                    }
+
                 case "Email":
                     {
-                        if (string.IsNullOrWhiteSpace(Email) || Email.Length > 100 || !Email.Contains("@"))
-                        {
-                            return "Почта должна содержать символ '@'.";
-                        }
-                        break;
+                    if (string.IsNullOrWhiteSpace(Email) || Email.Length > 100 || !Email.Contains("@"))
+                    {
+                        return "Почта должна содержать символ '@'.";
+                    }
+                    break;
                     }
             }
+
             return null;
         }
     }

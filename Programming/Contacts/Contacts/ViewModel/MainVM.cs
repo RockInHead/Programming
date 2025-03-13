@@ -19,6 +19,11 @@ public class MainVM : INotifyPropertyChanged
     private bool _isReadOnlyMode = true;
 
     /// <summary>
+    /// Возвращает или задает контакт до редактирования.
+    /// </summary>
+    private Contact _originalContact;
+
+    /// <summary>
     /// Инициализирует новый экземпляр <see cref="MainVM"/>.
     /// </summary>
     public MainVM()
@@ -79,11 +84,6 @@ public class MainVM : INotifyPropertyChanged
     }
 
     /// <summary>
-    /// Возвращает или задает контакт до редактирования.
-    /// </summary>
-    private Contact OriginalContact { get; set; }
-
-    /// <summary>
     /// Возвращает или задает выбранный контакт.
     /// </summary>
     public Contact SelectedContact
@@ -114,7 +114,7 @@ public class MainVM : INotifyPropertyChanged
     /// <param name="parameter">Параметр команды.</param>
     public void EditContact(object parameter)
     {
-        OriginalContact = (Contact)SelectedContact.Clone();
+        _originalContact = (Contact)SelectedContact.Clone();
         IsReadOnlyMode = false;
     }
 
@@ -195,11 +195,11 @@ public class MainVM : INotifyPropertyChanged
     /// </summary>
     private void CancelEdit()
     {
-        if (OriginalContact != null)
+        if (_originalContact != null)
         {
-            SelectedContact.Name = OriginalContact.Name;
-            SelectedContact.PhoneNumber = OriginalContact.PhoneNumber;
-            SelectedContact.Email = OriginalContact.Email;
+            SelectedContact.Name = _originalContact.Name;
+            SelectedContact.PhoneNumber = _originalContact.PhoneNumber;
+            SelectedContact.Email = _originalContact.Email;
         }
 
         IsReadOnlyMode = true;
