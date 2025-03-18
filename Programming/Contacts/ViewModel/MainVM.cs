@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.Windows.Data;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
@@ -12,6 +11,7 @@ public partial class MainVM : ObservableObject
     /// Выбранный контакт для редактирования.
     /// </summary>
     [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(ApplyContactCommand))]
     private Contact _selectedContact;
 
     /// <summary>
@@ -28,6 +28,7 @@ public partial class MainVM : ObservableObject
     /// Возвращает или задает контакт до редактирования.
     /// </summary>
     [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(ApplyContactCommand))]
     private Contact _originalContact;
 
     /// <summary>
@@ -37,34 +38,7 @@ public partial class MainVM : ObservableObject
     {
         ContactSerializer.CreateDirectory();
         Contacts = new ObservableCollection<Contact>(ContactSerializer.LoadContacts());
-     /*   AddCommand = new RelayCommand(AddContact, CanAddContact);
-        EditCommand = new RelayCommand(EditContact, CanEditContact);
-        RemoveCommand = new RelayCommand(RemoveContact, CanRemoveContact);
-        ApplyCommand = new RelayCommand(ApplyContact, CanApplyContact);*/
     }
-
-    /*/// <inheritdoc cref="INotifyPropertyChanged.PropertyChanged"/>
-    public event PropertyChangedEventHandler PropertyChanged;*/
-
-/*    /// <summary>
-    /// Команда для добавления нового контакта.
-    /// </summary>
-    public ICommand AddCommand { get; }
-
-    /// <summary>
-    /// Команда для редактирования выбранного контакта.
-    /// </summary>
-    public ICommand EditCommand { get; }
-
-    /// <summary>
-    /// Команда для удаления выбранного контакта.
-    /// </summary>
-    public ICommand RemoveCommand { get; }
-
-    /// <summary>
-    /// Команда для применения изменений в выбранном контакте.
-    /// </summary>
-    public ICommand ApplyCommand { get; }*/
 
     /// <summary>
     /// Список контактов.
@@ -77,39 +51,12 @@ public partial class MainVM : ObservableObject
     public bool IsAddOrEditMode => !IsReadOnlyMode;
 
     /// <summary>
-    /// Получает или задает значение, указывающее, находится ли приложение в режиме редактирования.
+    /// Вызывается при изменении выбранного контакта.
+    /// Клонирует текущий контакт для возможности отмены изменений,
+    /// уведомляет об изменении состояния выбора контакта,
+    /// обновляет состояния команд.
     /// </summary>
-   /* public bool IsReadOnlyMode
-    {
-        get => _isReadOnlyMode;
-        set
-        {
-            _isReadOnlyMode = value;
-            OnPropertyChanged(nameof(IsReadOnlyMode));
-            OnPropertyChanged(nameof(IsAddOrEditMode));
-        }
-    }*/
-
-    /*/// <summary>
-    /// Возвращает или задает выбранный контакт.
-    /// </summary>
-    public Contact SelectedContact
-    {
-        get => _selectedContact;
-        set
-        {
-            if (_selectedContact != null && !IsReadOnlyMode)
-            {
-                CancelEdit();
-            }
-
-            _selectedContact = value;
-            OnPropertyChanged(nameof(IsAddOrEditMode));
-            OnPropertyChanged(nameof(SelectedContact));
-            OnPropertyChanged(nameof(IsContactSelected));
-        }
-    }*/
-
+    /// <param name="value">Новый выбранный контакт</param>
     partial void OnSelectedContactChanged(Contact value)
     {
         OriginalContact = value?.Clone() as Contact;
@@ -117,15 +64,23 @@ public partial class MainVM : ObservableObject
         UpdateCommandStates();
     }
 
+    /// <summary>
+    /// Вызывается перед изменением выбранного контакта.
+    /// Если редактирование активно, восстанавливает оригинальные значения
+    /// полей текущего контакт и переключает в режим только для чтения.
+    /// </summary>
+    /// <param name="value">Новый контакт, который будет выбран</param>
+    /// <remarks>
+    /// Срабатывает только при активном режиме редактирования (IsReadOnlyMode = false)
+    /// и наличии текущего выбранного контакта.
+    /// </remarks>
     partial void OnSelectedContactChanging(Contact value)
     {
         if (!IsReadOnlyMode && _selectedContact != null)
         {
-            // Восстанавливаем оригинальные значения для текущего контакта
             _selectedContact.Name = OriginalContact.Name;
             _selectedContact.PhoneNumber = OriginalContact.PhoneNumber;
             _selectedContact.Email = OriginalContact.Email;
-
             IsReadOnlyMode = true;
         }
     }
@@ -192,12 +147,6 @@ public partial class MainVM : ObservableObject
     [RelayCommand(CanExecute = nameof(CanApplyContact))]
     public void ApplyContact(object parameter)
     {
-        if (parameter is not BindingGroup bindingGroup)
-        {
-            return;
-        }
-
-        bindingGroup.CommitEdit();
         if (SelectedContact == null)
         {
             return;
@@ -212,15 +161,6 @@ public partial class MainVM : ObservableObject
         ContactSerializer.SaveContacts(Contacts);
     }
 
-    /*/// <summary>
-    /// Вызывает событие PropertyChanged для уведомления об изменении свойства.
-    /// </summary>
-    /// <param name="propertyName">Имя измененного свойства.</param>
-    protected void OnPropertyChanged(string propertyName)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }*/
-
     /// <summary>
     /// Отменяет редактирование контакта.
     /// </summary>
@@ -234,8 +174,25 @@ public partial class MainVM : ObservableObject
         }
 
         IsReadOnlyMode = true;
-/*        OnPropertyChanged(nameof(IsReadOnlyMode));
-        OnPropertyChanged(nameof(IsAddOrEditMode));*/
+    }
+
+    /// <summary>
+    /// Обновляет состояния команд, связанных с контактами, и подписывается на изменения выбранного контакта.
+    /// </summary>
+    private void UpdateCommandStates()
+    {
+        if (SelectedContact != null)
+        {
+            SelectedContact.PropertyChanged += (s, e) =>
+            {
+                ApplyContactCommand.NotifyCanExecuteChanged();
+            };
+        }
+
+        AddContactCommand.NotifyCanExecuteChanged();
+        EditContactCommand.NotifyCanExecuteChanged();
+        RemoveContactCommand.NotifyCanExecuteChanged();
+        ApplyContactCommand.NotifyCanExecuteChanged();
     }
 
     /// <summary>
@@ -277,21 +234,4 @@ public partial class MainVM : ObservableObject
                                        (!string.IsNullOrEmpty(SelectedContact["Name"]) ||
                                         !string.IsNullOrEmpty(SelectedContact["PhoneNumber"]) ||
                                         !string.IsNullOrEmpty(SelectedContact["Email"]));
-
-    private void UpdateCommandStates()
-    {
-        // Добавьте подписку на изменение свойств контакта
-        if (SelectedContact != null)
-        {
-            SelectedContact.PropertyChanged += (s, e) =>
-            {
-                ApplyContactCommand.NotifyCanExecuteChanged();
-            };
-        }
-
-        AddContactCommand.NotifyCanExecuteChanged();
-        EditContactCommand.NotifyCanExecuteChanged();
-        RemoveContactCommand.NotifyCanExecuteChanged();
-        ApplyContactCommand.NotifyCanExecuteChanged();
-    }
 }
