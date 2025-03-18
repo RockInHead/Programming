@@ -1,4 +1,4 @@
-﻿using System.Windows.Input;
+﻿/*using System.Windows.Input;
 
 /// <summary>
 /// Реализует интерфейс <see cref="ICommand"/> для привязки команд в WPF,
@@ -62,4 +62,4 @@ public class RelayCommand : ICommand
     {
         _execute(parameter);
     }
-}
+}*/

@@ -96,19 +96,19 @@
                             Grid.Column="0"
                             Height="25"
                             Margin="3"
-                            Command="{Binding AddCommand}"
+                            Command="{Binding AddContactCommand}"
                             Content="Add"/>
                         <Button
                             Grid.Column="1"
                             Height="25"
                             Margin="3"
-                            Command="{Binding EditCommand}"
+                            Command="{Binding EditContactCommand}"
                             Content="Edit"/>
                         <Button
                             Grid.Column="2"
                             Height="25"
                             Margin="3"
-                            Command="{Binding RemoveCommand}"
+                            Command="{Binding RemoveContactCommand}"
                             Content="Remove"/>
                     </Grid>
                 </Grid>
