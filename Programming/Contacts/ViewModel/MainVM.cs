@@ -162,21 +162,6 @@ public partial class MainVM : ObservableObject
     }
 
     /// <summary>
-    /// Отменяет редактирование контакта.
-    /// </summary>
-    private void CancelEdit()
-    {
-        if (OriginalContact != null)
-        {
-            SelectedContact.Name = OriginalContact.Name;
-            SelectedContact.PhoneNumber = OriginalContact.PhoneNumber;
-            SelectedContact.Email = OriginalContact.Email;
-        }
-
-        IsReadOnlyMode = true;
-    }
-
-    /// <summary>
     /// Обновляет состояния команд, связанных с контактами, и подписывается на изменения выбранного контакта.
     /// </summary>
     private void UpdateCommandStates()
