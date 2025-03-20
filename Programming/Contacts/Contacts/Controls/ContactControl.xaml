@@ -88,7 +88,7 @@
                 Margin="0 3 0 0"
                 IsReadOnly="{Binding DataContext.IsReadOnlyMode, RelativeSource={RelativeSource AncestorType=Window}}"
                 Style="{StaticResource ErrorTextBoxStyle}"
-                Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}">
+                Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}">
             </TextBox>
         </StackPanel>
 
@@ -106,7 +106,7 @@
                 DataObject.Pasting="PhoneNumber_Pasting"
                
                 Style="{StaticResource ErrorTextBoxStyle}"
-                Text="{Binding PhoneNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                Text="{Binding PhoneNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
         </StackPanel>
 
         <StackPanel
@@ -119,7 +119,7 @@
                 Margin="0 3 0 0"
                 IsReadOnly="{Binding DataContext.IsReadOnlyMode, RelativeSource={RelativeSource AncestorType=Window}}"
                 Style="{StaticResource ErrorTextBoxStyle}"
-                Text="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                Text="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"/>
         </StackPanel>
 
         <Button
@@ -129,7 +129,7 @@
             Height="25"
             Margin="0 50 0 0"
             HorizontalAlignment="Left"
-            Command="{Binding DataContext.ApplyCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+            Command="{Binding DataContext.ApplyContactCommand, RelativeSource={RelativeSource AncestorType=Window}}"
             CommandParameter="{Binding ElementName=ContactBindingGroup}"
             Content="Apply"
             Visibility="{Binding DataContext.IsAddOrEditMode, RelativeSource={RelativeSource AncestorType=Window}, Converter={StaticResource BooleanToVisibilityConverter}}"/>

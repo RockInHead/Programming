@@ -1,26 +1,34 @@
 ﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Windows.Data;
-using System.Windows.Input;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 /// <summary>
 /// Основная модель представления для управления контактами и их сохранением/загрузкой.
 /// </summary>
-public class MainVM : INotifyPropertyChanged
+public partial class MainVM : ObservableObject
 {
     /// <summary>
     /// Выбранный контакт для редактирования.
     /// </summary>
+    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(ApplyContactCommand))]
     private Contact _selectedContact;
 
     /// <summary>
     /// Значение, указывающее, находятся ли поля доступными только для чтения.
     /// </summary>
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(IsAddOrEditMode))]
+    [NotifyCanExecuteChangedFor(nameof(AddContactCommand))]
+    [NotifyCanExecuteChangedFor(nameof(EditContactCommand))]
+    [NotifyCanExecuteChangedFor(nameof(RemoveContactCommand))]
     private bool _isReadOnlyMode = true;
 
     /// <summary>
     /// Возвращает или задает контакт до редактирования.
     /// </summary>
+    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(ApplyContactCommand))]
     private Contact _originalContact;
 
     /// <summary>
@@ -30,34 +38,7 @@ public class MainVM : INotifyPropertyChanged
     {
         ContactSerializer.CreateDirectory();
         Contacts = new ObservableCollection<Contact>(ContactSerializer.LoadContacts());
-        AddCommand = new RelayCommand(AddContact, CanAddContact);
-        EditCommand = new RelayCommand(EditContact, CanEditContact);
-        RemoveCommand = new RelayCommand(RemoveContact, CanRemoveContact);
-        ApplyCommand = new RelayCommand(ApplyContact, CanApplyContact);
     }
-
-    /// <inheritdoc cref="INotifyPropertyChanged.PropertyChanged"/>
-    public event PropertyChangedEventHandler PropertyChanged;
-
-    /// <summary>
-    /// Команда для добавления нового контакта.
-    /// </summary>
-    public ICommand AddCommand { get; }
-
-    /// <summary>
-    /// Команда для редактирования выбранного контакта.
-    /// </summary>
-    public ICommand EditCommand { get; }
-
-    /// <summary>
-    /// Команда для удаления выбранного контакта.
-    /// </summary>
-    public ICommand RemoveCommand { get; }
-
-    /// <summary>
-    /// Команда для применения изменений в выбранном контакте.
-    /// </summary>
-    public ICommand ApplyCommand { get; }
 
     /// <summary>
     /// Список контактов.
@@ -70,36 +51,37 @@ public class MainVM : INotifyPropertyChanged
     public bool IsAddOrEditMode => !IsReadOnlyMode;
 
     /// <summary>
-    /// Получает или задает значение, указывающее, находится ли приложение в режиме редактирования.
+    /// Вызывается при изменении выбранного контакта.
+    /// Клонирует текущий контакт для возможности отмены изменений,
+    /// уведомляет об изменении состояния выбора контакта,
+    /// обновляет состояния команд.
     /// </summary>
-    public bool IsReadOnlyMode
+    /// <param name="value">Новый выбранный контакт</param>
+    partial void OnSelectedContactChanged(Contact value)
     {
-        get => _isReadOnlyMode;
-        set
-        {
-            _isReadOnlyMode = value;
-            OnPropertyChanged(nameof(IsReadOnlyMode));
-            OnPropertyChanged(nameof(IsAddOrEditMode));
-        }
+        OriginalContact = value?.Clone() as Contact;
+        OnPropertyChanged(nameof(IsContactSelected));
+        UpdateCommandStates();
     }
 
     /// <summary>
-    /// Возвращает или задает выбранный контакт.
+    /// Вызывается перед изменением выбранного контакта.
+    /// Если редактирование активно, восстанавливает оригинальные значения
+    /// полей текущего контакт и переключает в режим только для чтения.
     /// </summary>
-    public Contact SelectedContact
+    /// <param name="value">Новый контакт, который будет выбран</param>
+    /// <remarks>
+    /// Срабатывает только при активном режиме редактирования (IsReadOnlyMode = false)
+    /// и наличии текущего выбранного контакта.
+    /// </remarks>
+    partial void OnSelectedContactChanging(Contact value)
     {
-        get => _selectedContact;
-        set
+        if (!IsReadOnlyMode && _selectedContact != null)
         {
-            if (_selectedContact != null && !IsReadOnlyMode)
-            {
-                CancelEdit();
-            }
-
-            _selectedContact = value;
-            OnPropertyChanged(nameof(IsAddOrEditMode));
-            OnPropertyChanged(nameof(SelectedContact));
-            OnPropertyChanged(nameof(IsContactSelected));
+            _selectedContact.Name = OriginalContact.Name;
+            _selectedContact.PhoneNumber = OriginalContact.PhoneNumber;
+            _selectedContact.Email = OriginalContact.Email;
+            IsReadOnlyMode = true;
         }
     }
 
@@ -112,9 +94,10 @@ public class MainVM : INotifyPropertyChanged
     /// Редактирует выбранный контакт.
     /// </summary>
     /// <param name="parameter">Параметр команды.</param>
+    [RelayCommand(CanExecute = nameof(CanEditContact))]
     public void EditContact(object parameter)
     {
-        _originalContact = (Contact)SelectedContact.Clone();
+        OriginalContact = (Contact)SelectedContact.Clone();
         IsReadOnlyMode = false;
     }
 
@@ -122,6 +105,7 @@ public class MainVM : INotifyPropertyChanged
     /// Удаляет выбранный контакт.
     /// </summary>
     /// <param name="parameter">Параметр команды.</param>
+    [RelayCommand(CanExecute = nameof(CanRemoveContact))]
     public void RemoveContact(object parameter)
     {
         if (SelectedContact == null)
@@ -148,6 +132,7 @@ public class MainVM : INotifyPropertyChanged
     /// Добавляет новый контакт.
     /// </summary>
     /// <param name="parameter">Параметр команды.</param>
+    [RelayCommand(CanExecute = nameof(CanAddContact))]
     public void AddContact(object parameter)
     {
         SelectedContact = null;
@@ -159,14 +144,9 @@ public class MainVM : INotifyPropertyChanged
     /// Применяет изменения к выбранному контакту.
     /// </summary>
     /// <param name="parameter">Параметр команды.</param>
+    [RelayCommand(CanExecute = nameof(CanApplyContact))]
     public void ApplyContact(object parameter)
     {
-        if (parameter is not BindingGroup bindingGroup)
-        {
-            return;
-        }
-
-        bindingGroup.CommitEdit();
         if (SelectedContact == null)
         {
             return;
@@ -182,29 +162,22 @@ public class MainVM : INotifyPropertyChanged
     }
 
     /// <summary>
-    /// Вызывает событие PropertyChanged для уведомления об изменении свойства.
+    /// Обновляет состояния команд, связанных с контактами, и подписывается на изменения выбранного контакта.
     /// </summary>
-    /// <param name="propertyName">Имя измененного свойства.</param>
-    protected void OnPropertyChanged(string propertyName)
+    private void UpdateCommandStates()
     {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
-
-    /// <summary>
-    /// Отменяет редактирование контакта.
-    /// </summary>
-    private void CancelEdit()
-    {
-        if (_originalContact != null)
+        if (SelectedContact != null)
         {
-            SelectedContact.Name = _originalContact.Name;
-            SelectedContact.PhoneNumber = _originalContact.PhoneNumber;
-            SelectedContact.Email = _originalContact.Email;
+            SelectedContact.PropertyChanged += (s, e) =>
+            {
+                ApplyContactCommand.NotifyCanExecuteChanged();
+            };
         }
 
-        IsReadOnlyMode = true;
-        OnPropertyChanged(nameof(IsReadOnlyMode));
-        OnPropertyChanged(nameof(IsAddOrEditMode));
+        AddContactCommand.NotifyCanExecuteChanged();
+        EditContactCommand.NotifyCanExecuteChanged();
+        RemoveContactCommand.NotifyCanExecuteChanged();
+        ApplyContactCommand.NotifyCanExecuteChanged();
     }
 
     /// <summary>
@@ -212,28 +185,28 @@ public class MainVM : INotifyPropertyChanged
     /// </summary>
     /// <param name="parameter">Параметр команды.</param>
     /// <returns>Возвращает <c>true</c>, если контакт можно добавить; иначе <c>false</c>.</returns>
-    private bool CanAddContact(object parameter) => !IsAddOrEditMode;
+    private bool CanAddContact() => !IsAddOrEditMode;
 
     /// <summary>
     /// Проверяет, можно ли редактировать выбранный контакт.
     /// </summary>
     /// <param name="parameter">Параметр команды.</param>
     /// <returns>Возвращает <c>true</c>, если контакт можно редактировать; иначе <c>false</c>.</returns>
-    private bool CanEditContact(object parameter) => IsContactSelected && !IsAddOrEditMode;
+    private bool CanEditContact() => IsContactSelected && !IsAddOrEditMode;
 
     /// <summary>
     /// Проверяет, можно ли удалить выбранный контакт.
     /// </summary>
     /// <param name="parameter">Параметр команды.</param>
     /// <returns>Возвращает <c>true</c>, если контакт можно удалить; иначе <c>false</c>.</returns>
-    private bool CanRemoveContact(object parameter) => IsContactSelected && !IsAddOrEditMode;
+    private bool CanRemoveContact() => IsContactSelected && !IsAddOrEditMode;
 
     /// <summary>
     /// Проверяет, можно ли применить изменения для выбранного контакта.
     /// </summary>
     /// <param name="parameter">Параметр команды.</param>
     /// <returns>Возвращает <c>true</c>, если изменения можно применить; иначе <c>false</c>.</returns>
-    private bool CanApplyContact(object parameter) => IsAddOrEditMode && !HasValidationErrors;
+    private bool CanApplyContact() => IsAddOrEditMode && !HasValidationErrors;
 
     /// <summary>
     /// Определяет, есть ли ошибки валидации у выбранного контакта.

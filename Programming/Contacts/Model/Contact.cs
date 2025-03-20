@@ -1,10 +1,11 @@
 ﻿using System.ComponentModel;
 using System.Text.RegularExpressions;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 /// <summary>
 /// Класс контакта пользователя, хранящий имя, номер телефон и почту контакта.
 /// </summary>
-public class Contact : INotifyPropertyChanged, IDataErrorInfo, ICloneable
+public partial class Contact : ObservableObject, IDataErrorInfo, ICloneable
 {
     /// <summary>
     /// Максимальное количество символов для текстового блока.
@@ -19,16 +20,19 @@ public class Contact : INotifyPropertyChanged, IDataErrorInfo, ICloneable
     /// <summary>
     /// Поле, хранящее имя контакта.
     /// </summary>
+    [ObservableProperty]
     private string _name;
 
     /// <summary>
     /// Поле, хранящее почту контакта.
     /// /// </summary>
+    [ObservableProperty]
     private string _email;
 
     /// <summary>
     /// Поле, хранящее телефонный номер контакта.
     /// /// </summary>
+    [ObservableProperty]
     private string _phoneNumber;
 
     /// <summary>
@@ -54,63 +58,6 @@ public class Contact : INotifyPropertyChanged, IDataErrorInfo, ICloneable
         Email = email;
     }
 
-    /// <inheritdoc cref="INotifyPropertyChanged.PropertyChanged"/>
-    public event PropertyChangedEventHandler PropertyChanged;
-
-    /// <summary>
-    /// Задает и возвращает имя контакта.
-    /// </summary>
-    public string Name
-    {
-        get => _name;
-        set
-        {
-            if (_name == value)
-            {
-                return;
-            }
-
-            _name = value;
-            OnPropertyChanged(nameof(Name));
-        }
-    }
-
-    /// <summary>
-    /// Задает и возвращает номер телефона контакта.
-    /// </summary>
-    public string PhoneNumber
-    {
-        get => _phoneNumber;
-        set
-        {
-            if (_phoneNumber == value)
-            {
-                return;
-            }
-
-            _phoneNumber = value;
-            OnPropertyChanged(nameof(PhoneNumber));
-        }
-    }
-
-    /// <summary>
-    /// Задает и возвращает почту контакта.
-    /// </summary>
-    public string Email
-    {
-        get => _email;
-        set
-        {
-            if (_email == value)
-            {
-                return;
-            }
-
-            _email = value;
-            OnPropertyChanged(nameof(Email));
-        }
-    }
-
     /// <inheritdoc cref="IDataErrorInfo.Error"/>
     public string Error => null;
 
@@ -119,15 +66,6 @@ public class Contact : INotifyPropertyChanged, IDataErrorInfo, ICloneable
     /// </summary>
     /// <returns>Новый объект Contact с такими же значениями свойств.</returns>
     public object Clone() => new Contact(this.Name, this.PhoneNumber, this.Email);
-
-    /// <summary>
-    /// Вызывает событие <see cref="PropertyChanged"/> для обновления интерфейса.
-    /// </summary>
-    /// <param name="propertyName">Имя измененного свойства.</param>
-    protected void OnPropertyChanged(string propertyName)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
 
     /// <summary>
     /// Индексатор для валидации свойств контакта.
@@ -165,7 +103,9 @@ public class Contact : INotifyPropertyChanged, IDataErrorInfo, ICloneable
 
                 case "Email":
                 {
-                    if (string.IsNullOrWhiteSpace(Email) || Email.Length > MaxTextBoxSymbols || !Email.Contains("@"))
+                    if (string.IsNullOrWhiteSpace(Email) 
+                       || Email.Length > MaxTextBoxSymbols 
+                       || !Email.Contains('@'))
                     {
                         return "Почта должна содержать символ '@'.";
                     }
