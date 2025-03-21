@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-
+// TODO: а где namespace?
 /// <summary>
 /// Основная модель представления для управления контактами и их сохранением/загрузкой.
 /// </summary>
@@ -36,6 +36,7 @@ public partial class MainVM : ObservableObject
     /// </summary>
     public MainVM()
     {
+        // TODO: сериалайзер должен сам при необходимости создать папку, если она еще не существует. Пользовательский код не должен для этого вызывать заранее отдельный метод, только чтобы создать папку. А что если во время работы папка 
         ContactSerializer.CreateDirectory();
         Contacts = new ObservableCollection<Contact>(ContactSerializer.LoadContacts());
     }
@@ -108,6 +109,7 @@ public partial class MainVM : ObservableObject
     [RelayCommand(CanExecute = nameof(CanRemoveContact))]
     public void RemoveContact(object parameter)
     {
+        // TODO: почти в каждой команде проверяешь это, и вроде в некоторых CanExecute уже проверяется, удали и добавь в те CanExecute, где этого недостает, у тебя же уже есть IsContactSelected
         if (SelectedContact == null)
         {
             return;
@@ -135,6 +137,10 @@ public partial class MainVM : ObservableObject
     [RelayCommand(CanExecute = nameof(CanAddContact))]
     public void AddContact(object parameter)
     {
+        // TODO: какой смысл в присваивании null если на следующей же строчке новый объект создается и записывается?
+        // все классы в c# это ссылочные типы. Зануление ссылок имеет смысл в основном при Dispose операциях,
+        // чтобы когда в следующий раз будет запущен GC он при обходе графа ссылок пометил объект, на который ссылались до зануления как недоступный
+        // (т.к. никакая ссылка из пользовательского кода на него больше не указывает).
         SelectedContact = null;
         SelectedContact = new Contact();
         IsReadOnlyMode = false;
@@ -162,10 +168,14 @@ public partial class MainVM : ObservableObject
     }
 
     /// <summary>
+    /// TODO: зачем тебе этот метод, если ты пользуешься атрибутами? загляни в сгенерированный код в partial части, там уже в set у свойств которым ты атрибут NotifyCanExecute навешал вызываются обновления для команд.
     /// Обновляет состояния команд, связанных с контактами, и подписывается на изменения выбранного контакта.
     /// </summary>
     private void UpdateCommandStates()
     {
+        // TODO: здесь ты КАЖДОЕ переключение между контактами добавляешь новый обработчик события PropertyChanged.
+        // т.е. если попереключатся раз 50 между двумя контактами, а потом начать редактировать один из них, то на каждое изменение обработчик вызываться будет раз 25.
+        // Нужно отписывать обработчик перед тем, как переключится
         if (SelectedContact != null)
         {
             SelectedContact.PropertyChanged += (s, e) =>
@@ -183,28 +193,28 @@ public partial class MainVM : ObservableObject
     /// <summary>
     /// Проверяет, можно ли добавить контакт.
     /// </summary>
-    /// <param name="parameter">Параметр команды.</param>
+    /// <param name="parameter">Параметр команды. TODO: здесь и ниже, откуда комментарий на несуществующий параметр? убрать</param>
     /// <returns>Возвращает <c>true</c>, если контакт можно добавить; иначе <c>false</c>.</returns>
     private bool CanAddContact() => !IsAddOrEditMode;
 
     /// <summary>
     /// Проверяет, можно ли редактировать выбранный контакт.
     /// </summary>
-    /// <param name="parameter">Параметр команды.</param>
+    /// <param name="parameter">Параметр команды. TODO:</param>
     /// <returns>Возвращает <c>true</c>, если контакт можно редактировать; иначе <c>false</c>.</returns>
     private bool CanEditContact() => IsContactSelected && !IsAddOrEditMode;
 
     /// <summary>
     /// Проверяет, можно ли удалить выбранный контакт.
     /// </summary>
-    /// <param name="parameter">Параметр команды.</param>
+    /// <param name="parameter">Параметр команды.TODO:</param>
     /// <returns>Возвращает <c>true</c>, если контакт можно удалить; иначе <c>false</c>.</returns>
     private bool CanRemoveContact() => IsContactSelected && !IsAddOrEditMode;
 
     /// <summary>
     /// Проверяет, можно ли применить изменения для выбранного контакта.
     /// </summary>
-    /// <param name="parameter">Параметр команды.</param>
+    /// <param name="parameter">Параметр команды.TODO:</param>
     /// <returns>Возвращает <c>true</c>, если изменения можно применить; иначе <c>false</c>.</returns>
     private bool CanApplyContact() => IsAddOrEditMode && !HasValidationErrors;
 
@@ -216,7 +226,7 @@ public partial class MainVM : ObservableObject
     /// в полях "Name", "PhoneNumber" или "Email"; иначе <c>false</c>.
     /// </returns>
     private bool HasValidationErrors => SelectedContact != null &&
-                                       (!string.IsNullOrEmpty(SelectedContact["Name"]) ||
-                                        !string.IsNullOrEmpty(SelectedContact["PhoneNumber"]) ||
-                                        !string.IsNullOrEmpty(SelectedContact["Email"]));
+                                       (!string.IsNullOrEmpty(SelectedContact["Name"]) || // TODO: nameof
+                                        !string.IsNullOrEmpty(SelectedContact["PhoneNumber"]) || // TODO: nameof
+                                        !string.IsNullOrEmpty(SelectedContact["Email"])); // TODO: nameof
 }

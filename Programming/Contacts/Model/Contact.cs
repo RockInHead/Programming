@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Text.RegularExpressions;
 using CommunityToolkit.Mvvm.ComponentModel;
-
+// TODO: а где namespace?
 /// <summary>
 /// Класс контакта пользователя, хранящий имя, номер телефон и почту контакта.
 /// </summary>
@@ -59,12 +59,14 @@ public partial class Contact : ObservableObject, IDataErrorInfo, ICloneable
     }
 
     /// <inheritdoc cref="IDataErrorInfo.Error"/>
+    // TODO: почему null? заменить на пустую строку.
     public string Error => null;
 
     /// <summary>
     /// Создает копию текущего объекта Contact.
     /// </summary>
     /// <returns>Новый объект Contact с такими же значениями свойств.</returns>
+    // TODO: убрать "this"
     public object Clone() => new Contact(this.Name, this.PhoneNumber, this.Email);
 
     /// <summary>
@@ -79,6 +81,7 @@ public partial class Contact : ObservableObject, IDataErrorInfo, ICloneable
         {
             switch (columnName)
             {
+                // TODO: nameof
                 case "Name":
                 {
                     if (string.IsNullOrWhiteSpace(Name) || Name.Length > MaxTextBoxSymbols)
@@ -88,7 +91,7 @@ public partial class Contact : ObservableObject, IDataErrorInfo, ICloneable
 
                     break;
                 }
-
+                // TODO: nameof
                 case "PhoneNumber":
                 {
                     if (string.IsNullOrWhiteSpace(PhoneNumber) 
@@ -100,7 +103,7 @@ public partial class Contact : ObservableObject, IDataErrorInfo, ICloneable
 
                     break;
                 }
-
+                // TODO: nameof
                 case "Email":
                 {
                     if (string.IsNullOrWhiteSpace(Email) 
@@ -114,6 +117,7 @@ public partial class Contact : ObservableObject, IDataErrorInfo, ICloneable
                 }
             }
 
+            // TODO: возвращать пустую строку
             return null;
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 
+// TODO: неправильный namespace
 namespace Contacts
 {
     /// <summary>
