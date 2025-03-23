@@ -1,7 +1,8 @@
 ﻿using System.Windows;
+using Contacts.ViewModel;
 
-// TODO: неправильный namespace
-namespace Contacts
+// TODO: неправильный namespace +
+namespace Contacts.View
 {
     /// <summary>
     /// Главное окно приложения.

@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Contacts.Model;
 
 /// <summary>
 /// Предоставляет методы для сериализации и десериализации списка контактов в формате JSON.
@@ -53,7 +54,7 @@ public static class ContactSerializer
     {
         if (!File.Exists(_filePath))
         {
-            return new List<Contact>();
+            CreateDirectory();
         }
 
         var json = File.ReadAllText(_filePath);
