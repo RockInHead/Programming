@@ -220,8 +220,8 @@ namespace Contacts.ViewModel
         /// в полях "Name", "PhoneNumber" или "Email"; иначе <c>false</c>.
         /// </returns>
         private bool HasValidationErrors => SelectedContact != null &&
-                                           (!string.IsNullOrEmpty(SelectedContact[(nameof(SelectedContact.Name))]) || // TODO: внешние круглые в которые обернут nameof лишние, удалить, здесь и ниже.
-                                            !string.IsNullOrEmpty(SelectedContact[(nameof(SelectedContact.PhoneNumber))]) || // TODO:
-                                            !string.IsNullOrEmpty(SelectedContact[(nameof(SelectedContact.Email))])); // TODO:
+                                           (!string.IsNullOrEmpty(SelectedContact[nameof(SelectedContact.Name)]) || // TODO: внешние круглые в которые обернут nameof лишние, удалить, здесь и ниже.+
+                                            !string.IsNullOrEmpty(SelectedContact[nameof(SelectedContact.PhoneNumber)]) || // TODO:+
+                                            !string.IsNullOrEmpty(SelectedContact[nameof(SelectedContact.Email)])); // TODO:+
     }
 }
