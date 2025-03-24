@@ -2,7 +2,8 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Contacts.Model;
-// TODO: а где namespace? +
+
+// TODO: имя solution не участвует в namespace, он формируется по физическим папкам.
 namespace Contacts.ViewModel
 {
     /// <summary>
@@ -39,7 +40,6 @@ namespace Contacts.ViewModel
         /// </summary>
         public MainVM()
         {
-            // TODO: сериалайзер должен сам при необходимости создать папку, если она еще не существует. Пользовательский код не должен для этого вызывать заранее отдельный метод, только чтобы создать папку. А что если во время работы папка +
             Contacts = new ObservableCollection<Contact>(ContactSerializer.LoadContacts());
         }
 
@@ -67,6 +67,9 @@ namespace Contacts.ViewModel
 
             if (value != null)
             {
+                // TODO: поставь точку останова на ApplyContactCommand.NotifyCanExecuteChanged();
+                // попереключайся между двумя контактами и нажми на одном из них edit. у тебя будет куча вызовов все еще.
+                // ниже, где ты пытаешься отписываться я объяснил, почему так происходит.
                 value.PropertyChanged += (s, e) =>
                 {
                     ApplyContactCommand.NotifyCanExecuteChanged();
@@ -88,6 +91,19 @@ namespace Contacts.ViewModel
         {
             if (_selectedContact != null)
             {
+                // TODO: когда ты используешь лямбда выражение ты создаешь анонимный метод.
+                // Т.е. при каждом срабатывании этого метода ты сначала создаешь новый метод,
+                // затем пытаешься отписать его от события PropertyChanged.
+                // Но отписки не произойдет, т.к. этот метод только что создан и не был подписан на это событие.
+                var a = (int parameter) =>
+                {
+                    var b = $"c {parameter}";
+                    return b;
+                };
+                // Видишь код выше - мы создаем новый метод и нам возвращается ссылка на него.
+                // И она каждый раз новая.
+                // Ты не можешь отписать анонимный метод, если у тебя нет на него ссылки.
+                // Создай полноценный именованный метод и подписывай/отписывай его.
                 _selectedContact.PropertyChanged -= (s, e) =>
                 {
                     ApplyContactCommand.NotifyCanExecuteChanged();
@@ -126,7 +142,6 @@ namespace Contacts.ViewModel
         [RelayCommand(CanExecute = nameof(CanRemoveContact))]
         public void RemoveContact(object parameter)
         {
-            // TODO: почти в каждой команде проверяешь это, и вроде в некоторых CanExecute уже проверяется, удали и добавь в те CanExecute, где этого недостает, у тебя же уже есть IsContactSelected +
             int index = Contacts.IndexOf(SelectedContact);
             Contacts.Remove(SelectedContact);
 
@@ -149,10 +164,6 @@ namespace Contacts.ViewModel
         [RelayCommand(CanExecute = nameof(CanAddContact))]
         public void AddContact(object parameter)
         {
-            // TODO: какой смысл в присваивании null если на следующей же строчке новый объект создается и записывается? +
-            // все классы в c# это ссылочные типы. Зануление ссылок имеет смысл в основном при Dispose операциях,
-            // чтобы когда в следующий раз будет запущен GC он при обходе графа ссылок пометил объект, на который ссылались до зануления как недоступный
-            // (т.к. никакая ссылка из пользовательского кода на него больше не указывает).
             SelectedContact = new Contact();
             IsReadOnlyMode = false;
         }
@@ -176,28 +187,28 @@ namespace Contacts.ViewModel
         /// <summary>
         /// Проверяет, можно ли добавить контакт.
         /// </summary>
-        /// <param name="parameter">Параметр команды. TODO: здесь и ниже, откуда комментарий на несуществующий параметр? убрать</param>
+        /// <param name="parameter">Параметр команды. TODO: Не исправлено. здесь и ниже, откуда комментарий на несуществующий параметр? убрать </param>
         /// <returns>Возвращает <c>true</c>, если контакт можно добавить; иначе <c>false</c>.</returns>
         private bool CanAddContact() => !IsAddOrEditMode;
 
         /// <summary>
         /// Проверяет, можно ли редактировать выбранный контакт.
         /// </summary>
-        /// <param name="parameter">Параметр команды. TODO:</param>
+        /// <param name="parameter">Параметр команды. TODO: Не исправлено</param>
         /// <returns>Возвращает <c>true</c>, если контакт можно редактировать; иначе <c>false</c>.</returns>
         private bool CanEditContact() => IsContactSelected && !IsAddOrEditMode;
 
         /// <summary>
         /// Проверяет, можно ли удалить выбранный контакт.
         /// </summary>
-        /// <param name="parameter">Параметр команды.TODO:</param>
+        /// <param name="parameter">Параметр команды.TODO: Не исправлено</param>
         /// <returns>Возвращает <c>true</c>, если контакт можно удалить; иначе <c>false</c>.</returns>
         private bool CanRemoveContact() => IsContactSelected && !IsAddOrEditMode;
 
         /// <summary>
         /// Проверяет, можно ли применить изменения для выбранного контакта.
         /// </summary>
-        /// <param name="parameter">Параметр команды.TODO:</param>
+        /// <param name="parameter">Параметр команды.TODO: Не исправлено</param>
         /// <returns>Возвращает <c>true</c>, если изменения можно применить; иначе <c>false</c>.</returns>
         private bool CanApplyContact() => IsAddOrEditMode && !HasValidationErrors;
 
@@ -209,8 +220,8 @@ namespace Contacts.ViewModel
         /// в полях "Name", "PhoneNumber" или "Email"; иначе <c>false</c>.
         /// </returns>
         private bool HasValidationErrors => SelectedContact != null &&
-                                           (!string.IsNullOrEmpty(SelectedContact[(nameof(SelectedContact.Name))]) || // TODO: nameof +
-                                            !string.IsNullOrEmpty(SelectedContact[(nameof(SelectedContact.PhoneNumber))]) || // TODO: nameof +
-                                            !string.IsNullOrEmpty(SelectedContact[(nameof(SelectedContact.Email))])); // TODO: nameof +
+                                           (!string.IsNullOrEmpty(SelectedContact[(nameof(SelectedContact.Name))]) || // TODO: внешние круглые в которые обернут nameof лишние, удалить, здесь и ниже.
+                                            !string.IsNullOrEmpty(SelectedContact[(nameof(SelectedContact.PhoneNumber))]) || // TODO:
+                                            !string.IsNullOrEmpty(SelectedContact[(nameof(SelectedContact.Email))])); // TODO:
     }
 }

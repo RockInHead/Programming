@@ -1,7 +1,9 @@
 ﻿using System.Windows;
 using Contacts.ViewModel;
 
-// TODO: неправильный namespace +
+// TODO: все еще неправильный namespace - он образуется по физическим папкам.
+// К тому же проект называется View, но лежит в папке Contacts.
+// Переименовать папку на View или проект на Contacts - проект и его папка должны иметь одинаковые имена.
 namespace Contacts.View
 {
     /// <summary>
