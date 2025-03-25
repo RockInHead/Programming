@@ -4,7 +4,6 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Model;
 
-// TODO: имя solution не участвует в namespace, он формируется по физическим папкам. +
 namespace ViewModel
 {
     /// <summary>
@@ -174,28 +173,24 @@ namespace ViewModel
         /// <summary>
         /// Проверяет, можно ли добавить контакт.
         /// </summary>
-        /// TODO: Не исправлено. здесь и ниже, откуда комментарий на несуществующий параметр? убрать +
         /// <returns>Возвращает <c>true</c>, если контакт можно добавить; иначе <c>false</c>.</returns>
         private bool CanAddContact() => !IsAddOrEditMode;
 
         /// <summary>
         /// Проверяет, можно ли редактировать выбранный контакт.
         /// </summary>
-        ///TODO: Не исправлено +
         /// <returns>Возвращает <c>true</c>, если контакт можно редактировать; иначе <c>false</c>.</returns>
         private bool CanEditContact() => IsContactSelected && !IsAddOrEditMode;
 
         /// <summary>
         /// Проверяет, можно ли удалить выбранный контакт.
         /// </summary>
-        /// TODO: Не исправлено +
         /// <returns>Возвращает <c>true</c>, если контакт можно удалить; иначе <c>false</c>.</returns>
         private bool CanRemoveContact() => IsContactSelected && !IsAddOrEditMode;
 
         /// <summary>
         /// Проверяет, можно ли применить изменения для выбранного контакта.
         /// </summary>
-        /// TODO: Не исправлено +
         /// <returns>Возвращает <c>true</c>, если изменения можно применить; иначе <c>false</c>.</returns>
         private bool CanApplyContact() => IsAddOrEditMode && !HasValidationErrors;
 
@@ -207,8 +202,8 @@ namespace ViewModel
         /// в полях "Name", "PhoneNumber" или "Email"; иначе <c>false</c>.
         /// </returns>
         private bool HasValidationErrors => SelectedContact != null &&
-                                           (!string.IsNullOrEmpty(SelectedContact[nameof(SelectedContact.Name)]) || // TODO: внешние круглые в которые обернут nameof лишние, удалить, здесь и ниже.+
-                                            !string.IsNullOrEmpty(SelectedContact[nameof(SelectedContact.PhoneNumber)]) || // TODO:+
-                                            !string.IsNullOrEmpty(SelectedContact[nameof(SelectedContact.Email)])); // TODO:+
+                                           (!string.IsNullOrEmpty(SelectedContact[nameof(SelectedContact.Name)]) ||
+                                            !string.IsNullOrEmpty(SelectedContact[nameof(SelectedContact.PhoneNumber)]) ||
+                                            !string.IsNullOrEmpty(SelectedContact[nameof(SelectedContact.Email)]));
     }
 }

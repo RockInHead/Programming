@@ -2,7 +2,6 @@
 using System.Text.RegularExpressions;
 using CommunityToolkit.Mvvm.ComponentModel;
 
-// TODO: тоже, что и с другими namespace +
 namespace Model
 {
     /// <summary>
