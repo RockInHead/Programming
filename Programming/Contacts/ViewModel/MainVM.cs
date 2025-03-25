@@ -1,10 +1,11 @@
 ﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Contacts.Model;
+using Model;
 
-// TODO: имя solution не участвует в namespace, он формируется по физическим папкам.
-namespace Contacts.ViewModel
+// TODO: имя solution не участвует в namespace, он формируется по физическим папкам. +
+namespace ViewModel
 {
     /// <summary>
     /// Основная модель представления для управления контактами и их сохранением/загрузкой.
@@ -67,20 +68,14 @@ namespace Contacts.ViewModel
 
             if (value != null)
             {
-                // TODO: поставь точку останова на ApplyContactCommand.NotifyCanExecuteChanged();
-                // попереключайся между двумя контактами и нажми на одном из них edit. у тебя будет куча вызовов все еще.
-                // ниже, где ты пытаешься отписываться я объяснил, почему так происходит.
-                value.PropertyChanged += (s, e) =>
-                {
-                    ApplyContactCommand.NotifyCanExecuteChanged();
-                };
+                value.PropertyChanged += SelectedContact_PropertyChanged;
             }
         }
 
         /// <summary>
         /// Вызывается перед изменением выбранного контакта.
         /// Если редактирование активно, восстанавливает оригинальные значения
-        /// полей текущего контакт и переключает в режим только для чтения.
+        /// полей текущего контакта и переключает в режим только для чтения.
         /// </summary>
         /// <param name="value">Новый контакт, который будет выбран</param>
         /// <remarks>
@@ -91,23 +86,7 @@ namespace Contacts.ViewModel
         {
             if (_selectedContact != null)
             {
-                // TODO: когда ты используешь лямбда выражение ты создаешь анонимный метод.
-                // Т.е. при каждом срабатывании этого метода ты сначала создаешь новый метод,
-                // затем пытаешься отписать его от события PropertyChanged.
-                // Но отписки не произойдет, т.к. этот метод только что создан и не был подписан на это событие.
-                var a = (int parameter) =>
-                {
-                    var b = $"c {parameter}";
-                    return b;
-                };
-                // Видишь код выше - мы создаем новый метод и нам возвращается ссылка на него.
-                // И она каждый раз новая.
-                // Ты не можешь отписать анонимный метод, если у тебя нет на него ссылки.
-                // Создай полноценный именованный метод и подписывай/отписывай его.
-                _selectedContact.PropertyChanged -= (s, e) =>
-                {
-                    ApplyContactCommand.NotifyCanExecuteChanged();
-                }; 
+                _selectedContact.PropertyChanged -= SelectedContact_PropertyChanged;
             }
 
             if (!IsReadOnlyMode && _selectedContact != null)
@@ -117,6 +96,14 @@ namespace Contacts.ViewModel
                 _selectedContact.Email = OriginalContact.Email;
                 IsReadOnlyMode = true;
             }
+        }
+
+        /// <summary>
+        /// Обработчик изменения свойств выбранного контакта.
+        /// </summary>
+        private void SelectedContact_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            ApplyContactCommand.NotifyCanExecuteChanged();
         }
 
         /// <summary>
@@ -187,28 +174,28 @@ namespace Contacts.ViewModel
         /// <summary>
         /// Проверяет, можно ли добавить контакт.
         /// </summary>
-        /// <param name="parameter">Параметр команды. TODO: Не исправлено. здесь и ниже, откуда комментарий на несуществующий параметр? убрать </param>
+        /// TODO: Не исправлено. здесь и ниже, откуда комментарий на несуществующий параметр? убрать +
         /// <returns>Возвращает <c>true</c>, если контакт можно добавить; иначе <c>false</c>.</returns>
         private bool CanAddContact() => !IsAddOrEditMode;
 
         /// <summary>
         /// Проверяет, можно ли редактировать выбранный контакт.
         /// </summary>
-        /// <param name="parameter">Параметр команды. TODO: Не исправлено</param>
+        ///TODO: Не исправлено +
         /// <returns>Возвращает <c>true</c>, если контакт можно редактировать; иначе <c>false</c>.</returns>
         private bool CanEditContact() => IsContactSelected && !IsAddOrEditMode;
 
         /// <summary>
         /// Проверяет, можно ли удалить выбранный контакт.
         /// </summary>
-        /// <param name="parameter">Параметр команды.TODO: Не исправлено</param>
+        /// TODO: Не исправлено +
         /// <returns>Возвращает <c>true</c>, если контакт можно удалить; иначе <c>false</c>.</returns>
         private bool CanRemoveContact() => IsContactSelected && !IsAddOrEditMode;
 
         /// <summary>
         /// Проверяет, можно ли применить изменения для выбранного контакта.
         /// </summary>
-        /// <param name="parameter">Параметр команды.TODO: Не исправлено</param>
+        /// TODO: Не исправлено +
         /// <returns>Возвращает <c>true</c>, если изменения можно применить; иначе <c>false</c>.</returns>
         private bool CanApplyContact() => IsAddOrEditMode && !HasValidationErrors;
 
